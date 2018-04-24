@@ -1,10 +1,15 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+
+/**
+ * this is a cool game about have a pizza party, but for poor people
+ */
 
 public class PoorPeoplePizzaParty extends Game {
 	public SpriteBatch batch;

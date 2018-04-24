@@ -11,17 +11,21 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+
+/**
+ * The main games screen, where we make our pizza
+ */
 
 public class PizzaScreen implements Screen {
     private final PoorPeoplePizzaParty game;
 
     private OrthographicCamera camera;
-
-    private Texture texture;
-    private Sprite sprite;
     private Viewport viewport;
+
+    private Pizza pizza;
 
     public PizzaScreen(PoorPeoplePizzaParty game) {
         this.game = game;
@@ -31,11 +35,7 @@ public class PizzaScreen implements Screen {
                 Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        texture = new Texture(Gdx.files.internal("base.png"));
-        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
-        sprite.setX(60);
-        sprite.setY(60);
+        pizza = new Pizza();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false,
@@ -67,7 +67,7 @@ public class PizzaScreen implements Screen {
         game.shapeRenderer.end();
 
         game.batch.begin();
-        sprite.draw(game.batch);
+        pizza.draw(game.batch);
         game.batch.end();
 
     }
@@ -95,6 +95,6 @@ public class PizzaScreen implements Screen {
 
     @Override
     public void dispose() {
-        texture.dispose();
+        pizza.dispose();
     }
 }
