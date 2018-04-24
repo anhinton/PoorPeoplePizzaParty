@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -17,7 +19,8 @@ public class PizzaScreen implements Screen {
 
     private OrthographicCamera camera;
 
-    private Texture img;
+    private Texture texture;
+    private Sprite sprite;
     private Viewport viewport;
 
     public PizzaScreen(PoorPeoplePizzaParty game) {
@@ -28,7 +31,12 @@ public class PizzaScreen implements Screen {
                 Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        img = new Texture("base.png");
+        texture = new Texture(Gdx.files.internal("base.png"));
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+        sprite.setX(60);
+        sprite.setY(60);
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false,
                 Constants.APP_WIDTH,
@@ -49,6 +57,7 @@ public class PizzaScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
         game.shapeRenderer.setProjectionMatrix(camera.combined);
 
         game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -58,7 +67,7 @@ public class PizzaScreen implements Screen {
         game.shapeRenderer.end();
 
         game.batch.begin();
-        game.batch.draw(img, 60, 60);
+        sprite.draw(game.batch);
         game.batch.end();
 
     }
@@ -86,6 +95,6 @@ public class PizzaScreen implements Screen {
 
     @Override
     public void dispose() {
-        img.dispose();
+        texture.dispose();
     }
 }
