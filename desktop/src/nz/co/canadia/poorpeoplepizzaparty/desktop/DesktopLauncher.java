@@ -3,7 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import nz.co.canadia.poorpeoplepizzaparty.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 
 public class DesktopLauncher {

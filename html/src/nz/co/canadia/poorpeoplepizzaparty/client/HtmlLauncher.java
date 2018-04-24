@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 
-import nz.co.canadia.poorpeoplepizzaparty.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 
 public class HtmlLauncher extends GwtApplication {

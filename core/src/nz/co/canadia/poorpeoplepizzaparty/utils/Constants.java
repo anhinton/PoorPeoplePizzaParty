@@ -1,4 +1,4 @@
-package nz.co.canadia.poorpeoplepizzaparty;
+package nz.co.canadia.poorpeoplepizzaparty.utils;
 
 
 import com.badlogic.gdx.graphics.Color;
