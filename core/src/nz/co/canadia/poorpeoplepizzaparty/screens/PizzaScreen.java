@@ -28,7 +28,7 @@ public class PizzaScreen implements Screen {
                 Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        img = new Texture("badlogic.jpg");
+        img = new Texture("base.png");
         camera = new OrthographicCamera();
         camera.setToOrtho(false,
                 Constants.APP_WIDTH,
@@ -58,7 +58,7 @@ public class PizzaScreen implements Screen {
         game.shapeRenderer.end();
 
         game.batch.begin();
-        game.batch.draw(img, 0, 0);
+        game.batch.draw(img, 60, 60);
         game.batch.end();
 
     }
