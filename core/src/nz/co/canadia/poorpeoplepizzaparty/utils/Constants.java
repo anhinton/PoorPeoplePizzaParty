@@ -18,4 +18,9 @@ public class Constants {
     // App dimensions
     public static final int APP_WIDTH = 960;
     public static final int APP_HEIGHT = 600;
+
+    // Topping levels for the pizza base
+    public enum BaseTopping {
+        BASE, SAUCE, CHEESE
+    }
 }

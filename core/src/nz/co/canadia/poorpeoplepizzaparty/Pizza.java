@@ -10,24 +10,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 
 public class Pizza {
-    private Texture baseTexture;
-    private Sprite baseSprite;
+    private Base base;
 
     public Pizza() {
-        baseTexture = new Texture(Gdx.files.internal("base.png"));
-        baseTexture.setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
-        baseSprite = new Sprite(baseTexture, baseTexture.getWidth(),
-                baseTexture.getHeight());
-        baseSprite.setX(60);
-        baseSprite.setY(60);
+        base = new Base();
+
     }
 
     public void draw(SpriteBatch batch) {
-        baseSprite.draw(batch);
+        base.draw(batch);
     }
 
     public void dispose() {
-        baseTexture.dispose();
+        base.dispose();
     }
 }
