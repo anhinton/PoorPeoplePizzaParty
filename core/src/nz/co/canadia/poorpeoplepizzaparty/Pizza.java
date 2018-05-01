@@ -14,7 +14,6 @@ public class Pizza {
 
     public Pizza() {
         base = new Base();
-
     }
 
     public void draw(SpriteBatch batch) {

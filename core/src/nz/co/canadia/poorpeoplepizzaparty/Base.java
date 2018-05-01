@@ -45,4 +45,24 @@ public class Base {
 
     public void dispose() {
     }
+
+    public void setTopping(Constants.BaseTopping topping) {
+        if (this.topping != topping) {
+            // update sprite with appropriate topping
+            switch(topping) {
+                case BASE:
+                    sprite.setTexture(baseTexture);
+                    break;
+                case SAUCE:
+                    sprite.setTexture(sauceTexture);
+                    break;
+                case CHEESE:
+                    sprite.setTexture(cheeseTexture);
+                    break;
+            }
+        }
+    }
+
+    public void update() {
+    }
 }
