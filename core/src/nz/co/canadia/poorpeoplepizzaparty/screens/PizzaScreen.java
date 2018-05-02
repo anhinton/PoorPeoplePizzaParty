@@ -30,11 +30,6 @@ public class PizzaScreen implements Screen {
     public PizzaScreen(PoorPeoplePizzaParty game) {
         this.game = game;
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false,
-                Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
-
         pizza = new Pizza();
 
         camera = new OrthographicCamera();
@@ -52,19 +47,12 @@ public class PizzaScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(Constants.BORDER_COLOUR.r, Constants.BORDER_COLOUR.g,
-                Constants.BORDER_COLOUR.b, Constants.BORDER_COLOUR.a);
+        Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
+                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
-        game.shapeRenderer.setProjectionMatrix(camera.combined);
-
-        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        game.shapeRenderer.setColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
-                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
-        game.shapeRenderer.rect(0, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
-        game.shapeRenderer.end();
 
         game.batch.begin();
         pizza.draw(game.batch);
@@ -75,7 +63,6 @@ public class PizzaScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-
     }
 
     @Override

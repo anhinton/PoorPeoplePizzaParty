@@ -13,7 +13,7 @@ import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 
 public class PoorPeoplePizzaParty extends Game {
 	public SpriteBatch batch;
-    public ShapeRenderer shapeRenderer;
+	public ShapeRenderer shapeRenderer;
 
     @Override
 	public void create () {
