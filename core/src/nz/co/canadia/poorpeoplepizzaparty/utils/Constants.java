@@ -12,7 +12,7 @@ public class Constants {
 
     // Colours
     public static final Color BG_COLOUR =
-            new Color(48f/255, 184f/255, 73f/255, 1f); // green, it's green
+            new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green
 
     // App dimensions
     public static final int APP_WIDTH = 960;
