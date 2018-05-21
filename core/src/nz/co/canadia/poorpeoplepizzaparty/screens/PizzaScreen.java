@@ -52,16 +52,8 @@ public class PizzaScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.shapeRenderer.setProjectionMatrix(camera.combined);
 
-        game.shapeRenderer.setColor(1, 1, 1, 1);
-        game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        game.shapeRenderer.rect(Constants.APP_WIDTH - 400,
-                Constants.APP_HEIGHT - 400, 400, 400);
-        game.shapeRenderer.end();
-
         game.batch.begin();
         pizza.draw(game.batch);
-        game.font.draw(game.batch, "It is a piiza", 100, 150);
-        game.font.draw(game.batch, "How we can help each other", 100, 100);
         game.batch.end();
     }
 
