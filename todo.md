@@ -6,5 +6,6 @@
   + ~~make Android icon/app name look better~~
   + ~~drop Base class, make part of Pizza~~
   + ~~create setBaseTopping() method~~
-  + call setBaseTopping() on touch
+  + ~~call setBaseTopping() on touch~~
+  + create toppings menu layout
   + investigate asset manager
