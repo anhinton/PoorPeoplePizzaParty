@@ -30,4 +30,8 @@ public class Constants {
     // Pizza base x, y
     public static final int BASE_X = 60;
     public static final int BASE_Y = 60;
+
+    // Topping menu button size
+    public static final int BUTTON_IMAGE_WIDTH = 100;
+    public static final int BUTTON_IMAGE_HEIGHT = 100;
 }

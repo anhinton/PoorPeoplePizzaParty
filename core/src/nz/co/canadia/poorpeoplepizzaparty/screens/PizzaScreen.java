@@ -7,13 +7,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
+import nz.co.canadia.poorpeoplepizzaparty.ToppingsUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -28,9 +27,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     private OrthographicCamera camera;
     private Viewport viewport;
     private Stage stage;
-    private Table table;
     private InputMultiplexer multiplexer;
-    private Skin skin;
+    private ToppingsUi toppingsUi;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -50,12 +48,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        table = new Table();
-        table.setFillParent(true);
-        stage.addActor(table);
-
-        // DEBUG UI
-        table.setDebug(true);
+        toppingsUi = new ToppingsUi(stage);
     }
 
     @Override
