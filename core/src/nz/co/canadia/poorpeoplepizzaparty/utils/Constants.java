@@ -22,4 +22,12 @@ public class Constants {
     public enum BaseTopping {
         BASE, SAUCE, CHEESE
     }
+
+    // Pizza base dimensions
+    public static final int BASE_WITDH = 480;
+    public static final int BASE_HEIGHT = 480;
+
+    // Pizza base x, y
+    public static final int BASE_X = 60;
+    public static final int BASE_Y = 60;
 }

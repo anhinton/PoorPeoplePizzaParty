@@ -1,10 +1,10 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -13,15 +13,14 @@ import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
- * help I am testing things!
+ * The main game screen where we create our pizza.
  */
 
-public class PizzaScreen implements Screen {
+public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
-
     private Pizza pizza;
-
+    private boolean isTouchDown;
     private OrthographicCamera camera;
     private Viewport viewport;
 
@@ -29,12 +28,15 @@ public class PizzaScreen implements Screen {
         this.game = game;
 
         pizza = new Pizza();
+        isTouchDown = false;
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
                 camera);
         camera.setToOrtho(false, Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
+
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
@@ -51,6 +53,8 @@ public class PizzaScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         game.shapeRenderer.setProjectionMatrix(camera.combined);
+
+        // change base topping on touch
 
         game.batch.begin();
         pizza.draw(game.batch);
@@ -80,5 +84,62 @@ public class PizzaScreen implements Screen {
     @Override
     public void dispose() {
         pizza.dispose();
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (!isTouchDown) {
+            isTouchDown = true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if (isTouchDown) {
+            switch(pizza.getBaseTopping()) {
+                case BASE:
+                    pizza.setBaseTopping(Constants.BaseTopping.SAUCE);
+                    break;
+                case SAUCE:
+                    pizza.setBaseTopping(Constants.BaseTopping.CHEESE);
+                    break;
+                case CHEESE:
+                    pizza.setBaseTopping(Constants.BaseTopping.BASE);
+                    break;
+            }
+            isTouchDown = false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }
