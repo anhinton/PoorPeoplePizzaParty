@@ -1,10 +1,13 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -23,6 +26,9 @@ public class PizzaScreen implements InputProcessor, Screen {
     private boolean isTouchDown;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private Stage stage;
+    private Table table;
+    private InputMultiplexer inputMultiplexer;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -36,7 +42,17 @@ public class PizzaScreen implements InputProcessor, Screen {
         camera.setToOrtho(false, Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        Gdx.input.setInputProcessor(this);
+        stage = new Stage(viewport);
+        inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(stage);
+        inputMultiplexer.addProcessor(this);
+
+        table = new Table();
+        table.setFillParent(true);
+        stage.addActor(table);
+
+        // DEBUG UI
+        table.setDebug(true);
     }
 
     @Override
@@ -54,16 +70,18 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.batch.setProjectionMatrix(camera.combined);
         game.shapeRenderer.setProjectionMatrix(camera.combined);
 
-        // change base topping on touch
-
         game.batch.begin();
         pizza.draw(game.batch);
         game.batch.end();
+
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -84,6 +102,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         pizza.dispose();
+        stage.dispose();
     }
 
     @Override
