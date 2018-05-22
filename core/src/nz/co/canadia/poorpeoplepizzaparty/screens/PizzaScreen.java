@@ -28,7 +28,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     private Viewport viewport;
     private Stage stage;
     private Table table;
-    private InputMultiplexer inputMultiplexer;
+    private InputMultiplexer multiplexer;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -43,9 +43,10 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
-        inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(stage);
-        inputMultiplexer.addProcessor(this);
+        multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(this);
+        Gdx.input.setInputProcessor(multiplexer);
 
         table = new Table();
         table.setFillParent(true);
