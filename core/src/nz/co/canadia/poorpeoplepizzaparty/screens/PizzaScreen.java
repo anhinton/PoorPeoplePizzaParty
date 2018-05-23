@@ -98,6 +98,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         pizza.dispose();
+        toppingsUi.dispose();
         stage.dispose();
     }
 

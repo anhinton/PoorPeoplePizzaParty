@@ -70,4 +70,10 @@ public class ToppingsUi {
         // DEBUG UI
         table.setDebug(true);
     }
+
+    public void dispose() {
+        sauceMenuTexture.dispose();
+        cheeseMenuTexture.dispose();
+        skin.dispose();
+    }
 }
