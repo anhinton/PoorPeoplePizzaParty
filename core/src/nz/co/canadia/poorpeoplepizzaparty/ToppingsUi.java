@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -40,36 +41,31 @@ public class ToppingsUi {
 
         table = new Table();
         table.setFillParent(true);
-        table.top().right();
+        table.top().right().pad(Constants.MENU_PADDING);
         stage.addActor(table);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         ImageButton.ImageButtonStyle sauceButtonStyle =
                 new ImageButton.ImageButtonStyle(
-                        skin.get("default", Button.ButtonStyle.class));
+                        skin.get("toggle", Button.ButtonStyle.class));
         sauceButtonStyle.imageUp = new SpriteDrawable(sauceMenuSprite);
         ImageButton sauceButton = new ImageButton(sauceButtonStyle);
-        table.add(sauceButton);
+        table.add(sauceButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 
         ImageButton.ImageButtonStyle cheeseButtonStyle =
                 new ImageButton.ImageButtonStyle(
-                        skin.get("default", Button.ButtonStyle.class));
+                        skin.get("toggle", Button.ButtonStyle.class));
         cheeseButtonStyle.imageUp = new SpriteDrawable(cheeseMenuSprite);
-        ImageButton cheeseButton = new ImageButton(cheeseButtonStyle);
-        table.add(cheeseButton);
+        final ImageButton cheeseButton = new ImageButton(cheeseButtonStyle);
+        table.add(cheeseButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 
-
-//        Label nameLabel = new Label("Name:", skin);
-//        TextField nameText = new TextField("", skin);
-//        Label addressLabel = new Label("Address:", skin);
-//        TextField addressText = new TextField("", skin);
-//
-//        table.add(nameLabel);
-//        table.add(nameText).width(100);
-//        table.row();
-//        table.add(addressLabel);
-//        table.add(addressText).width(100);
+        ButtonGroup<ImageButton> toppingsGroup = new ButtonGroup<ImageButton>();
+        toppingsGroup.setMinCheckCount(0);
+        toppingsGroup.setMaxCheckCount(1);
+        toppingsGroup.add(sauceButton, cheeseButton);
 
         // DEBUG UI
         table.setDebug(true);

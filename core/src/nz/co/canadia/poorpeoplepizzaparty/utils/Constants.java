@@ -32,6 +32,13 @@ public class Constants {
     public static final int BASE_Y = 60;
 
     // Topping menu button size
-    public static final int BUTTON_IMAGE_WIDTH = 100;
-    public static final int BUTTON_IMAGE_HEIGHT = 100;
+    public static final int BUTTON_WIDTH = 100;
+    public static final int BUTTON_HEIGHT = 100;
+
+    // Topping menu button image size
+    public static final int BUTTON_IMAGE_WIDTH = 90;
+    public static final int BUTTON_IMAGE_HEIGHT = 90;
+
+    // Topping menu UI padding/spacing
+    public static final int MENU_PADDING = 20;
 }
