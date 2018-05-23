@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
-import nz.co.canadia.poorpeoplepizzaparty.ToppingsUi;
+import nz.co.canadia.poorpeoplepizzaparty.ToppingMenu;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -28,7 +28,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     private Viewport viewport;
     private Stage stage;
     private InputMultiplexer multiplexer;
-    private ToppingsUi toppingsUi;
+    private ToppingMenu toppingMenu;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -48,7 +48,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        toppingsUi = new ToppingsUi(stage);
+        toppingMenu = new ToppingMenu(stage);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         pizza.dispose();
-        toppingsUi.dispose();
+        toppingMenu.dispose();
         stage.dispose();
     }
 

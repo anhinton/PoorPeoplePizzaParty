@@ -17,7 +17,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
  */
 
-public class ToppingsUi {
+public class ToppingMenu {
 
     private Texture sauceMenuTexture;
     private Sprite sauceMenuSprite;
@@ -27,7 +27,7 @@ public class ToppingsUi {
     private Table table;
     private Skin skin;
 
-    public ToppingsUi(Stage stage) {
+    public ToppingMenu(Stage stage) {
 
         // create button sprites
         sauceMenuTexture = new Texture(Gdx.files.internal("sauce.png"));
