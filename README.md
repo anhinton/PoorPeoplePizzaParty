@@ -30,3 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Unless declared otherwise below the assets in `android/assets` are licensed 
 under a [Creative Commons Attribution-ShareAlike 4.0 International 
 License](http://creativecommons.org/licenses/by-sa/4.0/).
+
+`graphics/toppings/bacon-topping.png`
+"[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
+by By Made20rder555 [Public domain], from Wikimedia Commons is in the 
+public domain.
