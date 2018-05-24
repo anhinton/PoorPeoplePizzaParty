@@ -43,8 +43,23 @@ ToppingMenuItem is selected, clicking on the Pizza will add a Topping
 object to the array of Topping objects held in Pizza.
 
   + in PizzaScreen:
-      - TODO: create String toppingSelected field
-      
+      - ~~create String toppingSelected field~~
+      - ~~create setSelectedTopping method~~
+      - call the Pizza.addTopping method when we click somewhere
+  
+  + in Pizza
+      - a toppingList field to hold Toppings
+      - initialise topplingList with a base topping
+      - an addTopping method which takes a String selectedTopping.
+        this adds a topping to toppingList, or in the base cases (base, 
+        sauce, cheese) replaces the first/base topping
+      - call PizzaScreen.setSelectedTopping method when a menu item is checked
+      - call PizzaScreen.setSelectTopping(null) when no item is checked
+        
+  + in ToppingMenu
+      - create menuItemList field to hold eight menu items
+      - create addMenuItem to add a new menu item to the menuItemList
+      - add eight menu items to menuItemList on construction
     
   + create toppings menu layout
   
