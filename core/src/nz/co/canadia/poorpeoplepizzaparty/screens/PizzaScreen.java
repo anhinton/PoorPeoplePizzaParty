@@ -23,18 +23,18 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private Pizza pizza;
-    private boolean isTouchDown;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Stage stage;
     private InputMultiplexer multiplexer;
     private ToppingMenu toppingMenu;
+    private String selectedTopping;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
         pizza = new Pizza();
-        isTouchDown = false;
+        selectedTopping = null;
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
@@ -49,6 +49,10 @@ public class PizzaScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
 
         toppingMenu = new ToppingMenu(stage);
+    }
+
+    public void setSelectedTopping(String selectedTopping) {
+        this.selectedTopping = selectedTopping;
     }
 
     @Override
@@ -119,27 +123,21 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (!isTouchDown) {
-            isTouchDown = true;
-        }
-        return true;
+        return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (isTouchDown) {
-            switch(pizza.getBaseTopping()) {
-                case BASE:
-                    pizza.setBaseTopping(Constants.BaseTopping.SAUCE);
-                    break;
-                case SAUCE:
-                    pizza.setBaseTopping(Constants.BaseTopping.CHEESE);
-                    break;
-                case CHEESE:
-                    pizza.setBaseTopping(Constants.BaseTopping.BASE);
-                    break;
-            }
-            isTouchDown = false;
+        switch (pizza.getBaseTopping()) {
+            case BASE:
+                pizza.setBaseTopping(Constants.BaseTopping.SAUCE);
+                break;
+            case SAUCE:
+                pizza.setBaseTopping(Constants.BaseTopping.CHEESE);
+                break;
+            case CHEESE:
+                pizza.setBaseTopping(Constants.BaseTopping.BASE);
+                break;
         }
         return true;
     }
