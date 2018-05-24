@@ -19,10 +19,9 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class ToppingMenu {
 
+    private final Texture baconMenuTexture;
     private Texture sauceMenuTexture;
-    private Sprite sauceMenuSprite;
     private Texture cheeseMenuTexture;
-    private Sprite cheeseMenuSprite;
 
     private Table table;
     private Skin skin;
@@ -30,21 +29,28 @@ public class ToppingMenu {
     public ToppingMenu(Stage stage) {
 
         // create button sprites
-        sauceMenuTexture = new Texture(Gdx.files.internal("sauce.png"));
-        sauceMenuSprite = new Sprite(sauceMenuTexture);
+        sauceMenuTexture = new Texture(
+                Gdx.files.internal("graphics/toppings/sauce.png"));
+        Sprite sauceMenuSprite = new Sprite(sauceMenuTexture);
         sauceMenuSprite.setSize(Constants.BUTTON_IMAGE_WIDTH,
                 Constants.BUTTON_IMAGE_HEIGHT);
-        cheeseMenuTexture = new Texture(Gdx.files.internal("cheese.png"));
-        cheeseMenuSprite = new Sprite(cheeseMenuTexture);
+        cheeseMenuTexture = new Texture(
+                Gdx.files.internal("graphics/toppings/cheese.png"));
+        Sprite cheeseMenuSprite = new Sprite(cheeseMenuTexture);
         cheeseMenuSprite.setSize(Constants.BUTTON_IMAGE_WIDTH,
                 Constants.BUTTON_IMAGE_HEIGHT);
+        baconMenuTexture = new Texture(
+                Gdx.files.internal("graphics/toppings/bacon-topping.png"));
+        Sprite baconMenuSprite = new Sprite(baconMenuTexture);
+        baconMenuSprite.setSize(Constants.BUTTON_IMAGE_WIDTH,
+                Constants.BUTTON_IMAGE_HEIGHT * baconMenuTexture.getHeight() / baconMenuTexture.getWidth());
 
         table = new Table();
         table.setFillParent(true);
         table.top().right().pad(Constants.MENU_PADDING);
         stage.addActor(table);
 
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
         ImageButton.ImageButtonStyle sauceButtonStyle =
                 new ImageButton.ImageButtonStyle(
@@ -58,8 +64,18 @@ public class ToppingMenu {
                 new ImageButton.ImageButtonStyle(
                         skin.get("toggle", Button.ButtonStyle.class));
         cheeseButtonStyle.imageUp = new SpriteDrawable(cheeseMenuSprite);
-        final ImageButton cheeseButton = new ImageButton(cheeseButtonStyle);
+        ImageButton cheeseButton = new ImageButton(cheeseButtonStyle);
         table.add(cheeseButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+
+        table.row();
+
+        ImageButton.ImageButtonStyle baconButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("toggle", Button.ButtonStyle.class));
+        baconButtonStyle.imageUp = new SpriteDrawable(baconMenuSprite);
+        ImageButton baconButton = new ImageButton(baconButtonStyle);
+        table.add(baconButton).space(Constants.MENU_PADDING)
                 .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 
         ButtonGroup<ImageButton> toppingsGroup = new ButtonGroup<ImageButton>();
@@ -72,6 +88,7 @@ public class ToppingMenu {
     }
 
     public void dispose() {
+        baconMenuTexture.dispose();
         sauceMenuTexture.dispose();
         cheeseMenuTexture.dispose();
         skin.dispose();

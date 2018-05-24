@@ -25,7 +25,7 @@ public class Pizza {
     public Pizza() {
 
         // load base textures and create sprites
-        baseTexture = new Texture(Gdx.files.internal("base.png"));
+        baseTexture = new Texture(Gdx.files.internal("graphics/toppings/base.png"));
         baseTexture.setFilter(Texture.TextureFilter.Linear, 
                 Texture.TextureFilter.Linear);
         baseSprite = new Sprite(baseTexture, Constants.BASE_WITDH,
@@ -33,7 +33,7 @@ public class Pizza {
         baseSprite.setX(Constants.BASE_X);
         baseSprite.setY(Constants.BASE_Y);
         
-        sauceTexture = new Texture(Gdx.files.internal("sauce.png"));
+        sauceTexture = new Texture(Gdx.files.internal("graphics/toppings/sauce.png"));
         sauceTexture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear);
         sauceSprite = new Sprite(sauceTexture, Constants.BASE_WITDH,
@@ -41,7 +41,7 @@ public class Pizza {
         sauceSprite.setX(Constants.BASE_X);
         sauceSprite.setY(Constants.BASE_Y);
 
-        cheeseTexture = new Texture(Gdx.files.internal("cheese.png"));
+        cheeseTexture = new Texture(Gdx.files.internal("graphics/toppings/cheese.png"));
         cheeseTexture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear);
         cheeseSprite = new Sprite(cheeseTexture, Constants.BASE_WITDH,
