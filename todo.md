@@ -43,9 +43,11 @@ ToppingMenuItem is selected, clicking on the Pizza will add a Topping
 object to the array of Topping objects held in Pizza.
 
   + in PizzaScreen:
-      - ~~create String toppingSelected field~~
+      - ~~create Topping selectedTopping field~~
       - ~~create setSelectedTopping method~~
       - ~~call the Pizza.addTopping method when we click somewhere~~
+      - in touchDown method call selectedTopping.copy method to get
+        a Topping to pass to pizza.addTopping
   
   + in Pizza
       - ~~a toppingArray field to hold Toppings~~
@@ -53,7 +55,7 @@ object to the array of Topping objects held in Pizza.
       - ~~create addTopping method which takes Topping object and adds it to
         toppingArray~~        
       - call PizzaScreen.setSelectedTopping method when a menu item is checked
-      - call PizzaScreen.setSelectTopping(null) when no item is checked
+      - call PizzaScreen.setSelectTopping(NONE) when no item is checked
         
   + in ToppingMenu
       - create menuItemList field to hold eight menu items
@@ -65,6 +67,11 @@ object to the array of Topping objects held in Pizza.
       - ~~Constants.ToppingName toppingName~~
       - ~~Sprite sprite~~
       - ~~draw method~~
+      
+  + Topping.class:
+      - add copy method which returns an identical Topping.class object
+      - remove x, y, rotation fields and alter getters/setters to access the
+        Sprite field
     
   + create toppings menu layout
   
