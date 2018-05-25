@@ -45,14 +45,13 @@ object to the array of Topping objects held in Pizza.
   + in PizzaScreen:
       - ~~create String toppingSelected field~~
       - ~~create setSelectedTopping method~~
-      - call the Pizza.addTopping method when we click somewhere
+      - ~~call the Pizza.addTopping method when we click somewhere~~
   
   + in Pizza
-      - a toppingList field to hold Toppings
-      - initialise topplingList with a base topping
-      - an addTopping method which takes a String selectedTopping.
-        this adds a topping to toppingList, or in the base cases (base, 
-        sauce, cheese) replaces the first/base topping
+      - ~~a toppingArray field to hold Toppings~~
+      - ~~initialise topplingArray with a base topping~~
+      - ~~create addTopping method which takes Topping object and adds it to
+        toppingArray~~        
       - call PizzaScreen.setSelectedTopping method when a menu item is checked
       - call PizzaScreen.setSelectTopping(null) when no item is checked
         
@@ -60,6 +59,12 @@ object to the array of Topping objects held in Pizza.
       - create menuItemList field to hold eight menu items
       - create addMenuItem to add a new menu item to the menuItemList
       - add eight menu items to menuItemList on construction
+      
+  + ~~create Topping.class:~~
+      - ~~float x, y, rotation~~
+      - ~~Constants.ToppingName toppingName~~
+      - ~~Sprite sprite~~
+      - ~~draw method~~
     
   + create toppings menu layout
   
