@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -13,78 +15,35 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Pizza {
 
-    private Texture baseTexture;
-    private Texture sauceTexture;
-    private Texture cheeseTexture;
-    private Sprite baseSprite;
-    private Sprite sauceSprite;
-    private Sprite cheeseSprite;
-    private Sprite currentSprite;
-    private Constants.BaseTopping baseTopping;
+    private Array<Topping> toppingArray;
+    private ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
 
-    public Pizza() {
+    public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
 
-        // load base textures and create sprites
-        baseTexture = new Texture(Gdx.files.internal("graphics/toppings/base.png"));
-        baseTexture.setFilter(Texture.TextureFilter.Linear, 
-                Texture.TextureFilter.Linear);
-        baseSprite = new Sprite(baseTexture, Constants.BASE_WITDH,
-                Constants.BASE_HEIGHT);
-        baseSprite.setX(Constants.BASE_X);
-        baseSprite.setY(Constants.BASE_Y);
-        
-        sauceTexture = new Texture(Gdx.files.internal("graphics/toppings/sauce.png"));
-        sauceTexture.setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
-        sauceSprite = new Sprite(sauceTexture, Constants.BASE_WITDH,
-                Constants.BASE_HEIGHT);
-        sauceSprite.setX(Constants.BASE_X);
-        sauceSprite.setY(Constants.BASE_Y);
+        this.textureObjectMap = textureObjectMap;
 
-        cheeseTexture = new Texture(Gdx.files.internal("graphics/toppings/cheese.png"));
-        cheeseTexture.setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
-        cheeseSprite = new Sprite(cheeseTexture, Constants.BASE_WITDH,
-                Constants.BASE_HEIGHT);
-        cheeseSprite.setX(Constants.BASE_X);
-        cheeseSprite.setY(Constants.BASE_Y);
-        
-        // set base to plain
-        baseTopping = Constants.BaseTopping.BASE;
-        currentSprite = baseSprite;
+        // add the base Topping to the topping array
+        toppingArray = new Array<Topping>();
+        toppingArray.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
+                0, Constants.ToppingName.BASE, textureObjectMap));
     }
 
     public void draw (SpriteBatch batch) {
-        currentSprite.draw(batch);
-    }
-
-    public void dispose() {
-        baseTexture.dispose();
-        sauceTexture.dispose();
-        cheeseTexture.dispose();
-    }
-
-    public void setBaseTopping(Constants.BaseTopping baseTopping) {
-        if (getBaseTopping() != baseTopping) {
-            // update sprite with appropriate topping
-            switch (baseTopping) {
-                case BASE:
-                    this.baseTopping = Constants.BaseTopping.BASE;
-                    currentSprite = baseSprite;
-                    break;
-                case SAUCE:
-                    this.baseTopping = Constants.BaseTopping.SAUCE;
-                    currentSprite = sauceSprite;
-                    break;
-                case CHEESE:
-                    this.baseTopping = Constants.BaseTopping.CHEESE;
-                    currentSprite = cheeseSprite;
-                    break;
-            }
+//        currentSprite.draw(batch);
+        for (Topping topping: toppingArray) {
+            topping.draw(batch);
         }
     }
 
-    public Constants.BaseTopping getBaseTopping() {
-        return baseTopping;
+
+    public void dispose() {
+        for (Texture texture: textureObjectMap.values()) {
+            texture.dispose();
+        }
+        textureObjectMap.clear();
+    }
+
+    public void addTopping(Topping topping) {
+        this.toppingArray.add(topping);
     }
 }

@@ -6,12 +6,16 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
+import nz.co.canadia.poorpeoplepizzaparty.Topping;
 import nz.co.canadia.poorpeoplepizzaparty.ToppingMenu;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -22,19 +26,41 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
+    private final ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
     private Pizza pizza;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Stage stage;
     private InputMultiplexer multiplexer;
     private ToppingMenu toppingMenu;
-    private String selectedTopping;
+    private Topping selectedTopping;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        pizza = new Pizza();
-        selectedTopping = null;
+        // load textures and create sprites
+        // TODO: replace textureObjectMap with asset manager probably
+        textureObjectMap = new ObjectMap<Constants.ToppingName, Texture>();
+        textureObjectMap.put(
+                Constants.ToppingName.BASE,
+                new Texture(Gdx.files.internal("graphics/toppings/base.png")));
+        textureObjectMap.put(
+                Constants.ToppingName.SAUCE,
+                new Texture(Gdx.files.internal("graphics/toppings/sauce.png")));
+        textureObjectMap.put(
+                Constants.ToppingName.CHEESE,
+                new Texture(Gdx.files.internal("graphics/toppings/cheese.png")));
+        textureObjectMap.put(
+                Constants.ToppingName.BACON,
+                new Texture(Gdx.files.internal("graphics/toppings/bacon-topping.png")));
+        for (Texture texture: textureObjectMap.values()) {
+            texture.setFilter(Texture.TextureFilter.Linear,
+                    Texture.TextureFilter.Linear);
+        }
+
+        pizza = new Pizza(textureObjectMap);
+        selectedTopping = new Topping(0, 0, 0,
+                Constants.ToppingName.BACON, textureObjectMap);
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
@@ -51,8 +77,10 @@ public class PizzaScreen implements InputProcessor, Screen {
         toppingMenu = new ToppingMenu(stage);
     }
 
-    public void setSelectedTopping(String selectedTopping) {
-        this.selectedTopping = selectedTopping;
+    public void setSelectedTopping(float x, float y, float rotation,
+                                   Constants.ToppingName toppingName) {
+        this.selectedTopping = new Topping(x, y, rotation, toppingName,
+                textureObjectMap);
     }
 
     @Override
@@ -72,10 +100,18 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         game.batch.begin();
         pizza.draw(game.batch);
+        selectedTopping.draw(game.batch);
         game.batch.end();
 
         stage.act(delta);
         stage.draw();
+
+        // update selectedTopping location to follow mouse
+        Vector3 mouseCoords = camera.unproject(
+                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        selectedTopping.setX(mouseCoords.x);
+        selectedTopping.setY(mouseCoords.y);
+        selectedTopping.update();
     }
 
     @Override
@@ -128,17 +164,12 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        switch (pizza.getBaseTopping()) {
-            case BASE:
-                pizza.setBaseTopping(Constants.BaseTopping.SAUCE);
-                break;
-            case SAUCE:
-                pizza.setBaseTopping(Constants.BaseTopping.CHEESE);
-                break;
-            case CHEESE:
-                pizza.setBaseTopping(Constants.BaseTopping.BASE);
-                break;
-        }
+        pizza.addTopping(new Topping(
+                selectedTopping.getX(),
+                selectedTopping.getY(),
+                selectedTopping.getRotation(),
+                selectedTopping.getToppingName(),
+                textureObjectMap));
         return true;
     }
 
