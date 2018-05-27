@@ -46,8 +46,8 @@ object to the array of Topping objects held in Pizza.
       - ~~create Topping selectedTopping field~~
       - ~~create setSelectedTopping method~~
       - ~~call the Pizza.addTopping method when we click somewhere~~
-      - in touchDown method call selectedTopping.copy method to get
-        a Topping to pass to pizza.addTopping
+      - ~~in touchDown method call selectedTopping.copy method to get
+        a Topping to pass to pizza.addTopping~~
   
   + in Pizza
       - ~~a toppingArray field to hold Toppings~~
@@ -69,10 +69,28 @@ object to the array of Topping objects held in Pizza.
       - ~~draw method~~
       
   + Topping.class:
-      - add copy method which returns an identical Topping.class object
-      - remove x, y, rotation fields and alter getters/setters to access the
-        Sprite field
+      - ~~add copy method which returns an identical Topping.class object~~
+      - ~~remove x, y, rotation fields and alter getters/setters to access the
+        Sprite field~~
+        
+  + centre selected Topping to mouse
+  
+  + write special cases for sauce and cheese Toppings
     
   + create toppings menu layout
   
+  + create art assets for
+      - chicken
+      - ham
+      - pepperoni
+      - apricot swirl
+      - barbecue swirl
+      
+  + add Topping types to ToppingMenu
+      - chicken
+      - ham
+      - pepperoni
+      - apricot swirl
+      - barbecue swirl
+    
   + investigate asset manager
