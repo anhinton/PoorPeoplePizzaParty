@@ -12,18 +12,12 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  */
 
 public class Topping {
-    private float x;
-    private float y;
-    private float rotation;
     private Constants.ToppingName toppingName;
     private Sprite sprite;
 
     public Topping(float x, float y, float rotation,
                    Constants.ToppingName toppingName,
                    ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
-        this.x = x;
-        this.y = y;
-        this.rotation = rotation;
         this.toppingName = toppingName;
 
         if (toppingName == Constants.ToppingName.NONE) {
@@ -36,43 +30,47 @@ public class Topping {
         }
     }
 
+    public Topping copy(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
+        return new Topping(getX(), getY(), getRotation(), getToppingName(),
+                textureObjectMap);
+    }
+
     public float getX() {
-        return x;
+        return sprite.getX();
     }
 
     public void setX(float x) {
-        this.x = x;
+        sprite.setX(x);
     }
 
     public float getY() {
-        return y;
+        return sprite.getY();
     }
 
     public void setY(float y) {
-        this.y = y;
+        sprite.setY(y);
     }
 
     public float getRotation() {
-        return rotation;
+        return sprite.getRotation();
     }
 
     public void setRotation(float rotation) {
-        this.rotation = rotation;
+        sprite.setRotation(rotation);
     }
 
     public Constants.ToppingName getToppingName() {
         return toppingName;
     }
 
-    public void update() {
-        sprite.setX(getX());
-        sprite.setY(getY());
-        sprite.setRotation(getRotation());
-    }
-
     public void draw(SpriteBatch batch) {
         if (toppingName != Constants.ToppingName.NONE) {
             sprite.draw(batch);
         }
+    }
+
+    public void update(float x, float y) {
+        setX(x);
+        setY(y);
     }
 }

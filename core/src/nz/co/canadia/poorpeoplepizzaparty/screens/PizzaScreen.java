@@ -59,7 +59,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
 
         pizza = new Pizza(textureObjectMap);
-        selectedTopping = new Topping(0, 0, 0,
+        selectedTopping = new Topping(0, 0, game.random.nextFloat() * 360,
                 Constants.ToppingName.BACON, textureObjectMap);
 
         camera = new OrthographicCamera();
@@ -109,9 +109,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         // update selectedTopping location to follow mouse
         Vector3 mouseCoords = camera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-        selectedTopping.setX(mouseCoords.x);
-        selectedTopping.setY(mouseCoords.y);
-        selectedTopping.update();
+        selectedTopping.update(mouseCoords.x, mouseCoords.y);
     }
 
     @Override
@@ -164,12 +162,12 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        pizza.addTopping(new Topping(
-                selectedTopping.getX(),
+        pizza.addTopping(selectedTopping.copy(textureObjectMap));
+        selectedTopping = new Topping(selectedTopping.getX(),
                 selectedTopping.getY(),
-                selectedTopping.getRotation(),
+                game.random.nextFloat() * 360,
                 selectedTopping.getToppingName(),
-                textureObjectMap));
+                textureObjectMap);
         return true;
     }
 
