@@ -17,14 +17,14 @@ be placed on the pizza:
   - chicken
   - pepperoni
   - bacon
-  - ham
+  - sausage
   - apricot swirl
   - barbecue swirl
   
 When the corresponding menu item is selected the player can click/touch
 to place the Topping on the pizza. When the  first two toppings, 
 sauce and cheese, are placed they replace the entire pizza base Sprite. 
-The four meat topping, chicken, pepperoni, bacon and ham, will have a
+The four meat topping, chicken, pepperoni, bacon and sausage, will have a
 location and rotation, and will be added to a topping array which is 
 drawn in the order they were placed. The two sauces, apricot swirl and
 barbecue swirl, will also be placed in the topping queue. However these 
@@ -81,14 +81,14 @@ object to the array of Topping objects held in Pizza.
   
   + create art assets for
       - chicken
-      - ham
+      - ~~sausage~~
       - pepperoni
       - apricot swirl
       - barbecue swirl
       
   + add Topping types to ToppingMenu
       - chicken
-      - ham
+      - sausage
       - pepperoni
       - apricot swirl
       - barbecue swirl
