@@ -53,6 +53,9 @@ public class PizzaScreen implements InputProcessor, Screen {
         textureObjectMap.put(
                 Constants.ToppingName.BACON,
                 new Texture(Gdx.files.internal("graphics/toppings/bacon-topping.png")));
+        textureObjectMap.put(
+                Constants.ToppingName.SAUSAGE,
+                new Texture(Gdx.files.internal("graphics/toppings/sausage-topping.png")));
         for (Texture texture: textureObjectMap.values()) {
             texture.setFilter(Texture.TextureFilter.Linear,
                     Texture.TextureFilter.Linear);
@@ -60,7 +63,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         pizza = new Pizza(textureObjectMap);
         selectedTopping = new Topping(0, 0, game.random.nextFloat() * 360,
-                Constants.ToppingName.BACON, textureObjectMap);
+                Constants.ToppingName.SAUSAGE, textureObjectMap);
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
