@@ -48,18 +48,21 @@ object to the array of Topping objects held in Pizza.
       - ~~call the Pizza.addTopping method when we click somewhere~~
       - ~~in touchDown method call selectedTopping.copy method to get
         a Topping to pass to pizza.addTopping~~
+      - ~~create toggleSelectedTopping(toppingName) which sets selectedTopping
+        to toppingName IF it is not already selected, NONE otherwise~~
   
   + in Pizza
       - ~~a toppingArray field to hold Toppings~~
       - ~~initialise topplingArray with a base topping~~
       - ~~create addTopping method which takes Topping object and adds it to
         toppingArray~~        
-      - call PizzaScreen.setSelectedTopping method when a menu item is checked
-      - call PizzaScreen.setSelectTopping(NONE) when no item is checked
+      - ~~call PizzaScreen.toggleSelectedTopping method when a menu item is 
+        checked~~
+      - ~~create Topping noneTopping to handle NONE selectedTopping case~~
         
   + in ToppingMenu
-      - create menuItemList field to hold eight menu items
-      - create addMenuItem to add a new menu item to the menuItemList
+      - ~~create addMenuItem to add a new TextButton item to table and to
+        the buttonGroup~~
       - add eight menu items to menuItemList on construction
       
   + ~~create Topping.class:~~snasnasn
@@ -76,6 +79,10 @@ object to the array of Topping objects held in Pizza.
   + ~~centre selected Topping to mouse~~
   
   + write special cases for sauce and cheese Toppings
+  
+  + don't plot selectedTopping when outside pizza area
+  
+  + don't add selectedTopping when outside pizza area
     
   + create toppings menu layout
   

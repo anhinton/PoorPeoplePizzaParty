@@ -31,8 +31,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     private OrthographicCamera camera;
     private Viewport viewport;
     private Stage stage;
-    private InputMultiplexer multiplexer;
     private ToppingMenu toppingMenu;
+    private Topping noneTopping;
     private Topping selectedTopping;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
@@ -61,9 +61,6 @@ public class PizzaScreen implements InputProcessor, Screen {
                     Texture.TextureFilter.Linear);
         }
 
-        pizza = new Pizza(textureObjectMap);
-        setSelectedTopping(0, 0, Constants.ToppingName.NONE);
-
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
                 camera);
@@ -71,30 +68,32 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
-        multiplexer = new InputMultiplexer();
+        InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
+        pizza = new Pizza(textureObjectMap);
+        noneTopping = new Topping(0, 0, 0, Constants.ToppingName.NONE,
+                textureObjectMap);
+        selectedTopping = noneTopping;
+
         toppingMenu = new ToppingMenu(stage, this);
     }
 
-    public Topping getSelectedTopping() {
+    private Topping getSelectedTopping() {
         return selectedTopping;
-    }
-
-    public void setSelectedTopping(float x, float y,
-                                   Constants.ToppingName toppingName) {
-        this.selectedTopping = new Topping(x, y,
-                game.random.nextFloat() * 360, toppingName,
-                textureObjectMap);
     }
 
     public void toggleSelectedTopping(Constants.ToppingName toppingName) {
         if (this.selectedTopping.getToppingName() == toppingName) {
-            setSelectedTopping(0, 0, Constants.ToppingName.NONE);
+            selectedTopping = noneTopping;
         } else {
-            setSelectedTopping(0, 0, toppingName);
+            selectedTopping = new Topping(getSelectedTopping().getX(),
+                    getSelectedTopping().getY(),
+                    game.random.nextFloat() * 360,
+                    toppingName,
+                    textureObjectMap);
         }
     }
 

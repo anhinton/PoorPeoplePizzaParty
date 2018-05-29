@@ -20,8 +20,12 @@ public class ToppingMenu {
 
     private Table table;
     private Skin skin;
+    private PizzaScreen pizzaScreen;
+    private ButtonGroup<TextButton> buttonGroup;
 
     public ToppingMenu(Stage stage, final PizzaScreen pizzaScreen) {
+
+        this.pizzaScreen = pizzaScreen;
 
         table = new Table();
         table.setFillParent(true);
@@ -30,39 +34,33 @@ public class ToppingMenu {
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-        TextButton sauceButton = new TextButton(
-                "Sauce", skin, "toggle");
-        table.add(sauceButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-        TextButton cheeseButton = new TextButton(
-                "Cheese", skin, "toggle");
-        table.add(cheeseButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        buttonGroup = new ButtonGroup<TextButton>();
+        buttonGroup.setMinCheckCount(0);
+        buttonGroup.setMaxCheckCount(1);
+
+        addMenuItem(Constants.ToppingName.SAUCE, "Pizza sauce");
+        addMenuItem(Constants.ToppingName.CHEESE, "Cheese");
         table.row();
 
-        TextButton baconButton = new TextButton(
-                "Bacon", skin, "toggle");
-        baconButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                pizzaScreen.toggleSelectedTopping(Constants.ToppingName.BACON);
-            }
-        });
-        table.add(baconButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-        TextButton sausageButton = new TextButton(
-                "Sausage", skin, "toggle");
-        table.add(sausageButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-
-        ButtonGroup<TextButton> toppingsGroup = new ButtonGroup<TextButton>();
-        toppingsGroup.setMinCheckCount(0);
-        toppingsGroup.setMaxCheckCount(1);
-        toppingsGroup.add(sauceButton, cheeseButton, baconButton,
-                sausageButton);
+        addMenuItem(Constants.ToppingName.BACON, "Bacon");
+        addMenuItem(Constants.ToppingName.SAUSAGE, "Sasuage");
 
         // DEBUG UI
         table.setDebug(true);
+    }
+
+    private void addMenuItem (final Constants.ToppingName toppingName, String text) {
+        TextButton textButton = new TextButton(
+                text, skin, "toggle");
+        textButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                pizzaScreen.toggleSelectedTopping(toppingName);
+            }
+        });
+        table.add(textButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        buttonGroup.add(textButton);
     }
 
     public void dispose() {
