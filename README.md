@@ -33,8 +33,7 @@ License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 `graphics/toppings/bacon-topping.png`
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
-by By Made20rder555 [Public domain], from Wikimedia Commons is in the 
-public domain.
+by By Made20rder555 is in the public domain.
 
 `graphics/toppings/sausage-topping.png`
 "[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
