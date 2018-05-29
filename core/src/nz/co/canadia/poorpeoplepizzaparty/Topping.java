@@ -30,33 +30,12 @@ public class Topping {
         }
     }
 
-    public Topping copy(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
-        return new Topping(getX(), getY(), getRotation(), getToppingName(),
-                textureObjectMap);
-    }
-
     public float getX() {
         return sprite.getX();
     }
 
-    public void setX(float x) {
-        sprite.setX(x);
-    }
-
     public float getY() {
         return sprite.getY();
-    }
-
-    public void setY(float y) {
-        sprite.setY(y);
-    }
-
-    public float getRotation() {
-        return sprite.getRotation();
-    }
-
-    public void setRotation(float rotation) {
-        sprite.setRotation(rotation);
     }
 
     public Constants.ToppingName getToppingName() {
@@ -70,7 +49,6 @@ public class Topping {
     }
 
     public void update(float x, float y) {
-        setX(x);
-        setY(y);
+        sprite.setCenter(x, y);
     }
 }

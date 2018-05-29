@@ -162,7 +162,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        pizza.addTopping(selectedTopping.copy(textureObjectMap));
+        pizza.addTopping(selectedTopping);
         selectedTopping = new Topping(selectedTopping.getX(),
                 selectedTopping.getY(),
                 game.random.nextFloat() * 360,

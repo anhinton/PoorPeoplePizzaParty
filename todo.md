@@ -62,7 +62,7 @@ object to the array of Topping objects held in Pizza.
       - create addMenuItem to add a new menu item to the menuItemList
       - add eight menu items to menuItemList on construction
       
-  + ~~create Topping.class:~~
+  + ~~create Topping.class:~~snasnasn
       - ~~float x, y, rotation~~
       - ~~Constants.ToppingName toppingName~~
       - ~~Sprite sprite~~
@@ -73,7 +73,7 @@ object to the array of Topping objects held in Pizza.
       - ~~remove x, y, rotation fields and alter getters/setters to access the
         Sprite field~~
         
-  + centre selected Topping to mouse
+  + ~~centre selected Topping to mouse~~
   
   + write special cases for sauce and cheese Toppings
     
