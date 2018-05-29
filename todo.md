@@ -94,3 +94,21 @@ object to the array of Topping objects held in Pizza.
       - barbecue swirl
     
   + investigate asset manager
+  
+  + implement Cook and Serve buttons
+      - option to serve to Bosses or Workers
+  
+  + create ServeBossScreen class
+      - boss says either "who eats this rubbish" or "is this game about me?"
+        and then fires you
+        
+  + create ServeWorkersScreen.class
+      - it's a pizza party celebrate!
+      - boss pops up and says "I can't believe you people eat this 
+        mass-produced rubbish"
+      - everyone fired
+      
+  + create TitleScreen class
+      - pizza party, a party for pizza
+      
+      
