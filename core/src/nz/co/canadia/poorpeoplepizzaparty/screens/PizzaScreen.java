@@ -76,7 +76,11 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        toppingMenu = new ToppingMenu(stage);
+        toppingMenu = new ToppingMenu(stage, this);
+    }
+
+    public Topping getSelectedTopping() {
+        return selectedTopping;
     }
 
     public void setSelectedTopping(float x, float y,
@@ -84,6 +88,14 @@ public class PizzaScreen implements InputProcessor, Screen {
         this.selectedTopping = new Topping(x, y,
                 game.random.nextFloat() * 360, toppingName,
                 textureObjectMap);
+    }
+
+    public void toggleSelectedTopping(Constants.ToppingName toppingName) {
+        if (this.selectedTopping.getToppingName() == toppingName) {
+            setSelectedTopping(0, 0, Constants.ToppingName.NONE);
+        } else {
+            setSelectedTopping(0, 0, toppingName);
+        }
     }
 
     @Override
