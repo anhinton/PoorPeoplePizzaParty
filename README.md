@@ -35,3 +35,8 @@ License](http://creativecommons.org/licenses/by-sa/4.0/).
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
 by By Made20rder555 [Public domain], from Wikimedia Commons is in the 
 public domain.
+
+`graphics/toppings/sausage-topping.png`
+"[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
+by Mariuszjbie is licensed under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
