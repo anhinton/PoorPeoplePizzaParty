@@ -44,6 +44,8 @@ public class Pizza {
     }
 
     public void addTopping(Topping topping) {
-        this.toppingArray.add(topping);
+        if (topping.getToppingName() != Constants.ToppingName.NONE) {
+            this.toppingArray.add(topping);
+        }
     }
 }

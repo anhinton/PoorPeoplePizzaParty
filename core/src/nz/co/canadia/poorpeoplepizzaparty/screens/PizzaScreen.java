@@ -62,8 +62,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
 
         pizza = new Pizza(textureObjectMap);
-        selectedTopping = new Topping(0, 0, game.random.nextFloat() * 360,
-                Constants.ToppingName.SAUSAGE, textureObjectMap);
+        setSelectedTopping(0, 0, Constants.ToppingName.NONE);
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
@@ -80,9 +79,10 @@ public class PizzaScreen implements InputProcessor, Screen {
         toppingMenu = new ToppingMenu(stage);
     }
 
-    public void setSelectedTopping(float x, float y, float rotation,
+    public void setSelectedTopping(float x, float y,
                                    Constants.ToppingName toppingName) {
-        this.selectedTopping = new Topping(x, y, rotation, toppingName,
+        this.selectedTopping = new Topping(x, y,
+                game.random.nextFloat() * 360, toppingName,
                 textureObjectMap);
     }
 

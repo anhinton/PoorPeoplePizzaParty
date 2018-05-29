@@ -21,7 +21,7 @@ public class Topping {
         this.toppingName = toppingName;
 
         if (toppingName == Constants.ToppingName.NONE) {
-            this.sprite = null;
+            this.sprite = new Sprite();
         } else {
             this.sprite = new Sprite(textureObjectMap.get(toppingName));
             this.sprite.setX(x);
