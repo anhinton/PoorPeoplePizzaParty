@@ -118,7 +118,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         stage.draw();
 
         // clear selected topping if nothing selected
-        if (toppingMenu.buttonGroup.getChecked() == null) {
+        if (!toppingMenu.itemSelected()) {
             selectedTopping = noneTopping;
         }
 

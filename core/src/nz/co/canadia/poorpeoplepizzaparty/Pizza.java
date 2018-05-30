@@ -1,8 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -45,7 +43,8 @@ public class Pizza {
     }
 
     public void addTopping(Topping topping) {
-        if (topping.getToppingName() != Constants.ToppingName.NONE) {
+        if (topping.getToppingName() != Constants.ToppingName.NONE &
+                topping.getVisible()) {
             this.toppingArray.add(topping);
         }
     }

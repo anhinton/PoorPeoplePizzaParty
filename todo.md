@@ -80,9 +80,9 @@ object to the array of Topping objects held in Pizza.
   
   + write special cases for sauce and cheese Toppings
   
-  + don't plot selectedTopping when outside pizza area
+  + ~~don't plot selectedTopping when outside pizza area~~
   
-  + don't add selectedTopping when outside pizza area
+  + ~~don't add selectedTopping when outside pizza area~~
     
   + create toppings menu layout
   

@@ -14,14 +14,14 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class Topping {
     private Constants.ToppingName toppingName;
     private Sprite sprite;
-    private boolean isVisible;
+    private boolean visible;
 
     public Topping(float x, float y, float rotation,
                    Constants.ToppingName toppingName,
                    ObjectMap<Constants.ToppingName, Texture> textureObjectMap,
-                   boolean isVisible) {
+                   boolean visible) {
         this.toppingName = toppingName;
-        this.isVisible = isVisible;
+        this.visible = visible;
 
         if (toppingName == Constants.ToppingName.NONE) {
             this.sprite = new Sprite();
@@ -47,7 +47,7 @@ public class Topping {
     }
 
     public void draw(SpriteBatch batch) {
-        if (isVisible) {
+        if (visible) {
             sprite.draw(batch);
         }
     }
@@ -55,10 +55,14 @@ public class Topping {
     public void update(float x, float y) {
         sprite.setCenter(x, y);
         if (toppingName != Constants.ToppingName.NONE) {
-            isVisible = !(x < Constants.PIZZA_LEFT |
+            visible = !(x < Constants.PIZZA_LEFT |
                     x > Constants.PIZZA_RIGHT |
                     y < Constants.PIZZA_BOTTOM |
                     y > Constants.PIZZA_TOP);
         }
+    }
+
+    public boolean getVisible() {
+        return visible;
     }
 }

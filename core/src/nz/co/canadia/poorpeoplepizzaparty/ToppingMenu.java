@@ -18,7 +18,7 @@ public class ToppingMenu extends Table{
 
     private Skin skin;
     private PizzaScreen pizzaScreen;
-    public ButtonGroup<TextButton> buttonGroup;
+    private ButtonGroup<TextButton> buttonGroup;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin) {
 
@@ -37,7 +37,7 @@ public class ToppingMenu extends Table{
         this.row();
 
         addMenuItem(Constants.ToppingName.BACON, "Bacon");
-        addMenuItem(Constants.ToppingName.SAUSAGE, "Sasuage");
+        addMenuItem(Constants.ToppingName.SAUSAGE, "Sausage");
 
         // DEBUG UI
         this.setDebug(true);
@@ -59,5 +59,9 @@ public class ToppingMenu extends Table{
 
     public void dispose() {
         skin.dispose();
+    }
+
+    public boolean itemSelected() {
+        return buttonGroup.getCheckedIndex() != -1;
     }
 }
