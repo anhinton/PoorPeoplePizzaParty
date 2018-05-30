@@ -112,6 +112,10 @@ object to the array of Topping objects held in Pizza.
   + implement base logic
       - can't go back to sauce after cheese
       - can't change base after other toppings added (length array > 1)
+      
+  + add Android touch offset
+      - when touching and holding the selected topping should appear above
+        finger position so it's actually visible
     
   + investigate asset manager
   
