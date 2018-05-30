@@ -102,7 +102,7 @@ object to the array of Topping objects held in Pizza.
       
   + add Topping types to ToppingMenu
       - chicken
-      - sausage
+      - ~~sausage~~
       - pepperoni
       - apricot swirl
       - barbecue swirl
