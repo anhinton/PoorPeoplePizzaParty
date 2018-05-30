@@ -111,6 +111,7 @@ object to the array of Topping objects held in Pizza.
   
   + implement base logic
       - can't go back to sauce after cheese
+      - cheese requires sauce?
       - can't change base after other toppings added (length array > 1)
       
   + add Android touch offset
