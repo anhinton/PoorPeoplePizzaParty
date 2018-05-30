@@ -78,11 +78,16 @@ object to the array of Topping objects held in Pizza.
         
   + ~~centre selected Topping to mouse~~
   
-  + write special cases for sauce and cheese Toppings
+  + ~~write special cases for sauce and cheese Toppings~~
+      - ~~draw smaller sprite when selectedTopping~~
+      - ~~always the same x,y~~
+      - ~~always in toppingArray[0]~~
   
   + ~~don't plot selectedTopping when outside pizza area~~
   
   + ~~don't add selectedTopping when outside pizza area~~
+  
+  + find appropriate size for buttons and fonts on phone screens
     
   + create toppings menu layout
   

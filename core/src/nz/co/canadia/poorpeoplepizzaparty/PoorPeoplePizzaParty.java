@@ -20,13 +20,16 @@ public class PoorPeoplePizzaParty extends Game {
 
     @Override
     public void create () {
+
+        boolean debugGraphics = true;
+
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         font = new BitmapFont();
         random = new Random();
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-        this.setScreen(new PizzaScreen(this));
+        this.setScreen(new PizzaScreen(this, debugGraphics));
     }
 
     @Override

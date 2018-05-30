@@ -20,7 +20,8 @@ public class ToppingMenu extends Table{
     private PizzaScreen pizzaScreen;
     private ButtonGroup<TextButton> buttonGroup;
 
-    public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin) {
+    public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
+                       boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
         this.setFillParent(true);
@@ -40,7 +41,7 @@ public class ToppingMenu extends Table{
         addMenuItem(Constants.ToppingName.SAUSAGE, "Sausage");
 
         // DEBUG UI
-        this.setDebug(true);
+        this.setDebug(debugGraphics);
     }
 
     private void addMenuItem (final Constants.ToppingName toppingName, String text) {

@@ -14,11 +14,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class Pizza {
 
     private Array<Topping> toppingArray;
-    private ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
 
     public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
-
-        this.textureObjectMap = textureObjectMap;
 
         // add the base Topping to the topping array
         toppingArray = new Array<Topping>();
@@ -27,25 +24,25 @@ public class Pizza {
                 true));
     }
 
-    public void draw (SpriteBatch batch) {
-//        currentSprite.draw(batch);
-        for (Topping topping: toppingArray) {
-            topping.draw(batch);
-        }
-    }
-
-
-    public void dispose() {
-        for (Texture texture: textureObjectMap.values()) {
-            texture.dispose();
-        }
-        textureObjectMap.clear();
-    }
-
     public void addTopping(Topping topping) {
         if (topping.getToppingName() != Constants.ToppingName.NONE &
                 topping.getVisible()) {
-            this.toppingArray.add(topping);
+            if (topping.getToppingName() == Constants.ToppingName.SAUCE |
+                    topping.getToppingName() == Constants.ToppingName.CHEESE) {
+                toppingArray.set(0, topping);
+            } else {
+                this.toppingArray.add(topping);
+            }
+        }
+    }
+
+    public Array<Topping> getToppingArray() {
+        return toppingArray;
+    }
+
+    public void draw (SpriteBatch batch) {
+        for (Topping topping: toppingArray) {
+            topping.draw(batch);
         }
     }
 }

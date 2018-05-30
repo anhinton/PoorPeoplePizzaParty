@@ -7,6 +7,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -34,9 +36,11 @@ public class PizzaScreen implements InputProcessor, Screen {
     private ToppingMenu toppingMenu;
     private Topping noneTopping;
     private Topping selectedTopping;
+    private boolean debugGraphics;
 
-    public PizzaScreen(final PoorPeoplePizzaParty game) {
+    public PizzaScreen(final PoorPeoplePizzaParty game, boolean debugGraphics) {
         this.game = game;
+        this.debugGraphics = debugGraphics;
 
         // load textures and create sprites
         // TODO: replace textureObjectMap with asset manager probably
@@ -68,7 +72,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
-        toppingMenu = new ToppingMenu(this, game.skin);
+        toppingMenu = new ToppingMenu(this, game.skin, debugGraphics);
         stage.addActor(toppingMenu);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
@@ -111,11 +115,26 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         game.batch.begin();
         pizza.draw(game.batch);
-        selectedTopping.draw(game.batch);
+        selectedTopping.drawSelected(game.batch);
         game.batch.end();
 
         stage.act(delta);
         stage.draw();
+
+        if (debugGraphics) {
+            game.shapeRenderer.setColor(1,1,1,1);
+            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            for (Topping t: pizza.getToppingArray()) {
+                Rectangle r = t.getBoundingRectangle();
+                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
+            }
+            game.shapeRenderer.rect(
+                    selectedTopping.getBoundingRectangle().x,
+                    selectedTopping.getBoundingRectangle().y,
+                    selectedTopping.getBoundingRectangle().width,
+                    selectedTopping.getBoundingRectangle().height);
+            game.shapeRenderer.end();
+        }
 
         // clear selected topping if nothing selected
         if (!toppingMenu.itemSelected()) {
@@ -151,9 +170,12 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        pizza.dispose();
         toppingMenu.dispose();
         stage.dispose();
+        for (Texture texture: textureObjectMap.values()) {
+            texture.dispose();
+        }
+        textureObjectMap.clear();
     }
 
     @Override
@@ -179,8 +201,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         pizza.addTopping(selectedTopping);
-        selectedTopping = new Topping(selectedTopping.getX(),
-                selectedTopping.getY(),
+        selectedTopping = new Topping(0,0,
                 game.random.nextFloat() * 360,
                 selectedTopping.getToppingName(),
                 textureObjectMap,
