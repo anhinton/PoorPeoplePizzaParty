@@ -1,8 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,23 +14,20 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
  */
 
-public class ToppingMenu {
+public class ToppingMenu extends Table{
 
-    private Table table;
     private Skin skin;
     private PizzaScreen pizzaScreen;
     private ButtonGroup<TextButton> buttonGroup;
 
-    public ToppingMenu(Stage stage, final PizzaScreen pizzaScreen) {
+    public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
+                       boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
+        this.setFillParent(true);
+        this.top().right().pad(Constants.MENU_PADDING);
 
-        table = new Table();
-        table.setFillParent(true);
-        table.top().right().pad(Constants.MENU_PADDING);
-        stage.addActor(table);
-
-        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+        this.skin = skin;
 
         buttonGroup = new ButtonGroup<TextButton>();
         buttonGroup.setMinCheckCount(0);
@@ -40,13 +35,13 @@ public class ToppingMenu {
 
         addMenuItem(Constants.ToppingName.SAUCE, "Pizza sauce");
         addMenuItem(Constants.ToppingName.CHEESE, "Cheese");
-        table.row();
+        this.row();
 
         addMenuItem(Constants.ToppingName.BACON, "Bacon");
-        addMenuItem(Constants.ToppingName.SAUSAGE, "Sasuage");
+        addMenuItem(Constants.ToppingName.SAUSAGE, "Sausage");
 
         // DEBUG UI
-        table.setDebug(true);
+        this.setDebug(debugGraphics);
     }
 
     private void addMenuItem (final Constants.ToppingName toppingName, String text) {
@@ -55,15 +50,19 @@ public class ToppingMenu {
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                pizzaScreen.toggleSelectedTopping(toppingName);
+                pizzaScreen.setSelectedTopping(toppingName);
             }
         });
-        table.add(textButton).space(Constants.MENU_PADDING)
+        this.add(textButton).space(Constants.MENU_PADDING)
                 .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         buttonGroup.add(textButton);
     }
 
     public void dispose() {
         skin.dispose();
+    }
+
+    public boolean itemSelected() {
+        return buttonGroup.getCheckedIndex() != -1;
     }
 }
