@@ -1,11 +1,10 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -72,9 +71,7 @@ public class Topping {
     }
 
     public void draw(SpriteBatch batch) {
-        if (visible) {
-            sprite.draw(batch);
-        }
+        sprite.draw(batch);
     }
 
     public void drawSelected(SpriteBatch batch) {
@@ -85,17 +82,5 @@ public class Topping {
 
     public void update(float x, float y) {
         selectedSprite.setCenter(x, y);
-        if (toppingName != Constants.ToppingName.NONE) {
-            switch (Gdx.app.getType()) {
-                case Android:
-                    visible = false;
-                case Desktop:
-                case WebGL:
-                    visible = !(x < Constants.PIZZA_LEFT |
-                            x > Constants.PIZZA_RIGHT |
-                            y < Constants.PIZZA_BOTTOM |
-                            y > Constants.PIZZA_TOP);
-            }
-        }
     }
 }
