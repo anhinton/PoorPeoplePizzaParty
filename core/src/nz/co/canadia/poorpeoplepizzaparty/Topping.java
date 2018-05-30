@@ -25,24 +25,18 @@ public class Topping {
         this.toppingName = toppingName;
         this.visible = visible;
 
-        if (toppingName == Constants.ToppingName.NONE) {
-            sprite = new Sprite();
-            sprite.setSize(0, 0);
-            selectedSprite = sprite;
+        sprite = new Sprite(textureObjectMap.get(toppingName));
+        if (toppingName == Constants.ToppingName.SAUCE |
+                toppingName == Constants.ToppingName.CHEESE) {
+            sprite.setX(Constants.BASE_X);
+            sprite.setY(Constants.BASE_Y);
+            selectedSprite = new Sprite(sprite);
+            selectedSprite.setScale((float)1/5);
         } else {
-            sprite = new Sprite(textureObjectMap.get(toppingName));
-            if (toppingName == Constants.ToppingName.SAUCE |
-                    toppingName == Constants.ToppingName.CHEESE) {
-                sprite.setX(Constants.BASE_X);
-                sprite.setY(Constants.BASE_Y);
-                selectedSprite = new Sprite(sprite);
-                selectedSprite.setScale((float)1/5);
-            } else {
-                sprite.setX(x);
-                sprite.setY(y);
-                sprite.setRotation(rotation);
-                selectedSprite = sprite;
-            }
+            sprite.setX(x);
+            sprite.setY(y);
+            sprite.setRotation(rotation);
+            selectedSprite = sprite;
         }
     }
 

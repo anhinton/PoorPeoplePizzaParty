@@ -25,8 +25,7 @@ public class Pizza {
     }
 
     public void addTopping(Topping topping) {
-        if (topping.getToppingName() != Constants.ToppingName.NONE &
-                topping.getVisible()) {
+        if (topping.getVisible()) {
             if (topping.getToppingName() == Constants.ToppingName.SAUCE |
                     topping.getToppingName() == Constants.ToppingName.CHEESE) {
                 toppingArray.set(0, topping);
