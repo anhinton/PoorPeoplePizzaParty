@@ -102,7 +102,7 @@ object to the array of Topping objects held in Pizza.
       
   + add Topping types to ToppingMenu
       - chicken
-      - sausage
+      - ~~sausage~~
       - pepperoni
       - apricot swirl
       - barbecue swirl
@@ -125,4 +125,5 @@ object to the array of Topping objects held in Pizza.
   + create TitleScreen class
       - pizza party, a party for pizza
       
-      
+  + do a Vector Android app icon
+  
