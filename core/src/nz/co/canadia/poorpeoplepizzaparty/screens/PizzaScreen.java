@@ -68,6 +68,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
+        toppingMenu = new ToppingMenu(this, game.skin);
+        stage.addActor(toppingMenu);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
@@ -75,26 +77,21 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         pizza = new Pizza(textureObjectMap);
         noneTopping = new Topping(0, 0, 0, Constants.ToppingName.NONE,
-                textureObjectMap);
+                textureObjectMap, false);
         selectedTopping = noneTopping;
-
-        toppingMenu = new ToppingMenu(stage, this);
     }
 
     private Topping getSelectedTopping() {
         return selectedTopping;
     }
 
-    public void toggleSelectedTopping(Constants.ToppingName toppingName) {
-        if (this.selectedTopping.getToppingName() == toppingName) {
-            selectedTopping = noneTopping;
-        } else {
-            selectedTopping = new Topping(getSelectedTopping().getX(),
-                    getSelectedTopping().getY(),
-                    game.random.nextFloat() * 360,
-                    toppingName,
-                    textureObjectMap);
-        }
+    public void setSelectedTopping(Constants.ToppingName toppingName) {
+        selectedTopping = new Topping(getSelectedTopping().getX(),
+                getSelectedTopping().getY(),
+                game.random.nextFloat() * 360,
+                toppingName,
+                textureObjectMap,
+                false);
     }
 
     @Override
@@ -119,6 +116,11 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         stage.act(delta);
         stage.draw();
+
+        // clear selected topping if nothing selected
+        if (toppingMenu.buttonGroup.getChecked() == null) {
+            selectedTopping = noneTopping;
+        }
 
         // update selectedTopping location to follow mouse
         Vector3 mouseCoords = camera.unproject(
@@ -181,7 +183,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                 selectedTopping.getY(),
                 game.random.nextFloat() * 360,
                 selectedTopping.getToppingName(),
-                textureObjectMap);
+                textureObjectMap,
+                false);
         return true;
     }
 

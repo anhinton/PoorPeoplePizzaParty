@@ -14,14 +14,18 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class Topping {
     private Constants.ToppingName toppingName;
     private Sprite sprite;
+    private boolean isVisible;
 
     public Topping(float x, float y, float rotation,
                    Constants.ToppingName toppingName,
-                   ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
+                   ObjectMap<Constants.ToppingName, Texture> textureObjectMap,
+                   boolean isVisible) {
         this.toppingName = toppingName;
+        this.isVisible = isVisible;
 
         if (toppingName == Constants.ToppingName.NONE) {
             this.sprite = new Sprite();
+            this.sprite.setSize(0, 0);
         } else {
             this.sprite = new Sprite(textureObjectMap.get(toppingName));
             this.sprite.setX(x);
@@ -43,12 +47,18 @@ public class Topping {
     }
 
     public void draw(SpriteBatch batch) {
-        if (toppingName != Constants.ToppingName.NONE) {
+        if (isVisible) {
             sprite.draw(batch);
         }
     }
 
     public void update(float x, float y) {
         sprite.setCenter(x, y);
+        if (toppingName != Constants.ToppingName.NONE) {
+            isVisible = !(x < Constants.PIZZA_LEFT |
+                    x > Constants.PIZZA_RIGHT |
+                    y < Constants.PIZZA_BOTTOM |
+                    y > Constants.PIZZA_TOP);
+        }
     }
 }

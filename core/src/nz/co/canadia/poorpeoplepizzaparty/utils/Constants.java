@@ -24,13 +24,19 @@ public class Constants {
         BARBECUE
     }
 
+    // Pizza base x, y
+    public static final int BASE_X = 60;
+    public static final int BASE_Y = 60;
+
     // Pizza base dimensions
     public static final int BASE_WITDH = 480;
     public static final int BASE_HEIGHT = 480;
 
-    // Pizza base x, y
-    public static final int BASE_X = 60;
-    public static final int BASE_Y = 60;
+    // Pizza plotting area
+    public static final int PIZZA_LEFT = BASE_X;
+    public static final int PIZZA_RIGHT = BASE_X + BASE_WITDH;
+    public static final int PIZZA_BOTTOM = BASE_Y;
+    public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
 
     // Topping menu button size
     public static final int BUTTON_WIDTH = 100;

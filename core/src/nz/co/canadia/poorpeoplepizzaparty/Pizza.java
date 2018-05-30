@@ -25,7 +25,8 @@ public class Pizza {
         // add the base Topping to the topping array
         toppingArray = new Array<Topping>();
         toppingArray.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
-                0, Constants.ToppingName.BASE, textureObjectMap));
+                0, Constants.ToppingName.BASE, textureObjectMap,
+                true));
     }
 
     public void draw (SpriteBatch batch) {
