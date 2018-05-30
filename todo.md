@@ -106,6 +106,12 @@ object to the array of Topping objects held in Pizza.
       - pepperoni
       - apricot swirl
       - barbecue swirl
+      
+  + try to make base textures line up visually
+  
+  + implement base logic
+      - can't go back to sauce after cheese
+      - can't change base after other toppings added (length array > 1)
     
   + investigate asset manager
   
