@@ -87,6 +87,8 @@ object to the array of Topping objects held in Pizza.
   
   + ~~don't add selectedTopping when outside pizza area~~
   
+  + fix selectTopping showing at touchUp location on Android
+  
   + find appropriate size for buttons and fonts on phone screens
     
   + create toppings menu layout
