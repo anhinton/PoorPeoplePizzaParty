@@ -21,7 +21,7 @@ public class PoorPeoplePizzaParty extends Game {
     @Override
     public void create () {
 
-        boolean debugGraphics = true;
+        boolean debugGraphics = false;
 
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();

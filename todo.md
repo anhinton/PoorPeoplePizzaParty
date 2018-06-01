@@ -81,7 +81,7 @@ object to the array of Topping objects held in Pizza.
   + ~~write special cases for sauce and cheese Toppings~~
       - ~~draw smaller sprite when selectedTopping~~
       - ~~always the same x,y~~
-      - ~~always in toppingArray[0]~~
+      - ~~always in toppingArray\[0\]~~
   
   + ~~don't plot selectedTopping when outside pizza area~~
   

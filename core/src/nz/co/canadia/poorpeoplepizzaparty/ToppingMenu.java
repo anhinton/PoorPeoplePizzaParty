@@ -34,10 +34,11 @@ public class ToppingMenu extends Table{
         buttonGroup.setMaxCheckCount(1);
 
         addMenuItem(Constants.ToppingName.SAUCE, "Pizza sauce");
+        this.row();
         addMenuItem(Constants.ToppingName.CHEESE, "Cheese");
         this.row();
-
         addMenuItem(Constants.ToppingName.BACON, "Bacon");
+        this.row();
         addMenuItem(Constants.ToppingName.SAUSAGE, "Sausage");
 
         // DEBUG UI

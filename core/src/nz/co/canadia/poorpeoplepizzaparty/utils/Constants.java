@@ -43,7 +43,7 @@ public class Constants {
     public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
 
     // Topping menu button size
-    public static final int BUTTON_WIDTH = 100;
+    public static final int BUTTON_WIDTH = 200;
     public static final int BUTTON_HEIGHT = 50;
 
     // Topping menu UI padding/spacing
