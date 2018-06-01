@@ -82,10 +82,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         selectedTopping = null;
     }
 
-    private Topping getSelectedTopping() {
-        return selectedTopping;
-    }
-
     private boolean hasSelectedTopping() {
         return selectedTopping != null;
     }
@@ -149,11 +145,6 @@ public class PizzaScreen implements InputProcessor, Screen {
                         selectedTopping.getBoundingRectangle().height);
             }
             game.shapeRenderer.end();
-        }
-
-        // clear selected topping if nothing selected
-        if (!toppingMenu.itemSelected()) {
-            selectedTopping = null;
         }
 
         // update selectedTopping location to follow mouse
