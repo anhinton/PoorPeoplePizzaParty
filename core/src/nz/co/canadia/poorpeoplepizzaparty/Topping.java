@@ -30,6 +30,7 @@ public class Topping {
                 toppingName == Constants.ToppingName.CHEESE) {
             sprite.setX(Constants.BASE_X);
             sprite.setY(Constants.BASE_Y);
+            sprite.setSize(Constants.BASE_WITDH, Constants.BASE_HEIGHT);
             selectedSprite = new Sprite(sprite);
             selectedSprite.setScale((float)1/5);
         } else {

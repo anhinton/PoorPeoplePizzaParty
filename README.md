@@ -31,6 +31,9 @@ Unless declared otherwise below the assets in `android/assets` are licensed
 under a [Creative Commons Attribution-ShareAlike 4.0 International 
 License](http://creativecommons.org/licenses/by-sa/4.0/).
 
+`fonts/Cagliostro-Regular/` "Cagliostro" Copyright (c) 2011, Matthew Desmond
+is licensed under the SIL Open Font License, Version 1.1.
+
 `graphics/toppings/bacon-topping.png`
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
 by By Made20rder555 is in the public domain.

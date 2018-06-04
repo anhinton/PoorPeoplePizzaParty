@@ -24,10 +24,6 @@ public class Constants {
         BARBECUE
     }
 
-    // Sprite size for selected topping
-    public static final int SELECTED_WIDTH = 100;
-    public static final int SELECTED_HEIGHT = 100;
-
     // Pizza base x, y
     public static final int BASE_X = 60;
     public static final int BASE_Y = 60;
@@ -43,8 +39,8 @@ public class Constants {
     public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
 
     // Topping menu button size
-    public static final int BUTTON_WIDTH = 100;
-    public static final int BUTTON_HEIGHT = 50;
+    public static final int BUTTON_WIDTH = 300;
+    public static final int BUTTON_HEIGHT = 80;
 
     // Topping menu UI padding/spacing
     public static final int MENU_PADDING = 20;
