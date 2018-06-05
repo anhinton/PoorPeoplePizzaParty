@@ -36,7 +36,13 @@ is licensed under the SIL Open Font License, Version 1.1.
 
 `graphics/toppings/bacon-topping.png`
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
-by By Made20rder555 is in the public domain.
+by Made20rder555 is in the public domain.
+
+`graphics/toppings/chicken-topping.png`
+"[Chicken McNuggets, Indonesia.jpg](https://commons.wikimedia.org/wiki/File:Chicken_McNuggets,_Indonesia.jpg)"
+by [Crisco 1492](https://commons.wikimedia.org/wiki/User:Crisco_1492) is
+licensed under
+[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
 
 `graphics/toppings/salami-topping.png`
 "[Spanish salami in Poznan.JPG](https://commons.wikimedia.org/wiki/File:Spanish_salami_in_Poznan.JPG)"
