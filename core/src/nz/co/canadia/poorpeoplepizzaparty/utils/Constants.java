@@ -52,7 +52,7 @@ public class Constants {
     public static final int MENU_PADDING = 20;
 
     // Base selected sprite scale
-    public static final float BASE_SCALE = (float)(1 / 5);
+    public static final float BASE_SCALE = (float)1 / 5;
 
     // Sauce topping sprite alpha
     public static final Color SAUCE_COLOR =

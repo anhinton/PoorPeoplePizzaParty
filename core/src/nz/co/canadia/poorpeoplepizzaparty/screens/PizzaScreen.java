@@ -254,7 +254,7 @@ public class PizzaScreen implements InputProcessor, Screen {
             new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
             switch (Gdx.app.getType()) {
-                case Desktop:
+                case Desktop: case WebGL:
                     if (mouseCoords.x > Constants.PIZZA_LEFT &
                             mouseCoords.x < Constants.PIZZA_RIGHT &
                             mouseCoords.y > Constants.PIZZA_BOTTOM &
