@@ -94,14 +94,14 @@ object to the array of Topping objects held in Pizza.
   + ~~create toppings menu layout~~
   
   + create art assets for
-      - chicken
+      - ~~chicken~~
       - ~~sausage~~
       - ~~salami~~
       - apricot swirl
       - barbecue swirl
       
   + add Topping types to ToppingMenu
-      - chicken
+      - ~~chicken~~
       - ~~sausage~~
       - ~~salami~~
       - apricot swirl
