@@ -38,6 +38,11 @@ is licensed under the SIL Open Font License, Version 1.1.
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
 by By Made20rder555 is in the public domain.
 
+`graphics/toppings/salami-topping.png`
+"[Spanish salami in Poznan.JPG](https://commons.wikimedia.org/wiki/File:Spanish_salami_in_Poznan.JPG)"
+by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
+
 `graphics/toppings/sausage-topping.png`
 "[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
 by Mariuszjbie is licensed under
