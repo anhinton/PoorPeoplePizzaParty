@@ -109,9 +109,16 @@ object to the array of Topping objects held in Pizza.
       
   + ~~use I18NBundle bundle for UI strings~~ 
   
-  + fix floating selectedSprite on Desktop/Web
+  + ~~fix floating selectedSprite on Desktop/Web~~
       
-  + try to make base textures line up visually
+  + ~~try to make base textures line up visually~~
+  
+  + complete the Pizza menu
+      - Poor People Pizza Party header
+      - undo button: pops last topping off stack or steps back through base 
+        logic
+      - photo button
+      - COOK button
   
   + implement base logic
       - can't go back to sauce after cheese

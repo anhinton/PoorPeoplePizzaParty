@@ -46,13 +46,13 @@ public class PizzaScreen implements InputProcessor, Screen {
         textureObjectMap = new ObjectMap<Constants.ToppingName, Texture>();
         textureObjectMap.put(
                 Constants.ToppingName.BASE,
-                new Texture(Gdx.files.internal("graphics/toppings/base.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/base-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.SAUCE,
-                new Texture(Gdx.files.internal("graphics/toppings/sauce.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/sauce-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.CHEESE,
-                new Texture(Gdx.files.internal("graphics/toppings/cheese.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/cheese-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.BACON,
                 new Texture(Gdx.files.internal("graphics/toppings/bacon-topping.png")));
