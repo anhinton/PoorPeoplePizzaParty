@@ -20,7 +20,7 @@ public class Constants {
 
     // Topping levels for the pizza base
     public enum ToppingName {
-        BASE, SAUCE, CHEESE, CHICKEN, PEPPERONI, BACON, SAUSAGE, APRICOT,
+        BASE, SAUCE, CHEESE, CHICKEN, SALAMI, BACON, SAUSAGE, APRICOT,
         BARBECUE
     }
 

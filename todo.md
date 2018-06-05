@@ -15,7 +15,7 @@ be placed on the pizza:
   - sauce
   - cheese
   - chicken
-  - pepperoni
+  - salami
   - bacon
   - sausage
   - apricot swirl
@@ -24,7 +24,7 @@ be placed on the pizza:
 When the corresponding menu item is selected the player can click/touch
 to place the Topping on the pizza. When the  first two toppings, 
 sauce and cheese, are placed they replace the entire pizza base Sprite. 
-The four meat topping, chicken, pepperoni, bacon and sausage, will have a
+The four meat topping, chicken, salami, bacon and sausage, will have a
 location and rotation, and will be added to a topping array which is 
 drawn in the order they were placed. The two sauces, apricot swirl and
 barbecue swirl, will also be placed in the topping queue. However these 
@@ -89,23 +89,25 @@ object to the array of Topping objects held in Pizza.
   
   + ~~fix selectTopping showing at touchUp location on Android~~
   
-  + find appropriate size for buttons and fonts on phone screens
+  + ~~find appropriate size for buttons and fonts on phone screens~~
     
-  + create toppings menu layout
+  + ~~create toppings menu layout~~
   
   + create art assets for
       - chicken
       - ~~sausage~~
-      - pepperoni
+      - ~~salami~~
       - apricot swirl
       - barbecue swirl
       
   + add Topping types to ToppingMenu
       - chicken
       - ~~sausage~~
-      - pepperoni
+      - ~~salami~~
       - apricot swirl
       - barbecue swirl
+      
+  + use Android String resources for button labels 
       
   + try to make base textures line up visually
   
