@@ -56,6 +56,7 @@ public class ToppingMenu extends Table{
         addToppingButton(Constants.ToppingName.CHICKEN, "Chicken");
         this.row();
         addToppingButton(Constants.ToppingName.APRICOT, "Apricot Swirl");
+        addToppingButton(Constants.ToppingName.BARBECUE, "Barbecue Swirl");
 
         showMainMenu();
 

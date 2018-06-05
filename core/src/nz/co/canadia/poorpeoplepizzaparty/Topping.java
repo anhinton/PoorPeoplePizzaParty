@@ -28,8 +28,6 @@ public class Topping {
         sprite = new Sprite(textureObjectMap.get(toppingName));
         if (toppingName == Constants.ToppingName.SAUCE |
                 toppingName == Constants.ToppingName.CHEESE) {
-//            sprite.setX(Constants.BASE_X);
-//            sprite.setY(Constants.BASE_Y);
             sprite.setCenter(Constants.BASE_CENTER_X, Constants.BASE_CENTER_Y);
             sprite.setSize(Constants.BASE_WITDH, Constants.BASE_HEIGHT);
             selectedSprite = new Sprite(sprite);
@@ -38,7 +36,7 @@ public class Topping {
                 toppingName == Constants.ToppingName.BARBECUE) {
             sprite.setCenter(Constants.BASE_CENTER_X, Constants.BASE_CENTER_Y);
             sprite.setRotation(rotation);
-            sprite.setColor(1,1,1, (float)0.5);
+            sprite.setColor(1,1,1, (float)0.75);
             selectedSprite = new Sprite(sprite);
             selectedSprite.setScale((float)1/5);
         } else {
