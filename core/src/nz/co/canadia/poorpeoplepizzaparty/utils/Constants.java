@@ -32,6 +32,10 @@ public class Constants {
     public static final int BASE_WITDH = 480;
     public static final int BASE_HEIGHT = 480;
 
+    // Base center position
+    public static final int BASE_CENTER_X = BASE_X + BASE_WITDH / 2;
+    public static final int BASE_CENTER_Y = BASE_Y + BASE_HEIGHT / 2;
+
     // Pizza plotting area
     public static final int PIZZA_LEFT = BASE_X;
     public static final int PIZZA_RIGHT = BASE_X + BASE_WITDH;

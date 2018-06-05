@@ -65,6 +65,9 @@ public class PizzaScreen implements InputProcessor, Screen {
         textureObjectMap.put(
                 Constants.ToppingName.CHICKEN,
                 new Texture(Gdx.files.internal("graphics/toppings/chicken-topping.png")));
+        textureObjectMap.put(
+                Constants.ToppingName.APRICOT,
+                new Texture(Gdx.files.internal("graphics/toppings/apricot-topping.png")));
         for (Texture texture: textureObjectMap.values()) {
             texture.setFilter(Texture.TextureFilter.Linear,
                     Texture.TextureFilter.Linear);
