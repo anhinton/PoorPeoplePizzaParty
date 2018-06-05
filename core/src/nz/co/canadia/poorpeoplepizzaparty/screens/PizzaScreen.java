@@ -83,7 +83,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
-        toppingMenu = new ToppingMenu(this, game.skin, debugGraphics);
+        toppingMenu = new ToppingMenu(this, game.skin, game.bundle,
+                debugGraphics);
         stage.addActor(toppingMenu);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);

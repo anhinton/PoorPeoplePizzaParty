@@ -2,14 +2,18 @@ package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.I18NBundle;
 
+import java.util.Locale;
 import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class PoorPeoplePizzaParty extends Game {
     public SpriteBatch batch;
@@ -17,11 +21,10 @@ public class PoorPeoplePizzaParty extends Game {
     public BitmapFont font;
     public Random random;
     public Skin skin;
+    public I18NBundle bundle;
 
     @Override
     public void create () {
-
-        boolean debugGraphics = false;
 
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
@@ -29,7 +32,13 @@ public class PoorPeoplePizzaParty extends Game {
         random = new Random();
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-        this.setScreen(new PizzaScreen(this, debugGraphics));
+        I18NBundle.setSimpleFormatter(true);
+        FileHandle bundleFileHandle =
+                Gdx.files.internal("i18n/StringBundle");
+        Locale locale = new Locale("en", "GB");
+        bundle = I18NBundle.createBundle(bundleFileHandle, locale);
+
+        this.setScreen(new PizzaScreen(this, Constants.DEBUG_GRAPHICS));
     }
 
     @Override
