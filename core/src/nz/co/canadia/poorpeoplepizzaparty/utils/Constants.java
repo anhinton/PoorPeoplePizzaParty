@@ -44,12 +44,14 @@ public class Constants {
     public static final int PIZZA_BOTTOM = BASE_Y;
     public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
 
-    // Topping menu button size
-    public static final int BUTTON_WIDTH = 300;
-    public static final int BUTTON_HEIGHT = 80;
-
     // Topping menu UI padding/spacing
     public static final int MENU_PADDING = 20;
+
+    // Topping menu button size
+    public static final int BUTTON_WIDTH_FULL = 300;
+    public static final int BUTTON_WIDTH_HALF =
+            (BUTTON_WIDTH_FULL - MENU_PADDING) / 2;
+    public static final int BUTTON_HEIGHT = 80;
 
     // Base selected sprite scale
     public static final float BASE_SCALE = (float)1 / 5;

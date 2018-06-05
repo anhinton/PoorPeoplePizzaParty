@@ -23,7 +23,8 @@ public class ToppingMenu extends Table{
     private PizzaScreen pizzaScreen;
     private Array<TextButton> toppingButtons;
     private ButtonGroup<TextButton> toppingGroup;
-    private TextButton selectButton;
+    private TextButton toppingSelectButton;
+    private I18NBundle bundle;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
                        I18NBundle bundle, boolean debugGraphics) {
@@ -33,9 +34,11 @@ public class ToppingMenu extends Table{
 
         this.skin = skin;
 
-        selectButton = new TextButton(bundle.get("pizzamenuSelect"), skin,
+        this.bundle = bundle;
+
+        toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
-        selectButton.addListener(new ChangeListener() {
+        toppingSelectButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 showToppingMenu();
@@ -76,7 +79,8 @@ public class ToppingMenu extends Table{
     private void showToppingMenu() {
         this.clear();
         this.center().top();
-        this.add(new Label("Select topping:", skin, "default"))
+        this.add(new Label(bundle.get("toppingmenuSelectLabel"), skin,
+                "default"))
                 .colspan(2);
         this.row();
         int counter = 0;
@@ -84,7 +88,7 @@ public class ToppingMenu extends Table{
             if (counter > 0 & counter % 2 == 0)
                 this.row();
             this.add(b).space(Constants.MENU_PADDING)
-                    .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                    .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT);
             counter++;
         }
     }
@@ -107,12 +111,28 @@ public class ToppingMenu extends Table{
     private void showMainMenu() {
         this.clear();
         this.center().right().pad(Constants.MENU_PADDING);
-        this.add(selectButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        this.add(new Label(bundle.get("pizzamenuHeaderLabel"), skin,
+                "default"))
+                .space(Constants.MENU_PADDING)
+                .colspan(2).center();
+        this.row();
+        this.add(toppingSelectButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
+                .colspan(2)
+                .right();
+        this.row();
+        this.add(new TextButton(bundle.get("pizzamenuUndoButton"),
+                skin, "default"))
+                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
+                .space(Constants.MENU_PADDING);
+
+        this.add(new TextButton("looloo", skin, "default"))
+                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
+                .space(Constants.MENU_PADDING);;
     }
 
     private void setSelectedTopping(TextButton button) {
-        selectButton.setText(button.getText().toString());
+        toppingSelectButton.setText(button.getText().toString());
     }
 
     public void dispose() {
