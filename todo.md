@@ -93,21 +93,23 @@ object to the array of Topping objects held in Pizza.
     
   + ~~create toppings menu layout~~
   
-  + create art assets for
+  + ~~create art assets for~~
       - ~~chicken~~
       - ~~sausage~~
       - ~~salami~~
-      - apricot swirl
-      - barbecue swirl
+      - ~~apricot swirl~~
+      - ~~barbecue swirl~~
       
-  + add Topping types to ToppingMenu
+  + ~~add Topping types to ToppingMenu~~
       - ~~chicken~~
       - ~~sausage~~
       - ~~salami~~
-      - apricot swirl
-      - barbecue swirl
+      - ~~apricot swirl~~
+      - ~~barbecue swirl~~
       
-  + use Android String resources for button labels 
+  + ~~use I18NBundle bundle for UI strings~~ 
+  
+  + fix floating selectedSprite on Desktop/Web
       
   + try to make base textures line up visually
   

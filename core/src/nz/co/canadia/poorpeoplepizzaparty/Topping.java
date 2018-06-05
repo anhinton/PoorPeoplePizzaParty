@@ -31,14 +31,14 @@ public class Topping {
             sprite.setCenter(Constants.BASE_CENTER_X, Constants.BASE_CENTER_Y);
             sprite.setSize(Constants.BASE_WITDH, Constants.BASE_HEIGHT);
             selectedSprite = new Sprite(sprite);
-            selectedSprite.setScale((float)1/5);
+            selectedSprite.setScale(Constants.BASE_SCALE);
         } else if (toppingName == Constants.ToppingName.APRICOT |
                 toppingName == Constants.ToppingName.BARBECUE) {
             sprite.setCenter(Constants.BASE_CENTER_X, Constants.BASE_CENTER_Y);
             sprite.setRotation(rotation);
-            sprite.setColor(1,1,1, (float)0.75);
+            sprite.setColor(Constants.SAUCE_COLOR);
             selectedSprite = new Sprite(sprite);
-            selectedSprite.setScale((float)1/5);
+            selectedSprite.setScale(Constants.BASE_SCALE);
         } else {
             sprite.setX(x);
             sprite.setY(y);

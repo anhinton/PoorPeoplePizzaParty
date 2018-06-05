@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -25,14 +26,14 @@ public class ToppingMenu extends Table{
     private TextButton selectButton;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
-                       boolean debugGraphics) {
+                       I18NBundle bundle, boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
         this.setFillParent(true);
 
         this.skin = skin;
 
-        selectButton = new TextButton("Select topping", skin,
+        selectButton = new TextButton(bundle.get("pizzamenuSelect"), skin,
                 "default");
         selectButton.addListener(new ChangeListener() {
             @Override
@@ -46,17 +47,25 @@ public class ToppingMenu extends Table{
         toppingGroup.setMaxCheckCount(1);
 
         toppingButtons = new Array<TextButton>();
-        addToppingButton(Constants.ToppingName.SAUCE, "Pizza sauce");
-        addToppingButton(Constants.ToppingName.CHEESE, "Cheese");
+        addToppingButton(Constants.ToppingName.SAUCE,
+                bundle.get("toppingSauce"));
+        addToppingButton(Constants.ToppingName.CHEESE,
+                bundle.get("toppingCheese"));
         this.row();
-        addToppingButton(Constants.ToppingName.BACON, "Bacon");
-        addToppingButton(Constants.ToppingName.SAUSAGE, "Sausage");
+        addToppingButton(Constants.ToppingName.BACON,
+                bundle.get("toppingBacon"));
+        addToppingButton(Constants.ToppingName.SAUSAGE,
+                bundle.get("toppingSausage"));
         this.row();
-        addToppingButton(Constants.ToppingName.SALAMI, "Salami");
-        addToppingButton(Constants.ToppingName.CHICKEN, "Chicken");
+        addToppingButton(Constants.ToppingName.SALAMI,
+                bundle.get("toppingSalami"));
+        addToppingButton(Constants.ToppingName.CHICKEN,
+                bundle.get("toppingChicken"));
         this.row();
-        addToppingButton(Constants.ToppingName.APRICOT, "Apricot Swirl");
-        addToppingButton(Constants.ToppingName.BARBECUE, "Barbecue Swirl");
+        addToppingButton(Constants.ToppingName.APRICOT,
+                bundle.get("toppingApricot"));
+        addToppingButton(Constants.ToppingName.BARBECUE,
+                bundle.get("toppingBarbecue"));
 
         showMainMenu();
 
