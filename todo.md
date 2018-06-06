@@ -119,6 +119,10 @@ object to the array of Topping objects held in Pizza.
         logic
       - photo button
       - COOK button
+      
+  + create a screen shot interface
+      - create platform-specific classes as described at 
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
   
   + implement base logic
       - can't go back to sauce after cheese

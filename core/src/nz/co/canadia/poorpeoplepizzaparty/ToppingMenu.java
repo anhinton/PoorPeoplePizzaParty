@@ -1,17 +1,25 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+
+//import com.badlogic.gdx.graphics.PixmapIO;
 
 /**
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
@@ -24,6 +32,10 @@ public class ToppingMenu extends Table{
     private Array<TextButton> toppingButtons;
     private ButtonGroup<TextButton> toppingGroup;
     private TextButton toppingSelectButton;
+    private Texture cameraButtonTexture;
+    private Texture undoButtonTexture;
+    private ImageButton cameraButton;
+    private ImageButton undoButton;
     private I18NBundle bundle;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
@@ -44,6 +56,50 @@ public class ToppingMenu extends Table{
                 showToppingMenu();
             }
         });
+
+        ImageButton.ImageButtonStyle cameraButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        cameraButtonTexture = new Texture(
+                Gdx.files.internal("graphics/icons/camera.png"));
+        cameraButtonStyle.imageUp = new SpriteDrawable(
+                new Sprite(cameraButtonTexture));
+        cameraButton = new ImageButton(cameraButtonStyle);
+        cameraButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                switch (Gdx.app.getType()) {
+                    case Desktop:
+//                        byte[] pixels = ScreenUtils.getFrameBufferPixels(0, 0,
+//                                Gdx.graphics.getBackBufferWidth(),
+//                                Gdx.graphics.getBackBufferHeight(), true);
+//
+//                        // this loop makes sure the whole screenshot is opaque and
+//                        // looks exactly like what the user is seeing
+//                        for (int i = 4; i < pixels.length; i += 4) {
+//                            pixels[i - 1] = (byte) 255;
+//                        }
+//
+//                        Pixmap pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth(),
+//                                Gdx.graphics.getBackBufferHeight(),
+//                                Pixmap.Format.RGBA8888);
+//                        BufferUtils.copy(pixels, 0, pixmap.getPixels(),
+//                                pixels.length);
+//                        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
+//                                pixmap);
+//                        pixmap.dispose();
+                }
+            }
+        });
+
+        ImageButton.ImageButtonStyle undoButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        undoButtonTexture = new Texture(
+                Gdx.files.internal("graphics/icons/undo.png"));
+        undoButtonStyle.imageUp = new SpriteDrawable(
+                new Sprite(undoButtonTexture));
+        undoButton = new ImageButton(undoButtonStyle);
 
         toppingGroup = new ButtonGroup<TextButton>();
         toppingGroup.setMinCheckCount(0);
@@ -121,14 +177,12 @@ public class ToppingMenu extends Table{
                 .colspan(2)
                 .right();
         this.row();
-        this.add(new TextButton(bundle.get("pizzamenuUndoButton"),
-                skin, "default"))
+        this.add(cameraButton)
                 .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
                 .space(Constants.MENU_PADDING);
-
-        this.add(new TextButton("looloo", skin, "default"))
+        this.add(undoButton)
                 .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING);;
+                .space(Constants.MENU_PADDING);
     }
 
     private void setSelectedTopping(TextButton button) {
@@ -137,6 +191,7 @@ public class ToppingMenu extends Table{
 
     public void dispose() {
         skin.dispose();
+        cameraButtonTexture.dispose();
     }
 
 }
