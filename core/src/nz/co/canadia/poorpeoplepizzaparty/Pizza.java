@@ -14,14 +14,18 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class Pizza {
 
     private Array<Topping> toppingArray;
+    private Constants.ToppingName lastTopping;
+    private ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
 
     public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
+        this.textureObjectMap = textureObjectMap;
 
         // add the base Topping to the topping array
         toppingArray = new Array<Topping>();
         toppingArray.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, Constants.ToppingName.BASE, textureObjectMap,
                 true));
+        lastTopping = Constants.ToppingName.BASE;
     }
 
     public void addTopping(Topping topping) {
@@ -32,6 +36,29 @@ public class Pizza {
             } else {
                 this.toppingArray.add(topping);
             }
+            lastTopping = topping.getToppingName();
+        }
+    }
+
+    /**
+     * Remove the last topping added to the pizza
+     */
+    public void removeTopping() {
+        switch (lastTopping) {
+            case BASE:
+                break;
+            case SAUCE:
+                addTopping(new Topping(Constants.BASE_X, Constants.BASE_Y,
+                        0, Constants.ToppingName.BASE, textureObjectMap,
+                        true));
+                break;
+            case CHEESE:
+                addTopping(new Topping(Constants.BASE_X, Constants.BASE_Y,
+                        0, Constants.ToppingName.SAUCE, textureObjectMap,
+                        true));
+                break;
+            default:
+                toppingArray.pop();
         }
     }
 

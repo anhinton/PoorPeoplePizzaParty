@@ -117,13 +117,14 @@ object to the array of Topping objects held in Pizza.
       - Poor People Pizza Party header
       - undo button: pops last topping off stack or steps back through base 
         logic
-      - photo button
+      - ~~photo button~~
       - COOK button
       
   + create a screen shot interface
       - ~~create platform-specific classes as described at~~
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~implement for desktop~~
+      - improve desktop implementation
       - implement for android
       - implement for webgl
   

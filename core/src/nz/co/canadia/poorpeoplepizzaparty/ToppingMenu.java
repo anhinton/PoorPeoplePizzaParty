@@ -30,6 +30,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class ToppingMenu extends Table{
 
+    private Pizza pizza;
     private Screenshot screenshot;
     private Skin skin;
     private PizzaScreen pizzaScreen;
@@ -43,16 +44,15 @@ public class ToppingMenu extends Table{
     private I18NBundle bundle;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
-                       I18NBundle bundle, final Screenshot screenshot, boolean debugGraphics) {
+                       I18NBundle bundle, final Screenshot screenshot,
+                       Pizza pizza, boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
         this.setFillParent(true);
-
         this.skin = skin;
-
         this.bundle = bundle;
-
         this.screenshot = screenshot;
+        this.pizza = pizza;
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
@@ -87,6 +87,12 @@ public class ToppingMenu extends Table{
         undoButtonStyle.imageUp = new SpriteDrawable(
                 new Sprite(undoButtonTexture));
         undoButton = new ImageButton(undoButtonStyle);
+        undoButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                pizza.removeTopping();
+            }
+        });
 
         toppingGroup = new ButtonGroup<TextButton>();
         toppingGroup.setMinCheckCount(0);
