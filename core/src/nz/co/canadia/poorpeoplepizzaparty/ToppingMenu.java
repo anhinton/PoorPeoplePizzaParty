@@ -1,6 +1,8 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -14,12 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-
-//import com.badlogic.gdx.graphics.PixmapIO;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 /**
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
@@ -27,6 +30,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class ToppingMenu extends Table{
 
+    private Screenshot screenshot;
     private Skin skin;
     private PizzaScreen pizzaScreen;
     private Array<TextButton> toppingButtons;
@@ -39,7 +43,7 @@ public class ToppingMenu extends Table{
     private I18NBundle bundle;
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
-                       I18NBundle bundle, boolean debugGraphics) {
+                       I18NBundle bundle, final Screenshot screenshot, boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
         this.setFillParent(true);
@@ -47,6 +51,8 @@ public class ToppingMenu extends Table{
         this.skin = skin;
 
         this.bundle = bundle;
+
+        this.screenshot = screenshot;
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
@@ -68,27 +74,8 @@ public class ToppingMenu extends Table{
         cameraButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                switch (Gdx.app.getType()) {
-                    case Desktop:
-//                        byte[] pixels = ScreenUtils.getFrameBufferPixels(0, 0,
-//                                Gdx.graphics.getBackBufferWidth(),
-//                                Gdx.graphics.getBackBufferHeight(), true);
-//
-//                        // this loop makes sure the whole screenshot is opaque and
-//                        // looks exactly like what the user is seeing
-//                        for (int i = 4; i < pixels.length; i += 4) {
-//                            pixels[i - 1] = (byte) 255;
-//                        }
-//
-//                        Pixmap pixmap = new Pixmap(Gdx.graphics.getBackBufferWidth(),
-//                                Gdx.graphics.getBackBufferHeight(),
-//                                Pixmap.Format.RGBA8888);
-//                        BufferUtils.copy(pixels, 0, pixmap.getPixels(),
-//                                pixels.length);
-//                        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
-//                                pixmap);
-//                        pixmap.dispose();
-                }
+                Pixmap pixmap = screenshot.captureScreen();
+                screenshot.saveCapture(pixmap);
             }
         });
 

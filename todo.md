@@ -121,8 +121,11 @@ object to the array of Topping objects held in Pizza.
       - COOK button
       
   + create a screen shot interface
-      - create platform-specific classes as described at 
+      - ~~create platform-specific classes as described at~~
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - ~~implement for desktop~~
+      - implement for android
+      - implement for webgl
   
   + implement base logic
       - can't go back to sauce after cheese

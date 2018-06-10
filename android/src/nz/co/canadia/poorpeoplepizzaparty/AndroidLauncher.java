@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
+import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -14,6 +16,6 @@ public class AndroidLauncher extends AndroidApplication {
 		config.useCompass = false;
 		config.useGyroscope = false;
 		config.useImmersiveMode = true;
-		initialize(new PoorPeoplePizzaParty(), config);
+		initialize(new PoorPeoplePizzaParty(new AndroidScreenshot()), config);
 	}
 }
