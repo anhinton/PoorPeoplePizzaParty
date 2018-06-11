@@ -115,8 +115,8 @@ object to the array of Topping objects held in Pizza.
   
   + complete the Pizza menu
       - Poor People Pizza Party header
-      - undo button: pops last topping off stack or steps back through base 
-        logic
+      - ~~undo button: pops last topping off stack or steps back through base 
+        logic~~
       - ~~photo button~~
       - COOK button
       
@@ -128,10 +128,10 @@ object to the array of Topping objects held in Pizza.
       - implement for android
       - implement for webgl
       
-  + implement remove topping/undo
-      - ToppingMenu calls pizzaScreen.removeTopping()
-      - PizzaScreen calls pizza.removeTopping()
-          - Pizza tracks lastTopping
+  + ~~implement remove topping/undo~~
+      - ~~ToppingMenu calls pizzaScreen.undoLastTopping()~~
+      - ~~PizzaScreen calls pizza.undoLastTopping()~~
+          - ~~Pizza tracks topping order in toppingOrder~~
   
   + implement base logic
       - can't go back to sauce after cheese
