@@ -12,6 +12,7 @@ public class DesktopLauncher {
 		config.title = Constants.GAME_NAME;
 		config.width = Constants.APP_WIDTH;
 		config.height = Constants.APP_HEIGHT;
-		new LwjglApplication(new PoorPeoplePizzaParty(), config);
+		new LwjglApplication(new PoorPeoplePizzaParty(new DesktopScreenshot()),
+				config);
 	}
 }

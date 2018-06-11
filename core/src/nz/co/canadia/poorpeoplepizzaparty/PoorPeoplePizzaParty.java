@@ -14,6 +14,7 @@ import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
     public SpriteBatch batch;
@@ -22,9 +23,14 @@ public class PoorPeoplePizzaParty extends Game {
     public Random random;
     public Skin skin;
     public I18NBundle bundle;
+    public Screenshot screenshot;
+
+    public PoorPeoplePizzaParty(Screenshot screenshot) {
+        this.screenshot = screenshot;
+    }
 
     @Override
-    public void create () {
+    public void create() {
 
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();

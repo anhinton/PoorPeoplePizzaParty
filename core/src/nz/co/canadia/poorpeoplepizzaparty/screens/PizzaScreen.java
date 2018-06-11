@@ -46,13 +46,13 @@ public class PizzaScreen implements InputProcessor, Screen {
         textureObjectMap = new ObjectMap<Constants.ToppingName, Texture>();
         textureObjectMap.put(
                 Constants.ToppingName.BASE,
-                new Texture(Gdx.files.internal("graphics/toppings/base.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/base-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.SAUCE,
-                new Texture(Gdx.files.internal("graphics/toppings/sauce.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/sauce-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.CHEESE,
-                new Texture(Gdx.files.internal("graphics/toppings/cheese.png")));
+                new Texture(Gdx.files.internal("graphics/toppings/cheese-topping.png")));
         textureObjectMap.put(
                 Constants.ToppingName.BACON,
                 new Texture(Gdx.files.internal("graphics/toppings/bacon-topping.png")));
@@ -84,7 +84,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         toppingMenu = new ToppingMenu(this, game.skin, game.bundle,
-                debugGraphics);
+                game.screenshot, pizza, debugGraphics);
         stage.addActor(toppingMenu);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
@@ -118,6 +118,10 @@ public class PizzaScreen implements InputProcessor, Screen {
                 false);
     }
 
+    public void undoLastTopping() {
+        pizza.undoLastTopping();
+    }
+
     @Override
     public void show() {
 
@@ -146,7 +150,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         if (debugGraphics) {
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            for (Topping t: pizza.getToppingArray()) {
+            for (Topping t: pizza.getToppings()) {
                 Rectangle r = t.getBoundingRectangle();
                 game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
             }
@@ -254,7 +258,7 @@ public class PizzaScreen implements InputProcessor, Screen {
             new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
             switch (Gdx.app.getType()) {
-                case Desktop:
+                case Desktop: case WebGL:
                     if (mouseCoords.x > Constants.PIZZA_LEFT &
                             mouseCoords.x < Constants.PIZZA_RIGHT &
                             mouseCoords.y > Constants.PIZZA_BOTTOM &
