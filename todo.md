@@ -128,10 +128,10 @@ object to the array of Topping objects held in Pizza.
       - implement for android
       - implement for webgl
       
-  + implement remove topping/undo
-      - ToppingMenu calls pizzaScreen.removeTopping()
-      - PizzaScreen calls pizza.removeTopping()
-          - Pizza tracks lastTopping
+  + ~~implement remove topping/undo~~
+      - ~~ToppingMenu calls pizzaScreen.undoLastTopping()~~
+      - ~~PizzaScreen calls pizza.undoLastTopping()~~
+          - ~~Pizza tracks topping order in toppingOrder~~
   
   + implement base logic
       - can't go back to sauce after cheese

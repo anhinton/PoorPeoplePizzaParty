@@ -118,6 +118,10 @@ public class PizzaScreen implements InputProcessor, Screen {
                 false);
     }
 
+    public void undoLastTopping() {
+        pizza.undoLastTopping();
+    }
+
     @Override
     public void show() {
 
@@ -146,7 +150,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         if (debugGraphics) {
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            for (Topping t: pizza.getToppingArray()) {
+            for (Topping t: pizza.getToppings()) {
                 Rectangle r = t.getBoundingRectangle();
                 game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
             }
