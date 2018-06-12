@@ -1,4 +1,6 @@
 # TODO
+      
+  + rethink screen size and aspect ratios to make things look nice on my phone
 
   + complete the Pizza menu
       - Poor People Pizza Party header
@@ -14,11 +16,6 @@
       - improve desktop implementation
       - implement for android
       - implement for webgl
-  
-  + implement base logic
-      - can't go back to sauce after cheese
-      - cheese requires sauce?
-      - can't change base after other toppings added (length array > 1)
       
   + add Android touch offset
       - when touching and holding the selected topping should appear above
@@ -45,6 +42,17 @@
   + do a Vector Android app icon
   
 ## Done
+  
+  + ~~implement base logic~~
+      - ~~create MessagePanel.class with showMessage(s) and clearMessage()
+        methods~~
+      - ~~add MessagePanel object, showMessage(s) and clearMessage() methods,
+        to PizzaScreen.class~~
+      - ~~in Pizza.addTopping():~~
+          - ~~only add SAUCE if top topping is BASE~~
+          - ~~only add CHEESE if top topping is SAUCE~~
+          - ~~call PizzaScreen.showMessage(pizzamenuWarning) if these are 
+            violated~~
       
   + ~~implement remove topping/undo~~
       - ~~ToppingMenu calls pizzaScreen.undoLastTopping()~~

@@ -9,7 +9,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 public class HtmlScreenshot implements Screenshot {
     @Override
     public Pixmap captureScreen() {
-        /* TODO: remove debug logging */
+        // TODO: remove debug logging
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.log("HtmlScreenshot",
                 "would have returned a Pixmap.class");
@@ -18,7 +18,7 @@ public class HtmlScreenshot implements Screenshot {
 
     @Override
     public void saveCapture(Pixmap pixmap) {
-        /* TODO: remove debug logging */
+        // TODO: remove debug logging
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.log("HtmlScreenshot",
                 "would have saved a Pixmap to disk");

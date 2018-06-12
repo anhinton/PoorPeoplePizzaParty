@@ -1,4 +1,4 @@
-package nz.co.canadia.poorpeoplepizzaparty;
+package nz.co.canadia.poorpeoplepizzaparty.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -25,10 +25,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
  */
 
-public class ToppingMenu extends Table{
+public class ToppingMenu extends Table {
 
-    private Pizza pizza;
-    private Screenshot screenshot;
     private Skin skin;
     private PizzaScreen pizzaScreen;
     private Array<TextButton> toppingButtons;
@@ -42,20 +40,19 @@ public class ToppingMenu extends Table{
 
     public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
                        I18NBundle bundle, final Screenshot screenshot,
-                       Pizza pizza, boolean debugGraphics) {
+                       boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
         this.setFillParent(true);
         this.skin = skin;
         this.bundle = bundle;
-        this.screenshot = screenshot;
-        this.pizza = pizza;
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
         toppingSelectButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                pizzaScreen.clearMessage();
                 showToppingMenu();
             }
         });
@@ -71,6 +68,7 @@ public class ToppingMenu extends Table{
         cameraButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                pizzaScreen.clearMessage();
                 Pixmap pixmap = screenshot.captureScreen();
                 screenshot.saveCapture(pixmap);
             }
@@ -87,6 +85,7 @@ public class ToppingMenu extends Table{
         undoButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                pizzaScreen.clearMessage();
                 pizzaScreen.undoLastTopping();
             }
         });

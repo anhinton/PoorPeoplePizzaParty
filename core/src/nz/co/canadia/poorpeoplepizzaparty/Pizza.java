@@ -3,8 +3,10 @@ package nz.co.canadia.poorpeoplepizzaparty;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -13,12 +15,17 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Pizza {
 
+    private I18NBundle bundle;
     private Array<Topping> toppings;
     private Array<Constants.ToppingName> toppingOrder;
     private ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
+    private PizzaScreen pizzaScreen;
 
-    public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap) {
+    public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap,
+                 I18NBundle bundle, PizzaScreen pizzaScreen) {
         this.textureObjectMap = textureObjectMap;
+        this.bundle = bundle;
+        this.pizzaScreen = pizzaScreen;
 
         // add the base Topping to the topping array
         toppings = new Array<Topping>();
@@ -33,13 +40,24 @@ public class Pizza {
 
     public void addTopping(Topping topping) {
         if (topping.getVisible()) {
-            if (topping.getToppingName() == Constants.ToppingName.SAUCE |
-                    topping.getToppingName() == Constants.ToppingName.CHEESE) {
-                setBaseTopping(topping.getToppingName());
+            if (topping.getToppingName() == Constants.ToppingName.SAUCE) {
+                if (toppingOrder.peek() != Constants.ToppingName.BASE) {
+                    pizzaScreen.showMessage(bundle.get("pizzamenuWarning"));
+                } else {
+                    setBaseTopping(topping.getToppingName());
+                    toppingOrder.add(topping.getToppingName());
+                }
+            } else if (topping.getToppingName() == Constants.ToppingName.CHEESE) {
+                if (toppingOrder.peek() != Constants.ToppingName.SAUCE) {
+                    pizzaScreen.showMessage(bundle.get("pizzamenuWarning"));
+                } else {
+                    setBaseTopping(topping.getToppingName());
+                    toppingOrder.add(topping.getToppingName());
+                }
             } else {
                 this.toppings.add(topping);
+                toppingOrder.add(topping.getToppingName());
             }
-            toppingOrder.add(topping.getToppingName());
         }
     }
 
@@ -66,6 +84,10 @@ public class Pizza {
                     break;
             }
         }
+    }
+
+    private Topping getBaseTopping() {
+        return toppings.get(0);
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

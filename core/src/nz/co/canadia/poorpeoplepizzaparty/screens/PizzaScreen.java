@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -18,7 +19,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Topping;
-import nz.co.canadia.poorpeoplepizzaparty.ToppingMenu;
+import nz.co.canadia.poorpeoplepizzaparty.ui.MessagePanel;
+import nz.co.canadia.poorpeoplepizzaparty.ui.ToppingMenu;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -34,8 +36,10 @@ public class PizzaScreen implements InputProcessor, Screen {
     private Viewport viewport;
     private Stage stage;
     private ToppingMenu toppingMenu;
+    private MessagePanel messagePanel;
     private Topping selectedTopping;
     private boolean debugGraphics;
+
 
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean debugGraphics) {
         this.game = game;
@@ -84,14 +88,16 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         toppingMenu = new ToppingMenu(this, game.skin, game.bundle,
-                game.screenshot, pizza, debugGraphics);
+                game.screenshot, debugGraphics);
         stage.addActor(toppingMenu);
+        messagePanel = new MessagePanel(game.skin);
+        stage.addActor(messagePanel);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        pizza = new Pizza(textureObjectMap);
+        pizza = new Pizza(textureObjectMap, game.bundle, this);
         selectedTopping = null;
     }
 
@@ -120,6 +126,14 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void undoLastTopping() {
         pizza.undoLastTopping();
+    }
+
+    public void showMessage(String s) {
+        messagePanel.showMessage(s);
+    }
+
+    public void clearMessage() {
+        messagePanel.clearMessage();
     }
 
     @Override
@@ -220,6 +234,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        clearMessage();
         if (hasSelectedTopping()) {
             selectedTopping.setVisible(true);
         }
@@ -277,4 +292,5 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean scrolled(int amount) {
         return false;
     }
+
 }
