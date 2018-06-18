@@ -62,6 +62,8 @@ public class ToppingMenu extends Table {
                         skin.get("default", Button.ButtonStyle.class));
         cameraButtonTexture = new Texture(
                 Gdx.files.internal("graphics/icons/camera.png"));
+        cameraButtonTexture.setFilter(Texture.TextureFilter.Linear,
+                Texture.TextureFilter.Linear);
         cameraButtonStyle.imageUp = new SpriteDrawable(
                 new Sprite(cameraButtonTexture));
         cameraButton = new ImageButton(cameraButtonStyle);
@@ -79,6 +81,8 @@ public class ToppingMenu extends Table {
                         skin.get("default", Button.ButtonStyle.class));
         undoButtonTexture = new Texture(
                 Gdx.files.internal("graphics/icons/undo.png"));
+        undoButtonTexture.setFilter(Texture.TextureFilter.Linear,
+                Texture.TextureFilter.Linear);
         undoButtonStyle.imageUp = new SpriteDrawable(
                 new Sprite(undoButtonTexture));
         undoButton = new ImageButton(undoButtonStyle);

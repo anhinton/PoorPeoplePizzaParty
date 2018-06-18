@@ -26,10 +26,11 @@ public class Topping {
         this.visible = visible;
 
         sprite = new Sprite(textureObjectMap.get(toppingName));
-        if (toppingName == Constants.ToppingName.SAUCE |
+        if (toppingName == Constants.ToppingName.BASE |
+                toppingName == Constants.ToppingName.SAUCE |
                 toppingName == Constants.ToppingName.CHEESE) {
+            sprite.setSize(Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
             sprite.setCenter(Constants.BASE_CENTER_X, Constants.BASE_CENTER_Y);
-            sprite.setSize(Constants.BASE_WITDH, Constants.BASE_HEIGHT);
             selectedSprite = new Sprite(sprite);
             selectedSprite.setScale(Constants.BASE_SCALE);
         } else if (toppingName == Constants.ToppingName.APRICOT |

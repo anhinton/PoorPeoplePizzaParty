@@ -19,7 +19,7 @@ public class MessagePanel extends Container {
         this.skin = skin;
 
         this.setPosition(Constants.BASE_X, Constants.BASE_Y);
-        this.setSize(Constants.BASE_WITDH, Constants.BASE_HEIGHT);
+        this.setSize(Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
 
         messageLabel = new TextButton("", skin, "default");
     }
@@ -27,7 +27,7 @@ public class MessagePanel extends Container {
     public void showMessage(String s) {
         clearMessage();
         messageLabel = new TextButton(s, skin, "default");
-        messageLabel.setSize(Constants.BASE_WITDH, Constants.BUTTON_HEIGHT);
+        messageLabel.setSize(Constants.BASE_WIDTH, Constants.BUTTON_HEIGHT);
         messageLabel.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
