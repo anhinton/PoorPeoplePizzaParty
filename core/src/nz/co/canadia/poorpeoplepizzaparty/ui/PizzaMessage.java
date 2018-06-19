@@ -18,8 +18,8 @@ public class PizzaMessage extends Container {
 
         this.skin = skin;
 
-        this.setPosition(Constants.BASE_X, Constants.BASE_Y);
-        this.setSize(Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
+        super.setPosition(Constants.BASE_X, Constants.BASE_Y);
+        super.setSize(Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
 
         messageLabel = new TextButton("", skin, "default");
     }
@@ -51,6 +51,6 @@ public class PizzaMessage extends Container {
     }
 
     public void clearMessage() {
-        this.clear();
+        super.clear();
     }
 }

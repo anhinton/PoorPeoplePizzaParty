@@ -62,4 +62,7 @@ public class Constants {
     // Sauce topping sprite alpha
     public static final Color SAUCE_COLOR =
             new Color(1,1,1, (float)3 / 5);
+
+    // display offset for topping on touch displays
+    public static final int TOUCH_OFFSET = 50;
 }

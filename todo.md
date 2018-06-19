@@ -1,17 +1,11 @@
 # TODO
 
-  + warning messages appear in Window.class
-
   + complete the Pizza menu
       - Poor People Pizza Party header
       - ~~undo button: pops last topping off stack or steps back through base 
         logic~~
       - ~~photo button~~
       - ~~COOK button~~
-      
-  + add Android touch offset
-      - when touching and holding the selected topping should appear above
-        finger position so it's actually visible
     
   + investigate asset manager
   
@@ -42,6 +36,13 @@
   + do a Vector Android app icon
   
 ## Done
+      
+  + ~~add Android touch offset~~
+      - ~~when touching and dragging the selected topping should appear above
+        finger position so it's actually visible~~
+
+  + ~~**ABANDONED BECAUSE I DON'T GROK WINDOW CLASS** warning messages 
+    appear in Window.class~~
       
   + ~~**THINGS MOSTLY THE SAME BUT TAKING UP MORE OF THE SCREEN AND A FONT 
     CHANGE** rethink screen size and aspect ratios to make things look nice 

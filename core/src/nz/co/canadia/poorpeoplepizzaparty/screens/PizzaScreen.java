@@ -190,13 +190,6 @@ public class PizzaScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        // update selectedTopping location to follow mouse
-        Vector3 mouseCoords = camera.unproject(
-                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-        if (hasSelectedTopping()) {
-            selectedTopping.update(mouseCoords.x, mouseCoords.y);
-        }
-
         stage.getViewport().apply();
         stage.act(delta);
         stage.draw();
@@ -255,6 +248,12 @@ public class PizzaScreen implements InputProcessor, Screen {
         if (hasSelectedTopping()) {
             selectedTopping.setVisible(true);
         }
+        // update selectedTopping location to follow mouse
+        Vector3 mouseCoords = camera.unproject(
+                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        if (hasSelectedTopping()) {
+            selectedTopping.update(mouseCoords.x, mouseCoords.y);
+        }
         return true;
     }
 
@@ -281,6 +280,19 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        // update selectedTopping location to follow mouse
+        Vector3 mouseCoords = camera.unproject(
+                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        if (hasSelectedTopping()) {
+            switch(Gdx.app.getType()) {
+                case Android: case iOS:
+                    selectedTopping.update(mouseCoords.x,
+                            mouseCoords.y + Constants.TOUCH_OFFSET);
+                    break;
+                default:
+                    selectedTopping.update(mouseCoords.x, mouseCoords.y);
+            }
+        }
         return false;
     }
 
@@ -301,6 +313,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     }
                     break;
             }
+            selectedTopping.update(mouseCoords.x, mouseCoords.y);
         }
         return false;
     }
