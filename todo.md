@@ -1,6 +1,12 @@
 # TODO
       
   + rethink screen size and aspect ratios to make things look nice on my phone
+      - resize base toppings and change layout to have 20px margins all round.
+        base is 560x560, menu fills space
+      - use freetype font class to resize UI fonts
+        <https://github.com/libgdx/libgdx/wiki/Gdx-freetype>
+      - "Select topping:" on topping select UI now obscured by base. try
+        white text with drop shadow
 
   + complete the Pizza menu
       - Poor People Pizza Party header

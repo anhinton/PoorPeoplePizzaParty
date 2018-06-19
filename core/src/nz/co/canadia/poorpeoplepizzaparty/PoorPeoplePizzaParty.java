@@ -14,6 +14,7 @@ import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.MySkin;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
@@ -34,9 +35,8 @@ public class PoorPeoplePizzaParty extends Game {
 
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        font = new BitmapFont();
         random = new Random();
-        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+        skin = new MySkin();
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
