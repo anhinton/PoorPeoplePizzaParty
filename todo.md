@@ -1,6 +1,4 @@
 # TODO
-      
-  + rethink screen size and aspect ratios to make things look nice on my phone
 
   + complete the Pizza menu
       - Poor People Pizza Party header
@@ -8,14 +6,6 @@
         logic~~
       - ~~photo button~~
       - COOK button
-      
-  + create a screen shot interface
-      - ~~create platform-specific classes as described at~~
-        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~implement for desktop~~
-      - improve desktop implementation
-      - implement for android
-      - implement for webgl
       
   + add Android touch offset
       - when touching and holding the selected topping should appear above
@@ -36,12 +26,32 @@
         mass-produced rubbish"
       - everyone fired
       
+  + create a screen shot interface
+      - ~~create platform-specific classes as described at~~
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - ~~implement for desktop~~
+      - improve desktop implementation
+      - implement for android
+      - implement for webgl
+      
   + create TitleScreen class
       - pizza party, a party for pizza
       
   + do a Vector Android app icon
   
 ## Done
+      
+  + ~~**THINGS MOSTLY THE SAME BUT TAKING UP MORE OF THE SCREEN AND A FONT 
+    CHANGE** rethink screen size and aspect ratios to make things look nice 
+    on my phone~~
+      - ~~resize base toppings and change layout to have 20px margins all round.
+        base is 560x560, menu fills space~~
+      - ~~**VIEWPORT SIZE ISSUES MAKE THIS SOMETHING I WON'T PURSUE FOR NOW** 
+        use freetype font class to resize UI fonts~~
+        <https://github.com/libgdx/libgdx/wiki/Gdx-freetype>
+      - ~~"Select topping:" on topping select UI now obscured by base. try
+        white text with drop shadow~~
+          - ~~make icons white with shadow also~~
   
   + ~~implement base logic~~
       - ~~create MessagePanel.class with showMessage(s) and clearMessage()

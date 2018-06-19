@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,7 +32,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     private final ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
     private Pizza pizza;
     private OrthographicCamera camera;
-    private Viewport viewport;
+    private Viewport gameViewport;
+    private Viewport stageViewport;
     private Stage stage;
     private ToppingMenu toppingMenu;
     private MessagePanel messagePanel;
@@ -81,12 +81,25 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
 
         camera = new OrthographicCamera();
-        viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
+        gameViewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
                 camera);
         camera.setToOrtho(false, Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        stage = new Stage(viewport);
+//        float screenX = Gdx.graphics.getBackBufferWidth();
+//        float screenY = Gdx.graphics.getBackBufferHeight();
+//        if (screenX / screenY >= Constants.APP_RATIO) {
+//            stageViewport = new FitViewport(
+//                    Math.round(screenY * Constants.APP_RATIO),
+//                    screenY, camera);
+//        } else {
+//            stageViewport = new FitViewport(screenX,
+//                    Math.round(screenX / Constants.APP_RATIO), camera);
+//        }
+        stageViewport = new FitViewport(
+                Constants.APP_WIDTH, Constants.APP_HEIGHT, camera);
+
+        stage = new Stage(stageViewport);
         toppingMenu = new ToppingMenu(this, game.skin, game.bundle,
                 game.screenshot, debugGraphics);
         stage.addActor(toppingMenu);
@@ -152,16 +165,15 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.shapeRenderer.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
+        gameViewport.apply();
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
             selectedTopping.drawSelected(game.batch);
         }
         game.batch.end();
 
-        stage.act(delta);
-        stage.draw();
-
         if (debugGraphics) {
+            gameViewport.apply();
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             for (Topping t: pizza.getToppings()) {
@@ -184,11 +196,16 @@ public class PizzaScreen implements InputProcessor, Screen {
         if (hasSelectedTopping()) {
             selectedTopping.update(mouseCoords.x, mouseCoords.y);
         }
+
+        stage.getViewport().apply();
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        gameViewport.update(width, height);
+        camera.update();
         stage.getViewport().update(width, height, true);
     }
 

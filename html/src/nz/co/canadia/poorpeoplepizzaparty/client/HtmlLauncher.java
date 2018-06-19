@@ -1,8 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.client;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 
@@ -13,7 +11,8 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public GwtApplicationConfiguration getConfig () {
-                return new GwtApplicationConfiguration(Constants.APP_WIDTH, Constants.APP_HEIGHT);
+                return new GwtApplicationConfiguration(Constants.APP_WIDTH,
+                        Constants.APP_HEIGHT);
         }
 
         @Override

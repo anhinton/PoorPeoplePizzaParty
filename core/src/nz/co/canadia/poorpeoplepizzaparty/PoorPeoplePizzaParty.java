@@ -19,7 +19,6 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 public class PoorPeoplePizzaParty extends Game {
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public BitmapFont font;
     public Random random;
     public Skin skin;
     public I18NBundle bundle;
@@ -34,7 +33,6 @@ public class PoorPeoplePizzaParty extends Game {
 
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        font = new BitmapFont();
         random = new Random();
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
@@ -56,6 +54,5 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         batch.dispose();
         shapeRenderer.dispose();
-        font.dispose();
     }
 }
