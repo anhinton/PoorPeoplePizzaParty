@@ -17,15 +17,8 @@ public class Constants {
     public static final Color BG_COLOUR =
             new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green
 
-    public static final int APP_WIDTH = 1728;
-    public static final int APP_HEIGHT = 1080;
-    public static final float APP_RATIO = (float)APP_WIDTH / APP_HEIGHT;
-
-    public static final int DESKTOP_WIDTH = 960;
-    public static final int DESKTOP_HEIGHT = 600;
-
-    public static final int HTML_WIDTH = APP_WIDTH;
-    public static final int HTML_HEIGHT = APP_HEIGHT;
+    public static final int APP_WIDTH = 960;
+    public static final int APP_HEIGHT = 600;
 
     // Topping levels for the pizza base
     public enum ToppingName {
@@ -33,15 +26,15 @@ public class Constants {
         BARBECUE
     }
 
-    public static final int UNIT = 36;
+    private static final int UNIT = 20;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;
     public static final int BASE_Y = UNIT;
 
     // Pizza base dimensions
-    public static final int BASE_HEIGHT = 1008;
-    public static final int BASE_WIDTH = 1008;
+    public static final int BASE_WIDTH = APP_HEIGHT - 2 * UNIT;
+    public static final int BASE_HEIGHT = APP_HEIGHT - 2 * UNIT;
 
     // Base center position
     public static final int BASE_CENTER_X = BASE_X + BASE_WIDTH / 2;

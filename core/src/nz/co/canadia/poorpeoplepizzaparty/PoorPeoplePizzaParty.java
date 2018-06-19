@@ -14,13 +14,11 @@ import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.MySkin;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public BitmapFont font;
     public Random random;
     public Skin skin;
     public I18NBundle bundle;
@@ -36,7 +34,7 @@ public class PoorPeoplePizzaParty extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         random = new Random();
-        skin = new MySkin();
+        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
@@ -56,6 +54,5 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         batch.dispose();
         shapeRenderer.dispose();
-        font.dispose();
     }
 }

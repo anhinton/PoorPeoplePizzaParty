@@ -1,12 +1,16 @@
 # TODO
       
-  + rethink screen size and aspect ratios to make things look nice on my phone
-      - resize base toppings and change layout to have 20px margins all round.
-        base is 560x560, menu fills space
-      - use freetype font class to resize UI fonts
+  + ~~**THINGS MOSTLY THE SAME BUT TAKING UP MORE OF THE SCREEN AND A FONT 
+    CHANGE** rethink screen size and aspect ratios to make things look nice 
+    on my phone~~
+      - ~~resize base toppings and change layout to have 20px margins all round.
+        base is 560x560, menu fills space~~
+      - ~~**VIEWPORT SIZE ISSUES MAKE THIS SOMETHING I WON'T PURSUE FOR NOW** 
+        use freetype font class to resize UI fonts~~
         <https://github.com/libgdx/libgdx/wiki/Gdx-freetype>
-      - "Select topping:" on topping select UI now obscured by base. try
-        white text with drop shadow
+      - ~~"Select topping:" on topping select UI now obscured by base. try
+        white text with drop shadow~~
+          - ~~make icons white with shadow also~~
 
   + complete the Pizza menu
       - Poor People Pizza Party header
