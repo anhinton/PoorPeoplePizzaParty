@@ -9,12 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class MessagePanel extends Container {
+public class PizzaMessage extends Container {
 
     private TextButton messageLabel;
     private Skin skin;
 
-    public MessagePanel(Skin skin) {
+    public PizzaMessage(Skin skin) {
 
         this.skin = skin;
 
@@ -34,10 +34,10 @@ public class MessagePanel extends Container {
                 clearMessage();
             }
         });
-        this.prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT);
+        super.prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT);
 
         // TODO: work out what the IDE warning here means, and how to fix it
-        this.setActor(messageLabel);
+        super.setActor(messageLabel);
 
         // TODO: clean up Timer code if not required
 //        Timer.schedule(new Timer.Task() {

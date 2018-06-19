@@ -42,14 +42,14 @@ public class Pizza {
         if (topping.getVisible()) {
             if (topping.getToppingName() == Constants.ToppingName.SAUCE) {
                 if (toppingOrder.peek() != Constants.ToppingName.BASE) {
-                    pizzaScreen.showMessage(bundle.get("pizzamenuWarning"));
+                    pizzaScreen.showMessage(bundle.get("messagePizzaWarning"));
                 } else {
                     setBaseTopping(topping.getToppingName());
                     toppingOrder.add(topping.getToppingName());
                 }
             } else if (topping.getToppingName() == Constants.ToppingName.CHEESE) {
                 if (toppingOrder.peek() != Constants.ToppingName.SAUCE) {
-                    pizzaScreen.showMessage(bundle.get("pizzamenuWarning"));
+                    pizzaScreen.showMessage(bundle.get("messagePizzaWarning"));
                 } else {
                     setBaseTopping(topping.getToppingName());
                     toppingOrder.add(topping.getToppingName());

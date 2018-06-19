@@ -54,7 +54,7 @@ public class Constants {
             APP_WIDTH - BASE_WIDTH - MENU_PADDING * 3;
     public static final float BUTTON_WIDTH_HALF =
             (float)(BUTTON_WIDTH_FULL - MENU_PADDING) / 2;
-    public static final int BUTTON_HEIGHT = 3 * UNIT;
+    public static final int BUTTON_HEIGHT = 4 * UNIT;
 
     // Base selected sprite scale
     public static final float BASE_SCALE = (float)1 / 5;

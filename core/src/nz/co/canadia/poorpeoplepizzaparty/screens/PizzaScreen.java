@@ -18,8 +18,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Topping;
-import nz.co.canadia.poorpeoplepizzaparty.ui.MessagePanel;
-import nz.co.canadia.poorpeoplepizzaparty.ui.ToppingMenu;
+import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMessage;
+import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMenu;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -35,8 +35,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     private Viewport gameViewport;
     private Viewport stageViewport;
     private Stage stage;
-    private ToppingMenu toppingMenu;
-    private MessagePanel messagePanel;
+    private PizzaMenu pizzaMenu;
+    private PizzaMessage pizzaMessage;
     private Topping selectedTopping;
     private boolean debugGraphics;
 
@@ -100,11 +100,11 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_WIDTH, Constants.APP_HEIGHT, camera);
 
         stage = new Stage(stageViewport);
-        toppingMenu = new ToppingMenu(this, game.skin, game.bundle,
+        pizzaMenu = new PizzaMenu(this, game.skin, game.bundle,
                 game.screenshot, debugGraphics);
-        stage.addActor(toppingMenu);
-        messagePanel = new MessagePanel(game.skin);
-        stage.addActor(messagePanel);
+        stage.addActor(pizzaMenu);
+        pizzaMessage = new PizzaMessage(game.skin);
+        stage.addActor(pizzaMessage);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
@@ -142,11 +142,11 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     public void showMessage(String s) {
-        messagePanel.showMessage(s);
+        pizzaMessage.showMessage(s);
     }
 
     public void clearMessage() {
-        messagePanel.clearMessage();
+        pizzaMessage.clearMessage();
     }
 
     @Override
@@ -226,7 +226,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        toppingMenu.dispose();
+        pizzaMenu.dispose();
         stage.dispose();
         for (Texture texture: textureObjectMap.values()) {
             texture.dispose();

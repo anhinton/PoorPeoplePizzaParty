@@ -25,7 +25,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
  */
 
-public class ToppingMenu extends Table {
+public class PizzaMenu extends Table {
 
     private Skin skin;
     private PizzaScreen pizzaScreen;
@@ -36,14 +36,15 @@ public class ToppingMenu extends Table {
     private Texture undoButtonTexture;
     private ImageButton cameraButton;
     private ImageButton undoButton;
+    private TextButton cookButton;
     private I18NBundle bundle;
 
-    public ToppingMenu(final PizzaScreen pizzaScreen, Skin skin,
-                       I18NBundle bundle, final Screenshot screenshot,
-                       boolean debugGraphics) {
+    public PizzaMenu(final PizzaScreen pizzaScreen, Skin skin,
+                     I18NBundle bundle, final Screenshot screenshot,
+                     boolean debugGraphics) {
 
         this.pizzaScreen = pizzaScreen;
-        this.setFillParent(true);
+        super.setFillParent(true);
         this.skin = skin;
         this.bundle = bundle;
 
@@ -93,6 +94,15 @@ public class ToppingMenu extends Table {
                 pizzaScreen.undoLastTopping();
             }
         });
+        
+        cookButton = new TextButton(bundle.get("pizzamenuCookButton"), skin,
+                "default");
+        cookButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.log("PizzaMenu", "cook button pressed");
+            }
+        });
 
         toppingGroup = new ButtonGroup<TextButton>();
         toppingGroup.setMinCheckCount(0);
@@ -100,43 +110,69 @@ public class ToppingMenu extends Table {
 
         toppingButtons = new Array<TextButton>();
         addToppingButton(Constants.ToppingName.SAUCE,
-                bundle.get("toppingSauce"));
+                bundle.get("toppingmenuSauce"));
         addToppingButton(Constants.ToppingName.CHEESE,
-                bundle.get("toppingCheese"));
-        this.row();
+                bundle.get("toppingmenuCheese"));
+        super.row();
         addToppingButton(Constants.ToppingName.BACON,
-                bundle.get("toppingBacon"));
+                bundle.get("toppingmenuBacon"));
         addToppingButton(Constants.ToppingName.SAUSAGE,
-                bundle.get("toppingSausage"));
-        this.row();
+                bundle.get("toppingmenuSausage"));
+        super.row();
         addToppingButton(Constants.ToppingName.SALAMI,
-                bundle.get("toppingSalami"));
+                bundle.get("toppingmenuSalami"));
         addToppingButton(Constants.ToppingName.CHICKEN,
-                bundle.get("toppingChicken"));
-        this.row();
+                bundle.get("toppingmenuChicken"));
+        super.row();
         addToppingButton(Constants.ToppingName.APRICOT,
-                bundle.get("toppingApricot"));
+                bundle.get("toppingmenuApricot"));
         addToppingButton(Constants.ToppingName.BARBECUE,
-                bundle.get("toppingBarbecue"));
+                bundle.get("toppingmenuBarbecue"));
 
         showMainMenu();
 
         // DEBUG UI
-        this.setDebug(debugGraphics);
+        super.setDebug(debugGraphics);
+    }
+
+    private void showMainMenu() {
+        super.clear();
+        super.center().right().pad(Constants.MENU_PADDING);
+        super.add(new Label(bundle.get("pizzamenuHeaderLabel"), skin,
+                "default"))
+                .space(Constants.MENU_PADDING)
+                .colspan(2).center();
+        super.row();
+        super.add(toppingSelectButton).space(Constants.MENU_PADDING)
+                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
+                .colspan(2)
+                .right();
+        super.row();
+        super.add(cameraButton)
+                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
+                .space(Constants.MENU_PADDING);
+        super.add(undoButton)
+                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
+                .space(Constants.MENU_PADDING);
+        super.row();
+        super.add(cookButton)
+                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
+                .space(Constants.MENU_PADDING)
+                .colspan(2);
     }
 
     private void showToppingMenu() {
-        this.clear();
-        this.center().top();
-        this.add(new Label(bundle.get("toppingmenuSelectLabel"), skin,
+        super.clear();
+        super.center().top();
+        super.add(new Label(bundle.get("toppingmenuSelectLabel"), skin,
                 "default"))
                 .colspan(2);
-        this.row();
+        super.row();
         int counter = 0;
         for (TextButton b: toppingButtons) {
             if (counter > 0 & counter % 2 == 0)
-                this.row();
-            this.add(b).space(Constants.MENU_PADDING)
+                super.row();
+            super.add(b).space(Constants.MENU_PADDING)
                     .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT);
             counter++;
         }
@@ -157,27 +193,6 @@ public class ToppingMenu extends Table {
         toppingGroup.add(textButton);
     }
 
-    private void showMainMenu() {
-        this.clear();
-        this.center().right().pad(Constants.MENU_PADDING);
-        this.add(new Label(bundle.get("pizzamenuHeaderLabel"), skin,
-                "default"))
-                .space(Constants.MENU_PADDING)
-                .colspan(2).center();
-        this.row();
-        this.add(toppingSelectButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
-                .colspan(2)
-                .right();
-        this.row();
-        this.add(cameraButton)
-                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING);
-        this.add(undoButton)
-                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING);
-    }
-
     private void setSelectedTopping(TextButton button) {
         toppingSelectButton.setText(button.getText().toString());
     }
@@ -185,6 +200,7 @@ public class ToppingMenu extends Table {
     public void dispose() {
         skin.dispose();
         cameraButtonTexture.dispose();
+        undoButtonTexture.dispose();
     }
 
 }

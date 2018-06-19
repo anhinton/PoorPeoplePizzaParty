@@ -1,11 +1,13 @@
 # TODO
 
+  + warning messages appear in Window.class
+
   + complete the Pizza menu
       - Poor People Pizza Party header
       - ~~undo button: pops last topping off stack or steps back through base 
         logic~~
       - ~~photo button~~
-      - COOK button
+      - ~~COOK button~~
       
   + add Android touch offset
       - when touching and holding the selected topping should appear above
