@@ -12,9 +12,9 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  */
 
 public class Topping {
-    private Constants.ToppingName toppingName;
-    private Sprite sprite;
-    private Sprite selectedSprite;
+    private final Constants.ToppingName toppingName;
+    private final Sprite sprite;
+    private final Sprite selectedSprite;
     private boolean visible;
 
     public Topping(float x, float y, float rotation,

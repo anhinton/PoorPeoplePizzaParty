@@ -16,15 +16,16 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Pizza {
 
-    private I18NBundle bundle;
-    private Array<Topping> toppings;
-    private Array<Constants.ToppingName> toppingOrder;
-    private ObjectMap<Constants.ToppingName, String> toppingStrings;
-    private AssetManager manager;
-    private PizzaScreen pizzaScreen;
+    private final I18NBundle bundle;
+    private final ObjectMap<Constants.ToppingName, String> toppingStrings;
+    private final AssetManager manager;
+    private final PizzaScreen pizzaScreen;
+    private final Array<Topping> toppings;
+    private final Array<Constants.ToppingName> toppingOrder;
 
-    public Pizza(ObjectMap<Constants.ToppingName, String> toppingStrings,
-                 AssetManager manager, I18NBundle bundle, PizzaScreen pizzaScreen) {
+    public Pizza(final ObjectMap<Constants.ToppingName, String> toppingStrings,
+                 final AssetManager manager, final I18NBundle bundle,
+                 final PizzaScreen pizzaScreen) {
         this.toppingStrings = toppingStrings;
         this.bundle = bundle;
         this.manager = manager;

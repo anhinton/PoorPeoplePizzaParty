@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,23 +26,21 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
  */
 
-public class PizzaMenu extends Table {
+public class PizzaUi extends Table {
 
-    private Skin skin;
-    private PizzaScreen pizzaScreen;
-    private Array<TextButton> toppingButtons;
-    private ButtonGroup<TextButton> toppingGroup;
-    private TextButton toppingSelectButton;
-    private Texture cameraButtonTexture;
-    private Texture undoButtonTexture;
-    private ImageButton cameraButton;
-    private ImageButton undoButton;
-    private TextButton cookButton;
-    private I18NBundle bundle;
+    private final Skin skin;
+    private final PizzaScreen pizzaScreen;
+    private final I18NBundle bundle;
+    private final Array<TextButton> toppingButtons;
+    private final ButtonGroup<TextButton> toppingGroup;
+    private final TextButton toppingSelectButton;
+    private final ImageButton cameraButton;
+    private final ImageButton undoButton;
+    private final TextButton cookButton;
 
-    public PizzaMenu(final PizzaScreen pizzaScreen, Skin skin,
-                     I18NBundle bundle, final Screenshot screenshot,
-                     boolean debugGraphics) {
+    public PizzaUi(final PizzaScreen pizzaScreen, final Skin skin,
+                   final I18NBundle bundle, final Screenshot screenshot,
+                   final AssetManager manager) {
 
         this.pizzaScreen = pizzaScreen;
         super.setFillParent(true);
@@ -61,12 +60,9 @@ public class PizzaMenu extends Table {
         ImageButton.ImageButtonStyle cameraButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        cameraButtonTexture = new Texture(
-                Gdx.files.internal("graphics/icons/camera.png"));
-        cameraButtonTexture.setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
         cameraButtonStyle.imageUp = new SpriteDrawable(
-                new Sprite(cameraButtonTexture));
+                new Sprite(manager.get("graphics/icons/camera.png",
+                        Texture.class)));
         cameraButton = new ImageButton(cameraButtonStyle);
         cameraButton.addListener(new ChangeListener() {
             @Override
@@ -80,12 +76,9 @@ public class PizzaMenu extends Table {
         ImageButton.ImageButtonStyle undoButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        undoButtonTexture = new Texture(
-                Gdx.files.internal("graphics/icons/undo.png"));
-        undoButtonTexture.setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
         undoButtonStyle.imageUp = new SpriteDrawable(
-                new Sprite(undoButtonTexture));
+                new Sprite(manager.get("graphics/icons/undo.png",
+                        Texture.class)));
         undoButton = new ImageButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
             @Override
@@ -100,7 +93,8 @@ public class PizzaMenu extends Table {
         cookButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.log("PizzaMenu", "cook button pressed");
+                pizzaScreen.cook();
+                Gdx.app.log("PizzaUi", "cook button pressed");
             }
         });
 
@@ -132,7 +126,7 @@ public class PizzaMenu extends Table {
         showMainMenu();
 
         // DEBUG UI
-        super.setDebug(debugGraphics);
+        super.setDebug(Constants.DEBUG_GRAPHICS);
     }
 
     private void showMainMenu() {
@@ -178,6 +172,12 @@ public class PizzaMenu extends Table {
         }
     }
 
+    /**
+     * Generate a topping button and add to toppingButtons and toppingGroup.
+     *
+     * @param toppingName topping name enum
+     * @param text text to display on button
+     */
     private void addToppingButton(final Constants.ToppingName toppingName, String text) {
         final TextButton textButton = new TextButton(
                 text, skin, "default");
@@ -196,11 +196,4 @@ public class PizzaMenu extends Table {
     private void setSelectedTopping(TextButton button) {
         toppingSelectButton.setText(button.getText().toString());
     }
-
-    public void dispose() {
-        skin.dispose();
-        cameraButtonTexture.dispose();
-        undoButtonTexture.dispose();
-    }
-
 }

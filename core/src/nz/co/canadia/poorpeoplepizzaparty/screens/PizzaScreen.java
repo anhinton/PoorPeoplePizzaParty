@@ -19,8 +19,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Topping;
-import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMessage;
-import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMenu;
+import nz.co.canadia.poorpeoplepizzaparty.ui.MessageUi;
+import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -30,47 +30,49 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
-    private ObjectMap<Constants.ToppingName, String> toppingStrings;
-    private Pizza pizza;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private Stage stage;
-    private PizzaMenu pizzaMenu;
-    private PizzaMessage pizzaMessage;
+    private final ObjectMap<Constants.ToppingName, String> textureFiles;
+    private final Pizza pizza;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Stage stage;
+    private final PizzaUi pizzaUi;
+    private final MessageUi messageUi;
     private Topping selectedTopping;
-    private boolean debugGraphics;
 
-
-    public PizzaScreen(final PoorPeoplePizzaParty game, boolean debugGraphics) {
+    public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
-        this.debugGraphics = debugGraphics;
-        
-        toppingStrings = new ObjectMap<Constants.ToppingName, String>();
-        toppingStrings.put(Constants.ToppingName.APRICOT,
+
+        // match topping names to image asset paths
+        textureFiles = new ObjectMap<Constants.ToppingName, String>();
+        textureFiles.put(Constants.ToppingName.APRICOT,
                 "graphics/toppings/apricot-topping.png");
-        toppingStrings.put(Constants.ToppingName.BACON,
+        textureFiles.put(Constants.ToppingName.BACON,
                 "graphics/toppings/bacon-topping.png");
-        toppingStrings.put(Constants.ToppingName.BARBECUE,
+        textureFiles.put(Constants.ToppingName.BARBECUE,
                 "graphics/toppings/barbecue-topping.png");
-        toppingStrings.put(Constants.ToppingName.BASE,
+        textureFiles.put(Constants.ToppingName.BASE,
                 "graphics/toppings/base-topping.png");
-        toppingStrings.put(Constants.ToppingName.CHEESE,
+        textureFiles.put(Constants.ToppingName.CHEESE,
                 "graphics/toppings/cheese-topping.png");
-        toppingStrings.put(Constants.ToppingName.CHICKEN,
+        textureFiles.put(Constants.ToppingName.CHICKEN,
                 "graphics/toppings/chicken-topping.png");
-        toppingStrings.put(Constants.ToppingName.SALAMI,
+        textureFiles.put(Constants.ToppingName.SALAMI,
                 "graphics/toppings/salami-topping.png");
-        toppingStrings.put(Constants.ToppingName.SAUCE,
+        textureFiles.put(Constants.ToppingName.SAUCE,
                 "graphics/toppings/sauce-topping.png");
-        toppingStrings.put(Constants.ToppingName.SAUSAGE,
+        textureFiles.put(Constants.ToppingName.SAUSAGE,
                 "graphics/toppings/sausage-topping.png");
-        for(String f: toppingStrings.values()) {
-            TextureLoader.TextureParameter param =
-                    new TextureLoader.TextureParameter();
-            param.minFilter = Texture.TextureFilter.Linear;
-            param.magFilter = Texture.TextureFilter.Linear;
-            game.manager.load(f, Texture.class, param);
+        TextureLoader.TextureParameter param =
+                new TextureLoader.TextureParameter();
+        param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
+        for(String s: textureFiles.values()) {
+            game.manager.load(s, Texture.class, param);
         }
+        game.manager.load("graphics/icons/camera.png", Texture.class,
+                param);
+        game.manager.load("graphics/icons/undo.png", Texture.class,
+                param);
         game.manager.finishLoading();
 
         camera = new OrthographicCamera();
@@ -80,19 +82,36 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.APP_HEIGHT);
 
         stage = new Stage(viewport);
-        pizzaMenu = new PizzaMenu(this, game.skin, game.bundle,
-                game.screenshot, debugGraphics);
-        stage.addActor(pizzaMenu);
-        pizzaMessage = new PizzaMessage(game.skin);
-        stage.addActor(pizzaMessage);
+        pizzaUi = new PizzaUi(this, game.skin, game.bundle,
+                game.screenshot, game.manager);
+        stage.addActor(pizzaUi);
+        messageUi = new MessageUi(game.skin);
+        stage.addActor(messageUi);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        pizza = new Pizza(toppingStrings, game.manager, game.bundle,
+        pizza = new Pizza(textureFiles, game.manager, game.bundle,
                 this);
         selectedTopping = null;
+    }
+
+    public void cook() {
+        dispose();
+        game.setScreen(new CookScreen(game));
+    }
+
+    public void undoLastTopping() {
+        pizza.undoLastTopping();
+    }
+
+    public void clearMessage() {
+        messageUi.clearMessage();
+    }
+
+    public void showMessage(String s) {
+        messageUi.showMessage(s);
     }
 
     private boolean hasSelectedTopping() {
@@ -114,92 +133,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                 y,
                 game.random.nextFloat() * 360,
                 toppingName,
-                game.manager.get(toppingStrings.get(toppingName), Texture.class),
+                game.manager.get(textureFiles.get(toppingName), Texture.class),
                 false);
-    }
-
-    public void undoLastTopping() {
-        pizza.undoLastTopping();
-    }
-
-    public void showMessage(String s) {
-        pizzaMessage.showMessage(s);
-    }
-
-    public void clearMessage() {
-        pizzaMessage.clearMessage();
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
-                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.shapeRenderer.setProjectionMatrix(camera.combined);
-
-        game.batch.begin();
-        pizza.draw(game.batch);
-        if (hasSelectedTopping()) {
-            selectedTopping.drawSelected(game.batch);
-        }
-        game.batch.end();
-
-        if (debugGraphics) {
-            game.shapeRenderer.setColor(1,1,1,1);
-            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            for (Topping t: pizza.getToppings()) {
-                Rectangle r = t.getBoundingRectangle();
-                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
-            }
-            if (hasSelectedTopping()) {
-                game.shapeRenderer.rect(
-                        selectedTopping.getBoundingRectangle().x,
-                        selectedTopping.getBoundingRectangle().y,
-                        selectedTopping.getBoundingRectangle().width,
-                        selectedTopping.getBoundingRectangle().height);
-            }
-            game.shapeRenderer.end();
-        }
-
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        camera.update();
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        game.manager.unload("graphics/toppings/base-topping.png");
-        pizzaMenu.dispose();
-        stage.dispose();
-        toppingStrings.clear();
     }
 
     @Override
@@ -247,7 +182,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     selectedTopping.getY(),
                     game.random.nextFloat() * 360,
                     selectedTopping.getToppingName(),
-                    game.manager.get(toppingStrings.get(selectedTopping.getToppingName()),
+                    game.manager.get(textureFiles.get(selectedTopping.getToppingName()),
                             Texture.class),
                     false);
         }
@@ -275,7 +210,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         Vector3 mouseCoords = camera.unproject(
-            new Vector3(screenX, screenY, 0));
+                new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
             switch (Gdx.app.getType()) {
                 case Desktop: case WebGL:
@@ -299,4 +234,77 @@ public class PizzaScreen implements InputProcessor, Screen {
         return false;
     }
 
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
+                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
+        game.shapeRenderer.setProjectionMatrix(camera.combined);
+
+        game.batch.begin();
+        pizza.draw(game.batch);
+        if (hasSelectedTopping()) {
+            selectedTopping.drawSelected(game.batch);
+        }
+        game.batch.end();
+
+        if (Constants.DEBUG_GRAPHICS) {
+            game.shapeRenderer.setColor(1,1,1,1);
+            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            for (Topping t: pizza.getToppings()) {
+                Rectangle r = t.getBoundingRectangle();
+                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
+            }
+            if (hasSelectedTopping()) {
+                game.shapeRenderer.rect(
+                        selectedTopping.getBoundingRectangle().x,
+                        selectedTopping.getBoundingRectangle().y,
+                        selectedTopping.getBoundingRectangle().width,
+                        selectedTopping.getBoundingRectangle().height);
+            }
+            game.shapeRenderer.end();
+        }
+
+        stage.act(delta);
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
+        camera.update();
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        for (String s: textureFiles.values()) {
+            game.manager.unload(s);
+        }
+        game.manager.unload("graphics/icons/camera.png");
+        game.manager.unload("graphics/icons/undo.png");
+        stage.dispose();
+    }
 }

@@ -1,9 +1,11 @@
 # TODO
     
   + implement asset manager
-      - properly dispose of assets
+      - dispose of assets
       - check on Android
       - check on WebGL
+  
+  + try ScreenViewport for independent UI layer
   
   + implement Serve screen
       - option to serve to Bosses or Workers

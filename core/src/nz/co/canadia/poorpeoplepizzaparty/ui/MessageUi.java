@@ -9,12 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class PizzaMessage extends Container {
+public class MessageUi extends Container {
 
+    private final Skin skin;
     private TextButton messageLabel;
-    private Skin skin;
 
-    public PizzaMessage(Skin skin) {
+    public MessageUi(final Skin skin) {
 
         this.skin = skin;
 
@@ -22,6 +22,10 @@ public class PizzaMessage extends Container {
         super.setSize(Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
 
         messageLabel = new TextButton("", skin, "default");
+    }
+
+    public void clearMessage() {
+        super.clear();
     }
 
     public void showMessage(String s) {
@@ -48,9 +52,5 @@ public class PizzaMessage extends Container {
 //        }, 5);
 
         Gdx.app.log("PizzaScreen", s);
-    }
-
-    public void clearMessage() {
-        super.clear();
     }
 }

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -14,7 +13,6 @@ import java.util.Locale;
 import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
@@ -45,7 +43,7 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        this.setScreen(new PizzaScreen(this, Constants.DEBUG_GRAPHICS));
+        this.setScreen(new PizzaScreen(this));
     }
 
     @Override
@@ -58,5 +56,6 @@ public class PoorPeoplePizzaParty extends Game {
         manager.dispose();
         batch.dispose();
         shapeRenderer.dispose();
+        skin.dispose();
     }
 }
