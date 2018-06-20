@@ -1,9 +1,9 @@
 # TODO
     
   + implement asset manager
-      - properly dispose
-  
-  + combine gameViewport and stageViewport into single viewport
+      - properly dispose of assets
+      - check on Android
+      - check on WebGL
   
   + implement Serve screen
       - option to serve to Bosses or Workers
@@ -39,6 +39,8 @@
   + do a Vector Android app icon
   
 ## Done
+  
+  + ~~combine gameViewport and stageViewport into single viewport~~
       
   + ~~add Android touch offset~~
       - ~~when touching and dragging the selected topping should appear above

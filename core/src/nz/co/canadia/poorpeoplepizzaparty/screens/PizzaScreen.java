@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -34,9 +33,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     private ObjectMap<Constants.ToppingName, String> toppingStrings;
     private Pizza pizza;
     private OrthographicCamera camera;
-    // TODO: go back to single viewport
-    private Viewport gameViewport;
-    private Viewport stageViewport;
+    private Viewport viewport;
     private Stage stage;
     private PizzaMenu pizzaMenu;
     private PizzaMessage pizzaMessage;
@@ -77,15 +74,12 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.manager.finishLoading();
 
         camera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
+        viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
                 camera);
         camera.setToOrtho(false, Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-        stageViewport = new FitViewport(
-                Constants.APP_WIDTH, Constants.APP_HEIGHT, camera);
-
-        stage = new Stage(stageViewport);
+        stage = new Stage(viewport);
         pizzaMenu = new PizzaMenu(this, game.skin, game.bundle,
                 game.screenshot, debugGraphics);
         stage.addActor(pizzaMenu);
@@ -152,7 +146,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.shapeRenderer.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        gameViewport.apply();
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
             selectedTopping.drawSelected(game.batch);
@@ -160,7 +153,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.batch.end();
 
         if (debugGraphics) {
-            gameViewport.apply();
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             for (Topping t: pizza.getToppings()) {
@@ -177,16 +169,14 @@ public class PizzaScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        stage.getViewport().apply();
         stage.act(delta);
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height);
+        viewport.update(width, height);
         camera.update();
-        stage.getViewport().update(width, height, true);
     }
 
     @Override
