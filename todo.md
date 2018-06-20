@@ -3,7 +3,8 @@
   + implement asset manager
       - ~~dispose of assets~~
       - ~~check on Android~~
-      - check on WebGL
+      - ~~check on WebGL~~
+      - create asset management class to load and dispose screen assets
   
   + try ScreenViewport for independent UI layer
   
