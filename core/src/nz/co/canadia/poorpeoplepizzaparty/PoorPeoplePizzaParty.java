@@ -2,6 +2,7 @@ package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +18,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
+    public AssetManager manager;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
     public Random random;
@@ -31,6 +33,7 @@ public class PoorPeoplePizzaParty extends Game {
     @Override
     public void create() {
 
+        manager = new AssetManager();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         random = new Random();
@@ -52,6 +55,7 @@ public class PoorPeoplePizzaParty extends Game {
 
     @Override
     public void dispose () {
+        manager.dispose();
         batch.dispose();
         shapeRenderer.dispose();
     }

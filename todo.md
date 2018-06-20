@@ -1,15 +1,11 @@
 # TODO
-
-  + complete the Pizza menu
-      - Poor People Pizza Party header
-      - ~~undo button: pops last topping off stack or steps back through base 
-        logic~~
-      - ~~photo button~~
-      - ~~COOK button~~
     
-  + investigate asset manager
+  + implement asset manager
+      - properly dispose
   
-  + implement Cook and Serve buttons
+  + combine gameViewport and stageViewport into single viewport
+  
+  + implement Serve screen
       - option to serve to Bosses or Workers
   
   + create ServeBossScreen class
@@ -21,6 +17,13 @@
       - boss pops up and says "I can't believe you people eat this 
         mass-produced rubbish"
       - everyone fired
+
+  + complete the Pizza menu
+      - Poor People Pizza Party header
+      - ~~undo button: pops last topping off stack or steps back through base 
+        logic~~
+      - ~~photo button~~
+      - ~~COOK button~~
       
   + create a screen shot interface
       - ~~create platform-specific classes as described at~~

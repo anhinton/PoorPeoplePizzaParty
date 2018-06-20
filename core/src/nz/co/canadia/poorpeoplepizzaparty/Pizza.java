@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -18,19 +19,23 @@ public class Pizza {
     private I18NBundle bundle;
     private Array<Topping> toppings;
     private Array<Constants.ToppingName> toppingOrder;
-    private ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
+    private ObjectMap<Constants.ToppingName, String> toppingStrings;
+    private AssetManager manager;
     private PizzaScreen pizzaScreen;
 
-    public Pizza(ObjectMap<Constants.ToppingName, Texture> textureObjectMap,
-                 I18NBundle bundle, PizzaScreen pizzaScreen) {
-        this.textureObjectMap = textureObjectMap;
+    public Pizza(ObjectMap<Constants.ToppingName, String> toppingStrings,
+                 AssetManager manager, I18NBundle bundle, PizzaScreen pizzaScreen) {
+        this.toppingStrings = toppingStrings;
         this.bundle = bundle;
+        this.manager = manager;
         this.pizzaScreen = pizzaScreen;
 
         // add the base Topping to the topping array
         toppings = new Array<Topping>();
         toppings.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
-                0, Constants.ToppingName.BASE, textureObjectMap,
+                0, Constants.ToppingName.BASE,
+                manager.get(toppingStrings.get(Constants.ToppingName.BASE),
+                        Texture.class),
                 true));
 
         // initialise toppingOrder array
@@ -92,7 +97,8 @@ public class Pizza {
 
     private void setBaseTopping(Constants.ToppingName toppingName) {
         toppings.set(0, new Topping(Constants.BASE_X, Constants.BASE_Y,
-                0, toppingName, textureObjectMap,
+                0, toppingName,
+                manager.get(toppingStrings.get(toppingName), Texture.class),
                 true));
     }
 

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -29,9 +31,10 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
-    private final ObjectMap<Constants.ToppingName, Texture> textureObjectMap;
+    private ObjectMap<Constants.ToppingName, String> toppingStrings;
     private Pizza pizza;
     private OrthographicCamera camera;
+    // TODO: go back to single viewport
     private Viewport gameViewport;
     private Viewport stageViewport;
     private Stage stage;
@@ -44,41 +47,34 @@ public class PizzaScreen implements InputProcessor, Screen {
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean debugGraphics) {
         this.game = game;
         this.debugGraphics = debugGraphics;
-
-        // load textures and create sprites
-        // TODO: replace textureObjectMap with asset manager probably
-        textureObjectMap = new ObjectMap<Constants.ToppingName, Texture>();
-        textureObjectMap.put(
-                Constants.ToppingName.BASE,
-                new Texture(Gdx.files.internal("graphics/toppings/base-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.SAUCE,
-                new Texture(Gdx.files.internal("graphics/toppings/sauce-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.CHEESE,
-                new Texture(Gdx.files.internal("graphics/toppings/cheese-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.BACON,
-                new Texture(Gdx.files.internal("graphics/toppings/bacon-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.SAUSAGE,
-                new Texture(Gdx.files.internal("graphics/toppings/sausage-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.SALAMI,
-                new Texture(Gdx.files.internal("graphics/toppings/salami-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.CHICKEN,
-                new Texture(Gdx.files.internal("graphics/toppings/chicken-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.APRICOT,
-                new Texture(Gdx.files.internal("graphics/toppings/apricot-topping.png")));
-        textureObjectMap.put(
-                Constants.ToppingName.BARBECUE,
-                new Texture(Gdx.files.internal("graphics/toppings/barbecue-topping.png")));
-        for (Texture texture: textureObjectMap.values()) {
-            texture.setFilter(Texture.TextureFilter.Linear,
-                    Texture.TextureFilter.Linear);
+        
+        toppingStrings = new ObjectMap<Constants.ToppingName, String>();
+        toppingStrings.put(Constants.ToppingName.APRICOT,
+                "graphics/toppings/apricot-topping.png");
+        toppingStrings.put(Constants.ToppingName.BACON,
+                "graphics/toppings/bacon-topping.png");
+        toppingStrings.put(Constants.ToppingName.BARBECUE,
+                "graphics/toppings/barbecue-topping.png");
+        toppingStrings.put(Constants.ToppingName.BASE,
+                "graphics/toppings/base-topping.png");
+        toppingStrings.put(Constants.ToppingName.CHEESE,
+                "graphics/toppings/cheese-topping.png");
+        toppingStrings.put(Constants.ToppingName.CHICKEN,
+                "graphics/toppings/chicken-topping.png");
+        toppingStrings.put(Constants.ToppingName.SALAMI,
+                "graphics/toppings/salami-topping.png");
+        toppingStrings.put(Constants.ToppingName.SAUCE,
+                "graphics/toppings/sauce-topping.png");
+        toppingStrings.put(Constants.ToppingName.SAUSAGE,
+                "graphics/toppings/sausage-topping.png");
+        for(String f: toppingStrings.values()) {
+            TextureLoader.TextureParameter param =
+                    new TextureLoader.TextureParameter();
+            param.minFilter = Texture.TextureFilter.Linear;
+            param.magFilter = Texture.TextureFilter.Linear;
+            game.manager.load(f, Texture.class, param);
         }
+        game.manager.finishLoading();
 
         camera = new OrthographicCamera();
         gameViewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
@@ -86,16 +82,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         camera.setToOrtho(false, Constants.APP_WIDTH,
                 Constants.APP_HEIGHT);
 
-//        float screenX = Gdx.graphics.getBackBufferWidth();
-//        float screenY = Gdx.graphics.getBackBufferHeight();
-//        if (screenX / screenY >= Constants.APP_RATIO) {
-//            stageViewport = new FitViewport(
-//                    Math.round(screenY * Constants.APP_RATIO),
-//                    screenY, camera);
-//        } else {
-//            stageViewport = new FitViewport(screenX,
-//                    Math.round(screenX / Constants.APP_RATIO), camera);
-//        }
         stageViewport = new FitViewport(
                 Constants.APP_WIDTH, Constants.APP_HEIGHT, camera);
 
@@ -110,7 +96,8 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        pizza = new Pizza(textureObjectMap, game.bundle, this);
+        pizza = new Pizza(toppingStrings, game.manager, game.bundle,
+                this);
         selectedTopping = null;
     }
 
@@ -133,7 +120,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                 y,
                 game.random.nextFloat() * 360,
                 toppingName,
-                textureObjectMap,
+                game.manager.get(toppingStrings.get(toppingName), Texture.class),
                 false);
     }
 
@@ -219,12 +206,10 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
+        game.manager.unload("graphics/toppings/base-topping.png");
         pizzaMenu.dispose();
         stage.dispose();
-        for (Texture texture: textureObjectMap.values()) {
-            texture.dispose();
-        }
-        textureObjectMap.clear();
+        toppingStrings.clear();
     }
 
     @Override
@@ -272,7 +257,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                     selectedTopping.getY(),
                     game.random.nextFloat() * 360,
                     selectedTopping.getToppingName(),
-                    textureObjectMap,
+                    game.manager.get(toppingStrings.get(selectedTopping.getToppingName()),
+                            Texture.class),
                     false);
         }
         return true;
