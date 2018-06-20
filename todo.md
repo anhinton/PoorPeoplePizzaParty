@@ -1,11 +1,13 @@
 # TODO
     
   + implement asset manager
-      - dispose of assets
-      - check on Android
+      - ~~dispose of assets~~
+      - ~~check on Android~~
       - check on WebGL
   
   + try ScreenViewport for independent UI layer
+  
+  + rethink touchscreen offset: it pretty much always jumps
   
   + implement Serve screen
       - option to serve to Bosses or Workers
