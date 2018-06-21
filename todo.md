@@ -1,10 +1,4 @@
 # TODO
-    
-  + implement asset manager
-      - ~~dispose of assets~~
-      - ~~check on Android~~
-      - ~~check on WebGL~~
-      - create asset management class to load and dispose screen assets
   
   + try ScreenViewport for independent UI layer
   
@@ -44,6 +38,13 @@
   + do a Vector Android app icon
   
 ## Done
+    
+  + ~~implement asset manager~~
+      - ~~dispose of assets~~
+      - ~~check on Android~~
+      - ~~check on WebGL~~
+      - create asset management class to load and dispose screen assets:
+        ~~Assets.class~~
   
   + ~~combine gameViewport and stageViewport into single viewport~~
       
