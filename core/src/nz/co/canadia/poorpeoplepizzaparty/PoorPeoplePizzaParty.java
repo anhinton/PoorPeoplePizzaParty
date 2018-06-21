@@ -2,7 +2,6 @@ package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,10 +12,11 @@ import java.util.Locale;
 import java.util.Random;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class PoorPeoplePizzaParty extends Game {
-    public AssetManager manager;
+    public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
     public Random random;
@@ -31,7 +31,7 @@ public class PoorPeoplePizzaParty extends Game {
     @Override
     public void create() {
 
-        manager = new AssetManager();
+        assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         random = new Random();
@@ -53,7 +53,7 @@ public class PoorPeoplePizzaParty extends Game {
 
     @Override
     public void dispose () {
-        manager.dispose();
+        assets.dispose();
         batch.dispose();
         shapeRenderer.dispose();
         skin.dispose();

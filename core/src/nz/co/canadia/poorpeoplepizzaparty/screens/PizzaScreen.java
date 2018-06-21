@@ -62,18 +62,8 @@ public class PizzaScreen implements InputProcessor, Screen {
                 "graphics/toppings/sauce-topping.png");
         textureFiles.put(Constants.ToppingName.SAUSAGE,
                 "graphics/toppings/sausage-topping.png");
-        TextureLoader.TextureParameter param =
-                new TextureLoader.TextureParameter();
-        param.minFilter = Texture.TextureFilter.Linear;
-        param.magFilter = Texture.TextureFilter.Linear;
-        for(String s: textureFiles.values()) {
-            game.manager.load(s, Texture.class, param);
-        }
-        game.manager.load("graphics/icons/camera.png", Texture.class,
-                param);
-        game.manager.load("graphics/icons/undo.png", Texture.class,
-                param);
-        game.manager.finishLoading();
+        game.assets.loadPizzaScreenAssets(textureFiles);
+        game.assets.finishLoading();
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
@@ -83,7 +73,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         pizzaUi = new PizzaUi(this, game.skin, game.bundle,
-                game.screenshot, game.manager);
+                game.screenshot, game.assets);
         stage.addActor(pizzaUi);
         messageUi = new MessageUi(game.skin);
         stage.addActor(messageUi);
@@ -92,7 +82,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        pizza = new Pizza(textureFiles, game.manager, game.bundle,
+        pizza = new Pizza(textureFiles, game.assets, game.bundle,
                 this);
         selectedTopping = null;
     }
@@ -133,7 +123,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                 y,
                 game.random.nextFloat() * 360,
                 toppingName,
-                game.manager.get(textureFiles.get(toppingName), Texture.class),
+                game.assets.get(textureFiles.get(toppingName), Texture.class),
                 false);
     }
 
@@ -182,7 +172,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     selectedTopping.getY(),
                     game.random.nextFloat() * 360,
                     selectedTopping.getToppingName(),
-                    game.manager.get(textureFiles.get(selectedTopping.getToppingName()),
+                    game.assets.get(textureFiles.get(selectedTopping.getToppingName()),
                             Texture.class),
                     false);
         }
@@ -300,11 +290,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        for (String s: textureFiles.values()) {
-            game.manager.unload(s);
-        }
-        game.manager.unload("graphics/icons/camera.png");
-        game.manager.unload("graphics/icons/undo.png");
+        game.assets.disposePizzaSceenAssets(textureFiles);
         stage.dispose();
     }
 }
