@@ -26,7 +26,7 @@ public class Constants {
         BARBECUE
     }
 
-    private static final int UNIT = 20;
+    public static final int UNIT = 20;
 
     public static final float UI_FONT_RATIO = 32f / APP_HEIGHT;
     public static final float UI_SHADOW_X = 2f/ APP_HEIGHT;

@@ -2,12 +2,13 @@
   
   + try ScreenViewport for independent UI layer
       - ~~UiSkin.class generates font right size for screen height~~
-      - create UiSize.class to return UI element sizes from static methods
+      - ~~create UiSize.class to return UI element sizes from static methods~~
+      - decouple Desktop windows size from APP_WIDTH/HEIGHT constants
+      - PizzaUi and MessageUi should initialize() and get sizes
       - two cameras in PizzaScreen.class: uiCamera and gameCamera
       - two viewports in PizzaScreen.class: uiViewport and gameViewport
       - gameViewport same as current viewport
       - uiViewport same aspect ration, but fill screen pixels
-      - PizzaUi and MessageUi should initialize() and get sizes
       - forget about handling font changes on screen resize for now
       
   + implement undo button
