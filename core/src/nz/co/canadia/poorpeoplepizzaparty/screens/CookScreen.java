@@ -19,10 +19,10 @@ public class CookScreen implements Screen {
         this.game = game;
 
         camera = new OrthographicCamera();
-        viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 camera);
-        camera.setToOrtho(false, Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
+        camera.setToOrtho(false, Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT);
 
     }
 

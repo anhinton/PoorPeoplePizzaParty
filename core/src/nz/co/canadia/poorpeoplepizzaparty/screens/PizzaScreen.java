@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -66,10 +65,10 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.assets.finishLoading();
 
         camera = new OrthographicCamera();
-        viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 camera);
-        camera.setToOrtho(false, Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
+        camera.setToOrtho(false, Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT);
 
         stage = new Stage(viewport);
         pizzaUi = new PizzaUi(this, game.skin, game.bundle,
@@ -115,8 +114,8 @@ public class PizzaScreen implements InputProcessor, Screen {
             x = selectedTopping.getX();
             y = selectedTopping.getY();
         } else {
-            x = Constants.APP_WIDTH / 2;
-            y = Constants.APP_HEIGHT / 2;
+            x = Constants.GAME_WIDTH / 2;
+            y = Constants.GAME_HEIGHT / 2;
         }
         selectedTopping = new Topping(
                 x,
