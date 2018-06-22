@@ -28,6 +28,12 @@ public class Constants {
 
     private static final int UNIT = 20;
 
+    public static final float UI_FONT_RATIO = 32f / APP_HEIGHT;
+    public static final float UI_SHADOW_X = 2f/ APP_HEIGHT;
+    public static final float UI_SHADOW_Y = 2f/ APP_HEIGHT;
+    public static final Color UI_SHADOW_COLOR =
+            new Color(0, 0, 0, 0.6f);
+
     // Pizza base x, y
     public static final int BASE_X = UNIT;
     public static final int BASE_Y = UNIT;

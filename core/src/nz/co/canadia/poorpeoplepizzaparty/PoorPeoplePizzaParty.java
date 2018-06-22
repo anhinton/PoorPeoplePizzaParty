@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
@@ -14,13 +13,14 @@ import java.util.Random;
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
 public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
     public Random random;
-    public Skin skin;
+    public UiSkin skin;
     public I18NBundle bundle;
     public Screenshot screenshot;
 
@@ -35,7 +35,7 @@ public class PoorPeoplePizzaParty extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         random = new Random();
-        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+        skin = new UiSkin(Gdx.graphics.getBackBufferHeight());
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
