@@ -14,8 +14,8 @@ public class UiSize {
     }
 
     public static int getButtonWidthHalf(int screenWidth, int screenHeight) {
-        return getButtonWidthFull(screenWidth, screenHeight)
-                - getPadding(screenHeight) / 2;
+        return (getButtonWidthFull(screenWidth, screenHeight)
+                - getPadding(screenHeight)) / 2;
     }
 
     public static int getButtonHeight(int screenHeight) {
