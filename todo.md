@@ -1,17 +1,4 @@
 # TODO
-  
-  + add a second camera and viewport for ui scaled to screen/window
-      - ~~UiSkin.class generates font right size for screen height~~
-      - ~~create UiSize.class to return UI element sizes from static methods~~
-      - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
-      - ~~two cameras in PizzaScreen.class: uiCamera and gameCamera~~
-      - ~~two viewports in PizzaScreen.class: uiViewport and gameViewport~~
-      - ~~gameViewport same as current viewport~~
-      - ~~uiViewport same aspect ration, but fill screen pixels~~
-      - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
-        arguments. These are stored as fields and used to set widget sizes~~
-      - ~~forget about handling font changes on screen resize for now~~
-      - resize camera and undo icons according to screen size
       
   + implement back button
       - go back from topping select menu
@@ -57,6 +44,19 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+  
+  + ~~add a second camera and viewport for ui scaled to screen/window~~
+      - ~~UiSkin.class generates font right size for screen height~~
+      - ~~create UiSize.class to return UI element sizes from static methods~~
+      - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
+      - ~~two cameras in PizzaScreen.class: uiCamera and gameCamera~~
+      - ~~two viewports in PizzaScreen.class: uiViewport and gameViewport~~
+      - ~~gameViewport same as current viewport~~
+      - ~~uiViewport same aspect ration, but fill screen pixels~~
+      - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
+        arguments. These are stored as fields and used to set widget sizes~~
+      - ~~forget about handling font changes on screen resize for now~~
+      - ~~resize camera and undo icons according to screen size~~
   
   + ~~add a second camera and viewport for ui scaled to screen/window~~
       - ~~UiSkin.class generates font right size for screen height~~
