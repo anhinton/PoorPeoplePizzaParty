@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class UiSkin extends Skin {
-    public UiSkin(int screenHeight) {
+
+    public void loadPizzaScreen() {
 
         // create ui-font based on screen size
         FreeTypeFontGenerator generator =
@@ -15,12 +16,15 @@ public class UiSkin extends Skin {
                         "fonts/Cagliostro-Regular/Cagliostro-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = Math.round(Constants.UI_FONT_RATIO * screenHeight);
+        parameter.size = Math.round(Constants.UI_FONT_RATIO
+                * Gdx.graphics.getBackBufferHeight());
         parameter.shadowColor = Constants.UI_SHADOW_COLOR;
         parameter.shadowOffsetX =
-                Math.round(Constants.UI_SHADOW_X * screenHeight);
+                Math.round(Constants.UI_SHADOW_X
+                        * Gdx.graphics.getBackBufferHeight());
         parameter.shadowOffsetY =
-                Math.round(Constants.UI_SHADOW_Y * screenHeight);
+                Math.round(Constants.UI_SHADOW_Y
+                        * Gdx.graphics.getBackBufferHeight());
         super.add("ui-font", generator.generateFont(parameter),
                 BitmapFont.class);
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
@@ -30,6 +34,6 @@ public class UiSkin extends Skin {
                 Gdx.files.internal("data/uiskin.atlas")));
 
         // load uiskin json
-        super.load(Gdx.files.internal("data/uiskin.json"));
+        super.load(Gdx.files.internal("data/uiskin.json"));        
     }
 }

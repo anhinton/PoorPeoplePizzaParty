@@ -6,10 +6,25 @@ public class UiSize {
                 * screenHeight);
     }
 
+    public static int getBaseX(int screenHeight) {
+        return getPadding(screenHeight);
+    }
+
+    public static int getBaseY(int screenHeight) {
+        return getBaseX(screenHeight);
+    }
+
+    public static int getBaseWidth(int screenWidth) {
+        return Math.round((float)Constants.BASE_WIDTH / Constants.GAME_WIDTH
+                * screenWidth);
+    }
+
+    public static int getBaseHeight(int screenWidth) {
+        return getBaseWidth(screenWidth);
+    }
+
     public static int getButtonWidthFull(int screenWidth, int screenHeight) {
-        float baseWidth =
-                (float)Constants.BASE_WIDTH / Constants.GAME_WIDTH * screenWidth;
-        return Math.round(screenWidth - baseWidth
+        return Math.round(screenWidth - getBaseWidth(screenWidth)
                 - getPadding(screenHeight) * 3);
     }
 

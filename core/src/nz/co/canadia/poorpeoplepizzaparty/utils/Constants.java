@@ -19,7 +19,10 @@ public class Constants {
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
 
-    public static final int DESKTOP_WIDTH = 1280;
+    public static final float GAME_ASPECT_RATIO =
+            (float)GAME_WIDTH / GAME_HEIGHT;
+
+    public static final int DESKTOP_WIDTH = 1152;
     public static final int DESKTOP_HEIGHT = 720;
 
     public static final int HTML_WIDTH = 960;
@@ -56,16 +59,6 @@ public class Constants {
     public static final int PIZZA_RIGHT = BASE_X + BASE_WIDTH;
     public static final int PIZZA_BOTTOM = BASE_Y;
     public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
-
-    // Topping menu UI padding/spacing
-    public static final int MENU_PADDING = UNIT;
-
-    // Topping menu button size
-    public static final int BUTTON_WIDTH_FULL =
-            GAME_WIDTH - BASE_WIDTH - MENU_PADDING * 3;
-    public static final float BUTTON_WIDTH_HALF =
-            (float)(BUTTON_WIDTH_FULL - MENU_PADDING) / 2;
-    public static final int BUTTON_HEIGHT = 4 * UNIT;
 
     // Base selected sprite scale
     public static final float BASE_SCALE = (float)1 / 5;

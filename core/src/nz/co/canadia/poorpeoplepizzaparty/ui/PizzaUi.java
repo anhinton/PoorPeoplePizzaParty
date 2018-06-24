@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
@@ -37,11 +38,16 @@ public class PizzaUi extends Table {
     private final ImageButton cameraButton;
     private final ImageButton undoButton;
     private final TextButton cookButton;
+    private int screenWidth;
+    private int screenHeight;
 
-    public PizzaUi(final PizzaScreen pizzaScreen, final Skin skin,
+    public PizzaUi(int screenWidth, int screenHeight,
+                   final PizzaScreen pizzaScreen, final Skin skin,
                    final I18NBundle bundle, final Screenshot screenshot,
                    final AssetManager manager) {
 
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
         this.pizzaScreen = pizzaScreen;
         super.setFillParent(true);
         this.skin = skin;
@@ -131,27 +137,32 @@ public class PizzaUi extends Table {
 
     private void showMainMenu() {
         super.clear();
-        super.center().right().pad(Constants.MENU_PADDING);
+        super.center().right()
+                .pad(UiSize.getPadding(screenHeight));
         super.add(new Label(bundle.get("pizzamenuHeaderLabel"), skin,
                 "default"))
-                .space(Constants.MENU_PADDING)
+                .space(UiSize.getPadding(screenHeight))
                 .colspan(2).center();
         super.row();
-        super.add(toppingSelectButton).space(Constants.MENU_PADDING)
-                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
+        super.add(toppingSelectButton).space(UiSize.getPadding(screenHeight))
+                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
+                        UiSize.getButtonHeight(screenHeight))
                 .colspan(2)
                 .right();
         super.row();
         super.add(cameraButton)
-                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING);
+                .prefSize(UiSize.getButtonWidthHalf(screenWidth, screenHeight),
+                        UiSize.getButtonHeight(screenHeight))
+                .space(UiSize.getPadding(screenHeight));
         super.add(undoButton)
-                .prefSize(Constants.BUTTON_WIDTH_HALF, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING);
+                .prefSize(UiSize.getButtonWidthHalf(screenWidth, screenHeight),
+                        UiSize.getButtonHeight(screenHeight))
+                .space(UiSize.getPadding(screenHeight));
         super.row();
         super.add(cookButton)
-                .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT)
-                .space(Constants.MENU_PADDING)
+                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
+                        UiSize.getButtonHeight(screenHeight))
+                .space(UiSize.getPadding(screenHeight))
                 .colspan(2);
     }
 
@@ -166,8 +177,10 @@ public class PizzaUi extends Table {
         for (TextButton b: toppingButtons) {
             if (counter > 0 & counter % 2 == 0)
                 super.row();
-            super.add(b).space(Constants.MENU_PADDING)
-                    .prefSize(Constants.BUTTON_WIDTH_FULL, Constants.BUTTON_HEIGHT);
+            super.add(b).space(UiSize.getPadding(screenHeight))
+                    .prefSize(UiSize.getButtonWidthFull(screenWidth,
+                            screenHeight),
+                            UiSize.getButtonHeight(screenHeight));
             counter++;
         }
     }

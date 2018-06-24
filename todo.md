@@ -1,15 +1,16 @@
 # TODO
   
-  + try ScreenViewport for independent UI layer
+  + ~~add a second camera and viewport for ui scaled to screen/window~~
       - ~~UiSkin.class generates font right size for screen height~~
       - ~~create UiSize.class to return UI element sizes from static methods~~
       - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
-      - PizzaUi and MessageUi should initialize() and get sizes
-      - two cameras in PizzaScreen.class: uiCamera and gameCamera
-      - two viewports in PizzaScreen.class: uiViewport and gameViewport
-      - gameViewport same as current viewport
-      - uiViewport same aspect ration, but fill screen pixels
-      - forget about handling font changes on screen resize for now
+      - ~~two cameras in PizzaScreen.class: uiCamera and gameCamera~~
+      - ~~two viewports in PizzaScreen.class: uiViewport and gameViewport~~
+      - ~~gameViewport same as current viewport~~
+      - ~~uiViewport same aspect ration, but fill screen pixels~~
+      - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
+        arguments. These are stored as fields and used to set widget sizes~~
+      - ~~forget about handling font changes on screen resize for now~~
       
   + implement undo button
       - go back from topping select menu
@@ -49,6 +50,8 @@
       - pizza party, a party for pizza
       
   + do a Vector Android app icon
+  
+  + investigate desktop full screen and window resizing
   
 ## Done
     
