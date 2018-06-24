@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,15 +31,18 @@ public class PizzaScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final ObjectMap<Constants.ToppingName, String> textureFiles;
     private final Pizza pizza;
-    private final OrthographicCamera camera;
-    private final Viewport viewport;
-    private final Stage stage;
+    private final OrthographicCamera gameCamera;
+    private final Viewport gameViewport;
+    private final Stage uiStage;
     private final PizzaUi pizzaUi;
     private final MessageUi messageUi;
     private Topping selectedTopping;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
+
+        // load PizzaScreen UI skin
+        game.skin.loadPizzaScreen();
 
         // match topping names to image asset paths
         textureFiles = new ObjectMap<Constants.ToppingName, String>();
@@ -65,20 +67,39 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.assets.loadPizzaScreenAssets(textureFiles);
         game.assets.finishLoading();
 
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(Constants.APP_WIDTH, Constants.APP_HEIGHT,
-                camera);
-        camera.setToOrtho(false, Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
+        gameCamera = new OrthographicCamera();
+        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+                gameCamera);
+        gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT);
 
-        stage = new Stage(viewport);
-        pizzaUi = new PizzaUi(this, game.skin, game.bundle,
-                game.screenshot, game.assets);
-        stage.addActor(pizzaUi);
-        messageUi = new MessageUi(game.skin);
-        stage.addActor(messageUi);
+        OrthographicCamera uiCamera = new OrthographicCamera();
+        float screenWidth = Gdx.graphics.getBackBufferWidth();
+        float screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport;
+        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
+            uiViewport = new FitViewport(
+                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
+                    screenHeight,
+                    uiCamera);
+        } else {
+            uiViewport = new FitViewport(screenWidth,
+                    screenWidth / Constants.GAME_ASPECT_RATIO,
+                    uiCamera);
+        }
+        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
+                uiViewport.getScreenHeight());
+
+        uiStage = new Stage(uiViewport);
+        pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
+                uiViewport.getScreenHeight(), this, game.skin,
+                game.bundle, game.screenshot, game.assets);
+        uiStage.addActor(pizzaUi);
+        messageUi = new MessageUi(uiViewport.getScreenWidth(),
+                uiViewport.getScreenHeight(), game.skin);
+        uiStage.addActor(messageUi);
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(uiStage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -115,8 +136,8 @@ public class PizzaScreen implements InputProcessor, Screen {
             x = selectedTopping.getX();
             y = selectedTopping.getY();
         } else {
-            x = Constants.APP_WIDTH / 2;
-            y = Constants.APP_HEIGHT / 2;
+            x = Constants.GAME_WIDTH / 2;
+            y = Constants.GAME_HEIGHT / 2;
         }
         selectedTopping = new Topping(
                 x,
@@ -149,7 +170,7 @@ public class PizzaScreen implements InputProcessor, Screen {
             selectedTopping.setVisible(true);
         }
         // update selectedTopping location to follow mouse
-        Vector3 mouseCoords = camera.unproject(
+        Vector3 mouseCoords = gameCamera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         if (hasSelectedTopping()) {
             selectedTopping.update(mouseCoords.x, mouseCoords.y);
@@ -159,7 +180,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Vector3 touchCoords = camera.unproject(
+        Vector3 touchCoords = gameCamera.unproject(
                 new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
             if (touchCoords.x > Constants.PIZZA_LEFT &
@@ -182,7 +203,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         // update selectedTopping location to follow mouse
-        Vector3 mouseCoords = camera.unproject(
+        Vector3 mouseCoords = gameCamera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         if (hasSelectedTopping()) {
             switch(Gdx.app.getType()) {
@@ -199,7 +220,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        Vector3 mouseCoords = camera.unproject(
+        Vector3 mouseCoords = gameCamera.unproject(
                 new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
             switch (Gdx.app.getType()) {
@@ -235,9 +256,10 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.shapeRenderer.setProjectionMatrix(camera.combined);
+        gameViewport.apply();
+        gameCamera.update();
+        game.batch.setProjectionMatrix(gameCamera.combined);
+        game.shapeRenderer.setProjectionMatrix(gameCamera.combined);
 
         game.batch.begin();
         pizza.draw(game.batch);
@@ -263,14 +285,16 @@ public class PizzaScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        stage.act(delta);
-        stage.draw();
+        uiStage.getViewport().apply();
+        uiStage.getCamera().update();
+        uiStage.act(delta);
+        uiStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
-        camera.update();
+        gameViewport.update(width, height);
+        uiStage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -291,6 +315,6 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         game.assets.disposePizzaSceenAssets(textureFiles);
-        stage.dispose();
+        uiStage.dispose();
     }
 }

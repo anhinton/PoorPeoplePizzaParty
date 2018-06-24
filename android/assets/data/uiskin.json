@@ -1,7 +1,7 @@
 {
   com.badlogic.gdx.graphics.g2d.BitmapFont: {
     default-font: {
-      file: fonts/Cagliostro-Regular/Cagliostro-Regular.fnt
+      file: default.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -45,21 +45,21 @@
     default: {
       down: default-round-down,
       up: default-round,
-      font: default-font,
+      font: ui-font,
       fontColor: white
     },
     toggle: {
       down: default-round-down,
       up: default-round,
       checked: default-round-down,
-      font: default-font,
+      font: ui-font,
       fontColor: white,
       downFontColor: red
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     default: {
-      font: default-font,
+      font: ui-font,
       fontColor: white
     }
   }
