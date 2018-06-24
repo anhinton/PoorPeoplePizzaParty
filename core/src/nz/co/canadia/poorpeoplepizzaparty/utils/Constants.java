@@ -28,6 +28,9 @@ public class Constants {
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
 
+    // Available menus in PizzaUi.class
+    public enum CurrentPizzaMenu { MAIN, TOPPING }
+
     // Topping levels for the pizza base
     public enum ToppingName {
         BASE, SAUCE, CHEESE, CHICKEN, SALAMI, BACON, SAUSAGE, APRICOT,

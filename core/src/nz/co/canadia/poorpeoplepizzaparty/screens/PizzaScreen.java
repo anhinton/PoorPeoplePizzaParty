@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -155,6 +156,13 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean keyUp(int keycode) {
+        if (keycode == Input.Keys.BACK
+                | keycode == Input.Keys.ESCAPE) {
+            if (!pizzaUi.goBack()) {
+                Gdx.app.exit();
+            }
+            return true;
+        }
         return false;
     }
 

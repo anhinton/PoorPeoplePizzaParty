@@ -40,6 +40,7 @@ public class PizzaUi extends Table {
     private final TextButton cookButton;
     private int screenWidth;
     private int screenHeight;
+    private Constants.CurrentPizzaMenu currentMenu;
 
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
@@ -59,7 +60,7 @@ public class PizzaUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.clearMessage();
-                showToppingMenu();
+                setCurrentMenu(Constants.CurrentPizzaMenu.TOPPING);
             }
         });
 
@@ -99,7 +100,7 @@ public class PizzaUi extends Table {
                 pizzaScreen.undoLastTopping();
             }
         });
-        
+
         cookButton = new TextButton(bundle.get("pizzamenuCookButton"), skin,
                 "default");
         cookButton.addListener(new ChangeListener() {
@@ -135,10 +136,41 @@ public class PizzaUi extends Table {
         addToppingButton(Constants.ToppingName.BARBECUE,
                 bundle.get("toppingmenuBarbecue"));
 
-        showMainMenu();
+        setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
 
         // DEBUG UI
         super.setDebug(Constants.DEBUG_GRAPHICS);
+    }
+
+    /**
+     * Handle a back button press. Returns true if handled by PizzaUi, false
+     * otherwise.
+     * @return boolean true if handled
+     */
+    public boolean goBack() {
+        switch (currentMenu) {
+            case TOPPING:
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public Constants.CurrentPizzaMenu getCurrentMenu() {
+        return currentMenu;
+    }
+
+    private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {
+        this.currentMenu = currentMenu;
+        switch(currentMenu) {
+            case MAIN:
+                showMainMenu();
+                break;
+            case TOPPING:
+                showToppingMenu();
+                break;
+        }
     }
 
     private void showMainMenu() {
