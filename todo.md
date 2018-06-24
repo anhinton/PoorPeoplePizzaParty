@@ -3,6 +3,7 @@
   + implement back button
       - go back from topping select menu
       - stop making pizza ???
+      - get this working better on Android
   
   + rethink touchscreen offset: it pretty much always jumps
   
