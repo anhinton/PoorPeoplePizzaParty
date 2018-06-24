@@ -42,6 +42,8 @@ public class Constants {
     public static final Color UI_SHADOW_COLOR =
             new Color(0, 0, 0, 0.6f);
 
+    public static final float UI_ICON_RATIO = 50f / GAME_HEIGHT;
+
     // Pizza base x, y
     public static final int BASE_X = UNIT;
     public static final int BASE_Y = UNIT;

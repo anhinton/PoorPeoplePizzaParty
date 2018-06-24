@@ -1,6 +1,6 @@
 # TODO
   
-  + ~~add a second camera and viewport for ui scaled to screen/window~~
+  + add a second camera and viewport for ui scaled to screen/window
       - ~~UiSkin.class generates font right size for screen height~~
       - ~~create UiSize.class to return UI element sizes from static methods~~
       - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
@@ -11,12 +11,15 @@
       - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
         arguments. These are stored as fields and used to set widget sizes~~
       - ~~forget about handling font changes on screen resize for now~~
+      - resize camera and undo icons according to screen size
       
-  + implement undo button
+  + implement back button
       - go back from topping select menu
       - stop making pizza ???
   
   + rethink touchscreen offset: it pretty much always jumps
+  
+  + get WebGL working
   
   + implement Serve screen
       - option to serve to Bosses or Workers
@@ -54,6 +57,18 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+  
+  + ~~add a second camera and viewport for ui scaled to screen/window~~
+      - ~~UiSkin.class generates font right size for screen height~~
+      - ~~create UiSize.class to return UI element sizes from static methods~~
+      - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
+      - ~~two cameras in PizzaScreen.class: uiCamera and gameCamera~~
+      - ~~two viewports in PizzaScreen.class: uiViewport and gameViewport~~
+      - ~~gameViewport same as current viewport~~
+      - ~~uiViewport same aspect ration, but fill screen pixels~~
+      - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
+        arguments. These are stored as fields and used to set widget sizes~~
+      - ~~forget about handling font changes on screen resize for now~~
     
   + ~~implement asset manager~~
       - ~~dispose of assets~~

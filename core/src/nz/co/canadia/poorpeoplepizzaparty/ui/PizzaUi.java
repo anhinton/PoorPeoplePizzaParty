@@ -66,9 +66,12 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle cameraButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        cameraButtonStyle.imageUp = new SpriteDrawable(
-                new Sprite(manager.get("graphics/icons/camera.png",
-                        Texture.class)));
+        Sprite cameraSprite = new Sprite(
+                manager.get("graphics/icons/camera.png",
+                        Texture.class));
+        cameraSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
+                Constants.UI_ICON_RATIO * screenHeight);
+        cameraButtonStyle.imageUp = new SpriteDrawable(cameraSprite);
         cameraButton = new ImageButton(cameraButtonStyle);
         cameraButton.addListener(new ChangeListener() {
             @Override
@@ -82,9 +85,12 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle undoButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        undoButtonStyle.imageUp = new SpriteDrawable(
-                new Sprite(manager.get("graphics/icons/undo.png",
-                        Texture.class)));
+        Sprite undoSprite = new Sprite(
+                manager.get("graphics/icons/undo.png",
+                        Texture.class));
+        undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
+                Constants.UI_ICON_RATIO * screenHeight);
+        undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
         undoButton = new ImageButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
             @Override
