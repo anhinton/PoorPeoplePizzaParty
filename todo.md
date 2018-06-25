@@ -1,9 +1,10 @@
 # TODO
       
-  + implement back button
-      - go back from topping select menu
-      - stop making pizza ???
-      - get this working better on Android
+  + ~~implement Android back button~~
+      - ~~go back from topping select menu~~
+      - ~~quit app from pizza main menu~~
+      - ~~quit app from CookScreen~~
+      - ~~get this working better on Android~~
   
   + rethink touchscreen offset: it pretty much always jumps
   
@@ -11,16 +12,19 @@
   
   + implement Serve screen
       - option to serve to Bosses or Workers
+      - implement Android back button logic
   
   + create ServeBossScreen class
       - boss says either "who eats this rubbish" or "is this game about me?"
         and then fires you
+      - implement Android back button logic
         
   + create ServeWorkersScreen.class
       - it's a pizza party celebrate!
       - boss pops up and says "I can't believe you people eat this 
         mass-produced rubbish"
       - everyone fired
+      - implement Android back button logic
 
   + complete the Pizza menu
       - Poor People Pizza Party header
@@ -39,6 +43,8 @@
       
   + create TitleScreen class
       - pizza party, a party for pizza
+      - change Android back button behaviour in PizzaScreen.class to go back 
+        to here
       
   + do a Vector Android app icon
   

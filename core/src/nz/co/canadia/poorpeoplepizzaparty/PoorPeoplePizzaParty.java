@@ -31,6 +31,8 @@ public class PoorPeoplePizzaParty extends Game {
     @Override
     public void create() {
 
+        Gdx.input.setCatchBackKey(true);
+
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();

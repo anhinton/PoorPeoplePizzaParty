@@ -148,13 +148,17 @@ public class PizzaUi extends Table {
      * @return boolean true if handled
      */
     public boolean goBack() {
+        boolean result;
         switch (currentMenu) {
             case TOPPING:
                 setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-                return true;
+                result = true;
+                break;
             default:
-                return false;
+                result = false;
+                break;
         }
+        return result;
     }
 
     public Constants.CurrentPizzaMenu getCurrentMenu() {

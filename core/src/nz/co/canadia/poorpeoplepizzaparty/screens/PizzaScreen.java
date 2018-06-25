@@ -151,11 +151,6 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
             if (!pizzaUi.goBack()) {
@@ -163,6 +158,11 @@ public class PizzaScreen implements InputProcessor, Screen {
             }
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
         return false;
     }
 
