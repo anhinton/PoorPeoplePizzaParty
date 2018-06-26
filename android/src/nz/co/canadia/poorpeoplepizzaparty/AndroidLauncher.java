@@ -16,6 +16,7 @@ public class AndroidLauncher extends AndroidApplication {
 		config.useCompass = false;
 		config.useGyroscope = false;
 		config.useImmersiveMode = false;
-		initialize(new PoorPeoplePizzaParty(new AndroidScreenshot()), config);
+		initialize(new PoorPeoplePizzaParty(new AndroidScreenshot(),
+				new AndroidUiFont()), config);
 	}
 }

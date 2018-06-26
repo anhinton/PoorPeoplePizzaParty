@@ -1,16 +1,17 @@
 # TODO
-  
-  + get WebGL working
-      - create platform-specific Font.class to provide
-        BitmapFont for webgl, FreetypeFont for desktop and android
-        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+
+  + create platform-specific UiFont to provide BitmapFont for webgl, 
+    FreetypeFont for desktop and android
+    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~create UiFont interface~~
       - ~~create UiSkin() constructor which takes a UiFont argument~~
       - ~~UiSkin calls uiFont.getUiFont()~~
-      - ~~implement DesktopUiFont.class~~
-      - implement AndroidUiFont.class
-      - implement HtmlUiFont.class
-          - does WebGL work now?
+      - ~~implement DesktopUiFont~~
+      - ~~implement AndroidUiFont~~
+      - implement HtmlUiFont
+  
+  + get WebGL working
+      - does WebGL work now?
   
   + implement Serve screen
       - option to serve to Bosses or Workers
