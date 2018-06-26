@@ -1,13 +1,16 @@
 # TODO
   
-  + ~~BUG: fix crash when touching pizza screen with no topping selected~~
-      - ~~only update selected topping in PizzaScreen.touchDragged() when
-        we have a selected topping~~
-  
   + get WebGL working
-      - will need to create platform-specific UiSkin.class to provide
+      - create platform-specific Font.class to provide
         BitmapFont for webgl, FreetypeFont for desktop and android
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - ~~create UiFont interface~~
+      - ~~create UiSkin() constructor which takes a UiFont argument~~
+      - ~~UiSkin calls uiFont.getUiFont()~~
+      - ~~implement DesktopUiFont.class~~
+      - implement AndroidUiFont.class
+      - implement HtmlUiFont.class
+          - does WebGL work now?
   
   + implement Serve screen
       - option to serve to Bosses or Workers
@@ -43,6 +46,10 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+  
+  + ~~BUG: fix crash when touching pizza screen with no topping selected~~
+      - ~~only update selected topping in PizzaScreen.touchDragged() when
+        we have a selected topping~~
   
   + ~~**DECIDED TO HAVE NO OFFSET**: rethink touchscreen offset: it pretty 
     much always jumps~~

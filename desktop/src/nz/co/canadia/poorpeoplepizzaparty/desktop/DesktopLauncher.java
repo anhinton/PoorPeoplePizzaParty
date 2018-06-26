@@ -13,7 +13,9 @@ public class DesktopLauncher {
 		config.width = Constants.DESKTOP_WIDTH;
 		config.height = Constants.DESKTOP_HEIGHT;
 		config.resizable = false;
-		new LwjglApplication(new PoorPeoplePizzaParty(new DesktopScreenshot()),
+		new LwjglApplication(
+		        new PoorPeoplePizzaParty(new DesktopScreenshot(),
+                        new DesktopUiFont()),
 				config);
 	}
 }

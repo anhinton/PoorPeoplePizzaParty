@@ -13,6 +13,7 @@ import java.util.Random;
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
 public class PoorPeoplePizzaParty extends Game {
@@ -23,9 +24,11 @@ public class PoorPeoplePizzaParty extends Game {
     public UiSkin skin;
     public I18NBundle bundle;
     public Screenshot screenshot;
+    private UiFont uiFont;
 
-    public PoorPeoplePizzaParty(Screenshot screenshot) {
+    public PoorPeoplePizzaParty(Screenshot screenshot, UiFont uiFont) {
         this.screenshot = screenshot;
+        this.uiFont = uiFont;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class PoorPeoplePizzaParty extends Game {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         random = new Random();
-        skin = new UiSkin();
+        skin = new UiSkin(uiFont);
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
