@@ -1,9 +1,8 @@
 # TODO
   
-  + ~~**DECIDED TO HAVE NO OFFSET**: rethink touchscreen offset: it pretty 
-    much always jumps~~
-  
-  + BUG: fix crash when touching pizza screen with no topping selected
+  + ~~BUG: fix crash when touching pizza screen with no topping selected~~
+      - ~~only update selected topping in PizzaScreen.touchDragged() when
+        we have a selected topping~~
   
   + get WebGL working
       - will need to create platform-specific UiSkin.class to provide
@@ -44,6 +43,9 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+  
+  + ~~**DECIDED TO HAVE NO OFFSET**: rethink touchscreen offset: it pretty 
+    much always jumps~~
 
   + ~~complete the Pizza menu~~
       - ~~"let's make pizza" header~~

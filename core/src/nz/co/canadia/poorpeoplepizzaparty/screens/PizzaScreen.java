@@ -213,8 +213,10 @@ public class PizzaScreen implements InputProcessor, Screen {
         // update selectedTopping location to follow mouse
         Vector3 mouseCoords = gameCamera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-        selectedTopping.update(mouseCoords.x, mouseCoords.y);
-        return false;
+        if (hasSelectedTopping()) {
+            selectedTopping.update(mouseCoords.x, mouseCoords.y);
+        }
+        return true;
     }
 
     @Override
