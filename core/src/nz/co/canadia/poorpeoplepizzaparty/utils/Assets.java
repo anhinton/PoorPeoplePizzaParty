@@ -21,6 +21,8 @@ public class Assets extends AssetManager {
         for(String s: textureFiles.values()) {
             super.load(s, Texture.class, param);
         }
+        super.load("graphics/headers/pizzaScreen.png", Texture.class,
+                param);
         super.load("graphics/icons/camera.png", Texture.class,
                 param);
         super.load("graphics/icons/undo.png", Texture.class,
@@ -32,6 +34,7 @@ public class Assets extends AssetManager {
         for (String s: textureFiles.values()) {
             super.unload(s);
         }
+        super.unload("graphics/headers/pizzaScreen.png");
         super.unload("graphics/icons/camera.png");
         super.unload("graphics/icons/undo.png");
     }

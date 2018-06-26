@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -34,6 +35,7 @@ public class PizzaUi extends Table {
     private final I18NBundle bundle;
     private final Array<TextButton> toppingButtons;
     private final ButtonGroup<TextButton> toppingGroup;
+    private final Image headerImage;
     private final TextButton toppingSelectButton;
     private final ImageButton cameraButton;
     private final ImageButton undoButton;
@@ -53,6 +55,10 @@ public class PizzaUi extends Table {
         super.setFillParent(true);
         this.skin = skin;
         this.bundle = bundle;
+
+        headerImage = new Image(
+                manager.get("graphics/headers/pizzaScreen.png",
+                        Texture.class));
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
@@ -181,9 +187,9 @@ public class PizzaUi extends Table {
         super.clear();
         super.center().right()
                 .pad(UiSize.getPadding(screenHeight));
-        super.add(new Label(bundle.get("pizzamenuHeaderLabel"), skin,
-                "default"))
+        super.add(headerImage)
                 .space(UiSize.getPadding(screenHeight))
+                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight))
                 .colspan(2).center();
         super.row();
         super.add(toppingSelectButton).space(UiSize.getPadding(screenHeight))

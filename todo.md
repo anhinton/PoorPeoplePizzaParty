@@ -1,10 +1,4 @@
 # TODO
-      
-  + ~~implement Android back button~~
-      - ~~go back from topping select menu~~
-      - ~~quit app from pizza main menu~~
-      - ~~quit app from CookScreen~~
-      - ~~get this working better on Android~~
   
   + rethink touchscreen offset: it pretty much always jumps
   
@@ -26,8 +20,8 @@
       - everyone fired
       - implement Android back button logic
 
-  + complete the Pizza menu
-      - Poor People Pizza Party header
+  + ~~complete the Pizza menu~~
+      - ~~"let's make pizza" header~~
       - ~~undo button: pops last topping off stack or steps back through base 
         logic~~
       - ~~photo button~~
@@ -51,6 +45,12 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+      
+  + ~~implement Android back button~~
+      - ~~go back from topping select menu~~
+      - ~~quit app from pizza main menu~~
+      - ~~quit app from CookScreen~~
+      - ~~get this working better on Android~~
   
   + ~~add a second camera and viewport for ui scaled to screen/window~~
       - ~~UiSkin.class generates font right size for screen height~~
