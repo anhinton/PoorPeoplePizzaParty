@@ -3,6 +3,9 @@
   + rethink touchscreen offset: it pretty much always jumps
   
   + get WebGL working
+      - will need to create platform-specific UiSkin.class to provide
+        BitmapFont for webgl, FreetypeFont for desktop and android
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
   
   + implement Serve screen
       - option to serve to Bosses or Workers
@@ -19,13 +22,6 @@
         mass-produced rubbish"
       - everyone fired
       - implement Android back button logic
-
-  + ~~complete the Pizza menu~~
-      - ~~"let's make pizza" header~~
-      - ~~undo button: pops last topping off stack or steps back through base 
-        logic~~
-      - ~~photo button~~
-      - ~~COOK button~~
       
   + create a screen shot interface
       - ~~create platform-specific classes as described at~~
@@ -45,6 +41,13 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~complete the Pizza menu~~
+      - ~~"let's make pizza" header~~
+      - ~~undo button: pops last topping off stack or steps back through base 
+        logic~~
+      - ~~photo button~~
+      - ~~COOK button~~
       
   + ~~implement Android back button~~
       - ~~go back from topping select menu~~
