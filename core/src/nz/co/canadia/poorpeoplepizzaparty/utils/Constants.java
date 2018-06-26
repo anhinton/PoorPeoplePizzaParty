@@ -73,5 +73,5 @@ public class Constants {
             new Color(1,1,1, (float)3 / 5);
 
     // display offset for topping on touch displays
-    public static final int TOUCH_OFFSET = 50;
+//    public static final int TOUCH_OFFSET = 50;
 }

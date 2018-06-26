@@ -1,6 +1,9 @@
 # TODO
   
-  + rethink touchscreen offset: it pretty much always jumps
+  + ~~**DECIDED TO HAVE NO OFFSET**: rethink touchscreen offset: it pretty 
+    much always jumps~~
+  
+  + BUG: fix crash when touching pizza screen with no topping selected
   
   + get WebGL working
       - will need to create platform-specific UiSkin.class to provide
