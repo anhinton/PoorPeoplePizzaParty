@@ -37,15 +37,22 @@ public class Constants {
         BARBECUE
     }
 
+    // everything is blocked out in terms of this unit
     public static final int UNIT = 20;
 
+    // UI font size is 32px
     public static final float UI_FONT_RATIO = 32f / GAME_HEIGHT;
     public static final float UI_SHADOW_X = 2f/ GAME_HEIGHT;
     public static final float UI_SHADOW_Y = 2f/ GAME_HEIGHT;
     public static final Color UI_SHADOW_COLOR =
             new Color(0, 0, 0, 0.6f);
 
+    // UI button icons are 50px
     public static final float UI_ICON_RATIO = 50f / GAME_HEIGHT;
+
+    // Pizza UI header height is 300x260 px
+    public static final float UI_HEADER_WIDTH_RATIO = 300f / GAME_WIDTH;
+    public static final float UI_HEADER_HEIGHT_RATIO = 260f / GAME_HEIGHT;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;

@@ -1,5 +1,10 @@
 # TODO
 
+  + ~~**BUG**: pizzaUi buttons get larger when pressed~~
+      - ~~is the header image too tall, forcing these to shrink? yes~~
+      - ~~set Pizza UI header size with UiSize.getImageWidth() and
+        UiSize.getImageHeight()~~
+
   + create platform-specific UiFont to provide BitmapFont for webgl, 
     FreetypeFont for desktop and android
     <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>

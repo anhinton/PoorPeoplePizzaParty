@@ -36,4 +36,12 @@ public class UiSize {
     public static int getButtonHeight(int screenHeight) {
         return getPadding(screenHeight) * 4;
     }
+
+    public static float getImageHeight(int screenHeight) {
+        return Constants.UI_HEADER_HEIGHT_RATIO * screenHeight;
+    }
+
+    public static float getImageWidth(int screenWidth) {
+        return Constants.UI_HEADER_WIDTH_RATIO * screenWidth;
+    }
 }

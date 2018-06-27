@@ -10,8 +10,7 @@ public class Assets extends AssetManager {
     private final TextureLoader.TextureParameter param;
     
     public Assets() {
-        param =
-                new TextureLoader.TextureParameter();
+        param = new TextureLoader.TextureParameter();
         param.minFilter = Texture.TextureFilter.Linear;
         param.magFilter = Texture.TextureFilter.Linear;
     }

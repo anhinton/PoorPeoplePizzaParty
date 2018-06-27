@@ -189,7 +189,8 @@ public class PizzaUi extends Table {
                 .pad(UiSize.getPadding(screenHeight));
         super.add(headerImage)
                 .space(UiSize.getPadding(screenHeight))
-                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight))
+                .prefSize(UiSize.getImageWidth(screenWidth),
+                        UiSize.getImageHeight(screenHeight))
                 .colspan(2).center();
         super.row();
         super.add(toppingSelectButton).space(UiSize.getPadding(screenHeight))
