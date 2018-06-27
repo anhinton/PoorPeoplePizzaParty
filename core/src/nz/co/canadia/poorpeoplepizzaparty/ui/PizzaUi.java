@@ -47,7 +47,7 @@ public class PizzaUi extends Table {
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
                    final I18NBundle bundle, final Screenshot screenshot,
-                   final AssetManager manager) {
+                   final AssetManager assets) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
@@ -57,7 +57,7 @@ public class PizzaUi extends Table {
         this.bundle = bundle;
 
         headerImage = new Image(
-                manager.get("graphics/headers/pizzaScreen.png",
+                assets.get("graphics/headers/pizzaScreen.png",
                         Texture.class));
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
@@ -74,7 +74,7 @@ public class PizzaUi extends Table {
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
         Sprite cameraSprite = new Sprite(
-                manager.get("graphics/icons/camera.png",
+                assets.get("graphics/icons/camera.png",
                         Texture.class));
         cameraSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
@@ -93,7 +93,7 @@ public class PizzaUi extends Table {
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
         Sprite undoSprite = new Sprite(
-                manager.get("graphics/icons/undo.png",
+                assets.get("graphics/icons/undo.png",
                         Texture.class));
         undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
@@ -189,8 +189,11 @@ public class PizzaUi extends Table {
                 .pad(UiSize.getPadding(screenHeight));
         super.add(headerImage)
                 .space(UiSize.getPadding(screenHeight))
-                .prefSize(UiSize.getImageWidth(screenWidth),
-                        UiSize.getImageHeight(screenHeight))
+                .prefSize(
+                        UiSize.getImageWidth(headerImage.getPrefWidth(),
+                                screenWidth),
+                        UiSize.getImageHeight(headerImage.getPrefHeight(),
+                                screenHeight))
                 .colspan(2).center();
         super.row();
         super.add(toppingSelectButton).space(UiSize.getPadding(screenHeight))

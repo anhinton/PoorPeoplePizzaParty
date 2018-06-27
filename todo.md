@@ -1,16 +1,20 @@
 # TODO
   
   + implement Cook screen
-      - countdown timer
-      - then show a cooked pizza and give option to serve to Bosses or Workers
+      - ~~countdown timer~~
+      - ~~then show a cooked pizza and give option to serve to Bosses or 
+        Workers~~
+      - impelement Bosses and Workers button actions
       - implement Android back button logic
   
   + create ServeBossScreen class
+      - send here from CookScreen choice
       - boss says either "who eats this rubbish" or "is this game about me?"
         and then fires you
       - implement Android back button logic
         
   + create ServeWorkersScreen.class
+      - send here from CookScreen choice
       - it's a pizza party celebrate!
       - boss pops up and says "I can't believe you people eat this 
         mass-produced rubbish"

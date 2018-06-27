@@ -37,11 +37,11 @@ public class UiSize {
         return getPadding(screenHeight) * 4;
     }
 
-    public static float getImageHeight(int screenHeight) {
-        return Constants.UI_HEADER_HEIGHT_RATIO * screenHeight;
+    public static float getImageHeight(float imageHeight, int screenHeight) {
+        return imageHeight / Constants.GAME_HEIGHT * screenHeight;
     }
 
-    public static float getImageWidth(int screenWidth) {
-        return Constants.UI_HEADER_WIDTH_RATIO * screenWidth;
+    public static float getImageWidth(float imageHeight, int screenWidth) {
+        return imageHeight / Constants.GAME_WIDTH * screenWidth;
     }
 }

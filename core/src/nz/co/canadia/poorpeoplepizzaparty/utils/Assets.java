@@ -15,9 +15,18 @@ public class Assets extends AssetManager {
         param.magFilter = Texture.TextureFilter.Linear;
     }
 
+    public void loadCookScreenAssets() {
+        super.load("graphics/headers/cookScreenPizza.png",
+                Texture.class, param);
+    }
+
+    public void disposeCookScreenAssets() {
+        super.unload("graphics/headers/cookScreenPizza.png");
+    }
+
     public void loadPizzaScreenAssets(
-            ObjectMap<Constants.ToppingName, String> textureFiles) {
-        for(String s: textureFiles.values()) {
+            ObjectMap<Constants.ToppingName, String> toppingPaths) {
+        for(String s: toppingPaths.values()) {
             super.load(s, Texture.class, param);
         }
         super.load("graphics/headers/pizzaScreen.png", Texture.class,

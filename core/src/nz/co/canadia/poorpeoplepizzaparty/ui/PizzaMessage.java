@@ -9,14 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
-public class MessageUi extends Container {
+public class PizzaMessage extends Container {
 
     private final Skin skin;
     private TextButton messageLabel;
     private int screenWidth;
     private int screenHeight;
 
-    public MessageUi(int screenWidth, int screenHeight, final Skin skin) {
+    public PizzaMessage(int screenWidth, int screenHeight, final Skin skin) {
 
         this.skin = skin;
         this.screenWidth = screenWidth;

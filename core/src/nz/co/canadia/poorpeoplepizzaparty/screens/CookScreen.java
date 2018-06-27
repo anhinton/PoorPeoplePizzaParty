@@ -2,30 +2,58 @@ package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
+import nz.co.canadia.poorpeoplepizzaparty.ui.CookUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class CookScreen implements InputProcessor, Screen {
 
-    private final OrthographicCamera camera;
     private final FitViewport viewport;
     private final PoorPeoplePizzaParty game;
+    private final Stage stage;
+    private CookUi cookUi;
 
     CookScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
-                camera);
-        camera.setToOrtho(false, Constants.GAME_WIDTH,
-                Constants.GAME_HEIGHT);
+        game.assets.loadCookScreenAssets();
+        game.assets.finishLoading();
 
+        OrthographicCamera uiCamera = new OrthographicCamera();
+        float screenWidth = Gdx.graphics.getBackBufferWidth();
+        float screenHeight = Gdx.graphics.getBackBufferHeight();
+        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
+            viewport = new FitViewport(
+                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
+                    screenHeight,
+                    uiCamera);
+        } else {
+            viewport = new FitViewport(screenWidth,
+                    screenWidth / Constants.GAME_ASPECT_RATIO,
+                    uiCamera);
+        }
+        uiCamera.setToOrtho(false, viewport.getScreenHeight(),
+                viewport.getScreenHeight());
+
+        stage = new Stage(viewport);
+        cookUi = new CookUi(viewport.getScreenWidth(),
+                viewport.getScreenHeight(), this, game.skin,
+                game.assets, game.bundle);
+        stage.addActor(cookUi);
+
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(this);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
@@ -39,9 +67,15 @@ public class CookScreen implements InputProcessor, Screen {
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.shapeRenderer.setProjectionMatrix(camera.combined);
+        cookUi.update(delta);
+
+        stage.getCamera().update();
+        game.batch.setProjectionMatrix(stage.getCamera().combined);
+        game.shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
+        
+        stage.getCamera().update();
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
@@ -66,13 +100,17 @@ public class CookScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
+        stage.dispose();
+        game.assets.disposeCookScreenAssets();
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            Gdx.app.exit();
+            // TODO: work out what I really want to do when going back
+            dispose();
+            game.setScreen(new PizzaScreen(game));
             return true;
         }
         return false;
