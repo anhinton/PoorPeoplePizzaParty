@@ -1,20 +1,8 @@
 # TODO
-
-  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
-    FreetypeFont for desktop and android~~
-    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~create UiFont interface~~
-      - ~~create UiSkin() constructor which takes a UiFont argument~~
-      - ~~UiSkin calls uiFont.getUiFont()~~
-      - ~~implement DesktopUiFont~~
-      - ~~implement AndroidUiFont~~
-      - ~~implement HtmlUiFont~~
   
-  + ~~get WebGL working~~
-      - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
-  
-  + implement Serve screen
-      - option to serve to Bosses or Workers
+  + implement Cook screen
+      - countdown timer
+      - then show a cooked pizza and give option to serve to Bosses or Workers
       - implement Android back button logic
   
   + create ServeBossScreen class
@@ -47,6 +35,19 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
+    FreetypeFont for desktop and android~~
+    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - ~~create UiFont interface~~
+      - ~~create UiSkin() constructor which takes a UiFont argument~~
+      - ~~UiSkin calls uiFont.getUiFont()~~
+      - ~~implement DesktopUiFont~~
+      - ~~implement AndroidUiFont~~
+      - ~~implement HtmlUiFont~~
+  
+  + ~~get WebGL working~~
+      - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
 
   + ~~**BUG**: pizzaUi buttons get larger when pressed~~
       - ~~is the header image too tall, forcing these to shrink? yes~~
