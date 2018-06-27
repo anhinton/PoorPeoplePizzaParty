@@ -6,6 +6,8 @@
         Workers~~
       - impelement Bosses and Workers button actions
       - implement Android back button logic
+      
+  + get WebGL working
   
   + create ServeBossScreen class
       - send here from CookScreen choice
