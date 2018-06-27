@@ -17,6 +17,7 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new PoorPeoplePizzaParty(new HtmlScreenshot());
+                return new PoorPeoplePizzaParty(new HtmlScreenshot(),
+                        new HtmlUiFont());
         }
 }

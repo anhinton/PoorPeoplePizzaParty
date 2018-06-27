@@ -22,8 +22,8 @@ public class Constants {
     public static final float GAME_ASPECT_RATIO =
             (float)GAME_WIDTH / GAME_HEIGHT;
 
-    public static final int DESKTOP_WIDTH = 1152;
-    public static final int DESKTOP_HEIGHT = 720;
+    public static final int DESKTOP_WIDTH = 960; // 1152;
+    public static final int DESKTOP_HEIGHT = 600; //720;
 
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
@@ -40,7 +40,7 @@ public class Constants {
     // everything is blocked out in terms of this unit
     public static final int UNIT = 20;
 
-    // UI font size is 32px
+    // UI font size is is 24pt/32px
     public static final float UI_FONT_RATIO = 32f / GAME_HEIGHT;
     public static final float UI_SHADOW_X = 2f/ GAME_HEIGHT;
     public static final float UI_SHADOW_Y = 2f/ GAME_HEIGHT;

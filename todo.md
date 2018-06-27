@@ -1,22 +1,17 @@
 # TODO
 
-  + ~~**BUG**: pizzaUi buttons get larger when pressed~~
-      - ~~is the header image too tall, forcing these to shrink? yes~~
-      - ~~set Pizza UI header size with UiSize.getImageWidth() and
-        UiSize.getImageHeight()~~
-
-  + create platform-specific UiFont to provide BitmapFont for webgl, 
-    FreetypeFont for desktop and android
+  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
+    FreetypeFont for desktop and android~~
     <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~create UiFont interface~~
       - ~~create UiSkin() constructor which takes a UiFont argument~~
       - ~~UiSkin calls uiFont.getUiFont()~~
       - ~~implement DesktopUiFont~~
       - ~~implement AndroidUiFont~~
-      - implement HtmlUiFont
+      - ~~implement HtmlUiFont~~
   
-  + get WebGL working
-      - does WebGL work now?
+  + ~~get WebGL working~~
+      - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
   
   + implement Serve screen
       - option to serve to Bosses or Workers
@@ -52,8 +47,13 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~**BUG**: pizzaUi buttons get larger when pressed~~
+      - ~~is the header image too tall, forcing these to shrink? yes~~
+      - ~~set Pizza UI header size with UiSize.getImageWidth() and
+        UiSize.getImageHeight()~~
   
-  + ~~BUG: fix crash when touching pizza screen with no topping selected~~
+  + ~~**BUG**: fix crash when touching pizza screen with no topping selected~~
       - ~~only update selected topping in PizzaScreen.touchDragged() when
         we have a selected topping~~
   
