@@ -61,7 +61,6 @@ public class CookUi extends Table {
                     remainingLabel.setText(Integer.toString(MathUtils.ceil(timeRemaining)));
                 } else {
                     showDecision();
-                    Gdx.app.log("CookUi", "timer finished");
                 }
             }
         });

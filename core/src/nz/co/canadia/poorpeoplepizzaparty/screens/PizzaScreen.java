@@ -64,7 +64,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         toppingPaths.put(Constants.ToppingName.SAUSAGE,
                 "graphics/toppings/sausage-topping.png");
         game.assets.loadPizzaScreenAssets(toppingPaths);
-        game.assets.finishLoading();
 
         gameCamera = new OrthographicCamera();
         gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,

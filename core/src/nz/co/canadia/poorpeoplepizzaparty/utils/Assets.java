@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,15 +16,23 @@ public class Assets extends AssetManager {
         param.magFilter = Texture.TextureFilter.Linear;
     }
 
+    /**
+     * Loads assets for Cook Screen. Blocks until all assets are loaded.
+     */
     public void loadCookScreenAssets() {
         super.load("graphics/headers/cookScreenPizza.png",
                 Texture.class, param);
+        super.finishLoading();
     }
 
     public void disposeCookScreenAssets() {
         super.unload("graphics/headers/cookScreenPizza.png");
     }
 
+    /**
+     * Loads assets for Pizza Screen. Blocks until all assets are loaded.
+     * @param toppingPaths map of ToppingNames to file paths
+     */
     public void loadPizzaScreenAssets(
             ObjectMap<Constants.ToppingName, String> toppingPaths) {
         for(String s: toppingPaths.values()) {
@@ -35,6 +44,7 @@ public class Assets extends AssetManager {
                 param);
         super.load("graphics/icons/undo.png", Texture.class,
                 param);
+        super.finishLoading();
     }
 
     public void disposePizzaSceenAssets(

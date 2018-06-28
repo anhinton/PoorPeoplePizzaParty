@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -31,6 +32,9 @@ public class PoorPeoplePizzaParty extends Game {
 
     @Override
     public void create() {
+
+        // TODO: stop debugging for release
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
         Gdx.input.setCatchBackKey(true);
 

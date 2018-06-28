@@ -23,10 +23,10 @@ public class CookScreen implements InputProcessor, Screen {
     private CookUi cookUi;
 
     CookScreen(final PoorPeoplePizzaParty game) {
+
         this.game = game;
 
         game.assets.loadCookScreenAssets();
-        game.assets.finishLoading();
 
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();

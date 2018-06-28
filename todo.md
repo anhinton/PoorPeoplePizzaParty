@@ -1,13 +1,13 @@
 # TODO
+      
+  + ~~get WebGL working~~
   
   + implement Cook screen
       - ~~countdown timer~~
       - ~~then show a cooked pizza and give option to serve to Bosses or 
         Workers~~
-      - impelement Bosses and Workers button actions
+      - implement Bosses and Workers button actions
       - implement Android back button logic
-      
-  + get WebGL working
   
   + create ServeBossScreen class
       - send here from CookScreen choice
@@ -37,6 +37,8 @@
         to here
       
   + do a Vector Android app icon
+  
+  + stop debugging for release
   
   + investigate desktop full screen and window resizing
   

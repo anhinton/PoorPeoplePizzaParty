@@ -113,7 +113,6 @@ public class PizzaUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.cook();
-                Gdx.app.log("PizzaUi", "cook button pressed");
             }
         });
 
