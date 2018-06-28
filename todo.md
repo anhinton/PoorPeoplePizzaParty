@@ -1,8 +1,8 @@
 # TODO
-      
-  + add a 'back' button to the topping selection screen
+
+  + ~~don't add toppings when on Topping Menu~~
   
-  + add a message after first topping is selected telling player what to do
+  + ~~add a message after first topping is selected telling player what to do~~
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -45,6 +45,8 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+      
+  + ~~add a 'back' button to the topping selection screen~~
 
   + ~~drop base/sauce/cheese logic restrictions~~
       - ~~let's just have fun it's a game not an accurate simulation!~~

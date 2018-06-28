@@ -39,9 +39,11 @@ public class PizzaScreen implements InputProcessor, Screen {
     private final PizzaUi pizzaUi;
     private final PizzaMessage pizzaMessage;
     private Topping selectedTopping;
+    private boolean showedToppingTutorial;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
+        showedToppingTutorial = false;
 
         // match topping names to image asset paths
         toppingPaths = new ObjectMap<Constants.ToppingName, String>();
@@ -187,7 +189,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         Vector3 touchCoords = gameCamera.unproject(
                 new Vector3(screenX, screenY, 0));
-        if (hasSelectedTopping()) {
+        if (hasSelectedTopping()
+                & pizzaUi.getCurrentMenu() == Constants.CurrentPizzaMenu.MAIN) {
             if (touchCoords.x > Constants.PIZZA_LEFT &
                     touchCoords.x < Constants.PIZZA_RIGHT &
                     touchCoords.y > Constants.PIZZA_BOTTOM &
@@ -287,6 +290,23 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage.getCamera().update();
         uiStage.act(delta);
         uiStage.draw();
+
+        // show topping tutorial the first time a topping is selected
+        if (!showedToppingTutorial) {
+            if (hasSelectedTopping()) {
+                showedToppingTutorial = true;
+                String s = "";
+                switch (Gdx.app.getType()) {
+                    case Android: case iOS:
+                        s = game.bundle.get("messageTutorialTouch");
+                        break;
+                    case Desktop: case WebGL:
+                        s = game.bundle.get("messageTutorialMouse");
+                        break;
+                }
+                showMessage(s);
+            }
+        }
     }
 
     @Override

@@ -138,6 +138,7 @@ public class PizzaUi extends Table {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
                 goBack();
             }
         });
@@ -190,6 +191,10 @@ public class PizzaUi extends Table {
                 break;
         }
         return result;
+    }
+
+    public Constants.CurrentPizzaMenu getCurrentMenu() {
+        return currentMenu;
     }
 
     private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {
@@ -279,6 +284,7 @@ public class PizzaUi extends Table {
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.setSelectedTopping(toppingName);
                 setSelectedTopping(textButton);
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
                 showMainMenu();
             }
         });
