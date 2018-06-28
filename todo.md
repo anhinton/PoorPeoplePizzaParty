@@ -1,6 +1,13 @@
 # TODO
+
+  + drop base/sauce/cheese logic restrictions
+      - let's just have fun it's a game not an accurate simulation!
+      - I am serious about fun, though
+      - please consider this submission for cool serious pizza game sim
+      - okay I know we said fun but let's not allow cheese on cheese or 
+        sauce on sauce because I have no way of showing that
       
-  + ~~get WebGL working~~
+  + add a 'back' button to the topping selection screen
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -43,6 +50,8 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+      
+  + ~~get WebGL working~~
 
   + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
     FreetypeFont for desktop and android~~

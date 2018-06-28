@@ -50,15 +50,5 @@ public class PizzaMessage extends Container {
 
         // TODO: work out what the IDE warning here means, and how to fix it
         super.setActor(messageLabel);
-
-        // TODO: clean up Timer code if not required
-//        Timer.schedule(new Timer.Task() {
-//            @Override
-//            public void run() {
-//                clearMessage();
-//            }
-//        }, 5);
-
-        Gdx.app.log("PizzaScreen", s);
     }
 }

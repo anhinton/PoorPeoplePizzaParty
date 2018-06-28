@@ -22,6 +22,7 @@ public class Pizza {
     private final PizzaScreen pizzaScreen;
     private final Array<Topping> toppings;
     private final Array<Constants.ToppingName> toppingOrder;
+    private final Array<Constants.ToppingName> baseToppingOrder;
 
     public Pizza(final ObjectMap<Constants.ToppingName, String> toppingStrings,
                  final AssetManager manager, final I18NBundle bundle,
@@ -39,26 +40,20 @@ public class Pizza {
                         Texture.class),
                 true));
 
-        // initialise toppingOrder array
+        // initialise toppingOrder and baseToppingOrder arrays
         toppingOrder = new Array<Constants.ToppingName>();
-        toppingOrder.add(Constants.ToppingName.BASE);
+        baseToppingOrder = new Array<Constants.ToppingName>();
+        baseToppingOrder.add(Constants.ToppingName.BASE);
     }
 
     public void addTopping(Topping topping) {
         if (topping.getVisible()) {
-            if (topping.getToppingName() == Constants.ToppingName.SAUCE) {
-                if (toppingOrder.peek() != Constants.ToppingName.BASE) {
-                    pizzaScreen.showMessage(bundle.get("messagePizzaWarning"));
-                } else {
+            if (topping.getToppingName() == Constants.ToppingName.SAUCE
+                    | topping.getToppingName() == Constants.ToppingName.CHEESE) {
+                if (topping.getToppingName() != baseToppingOrder.peek()) {
                     setBaseTopping(topping.getToppingName());
                     toppingOrder.add(topping.getToppingName());
-                }
-            } else if (topping.getToppingName() == Constants.ToppingName.CHEESE) {
-                if (toppingOrder.peek() != Constants.ToppingName.SAUCE) {
-                    pizzaScreen.showMessage(bundle.get("messagePizzaWarning"));
-                } else {
-                    setBaseTopping(topping.getToppingName());
-                    toppingOrder.add(topping.getToppingName());
+                    baseToppingOrder.add(topping.getToppingName());
                 }
             } else {
                 this.toppings.add(topping);
@@ -77,11 +72,13 @@ public class Pizza {
                     setBaseTopping(Constants.ToppingName.BASE);
                     break;
                 case SAUCE:
-                    setBaseTopping(Constants.ToppingName.BASE);
+                    baseToppingOrder.pop();
+                    setBaseTopping(baseToppingOrder.peek());
                     toppingOrder.pop();
                     break;
                 case CHEESE:
-                    setBaseTopping(Constants.ToppingName.SAUCE);
+                    baseToppingOrder.pop();
+                    setBaseTopping(baseToppingOrder.peek());
                     toppingOrder.pop();
                     break;
                 default:
