@@ -1,13 +1,8 @@
 # TODO
-
-  + drop base/sauce/cheese logic restrictions
-      - let's just have fun it's a game not an accurate simulation!
-      - I am serious about fun, though
-      - please consider this submission for cool serious pizza game sim
-      - okay I know we said fun but let's not allow cheese on cheese or 
-        sauce on sauce because I have no way of showing that
       
   + add a 'back' button to the topping selection screen
+  
+  + add a message after first topping is selected telling player what to do
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -50,8 +45,17 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~drop base/sauce/cheese logic restrictions~~
+      - ~~let's just have fun it's a game not an accurate simulation!~~
+      - ~~I am serious about fun, though~~
+      - ~~please consider this submission for cool serious pizza game sim~~
+      - ~~okay I know we said fun but let's not allow cheese on cheese or 
+        sauce on sauce because I have no way of showing that~~
       
   + ~~get WebGL working~~
+      - ~~it didn't seem to like the async loading in 
+        Assets.loadCookScreenAssets() yesterday but now today it's fine?~~
 
   + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
     FreetypeFont for desktop and android~~

@@ -40,6 +40,8 @@ public class Assets extends AssetManager {
         }
         super.load("graphics/headers/pizzaScreen.png", Texture.class,
                 param);
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
         super.load("graphics/icons/camera.png", Texture.class,
                 param);
         super.load("graphics/icons/undo.png", Texture.class,
