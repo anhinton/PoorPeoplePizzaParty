@@ -4,10 +4,10 @@
       - ~~countdown timer~~
       - ~~then show a cooked pizza and give option to serve to Bosses or 
         Workers~~
+      - ~~take Pizza from PizzaScreen as argument~~
       - ~~implement Android back button logic~~
           - ~~go back to PizzaScreen with existing Pizza~~
       - implement Bosses and Workers button actions
-      - take Pizza from PizzaScreen as argument
   
   + create ServeBossScreen class
       - send here from CookScreen choice

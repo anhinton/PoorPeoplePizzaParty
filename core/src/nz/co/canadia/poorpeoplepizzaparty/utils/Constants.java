@@ -82,5 +82,5 @@ public class Constants {
 
     // Cook timer
     public static final float COOK_TIME_TOTAL = 3f;
-    public static final float COOK_TIME_INCREMENT = 0.025f;
+    public static final float COOK_TIME_INCREMENT = 1 / 30f;
 }

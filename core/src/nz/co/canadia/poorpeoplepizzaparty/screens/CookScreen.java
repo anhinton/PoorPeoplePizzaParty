@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
@@ -49,7 +48,7 @@ public class CookScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         cookUi = new CookUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), this, game.skin,
+                viewport.getScreenHeight(), game.skin,
                 game.assets, game.bundle);
         stage.addActor(cookUi);
 

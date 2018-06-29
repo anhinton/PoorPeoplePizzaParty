@@ -14,29 +14,26 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.I18NBundle;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.CookScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class CookUi extends Table {
 
-    private final CookScreen cookScreen;
     private final Skin skin;
     private final AssetManager assets;
     private final I18NBundle bundle;
-    private final ProgressBar cookProgress;
+    private final ProgressBar progressBar;
     private final Label remainingLabel;
     private int screenWidth;
     private int screenHeight;
     private float timeElapsed;
     private int padding;
 
-    public CookUi (int screenWidth, int screenHeight, final CookScreen cookScreen,
-                   Skin skin, AssetManager assets, I18NBundle bundle) {
+    public CookUi(int screenWidth, int screenHeight,
+                  Skin skin, AssetManager assets, I18NBundle bundle) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.cookScreen = cookScreen;
         this.skin = skin;
         this.assets = assets;
         this.bundle = bundle;
@@ -49,15 +46,15 @@ public class CookUi extends Table {
         ProgressBar.ProgressBarStyle progressBarStyle =
                 skin.get("default-horizontal",
                         ProgressBar.ProgressBarStyle.class);
-        cookProgress = new ProgressBar(0, Constants.COOK_TIME_TOTAL,
+        progressBar = new ProgressBar(0, Constants.COOK_TIME_TOTAL,
                 Constants.COOK_TIME_INCREMENT,
                 false, progressBarStyle);
-        cookProgress.addListener(new ChangeListener() {
+        progressBar.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (cookProgress.getValue() < cookProgress.getMaxValue()) {
-                    float timeRemaining = cookProgress.getMaxValue()
-                            - cookProgress.getValue();
+                if (progressBar.getValue() < progressBar.getMaxValue()) {
+                    float timeRemaining = progressBar.getMaxValue()
+                            - progressBar.getValue();
                     remainingLabel.setText(Integer.toString(MathUtils.ceil(timeRemaining)));
                 } else {
                     showDecision();
@@ -65,8 +62,8 @@ public class CookUi extends Table {
             }
         });
 
-        float timeRemaining = cookProgress.getMaxValue()
-                - cookProgress.getValue();
+        float timeRemaining = progressBar.getMaxValue()
+                - progressBar.getValue();
         remainingLabel =
                 new Label(Integer.toString(MathUtils.ceil(timeRemaining)), skin,
                         "default");
@@ -79,12 +76,12 @@ public class CookUi extends Table {
         super.clear();
         super.pad(padding);
 
-        Label cooktimerLabel = new Label(bundle.get("cooktimerLabel"), skin,
+        Label timerLabel = new Label(bundle.get("timerLabel"), skin,
                 "default");
-        super.add(cooktimerLabel).space(padding);
+        super.add(timerLabel).space(padding);
         super.row();
 
-        super.add(cookProgress).space(padding).center().prefWidth(400);
+        super.add(progressBar).space(padding).center().prefWidth(400);
         super.row();
 
         super.add(remainingLabel).space(padding);
@@ -144,6 +141,6 @@ public class CookUi extends Table {
 
     public void update(float delta) {
         timeElapsed += delta;
-        cookProgress.setValue(timeElapsed);
+        progressBar.setValue(timeElapsed);
     }
 }
