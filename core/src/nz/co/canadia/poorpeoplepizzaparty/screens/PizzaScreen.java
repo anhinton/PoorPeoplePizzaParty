@@ -13,7 +13,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -31,13 +30,12 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
-    private final ObjectMap<Constants.ToppingName, String> toppingPaths;
-    private final Pizza pizza;
-    private final OrthographicCamera gameCamera;
-    private final Viewport gameViewport;
-    private final Stage uiStage;
-    private final PizzaUi pizzaUi;
-    private final PizzaMessage pizzaMessage;
+    private Pizza pizza;
+    private OrthographicCamera gameCamera;
+    private Viewport gameViewport;
+    private Stage uiStage;
+    private PizzaUi pizzaUi;
+    private PizzaMessage pizzaMessage;
     private Topping selectedTopping;
     private boolean showedToppingTutorial;
 
@@ -45,27 +43,21 @@ public class PizzaScreen implements InputProcessor, Screen {
         this.game = game;
         showedToppingTutorial = false;
 
-        // match topping names to image asset paths
-        toppingPaths = new ObjectMap<Constants.ToppingName, String>();
-        toppingPaths.put(Constants.ToppingName.APRICOT,
-                "graphics/toppings/apricot-topping.png");
-        toppingPaths.put(Constants.ToppingName.BACON,
-                "graphics/toppings/bacon-topping.png");
-        toppingPaths.put(Constants.ToppingName.BARBECUE,
-                "graphics/toppings/barbecue-topping.png");
-        toppingPaths.put(Constants.ToppingName.BASE,
-                "graphics/toppings/base-topping.png");
-        toppingPaths.put(Constants.ToppingName.CHEESE,
-                "graphics/toppings/cheese-topping.png");
-        toppingPaths.put(Constants.ToppingName.CHICKEN,
-                "graphics/toppings/chicken-topping.png");
-        toppingPaths.put(Constants.ToppingName.SALAMI,
-                "graphics/toppings/salami-topping.png");
-        toppingPaths.put(Constants.ToppingName.SAUCE,
-                "graphics/toppings/sauce-topping.png");
-        toppingPaths.put(Constants.ToppingName.SAUSAGE,
-                "graphics/toppings/sausage-topping.png");
-        game.assets.loadPizzaScreenAssets(toppingPaths);
+        initialise();
+        pizza = new Pizza(game.assets);
+    }
+
+    public PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
+        this.game = game;
+        showedToppingTutorial = true;
+        initialise();
+        this.pizza = pizza;
+    }
+
+    private void initialise() {
+        selectedTopping = null;
+
+        game.assets.loadPizzaScreenAssets();
 
         gameCamera = new OrthographicCamera();
         gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
@@ -102,15 +94,11 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(uiStage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
-
-        pizza = new Pizza(toppingPaths, game.assets, game.bundle,
-                this);
-        selectedTopping = null;
     }
 
     public void cook() {
+        game.setScreen(new CookScreen(game, pizza));
         dispose();
-        game.setScreen(new CookScreen(game));
     }
 
     public void undoLastTopping() {
@@ -121,7 +109,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         pizzaMessage.clearMessage();
     }
 
-    public void showMessage(String s) {
+    private void showMessage(String s) {
         pizzaMessage.showMessage(s);
     }
 
@@ -144,7 +132,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                 y,
                 MathUtils.random(360f),
                 toppingName,
-                game.assets.get(toppingPaths.get(toppingName), Texture.class),
+                game.assets.get(game.assets.toppingPath(toppingName), Texture.class),
                 false);
     }
 
@@ -201,7 +189,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     selectedTopping.getY(),
                     MathUtils.random(360f),
                     selectedTopping.getToppingName(),
-                    game.assets.get(toppingPaths.get(selectedTopping.getToppingName()),
+                    game.assets.get(game.assets.toppingPath(selectedTopping.getToppingName()),
                             Texture.class),
                     false);
         }
@@ -332,7 +320,6 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        game.assets.disposePizzaSceenAssets(toppingPaths);
         uiStage.dispose();
     }
 }

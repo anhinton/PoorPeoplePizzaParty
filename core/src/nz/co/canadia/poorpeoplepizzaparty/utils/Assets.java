@@ -9,11 +9,36 @@ import com.badlogic.gdx.utils.ObjectMap;
 public class Assets extends AssetManager {
 
     private final TextureLoader.TextureParameter param;
+    private ObjectMap<Constants.ToppingName, String> toppingPaths;
     
     public Assets() {
+        toppingPaths = new ObjectMap<Constants.ToppingName, String>();
+        toppingPaths.put(Constants.ToppingName.APRICOT,
+                "graphics/toppings/apricot-topping.png");
+        toppingPaths.put(Constants.ToppingName.BACON,
+                "graphics/toppings/bacon-topping.png");
+        toppingPaths.put(Constants.ToppingName.BARBECUE,
+                "graphics/toppings/barbecue-topping.png");
+        toppingPaths.put(Constants.ToppingName.BASE,
+                "graphics/toppings/base-topping.png");
+        toppingPaths.put(Constants.ToppingName.CHEESE,
+                "graphics/toppings/cheese-topping.png");
+        toppingPaths.put(Constants.ToppingName.CHICKEN,
+                "graphics/toppings/chicken-topping.png");
+        toppingPaths.put(Constants.ToppingName.SALAMI,
+                "graphics/toppings/salami-topping.png");
+        toppingPaths.put(Constants.ToppingName.SAUCE,
+                "graphics/toppings/sauce-topping.png");
+        toppingPaths.put(Constants.ToppingName.SAUSAGE,
+                "graphics/toppings/sausage-topping.png");
+
         param = new TextureLoader.TextureParameter();
         param.minFilter = Texture.TextureFilter.Linear;
         param.magFilter = Texture.TextureFilter.Linear;
+    }
+
+    public String toppingPath(Constants.ToppingName toppingName) {
+        return toppingPaths.get(toppingName);
     }
 
     /**
@@ -31,13 +56,12 @@ public class Assets extends AssetManager {
 
     /**
      * Loads assets for Pizza Screen. Blocks until all assets are loaded.
-     * @param toppingPaths map of ToppingNames to file paths
      */
-    public void loadPizzaScreenAssets(
-            ObjectMap<Constants.ToppingName, String> toppingPaths) {
+    public void loadPizzaScreenAssets() {
         for(String s: toppingPaths.values()) {
             super.load(s, Texture.class, param);
         }
+
         super.load("graphics/headers/pizzaScreen.png", Texture.class,
                 param);
         super.load("graphics/icons/back.png", Texture.class,

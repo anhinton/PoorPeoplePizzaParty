@@ -1,13 +1,10 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.I18NBundle;
-import com.badlogic.gdx.utils.ObjectMap;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -16,27 +13,19 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Pizza {
 
-    private final I18NBundle bundle;
-    private final ObjectMap<Constants.ToppingName, String> toppingStrings;
-    private final AssetManager manager;
-    private final PizzaScreen pizzaScreen;
+    private final Assets assets;
     private final Array<Topping> toppings;
     private final Array<Constants.ToppingName> toppingOrder;
     private final Array<Constants.ToppingName> baseToppingOrder;
 
-    public Pizza(final ObjectMap<Constants.ToppingName, String> toppingStrings,
-                 final AssetManager manager, final I18NBundle bundle,
-                 final PizzaScreen pizzaScreen) {
-        this.toppingStrings = toppingStrings;
-        this.bundle = bundle;
-        this.manager = manager;
-        this.pizzaScreen = pizzaScreen;
+    public Pizza(final Assets assets) {
+        this.assets = assets;
 
         // add the base Topping to the topping array
         toppings = new Array<Topping>();
         toppings.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, Constants.ToppingName.BASE,
-                manager.get(toppingStrings.get(Constants.ToppingName.BASE),
+                assets.get(assets.toppingPath(Constants.ToppingName.BASE),
                         Texture.class),
                 true));
 
@@ -89,14 +78,10 @@ public class Pizza {
         }
     }
 
-    private Topping getBaseTopping() {
-        return toppings.get(0);
-    }
-
     private void setBaseTopping(Constants.ToppingName toppingName) {
         toppings.set(0, new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, toppingName,
-                manager.get(toppingStrings.get(toppingName), Texture.class),
+                assets.get(assets.toppingPath(toppingName), Texture.class),
                 true));
     }
 

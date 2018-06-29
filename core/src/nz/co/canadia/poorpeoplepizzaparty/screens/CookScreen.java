@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.ui.CookUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -20,11 +21,13 @@ public class CookScreen implements InputProcessor, Screen {
     private final FitViewport viewport;
     private final PoorPeoplePizzaParty game;
     private final Stage stage;
+    private final Pizza pizza;
     private CookUi cookUi;
 
-    CookScreen(final PoorPeoplePizzaParty game) {
+    CookScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
         this.game = game;
+        this.pizza = pizza;
 
         game.assets.loadCookScreenAssets();
 
@@ -54,6 +57,56 @@ public class CookScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+    }
+
+    private void goBack(PoorPeoplePizzaParty game, Pizza pizza) {
+        game.setScreen(new PizzaScreen(game, pizza));
+        dispose();
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.BACK
+                | keycode == Input.Keys.ESCAPE) {
+            goBack(game, pizza);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 
     @Override
@@ -102,52 +155,5 @@ public class CookScreen implements InputProcessor, Screen {
     public void dispose() {
         stage.dispose();
         game.assets.disposeCookScreenAssets();
-    }
-
-    @Override
-    public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.BACK
-                | keycode == Input.Keys.ESCAPE) {
-            // TODO: work out what I really want to do when going back
-            dispose();
-            game.setScreen(new PizzaScreen(game));
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
     }
 }

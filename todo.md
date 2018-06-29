@@ -4,8 +4,10 @@
       - ~~countdown timer~~
       - ~~then show a cooked pizza and give option to serve to Bosses or 
         Workers~~
+      - ~~implement Android back button logic~~
+          - ~~go back to PizzaScreen with existing Pizza~~
       - implement Bosses and Workers button actions
-      - implement Android back button logic
+      - take Pizza from PizzaScreen as argument
   
   + create ServeBossScreen class
       - send here from CookScreen choice
@@ -122,7 +124,7 @@
         arguments. These are stored as fields and used to set widget sizes~~
       - ~~forget about handling font changes on screen resize for now~~
     
-  + ~~implement asset manager~~
+  + ~~implement asset assets~~
       - ~~dispose of assets~~
       - ~~check on Android~~
       - ~~check on WebGL~~
