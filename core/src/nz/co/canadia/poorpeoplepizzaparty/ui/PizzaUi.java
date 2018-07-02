@@ -1,6 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -40,6 +39,11 @@ public class PizzaUi extends Table {
     private final ImageButton cameraButton;
     private final ImageButton undoButton;
     private final TextButton cookButton;
+    private final ImageButton backButton;
+    private float buttonWidthFull;
+    private float buttonWidthHalf;
+    private float buttonHeight;
+    private float padding;
     private int screenWidth;
     private int screenHeight;
     private Constants.CurrentPizzaMenu currentMenu;
@@ -47,7 +51,7 @@ public class PizzaUi extends Table {
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
                    final I18NBundle bundle, final Screenshot screenshot,
-                   final AssetManager manager) {
+                   final AssetManager assets) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
@@ -56,8 +60,13 @@ public class PizzaUi extends Table {
         this.skin = skin;
         this.bundle = bundle;
 
+        buttonWidthHalf = UiSize.getButtonWidthHalf(screenWidth, screenHeight);
+        buttonWidthFull = UiSize.getButtonWidthFull(screenWidth, screenHeight);
+        buttonHeight = UiSize.getButtonHeight(screenHeight);
+        padding = UiSize.getPadding(screenHeight);
+
         headerImage = new Image(
-                manager.get("graphics/headers/pizzaScreen.png",
+                assets.get("graphics/headers/pizzaScreen.png",
                         Texture.class));
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
@@ -74,7 +83,7 @@ public class PizzaUi extends Table {
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
         Sprite cameraSprite = new Sprite(
-                manager.get("graphics/icons/camera.png",
+                assets.get("graphics/icons/camera.png",
                         Texture.class));
         cameraSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
@@ -93,7 +102,7 @@ public class PizzaUi extends Table {
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
         Sprite undoSprite = new Sprite(
-                manager.get("graphics/icons/undo.png",
+                assets.get("graphics/icons/undo.png",
                         Texture.class));
         undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
@@ -113,7 +122,24 @@ public class PizzaUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.cook();
-                Gdx.app.log("PizzaUi", "cook button pressed");
+            }
+        });
+
+        ImageButton.ImageButtonStyle backButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        Sprite backSprite = new Sprite(
+                assets.get("graphics/icons/back.png",
+                        Texture.class));
+        backSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
+                Constants.UI_ICON_RATIO * screenHeight);
+        backButtonStyle.imageUp = new SpriteDrawable(backSprite);
+        backButton = new ImageButton(backButtonStyle);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
+                goBack();
             }
         });
 
@@ -186,32 +212,35 @@ public class PizzaUi extends Table {
     private void showMainMenu() {
         super.clear();
         super.center().right()
-                .pad(UiSize.getPadding(screenHeight));
+                .pad(padding);
         super.add(headerImage)
-                .space(UiSize.getPadding(screenHeight))
-                .prefSize(UiSize.getImageWidth(screenWidth),
-                        UiSize.getImageHeight(screenHeight))
+                .space(padding)
+                .prefSize(
+                        UiSize.getImageWidth(headerImage.getPrefWidth(),
+                                screenWidth),
+                        UiSize.getImageHeight(headerImage.getPrefHeight(),
+                                screenHeight))
                 .colspan(2).center();
         super.row();
-        super.add(toppingSelectButton).space(UiSize.getPadding(screenHeight))
-                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                        UiSize.getButtonHeight(screenHeight))
+        super.add(toppingSelectButton).space(padding)
+                .prefSize(buttonWidthFull,
+                        buttonHeight)
                 .colspan(2)
                 .right();
         super.row();
         super.add(cameraButton)
-                .prefSize(UiSize.getButtonWidthHalf(screenWidth, screenHeight),
-                        UiSize.getButtonHeight(screenHeight))
-                .space(UiSize.getPadding(screenHeight));
+                .prefSize(buttonWidthHalf,
+                        buttonHeight)
+                .space(padding);
         super.add(undoButton)
-                .prefSize(UiSize.getButtonWidthHalf(screenWidth, screenHeight),
-                        UiSize.getButtonHeight(screenHeight))
-                .space(UiSize.getPadding(screenHeight));
+                .prefSize(buttonWidthHalf,
+                        buttonHeight)
+                .space(padding);
         super.row();
         super.add(cookButton)
-                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                        UiSize.getButtonHeight(screenHeight))
-                .space(UiSize.getPadding(screenHeight))
+                .prefSize(buttonWidthFull,
+                        buttonHeight)
+                .space(padding)
                 .colspan(2);
     }
 
@@ -226,12 +255,19 @@ public class PizzaUi extends Table {
         for (TextButton b: toppingButtons) {
             if (counter > 0 & counter % 2 == 0)
                 super.row();
-            super.add(b).space(UiSize.getPadding(screenHeight))
+            super.add(b).space(padding)
                     .prefSize(UiSize.getButtonWidthFull(screenWidth,
                             screenHeight),
-                            UiSize.getButtonHeight(screenHeight));
+                            buttonHeight);
             counter++;
         }
+        super.row();
+        super.add(backButton)
+                .colspan(2)
+                .prefSize(buttonWidthHalf,
+                        buttonHeight)
+                .right()
+                .space(padding);
     }
 
     /**
@@ -248,6 +284,7 @@ public class PizzaUi extends Table {
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.setSelectedTopping(toppingName);
                 setSelectedTopping(textButton);
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
                 showMainMenu();
             }
         });

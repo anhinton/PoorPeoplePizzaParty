@@ -1,16 +1,27 @@
 # TODO
+
+  + modify screen shot class to grab just the pizza base and toppings
+      - use this to create a texture to be passed to ServeBossScreen and 
+        ServeWorkersScreen
+      - make a background to put behind this pizza for saving screen shot
   
   + implement Cook screen
-      - countdown timer
-      - then show a cooked pizza and give option to serve to Bosses or Workers
-      - implement Android back button logic
+      - ~~countdown timer~~
+      - ~~then show a cooked pizza and give option to serve to Bosses or 
+        Workers~~
+      - ~~take Pizza from PizzaScreen as argument~~
+      - ~~implement Android back button logic~~
+          - ~~go back to PizzaScreen with existing Pizza~~
+      - implement Bosses and Workers button actions
   
   + create ServeBossScreen class
+      - send here from CookScreen choice
       - boss says either "who eats this rubbish" or "is this game about me?"
         and then fires you
       - implement Android back button logic
         
   + create ServeWorkersScreen.class
+      - send here from CookScreen choice
       - it's a pizza party celebrate!
       - boss pops up and says "I can't believe you people eat this 
         mass-produced rubbish"
@@ -32,9 +43,28 @@
       
   + do a Vector Android app icon
   
+  + stop debugging for release
+  
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~don't add toppings when on Topping Menu~~
+  
+  + ~~add a message after first topping is selected telling player what to do~~
+      
+  + ~~add a 'back' button to the topping selection screen~~
+
+  + ~~drop base/sauce/cheese logic restrictions~~
+      - ~~let's just have fun it's a game not an accurate simulation!~~
+      - ~~I am serious about fun, though~~
+      - ~~please consider this submission for cool serious pizza game sim~~
+      - ~~okay I know we said fun but let's not allow cheese on cheese or 
+        sauce on sauce because I have no way of showing that~~
+      
+  + ~~get WebGL working~~
+      - ~~it didn't seem to like the async loading in 
+        Assets.loadCookScreenAssets() yesterday but now today it's fine?~~
 
   + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
     FreetypeFont for desktop and android~~
@@ -99,7 +129,7 @@
         arguments. These are stored as fields and used to set widget sizes~~
       - ~~forget about handling font changes on screen resize for now~~
     
-  + ~~implement asset manager~~
+  + ~~implement asset assets~~
       - ~~dispose of assets~~
       - ~~check on Android~~
       - ~~check on WebGL~~

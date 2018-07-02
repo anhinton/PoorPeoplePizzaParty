@@ -34,9 +34,9 @@ License](http://creativecommons.org/licenses/by-sa/4.0/).
 `fonts/Cagliostro-Regular/` "Cagliostro" Copyright (c) 2011, Matthew Desmond
 is licensed under the SIL Open Font License, Version 1.1.
 
-`graphics/icons/camera.png` `graphics/icons/undo.png`
-"camera_alt" and "undo" by [Google](https://material.io/tools/icons/)
-are licensed under 
+`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/undo.png`
+"arrow_back", "camera_alt" and "undo" by 
+[Google](https://material.io/tools/icons/) are licensed under 
 [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
 
 `graphics/toppings/bacon-topping.png`

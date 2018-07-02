@@ -2,6 +2,7 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.ObjectMap;
 
 /**
  * Game constants
@@ -79,6 +80,7 @@ public class Constants {
     public static final Color SAUCE_COLOR =
             new Color(1,1,1, (float)3 / 5);
 
-    // display offset for topping on touch displays
-//    public static final int TOUCH_OFFSET = 50;
+    // Cook timer
+    public static final float COOK_TIME_TOTAL = 3f;
+    public static final float COOK_TIME_INCREMENT = 1 / 30f;
 }
