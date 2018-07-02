@@ -1,4 +1,9 @@
 # TODO
+
+  + modify screen shot class to grab just the pizza base and toppings
+      - use this to create a texture to be passed to ServeBossScreen and 
+        ServeWorkersScreen
+      - make a background to put behind this pizza for saving screen shot
   
   + implement Cook screen
       - ~~countdown timer~~
