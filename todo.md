@@ -1,11 +1,13 @@
 # TODO
 
   + modify screen shot class to grab just the pizza base and toppings
-      - use this to create a texture to be passed to ServeBossScreen and 
+      - use this to create a pixmap to be passed to ServeBossScreen and 
         ServeWorkersScreen
-          - capturePizza() create pizza texture
+          - capturePizza() create pizza pixmap
       - make a background to put behind this pizza for saving screen shot
           - saveCapture() adds pizza texture to a background creates PNG
+      - why is pizza too small in the PNG I produce?
+      - update AndroidScreenshot and HtmlScreenshot
   
   + implement Cook screen
       - ~~countdown timer~~
