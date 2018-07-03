@@ -23,8 +23,8 @@ public class Constants {
     public static final float GAME_ASPECT_RATIO =
             (float)GAME_WIDTH / GAME_HEIGHT;
 
-    public static final int DESKTOP_WIDTH = 960; // 1152;
-    public static final int DESKTOP_HEIGHT = 600; //720;
+    public static final int DESKTOP_WIDTH = 1152;
+    public static final int DESKTOP_HEIGHT = 720;
 
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
@@ -50,10 +50,6 @@ public class Constants {
 
     // UI button icons are 50px
     public static final float UI_ICON_RATIO = 50f / GAME_HEIGHT;
-
-    // Pizza UI header height is 300x260 px
-    public static final float UI_HEADER_WIDTH_RATIO = 300f / GAME_WIDTH;
-    public static final float UI_HEADER_HEIGHT_RATIO = 260f / GAME_HEIGHT;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;

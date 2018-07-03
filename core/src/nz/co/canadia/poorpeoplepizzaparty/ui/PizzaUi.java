@@ -92,9 +92,7 @@ public class PizzaUi extends Table {
         cameraButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                pizzaScreen.clearMessage();
-                Pixmap pixmap = screenshot.captureScreen();
-                screenshot.saveCapture(pixmap);
+                pizzaScreen.capturePizza();
             }
         });
 

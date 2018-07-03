@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -47,7 +48,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         pizza = new Pizza(game.assets);
     }
 
-    public PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
+    PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
         showedToppingTutorial = true;
         initialise();
@@ -94,6 +95,12 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(uiStage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+    }
+
+    public void capturePizza() {
+        Pixmap pixmap = game.screenshot.capturePizza(pizza);
+        game.screenshot.saveCapture(pixmap);
+        pixmap.dispose();
     }
 
     public void cook() {

@@ -7,7 +7,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class AndroidScreenshot implements Screenshot {
     @Override
-    public Pixmap captureScreen() {
+    public Pixmap capturePizza() {
         Gdx.app.log("AndroidScreenshot",
                 "would have returned a Pixmap.class");
         return null;

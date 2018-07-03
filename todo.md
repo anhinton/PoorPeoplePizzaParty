@@ -3,7 +3,9 @@
   + modify screen shot class to grab just the pizza base and toppings
       - use this to create a texture to be passed to ServeBossScreen and 
         ServeWorkersScreen
+          - capturePizza() create pizza texture
       - make a background to put behind this pizza for saving screen shot
+          - saveCapture() adds pizza texture to a background creates PNG
   
   + implement Cook screen
       - ~~countdown timer~~

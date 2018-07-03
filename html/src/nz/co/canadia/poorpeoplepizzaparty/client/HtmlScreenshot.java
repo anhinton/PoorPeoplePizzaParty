@@ -8,7 +8,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class HtmlScreenshot implements Screenshot {
     @Override
-    public Pixmap captureScreen() {
+    public Pixmap capturePizza() {
         // TODO: remove debug logging
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.log("HtmlScreenshot",
