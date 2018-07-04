@@ -10,8 +10,8 @@
           - ~~**NB** the capturePizza() method should always return a Pixmap,
             and never null, as a pixmap will be disposed in 
             PizzaScreen.capturePizza()~~
-      - make a background to put behind this pizza for saving screen shot
-          - saveCapture() adds pizza texture to a background creates PNG
+      - ~~make a background to put behind this pizza for saving screen shot~~
+          - ~~saveCapture() adds pizza texture to a background creates PNG~~
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -41,6 +41,7 @@
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~implement for desktop~~
       - improve desktop implementation
+          - sensible timestamped filename
       - implement for android
       - implement for webgl
       

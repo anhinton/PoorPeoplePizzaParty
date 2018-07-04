@@ -3,6 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -39,6 +40,22 @@ public class Assets extends AssetManager {
 
     public String toppingPath(Constants.ToppingName toppingName) {
         return toppingPaths.get(toppingName);
+    }
+
+    public boolean isPostcardAssetsLoaded() {
+        return super.isLoaded("graphics/postcard.png", Pixmap.class);
+    }
+
+    /**
+     * Load assets for Screenshot.savePizza()
+     */
+    public void loadPostcardAssets() {
+        super.load("graphics/postcard.png", Pixmap.class);
+        super.finishLoading();
+    }
+
+    public void disposePostcardAssets() {
+        super.unload("graphics/postcard.png");
     }
 
     /**
