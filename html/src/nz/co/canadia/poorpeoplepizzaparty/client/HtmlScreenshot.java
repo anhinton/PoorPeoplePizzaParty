@@ -4,16 +4,17 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class HtmlScreenshot implements Screenshot {
     @Override
-    public Pixmap capturePizza() {
+    public Pixmap capturePizza(Pizza pizza) {
         // TODO: remove debug logging
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.log("HtmlScreenshot",
                 "would have returned a Pixmap.class");
-        return null;
+        return new Pixmap(0, 0, Pixmap.Format.RGBA8888);
     }
 
     @Override

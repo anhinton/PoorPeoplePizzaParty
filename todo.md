@@ -6,7 +6,10 @@
           - ~~capturePizza() create pizza pixmap~~
       - ~~**question:** why is pizza too small in the PNG I produce?
         **answer:** because I hadn't set up a camera for the frame buffer~~
-      - update AndroidScreenshot and HtmlScreenshot
+      - ~~update AndroidScreenshot and HtmlScreenshot~~
+          - ~~**NB** the capturePizza() method should always return a Pixmap,
+            and never null, as a pixmap will be disposed in 
+            PizzaScreen.capturePizza()~~
       - make a background to put behind this pizza for saving screen shot
           - saveCapture() adds pizza texture to a background creates PNG
   
