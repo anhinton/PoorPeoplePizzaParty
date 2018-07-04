@@ -1,4 +1,13 @@
 # TODO
+      
+  + create a screen shot interface
+      - ~~create platform-specific classes as described at~~
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - ~~implement for desktop~~
+      - improve desktop implementation
+          - sensible timestamped filename
+      - implement for android
+      - implement for webgl
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -22,15 +31,6 @@
         mass-produced rubbish"
       - everyone fired
       - implement Android back button logic
-      
-  + create a screen shot interface
-      - ~~create platform-specific classes as described at~~
-        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~implement for desktop~~
-      - improve desktop implementation
-          - sensible timestamped filename
-      - implement for android
-      - implement for webgl
       
   + create TitleScreen class
       - pizza party, a party for pizza

@@ -85,7 +85,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), this, game.skin,
-                game.bundle, game.screenshot, game.assets);
+                game.bundle, game.captureIO, game.assets);
         uiStage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), game.skin);
@@ -98,7 +98,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void capturePizza() {
         game.assets.loadPostcardAssets();
-        game.screenshot.savePizza(pizza, game.assets);
+        game.captureIO.savePizza(pizza, game.assets);
     }
 
     public void cook() {

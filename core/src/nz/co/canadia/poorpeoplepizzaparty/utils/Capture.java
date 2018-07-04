@@ -1,22 +1,20 @@
-package nz.co.canadia.poorpeoplepizzaparty.desktop;
+package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
-public class DesktopScreenshot implements Screenshot {
-    @Override
-    public Pixmap capturePizza(Pizza pizza) {
+/**
+ * The Capture class is used to capture a Pixmap from the game.
+ */
+
+public class Capture {
+    public static Pixmap capturePizza(Pizza pizza) {
 
         SpriteBatch batch = new SpriteBatch();
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
@@ -42,19 +40,5 @@ public class DesktopScreenshot implements Screenshot {
         batch.dispose();
         buffer.dispose();
         return pixmap;
-    }
-
-    @Override
-    public void savePizza(Pizza pizza, Assets assets) {
-        int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
-                - Constants.BASE_X;
-        int pizzaY = Constants.BASE_Y;
-        Pixmap pizzaPixmap = capturePizza(pizza);
-        Pixmap postcardPixmap = assets.get("graphics/postcard.png",
-                Pixmap.class);
-        postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
-        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
-                postcardPixmap);
-        pizzaPixmap.dispose();
     }
 }

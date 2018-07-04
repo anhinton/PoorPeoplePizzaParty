@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
@@ -22,11 +22,11 @@ public class PoorPeoplePizzaParty extends Game {
     public ShapeRenderer shapeRenderer;
     public UiSkin skin;
     public I18NBundle bundle;
-    public Screenshot screenshot;
+    public CaptureIO captureIO;
     private UiFont uiFont;
 
-    public PoorPeoplePizzaParty(Screenshot screenshot, UiFont uiFont) {
-        this.screenshot = screenshot;
+    public PoorPeoplePizzaParty(CaptureIO captureIO, UiFont uiFont) {
+        this.captureIO = captureIO;
         this.uiFont = uiFont;
     }
 
