@@ -4,6 +4,7 @@
       - ~~create platform-specific classes as described at~~
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~implement for desktop~~
+      - ~~split Screenshot into Capture class and CaptureIO interface~~
       - improve desktop implementation
           - sensible timestamped filename
       - implement for android

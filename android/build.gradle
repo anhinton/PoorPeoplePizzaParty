@@ -19,7 +19,7 @@ android {
     }
     defaultConfig {
         applicationId "nz.co.canadia.poorpeoplepizzaparty"
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion 27
     }
 }
