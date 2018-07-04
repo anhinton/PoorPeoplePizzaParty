@@ -3,6 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 
+import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class AndroidScreenshot implements Screenshot {
@@ -14,8 +15,8 @@ public class AndroidScreenshot implements Screenshot {
     }
 
     @Override
-    public void saveCapture(Pixmap pixmap) {
+    public void savePizza(Pizza pizza, Assets assets) {
         Gdx.app.log("AndroidScreenshot",
-                "would have saved a Pixmap to disk");
+                "would have saved pizza postcard to disk");
     }
 }

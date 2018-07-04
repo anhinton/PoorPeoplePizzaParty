@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
 
 public class HtmlScreenshot implements Screenshot {
@@ -18,10 +19,10 @@ public class HtmlScreenshot implements Screenshot {
     }
 
     @Override
-    public void saveCapture(Pixmap pixmap) {
+    public void savePizza(Pizza pizza, Assets assets) {
         // TODO: remove debug logging
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Gdx.app.log("HtmlScreenshot",
-                "would have saved a Pixmap to disk");
+                "would have saved a pizza postcard to disk");
     }
 }

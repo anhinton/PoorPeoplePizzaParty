@@ -7,5 +7,5 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 public interface Screenshot {
     Pixmap capturePizza(Pizza pizza);
 
-    void saveCapture(Pixmap pixmap);
+    void savePizza(Pizza pizza, Assets assets);
 }
