@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.desktop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,9 +18,13 @@ public class DesktopScreenshot implements Screenshot {
     public Pixmap capturePizza(Pizza pizza) {
 
         SpriteBatch batch = new SpriteBatch();
-
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
                 Constants.GAME_WIDTH, Constants.GAME_HEIGHT, false);
+
+        OrthographicCamera camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT);
+        batch.setProjectionMatrix(camera.combined);
 
         buffer.begin();
         batch.begin();
