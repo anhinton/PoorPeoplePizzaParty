@@ -1,11 +1,13 @@
-package nz.co.canadia.poorpeoplepizzaparty;
+ package nz.co.canadia.poorpeoplepizzaparty;
 
-import android.content.Context;
 import android.os.Environment;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
+
+import java.io.File;
+import java.security.Timestamp;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
@@ -13,13 +15,6 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class AndroidCaptureIO implements CaptureIO {
-
-    private final Context context;
-
-    public AndroidCaptureIO(Context context) {
-
-        this.context = context;
-    }
 
     @Override
     public void savePizza(Pizza pizza, Assets assets) {
@@ -31,17 +26,12 @@ public class AndroidCaptureIO implements CaptureIO {
                 Pixmap.class);
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
 
-        if (ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.WRITE_CALENDAR)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-        }
+        File filePath = new File(Environment.DIRECTORY_PICTURES,
+                "Pizza");
+        filePath = new File(filePath, "mypixmap.png");
 
-        String s = Environment.getExternalStorageState();
-
-        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
+        PixmapIO.writePNG(Gdx.files.external(filePath.toString()),
                 postcardPixmap);
         pizzaPixmap.dispose();
-        Gdx.app.log("AndroidCaptureIO",
-                "would have saved pizza postcard to disk");
     }
 }

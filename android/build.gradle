@@ -19,8 +19,8 @@ android {
     }
     defaultConfig {
         applicationId "nz.co.canadia.poorpeoplepizzaparty"
-        minSdkVersion 14
-        targetSdkVersion 27
+        minSdkVersion 8
+        targetSdkVersion 20
     }
 }
 // called every time gradle gets executed, takes the native dependencies of

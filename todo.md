@@ -8,6 +8,11 @@
       - improve desktop implementation
           - sensible timestamped filename
       - implement for android
+          - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
+            directory~~
+          - ~~**NB:** needed to drop Android target SDK back to 20 (Android 4.4) 
+            to avoid new Android permission model introduced in Android 6.0~~
+          - do improvements?
       - implement for webgl
   
   + implement Cook screen
