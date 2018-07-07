@@ -1,8 +1,11 @@
 package nz.co.canadia.poorpeoplepizzaparty.desktop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
+
+import java.io.File;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
@@ -20,7 +23,9 @@ public class DesktopCaptureIO implements CaptureIO {
         Pixmap postcardPixmap = assets.get("graphics/postcard.png",
                 Pixmap.class);
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
-        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
+
+        File filePath = new File("PoorPeoplePizzaParty", "mypixmap.png");
+        PixmapIO.writePNG(Gdx.files.external(filePath.toString()),
                 postcardPixmap);
         pizzaPixmap.dispose();
     }
