@@ -5,8 +5,10 @@
         <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - ~~implement for desktop~~
       - ~~split Screenshot into Capture class and CaptureIO interface~~
-      - improve desktop implementation
-          - sensible timestamped filename
+      - ~~generate sensible timestamped filename~~
+          - ~~Capture.fileName() returns filename~~
+          - ~~CaptureIO instances use Capture.fileName() in savePizza() to
+            save to sensible location~~
       - implement for android
           - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
             directory~~
@@ -14,6 +16,8 @@
             to avoid new Android permission model introduced in Android 6.0~~
           - do improvements?
       - implement for webgl
+      - fix transparent swirl (through to postcard background) when swirl is
+        last placed
   
   + implement Cook screen
       - ~~countdown timer~~
