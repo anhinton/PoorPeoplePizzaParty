@@ -15,9 +15,12 @@
           - ~~**NB:** needed to drop Android target SDK back to 20 (Android 4.4) 
             to avoid new Android permission model introduced in Android 6.0~~
           - do improvements?
+      - shift identical postcard Pixmap creation code from instances of
+        CaptureIO.savePizza() to Capture.pizzaPixmap()
       - implement for webgl
-      - fix transparent swirl (through to postcard background) when swirl is
-        last placed
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
   
   + implement Cook screen
       - ~~countdown timer~~
