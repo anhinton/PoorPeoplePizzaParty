@@ -54,7 +54,7 @@ public class Capture {
      */
     public static String fileName(Locale locale) {
         SimpleDateFormat df =
-                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", locale);
+                new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.SSS", locale);
         return Constants.CAPTURE_DIR + "/" + Constants.CAPTURE_PREFIX
                 + df.format(new Date()) + Constants.CAPTURE_SUFFX;
     }
