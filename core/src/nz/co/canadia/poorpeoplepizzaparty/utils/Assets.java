@@ -47,7 +47,7 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Load assets for Screenshot.savePizza()
+     * Load assets for CaptureIO.savePizza()
      */
     public void loadPostcardAssets() {
         super.load("graphics/postcard.png", Pixmap.class);

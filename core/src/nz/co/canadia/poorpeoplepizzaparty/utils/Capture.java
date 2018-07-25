@@ -1,22 +1,26 @@
-package nz.co.canadia.poorpeoplepizzaparty.desktop;
+package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import nz.co.canadia.poorpeoplepizzaparty.Pizza;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-public class DesktopScreenshot implements Screenshot {
-    @Override
-    public Pixmap capturePizza(Pizza pizza) {
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+
+/**
+ * The Capture class is used to capture a Pixmap from the game.
+ */
+
+public class Capture {
+    private static Pixmap capturePizza(Pizza pizza) {
 
         SpriteBatch batch = new SpriteBatch();
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
@@ -44,17 +48,29 @@ public class DesktopScreenshot implements Screenshot {
         return pixmap;
     }
 
-    @Override
-    public void savePizza(Pizza pizza, Assets assets) {
+    /**
+     * Returns a timestamped filename string
+     * @return String with timestamp
+     */
+    public static String fileName(Locale locale) {
+        SimpleDateFormat df =
+                new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.SSS", locale);
+        return Constants.CAPTURE_DIR + "/" + Constants.CAPTURE_PREFIX
+                + df.format(new Date()) + Constants.CAPTURE_SUFFX;
+    }
+
+    /**
+     * Returns a pixmap of a Pizza postcard
+     * @return pixmap
+     */
+    public static Pixmap postcardPixmap(Pizza pizza, Assets assets) {
         int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
                 - Constants.BASE_X;
         int pizzaY = Constants.BASE_Y;
-        Pixmap pizzaPixmap = capturePizza(pizza);
+        Pixmap pizzaPixmap = Capture.capturePizza(pizza);
         Pixmap postcardPixmap = assets.get("graphics/postcard.png",
                 Pixmap.class);
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
-        PixmapIO.writePNG(Gdx.files.external("mypixmap.png"),
-                postcardPixmap);
-        pizzaPixmap.dispose();
+        return postcardPixmap;
     }
 }

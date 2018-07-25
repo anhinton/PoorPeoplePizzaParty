@@ -79,4 +79,9 @@ public class Constants {
     // Cook timer
     public static final float COOK_TIME_TOTAL = 3f;
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
+
+    // Screenshot filename
+    public static final String CAPTURE_PREFIX = "pizza-";
+    public static final String CAPTURE_SUFFX = ".png";
+    public static final String CAPTURE_DIR = GAME_NAME.replaceAll("[ ]", "");
 }
