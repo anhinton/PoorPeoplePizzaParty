@@ -16,6 +16,8 @@ public class HtmlCaptureIO implements CaptureIO {
     @Override
     public void savePizza(Pizza pizza, Assets assets, Locale locale) {
         Pixmap postcardPixmap = Capture.postcardPixmap(pizza, assets);
+
+        postcardPixmap.getCanvasElement().toDataUrl("hello.png");
         postcardPixmap.dispose();
 
         // TODO: remove debug logging
