@@ -1,7 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -20,7 +19,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Screenshot;
+import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
@@ -50,7 +49,7 @@ public class PizzaUi extends Table {
 
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
-                   final I18NBundle bundle, final Screenshot screenshot,
+                   final I18NBundle bundle, final CaptureIO captureIO,
                    final AssetManager assets) {
 
         this.screenWidth = screenWidth;

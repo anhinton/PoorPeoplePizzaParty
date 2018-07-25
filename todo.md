@@ -1,17 +1,9 @@
 # TODO
-
-  + modify screen shot class to grab just the pizza base and toppings
-      - ~~use this to create a pixmap to be passed to ServeBossScreen and 
-        ServeWorkersScreen~~
-          - ~~capturePizza() create pizza pixmap~~
-      - ~~**question:** why is pizza too small in the PNG I produce?
-        **answer:** because I hadn't set up a camera for the frame buffer~~
-      - ~~update AndroidScreenshot and HtmlScreenshot~~
-          - ~~**NB** the capturePizza() method should always return a Pixmap,
-            and never null, as a pixmap will be disposed in 
-            PizzaScreen.capturePizza()~~
-      - ~~make a background to put behind this pizza for saving screen shot~~
-          - ~~saveCapture() adds pizza texture to a background creates PNG~~
+        
+  + implement for HtmlDesktopCaptureIO
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -36,15 +28,6 @@
       - everyone fired
       - implement Android back button logic
       
-  + create a screen shot interface
-      - ~~create platform-specific classes as described at~~
-        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~implement for desktop~~
-      - improve desktop implementation
-          - sensible timestamped filename
-      - implement for android
-      - implement for webgl
-      
   + create TitleScreen class
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
@@ -57,6 +40,39 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+      
+  + ~~create a screen shot interface~~
+      - ~~create platform-specific classes as described at~~
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+        
+  + ~~implement DesktopCaptureIO~~
+      - ~~split Screenshot into Capture class and CaptureIO interface~~
+      - ~~generate sensible timestamped filename~~
+          - ~~Capture.fileName() returns filename~~
+          - ~~CaptureIO instances use Capture.fileName() in savePizza() to
+            save to sensible location~~
+            
+  + ~~implement AndroidDesktopCaptureIO~~
+          - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
+            directory~~
+          - ~~**NB:** needed to drop Android target SDK back to 20 (Android 4.4) 
+            to avoid new Android permission model introduced in Android 6.0~~
+          - do improvements?
+      - ~~shift identical postcard Pixmap creation code from instances of
+        CaptureIO.savePizza() to Capture.postcardPixmap()~~
+
+  + ~~modify screen shot class to grab just the pizza base and toppings~~
+      - ~~use this to create a pixmap to be passed to ServeBossScreen and 
+        ServeWorkersScreen~~
+          - ~~capturePizza() create pizza pixmap~~
+      - ~~**question:** why is pizza too small in the PNG I produce?
+        **answer:** because I hadn't set up a camera for the frame buffer~~
+      - ~~update AndroidScreenshot and HtmlScreenshot~~
+          - ~~**NB** the capturePizza() method should always return a Pixmap,
+            and never null, as a pixmap will be disposed in 
+            PizzaScreen.capturePizza()~~
+      - ~~make a background to put behind this pizza for saving screen shot~~
+          - ~~saveCapture() adds pizza texture to a background creates PNG~~
 
   + ~~don't add toppings when on Topping Menu~~
   
