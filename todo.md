@@ -1,6 +1,9 @@
 # TODO
         
   + implement for HtmlDesktopCaptureIO
+      - remove fancy timestamp code using SimpleDateFormat from
+        Capture.fileName() as this does not seem to be available to Html.
+        filename now uses TimeUtils.millis()
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed

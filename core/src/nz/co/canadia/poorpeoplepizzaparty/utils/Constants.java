@@ -23,8 +23,8 @@ public class Constants {
     public static final float GAME_ASPECT_RATIO =
             (float)GAME_WIDTH / GAME_HEIGHT;
 
-    public static final int DESKTOP_WIDTH = 1152;
-    public static final int DESKTOP_HEIGHT = 720;
+    public static final int DESKTOP_WIDTH = 960;
+    public static final int DESKTOP_HEIGHT = 600;
 
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
@@ -81,7 +81,7 @@ public class Constants {
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
 
     // Screenshot filename
-    public static final String CAPTURE_PREFIX = "pizza-";
+    public static final String CAPTURE_PREFIX = "pizza";
     public static final String CAPTURE_SUFFX = ".png";
     public static final String CAPTURE_DIR = GAME_NAME.replaceAll("[ ]", "");
 }
