@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -47,7 +48,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         pizza = new Pizza(game.assets);
     }
 
-    public PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
+    PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
         showedToppingTutorial = true;
         initialise();
@@ -85,7 +86,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), this, game.skin,
-                game.bundle, game.screenshot, game.assets);
+                game.bundle, game.captureIO, game.assets);
         uiStage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), game.skin);
@@ -94,6 +95,11 @@ public class PizzaScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(uiStage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+    }
+
+    public void capturePizza() {
+        game.assets.loadPostcardAssets();
+        game.captureIO.savePizza(pizza, game.assets, game.locale);
     }
 
     public void cook() {

@@ -58,3 +58,8 @@ by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
 "[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
 by Mariuszjbie is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
+
+`graphics/postcard.png`
+"[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
+by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
+under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
