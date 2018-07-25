@@ -17,13 +17,7 @@ public class DesktopCaptureIO implements CaptureIO {
 
     @Override
     public void savePizza(Pizza pizza, Assets assets, Locale locale) {
-        int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
-                - Constants.BASE_X;
-        int pizzaY = Constants.BASE_Y;
-        Pixmap pizzaPixmap = Capture.capturePizza(pizza);
-        Pixmap postcardPixmap = assets.get("graphics/postcard.png",
-                Pixmap.class);
-        postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
+        Pixmap postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
         FileHandle filePath;
         if (Gdx.files.external("Pictures").exists()) {
@@ -38,6 +32,6 @@ public class DesktopCaptureIO implements CaptureIO {
         }
 
         PixmapIO.writePNG(filePath, postcardPixmap);
-        pizzaPixmap.dispose();
+        postcardPixmap.dispose();
     }
 }

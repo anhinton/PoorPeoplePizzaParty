@@ -20,7 +20,7 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
  */
 
 public class Capture {
-    public static Pixmap capturePizza(Pizza pizza) {
+    private static Pixmap capturePizza(Pizza pizza) {
 
         SpriteBatch batch = new SpriteBatch();
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
@@ -57,5 +57,20 @@ public class Capture {
                 new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", locale);
         return Constants.CAPTURE_DIR + "/" + Constants.CAPTURE_PREFIX
                 + df.format(new Date()) + Constants.CAPTURE_SUFFX;
+    }
+
+    /**
+     * Returns a pixmap of a Pizza postcard
+     * @return pixmap
+     */
+    public static Pixmap postcardPixmap(Pizza pizza, Assets assets) {
+        int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
+                - Constants.BASE_X;
+        int pizzaY = Constants.BASE_Y;
+        Pixmap pizzaPixmap = Capture.capturePizza(pizza);
+        Pixmap postcardPixmap = assets.get("graphics/postcard.png",
+                Pixmap.class);
+        postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
+        return postcardPixmap;
     }
 }
