@@ -1,4 +1,7 @@
 # TODO
+
+  + target Android SDK 28
+      - fix screenshot permissions (oh no!)
         
   + implement for HtmlDesktopCaptureIO
       - ~~remove fancy timestamp code using SimpleDateFormat from
