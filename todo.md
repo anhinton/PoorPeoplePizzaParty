@@ -1,12 +1,8 @@
 # TODO
 
-  + target Android SDK 28
-      - fix screenshot permissions (oh no!)
-        
-  + implement for HtmlDesktopCaptureIO
-      - ~~remove fancy timestamp code using SimpleDateFormat from
-        Capture.fileName() as this does not seem to be available to Html.
-        filename now uses TimeUtils.millis()~~
+  + implement image Sharing on Android
+      - replace PNG saving in AndroidCaptureIO with Android Sharing Files
+        <https://developer.android.com/training/secure-file-sharing/>
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
@@ -45,7 +41,19 @@
   
   + investigate desktop full screen and window resizing
   
+  + investigate html build
+      - can I screenshot?
+  
 ## Done
+        
+  + ~~implement for HtmlDesktopCaptureIO~~
+      - ~~remove fancy timestamp code using SimpleDateFormat from
+        Capture.fileName() as this does not seem to be available to Html.
+        filename now uses TimeUtils.millis()~~
+      - ~~NO LONGER DOING AN HTML BUILD~~
+
+  + ~~target Android SDK 28~~
+      - ~~fix screenshot permissions (oh no!)~~
       
   + ~~create a screen shot interface~~
       - ~~create platform-specific classes as described at~~
