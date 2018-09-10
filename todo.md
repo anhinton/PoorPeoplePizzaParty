@@ -1,7 +1,8 @@
 # TODO
 
-  + target Android SDK 28
-      - fix screenshot permissions (oh no!)
+  + implement image Sharing on Android
+      - replace PNG saving in AndroidCaptureIO with Android Sharing Files
+        <https://developer.android.com/training/secure-file-sharing/>
         
   + implement for HtmlDesktopCaptureIO
       - ~~remove fancy timestamp code using SimpleDateFormat from
@@ -46,6 +47,9 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~target Android SDK 28~~
+      - ~~fix screenshot permissions (oh no!)~~
       
   + ~~create a screen shot interface~~
       - ~~create platform-specific classes as described at~~
