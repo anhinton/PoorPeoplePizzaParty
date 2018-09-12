@@ -62,6 +62,7 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         assets.dispose();
         batch.dispose();
+        captureIO.dispose();
         shapeRenderer.dispose();
         skin.dispose();
     }

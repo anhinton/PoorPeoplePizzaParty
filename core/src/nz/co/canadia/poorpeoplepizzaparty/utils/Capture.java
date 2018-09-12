@@ -50,8 +50,7 @@ public class Capture {
      * @return String with timestamp
      */
     public static String fileName(Locale locale) {
-        return Constants.CAPTURE_DIR + "/" + Constants.CAPTURE_PREFIX
-                + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
+        return Constants.CAPTURE_PREFIX + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
     }
 
     /**

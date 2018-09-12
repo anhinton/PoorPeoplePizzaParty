@@ -46,10 +46,4 @@ public class AndroidLauncher extends AndroidApplication {
             }
         }
     }
-
-    @Override
-    protected void onDestroy() {
-	    captureIO.dispose();
-	    super.onDestroy();
-    }
 }
