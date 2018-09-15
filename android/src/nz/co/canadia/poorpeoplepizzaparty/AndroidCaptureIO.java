@@ -1,17 +1,15 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
+import java.io.File;
 import java.util.Locale;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
@@ -38,7 +36,7 @@ public class AndroidCaptureIO implements CaptureIO {
 
         sharePostcardPNG();
 
-        deletePostcardPNG();
+//        deletePostcardPNG();
     }
 
     private void deletePostcardPNG() {
@@ -48,11 +46,26 @@ public class AndroidCaptureIO implements CaptureIO {
     }
 
     private void sharePostcardPNG() {
+        // get postcard file URI
+        File postcardFile = postcardFilePath.file();
+        Uri postcardUri = FileProvider.getUriForFile(activity.getContext(),
+                "nz.co.canadia.poorpeoplepizzaparty.fileprovider", postcardFile);
+
+        // grant permission for apps to read postcardUri
+        activity.getContext().grantUriPermission(
+                "nz.co.canadia.poorpeoplepizzaparty.fileprovider",
+                postcardUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // share postcard via an Intent
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-//        shareIntent.putExtra(Intent.EXTRA_STREAM, uriToImage);
-//        sendIntent.setType("image/png");
-//        activity.startActivity(Intent.createChooser(sendIntent, activity.getResources().getText(R.string.send_to)));
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                activity.getResources().getText(R.string.share_text));
+        shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
+        shareIntent.setType("image/png");
+        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        activity.startActivity(Intent.createChooser(shareIntent,
+                activity.getResources().getText(R.string.share_header)));
     }
 
     public void writePostcardPNG() {
@@ -61,7 +74,7 @@ public class AndroidCaptureIO implements CaptureIO {
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
     }
 
-    void dispose() {
+    public void dispose() {
         postcardPixmap.dispose();
     }
 
