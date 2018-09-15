@@ -153,6 +153,5 @@ public class CookScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        game.assets.disposeCookScreenAssets();
     }
 }

@@ -15,23 +15,27 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class DesktopCaptureIO implements CaptureIO {
 
+    private Pixmap postcardPixmap;
+
     @Override
     public void savePizza(Pizza pizza, Assets assets, Locale locale) {
-        Pixmap postcardPixmap = Capture.postcardPixmap(pizza, assets);
+        postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
-        FileHandle filePath;
+        FileHandle filePath = Gdx.files.external(Constants.CAPTURE_DIR + "/"
+                + Capture.fileName());
         if (Gdx.files.external("Pictures").exists()) {
             filePath = Gdx.files.external(
-                    "Pictures/" + Capture.fileName(locale));
+                    "Pictures/" + filePath);
         } else if (Gdx.files.external("Documents").exists()) {
             filePath = Gdx.files.external(
-                    "Documents/" + Capture.fileName(locale));
-        } else {
-            filePath = Gdx.files.external(
-                    Capture.fileName(locale));
+                    "Documents/" + filePath);
         }
 
         PixmapIO.writePNG(filePath, postcardPixmap);
+    }
+
+    @Override
+    public void dispose() {
         postcardPixmap.dispose();
     }
 }

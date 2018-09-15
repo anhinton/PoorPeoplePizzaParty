@@ -1,64 +1,74 @@
- package nz.co.canadia.poorpeoplepizzaparty;
+package nz.co.canadia.poorpeoplepizzaparty;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
+import java.io.File;
 import java.util.Locale;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
- public class AndroidCaptureIO implements CaptureIO {
+public class AndroidCaptureIO implements CaptureIO {
 
-     private AndroidLauncher activity;
-     private Pixmap postcardPixmap;
-     private FileHandle postcardFilePath;
+    private AndroidLauncher activity;
+    private Pixmap postcardPixmap;
+    private FileHandle postcardFilePath;
 
-     AndroidCaptureIO(AndroidLauncher activity) {
-         this.activity = activity;
-     }
-
-     @Override
-    public void savePizza(Pizza pizza, Assets assets, Locale locale) {
-         postcardPixmap = Capture.postcardPixmap(pizza, assets);
-
-         postcardFilePath =
-                 Gdx.files.external(Environment.DIRECTORY_PICTURES + "/"
-                         + Capture.fileName(locale));
-
-         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                 == PackageManager.PERMISSION_GRANTED) {
-             Gdx.app.log("AndroidCaptureIO",  "permission to save files granted");
-             writePostcardPNG();
-         } else {
-             Gdx.app.log("AndroidCaptureIO", "no permission to save files");
-             requestSavePizza();
-         }
+    AndroidCaptureIO(AndroidLauncher activity) {
+        this.activity = activity;
+        postcardPixmap = new Pixmap(0, 0, Pixmap.Format.RGBA8888);
     }
 
-     private void requestSavePizza() {
-         ActivityCompat.requestPermissions(activity,
-                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                 AndroidPermissions.REQUEST_SAVE_PIZZA);
-     }
+    @Override
+    public void savePizza(Pizza pizza, Assets assets, Locale locale) {
+        postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
-     public void writePostcardPNG() {
-         Gdx.app.log("AndroidCaptureIO",
-                 "writing postcard PNG to EXTERNAL_FILES");
-         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
-     }
+        postcardFilePath = Gdx.files.local("postcards/" + Capture.fileName());
 
-     void dispose() {
-         postcardPixmap.dispose();
-     }
+        writePostcardPNG();
 
- }
+        sharePostcardPNG();
+    }
+
+    private void sharePostcardPNG() {
+        // get postcard file URI
+        File postcardFile = postcardFilePath.file();
+        Uri postcardUri = FileProvider.getUriForFile(activity.getContext(),
+                "nz.co.canadia.poorpeoplepizzaparty.fileprovider", postcardFile);
+
+        // grant permission for apps to read postcardUri
+        activity.getContext().grantUriPermission(
+                "nz.co.canadia.poorpeoplepizzaparty.fileprovider",
+                postcardUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // share postcard via an Intent
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                activity.getResources().getText(R.string.share_text));
+        shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
+        shareIntent.setType("image/png");
+        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        activity.startActivity(Intent.createChooser(shareIntent,
+                activity.getResources().getText(R.string.share_header)));
+    }
+
+    private void writePostcardPNG() {
+        Gdx.app.log("AndroidCaptureIO",
+                "writing postcard PNG to " + postcardFilePath.toString());
+        PixmapIO.writePNG(postcardFilePath, postcardPixmap);
+    }
+
+    public void dispose() {
+        postcardPixmap.dispose();
+    }
+
+}

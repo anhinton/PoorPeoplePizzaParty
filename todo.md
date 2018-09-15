@@ -3,9 +3,6 @@
   + implement image Sharing on Android
       - replace PNG saving in AndroidCaptureIO with Android Sharing Files
         <https://developer.android.com/training/secure-file-sharing/>
-      
-  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
-    is last placed
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -34,6 +31,9 @@
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
         to here
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
       
   + do a Vector Android app icon
   

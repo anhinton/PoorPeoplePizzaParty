@@ -6,4 +6,6 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 
 public interface CaptureIO {
     void savePizza(Pizza pizza, Assets assets, Locale locale);
+
+    void dispose();
 }

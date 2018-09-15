@@ -62,7 +62,22 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         assets.dispose();
         batch.dispose();
+        captureIO.dispose();
         shapeRenderer.dispose();
         skin.dispose();
+
+        // clean up shared postcard files, if they exist
+        switch (Gdx.app.getType()) {
+            case Android:
+                if (Gdx.files.local("postcards/").exists()) {
+                    Gdx.app.log("PoorPeoplePizzaParty", "deleting postcards");
+                    FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
+                    for (FileHandle file: postcardFiles) {
+                        file.delete();
+                        Gdx.app.log("PoorPeoplePizzaParty",
+                                file.toString() + " deleted");
+                    }
+                }
+        }
     }
 }

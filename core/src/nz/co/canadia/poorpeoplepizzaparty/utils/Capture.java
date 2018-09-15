@@ -8,8 +8,6 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.util.Locale;
-
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 
 /**
@@ -49,9 +47,8 @@ public class Capture {
      * Returns a timestamped filename string
      * @return String with timestamp
      */
-    public static String fileName(Locale locale) {
-        return Constants.CAPTURE_DIR + "/" + Constants.CAPTURE_PREFIX
-                + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
+    public static String fileName() {
+        return Constants.CAPTURE_PREFIX + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
     }
 
     /**
@@ -62,10 +59,26 @@ public class Capture {
         int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
                 - Constants.BASE_X;
         int pizzaY = Constants.BASE_Y;
+
+        // create temporary Pixmap from Pizza
         Pixmap pizzaPixmap = Capture.capturePizza(pizza);
-        Pixmap postcardPixmap = assets.get("graphics/postcard.png",
+
+        // load postcard background Pixmap
+        Pixmap backgroundPixmap = assets.get("graphics/postcard.png",
                 Pixmap.class);
+
+        // create new Pixmap to return as postcardPixmap
+        Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
+                backgroundPixmap.getHeight(), backgroundPixmap.getFormat());
+
+        // draw background to postcardPixmap
+        postcardPixmap.drawPixmap(backgroundPixmap, 0, 0);
+
+        // draw temporary pizzaPixmap to postcardPixmap
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
+        // dispose of temporary pizzaPixmap
+        pizzaPixmap.dispose();
+
         return postcardPixmap;
     }
 }
