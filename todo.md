@@ -1,6 +1,12 @@
 # TODO
-
-  + implement image Sharing on Android
+            
+  + implement AndroidDesktopCaptureIO
+          - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
+            directory~~
+          - ~~**NB:** needed to drop Android target SDK back to 20 (Android 4.4) 
+            to avoid new Android permission model introduced in Android 6.0~~
+      - ~~shift identical postcard Pixmap creation code from instances of
+        CaptureIO.savePizza() to Capture.postcardPixmap()~~
       - replace PNG saving in AndroidCaptureIO with Android Sharing Files
         <https://developer.android.com/training/secure-file-sharing/>
   
@@ -46,11 +52,10 @@
   
 ## Done
         
-  + ~~implement for HtmlDesktopCaptureIO~~
+  + ~~implement for HtmlDesktopCaptureIO NO LONGER DOING AN HTML BUILD~~
       - ~~remove fancy timestamp code using SimpleDateFormat from
         Capture.fileName() as this does not seem to be available to Html.
         filename now uses TimeUtils.millis()~~
-      - ~~NO LONGER DOING AN HTML BUILD~~
 
   + ~~target Android SDK 28~~
       - ~~fix screenshot permissions (oh no!)~~
@@ -65,15 +70,6 @@
           - ~~Capture.fileName() returns filename~~
           - ~~CaptureIO instances use Capture.fileName() in savePizza() to
             save to sensible location~~
-            
-  + ~~implement AndroidDesktopCaptureIO~~
-          - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
-            directory~~
-          - ~~**NB:** needed to drop Android target SDK back to 20 (Android 4.4) 
-            to avoid new Android permission model introduced in Android 6.0~~
-          - do improvements?
-      - ~~shift identical postcard Pixmap creation code from instances of
-        CaptureIO.savePizza() to Capture.postcardPixmap()~~
 
   + ~~modify screen shot class to grab just the pizza base and toppings~~
       - ~~use this to create a pixmap to be passed to ServeBossScreen and 
