@@ -21,7 +21,6 @@ public class PoorPeoplePizzaParty extends Game {
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
     public UiSkin skin;
-    public Locale locale;
     public I18NBundle bundle;
     public CaptureIO captureIO;
     private UiFont uiFont;
@@ -47,7 +46,7 @@ public class PoorPeoplePizzaParty extends Game {
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
                 Gdx.files.internal("i18n/StringBundle");
-        locale = new Locale("en", "GB");
+        Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
         this.setScreen(new PizzaScreen(this));
