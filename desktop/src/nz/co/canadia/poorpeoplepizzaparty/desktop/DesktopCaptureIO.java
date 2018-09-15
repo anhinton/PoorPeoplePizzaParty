@@ -22,7 +22,7 @@ public class DesktopCaptureIO implements CaptureIO {
         postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
         FileHandle filePath = Gdx.files.external(Constants.CAPTURE_DIR + "/"
-                + Capture.fileName(locale));
+                + Capture.fileName());
         if (Gdx.files.external("Pictures").exists()) {
             filePath = Gdx.files.external(
                     "Pictures/" + filePath);

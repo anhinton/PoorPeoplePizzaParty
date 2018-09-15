@@ -1,6 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -42,20 +41,12 @@ public class Assets extends AssetManager {
         return toppingPaths.get(toppingName);
     }
 
-    public boolean isPostcardAssetsLoaded() {
-        return super.isLoaded("graphics/postcard.png", Pixmap.class);
-    }
-
     /**
      * Load assets for CaptureIO.savePizza()
      */
     public void loadPostcardAssets() {
         super.load("graphics/postcard.png", Pixmap.class);
         super.finishLoading();
-    }
-
-    public void disposePostcardAssets() {
-        super.unload("graphics/postcard.png");
     }
 
     /**
@@ -65,10 +56,6 @@ public class Assets extends AssetManager {
         super.load("graphics/headers/cookScreenPizza.png",
                 Texture.class, param);
         super.finishLoading();
-    }
-
-    public void disposeCookScreenAssets() {
-        super.unload("graphics/headers/cookScreenPizza.png");
     }
 
     /**
@@ -88,15 +75,5 @@ public class Assets extends AssetManager {
         super.load("graphics/icons/undo.png", Texture.class,
                 param);
         super.finishLoading();
-    }
-
-    public void disposePizzaSceenAssets(
-            ObjectMap<Constants.ToppingName, String> textureFiles) {
-        for (String s: textureFiles.values()) {
-            super.unload(s);
-        }
-        super.unload("graphics/headers/pizzaScreen.png");
-        super.unload("graphics/icons/camera.png");
-        super.unload("graphics/icons/undo.png");
     }
 }

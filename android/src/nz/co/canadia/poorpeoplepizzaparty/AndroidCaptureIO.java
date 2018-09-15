@@ -31,7 +31,7 @@ public class AndroidCaptureIO implements CaptureIO {
     public void savePizza(Pizza pizza, Assets assets, Locale locale) {
         postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
-        postcardFilePath = Gdx.files.local("postcards/" + Capture.fileName(locale));
+        postcardFilePath = Gdx.files.local("postcards/" + Capture.fileName());
 
         writePostcardPNG();
 

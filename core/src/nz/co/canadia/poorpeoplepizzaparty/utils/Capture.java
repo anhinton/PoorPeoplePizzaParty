@@ -8,8 +8,6 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.util.Locale;
-
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 
 /**
@@ -49,7 +47,7 @@ public class Capture {
      * Returns a timestamped filename string
      * @return String with timestamp
      */
-    public static String fileName(Locale locale) {
+    public static String fileName() {
         return Constants.CAPTURE_PREFIX + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
     }
 
