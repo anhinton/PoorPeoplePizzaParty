@@ -82,5 +82,4 @@ public class Constants {
     // Screenshot filename
     public static final String CAPTURE_PREFIX = "pizza";
     public static final String CAPTURE_SUFFX = ".png";
-    public static final String CAPTURE_DIR = GAME_NAME.replaceAll("[ ]", "");
 }

@@ -6,8 +6,6 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 public class AndroidLauncher extends AndroidApplication {
-    AndroidCaptureIO captureIO;
-
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -16,11 +14,8 @@ public class AndroidLauncher extends AndroidApplication {
 		config.useCompass = false;
 		config.useGyroscope = false;
 		config.useImmersiveMode = false;
-
-		captureIO = new AndroidCaptureIO(this);
-
 		initialize(new PoorPeoplePizzaParty(
-				captureIO,
+				new AndroidCaptureIO(this),
 				new AndroidUiFont()), config);
 	}
 }

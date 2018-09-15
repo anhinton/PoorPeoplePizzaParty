@@ -5,37 +5,44 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
-import java.util.Locale;
+import java.awt.Component;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class DesktopCaptureIO implements CaptureIO {
-
     private Pixmap postcardPixmap;
+    private File captureDir;
 
     @Override
-    public void savePizza(Pizza pizza, Assets assets, Locale locale) {
+    public void savePizza(Pizza pizza, Assets assets) {
         postcardPixmap = Capture.postcardPixmap(pizza, assets);
 
-        FileHandle filePath = Gdx.files.external(Constants.CAPTURE_DIR + "/"
-                + Capture.fileName());
-        if (Gdx.files.external("Pictures").exists()) {
-            filePath = Gdx.files.external(
-                    "Pictures/" + filePath);
-        } else if (Gdx.files.external("Documents").exists()) {
-            filePath = Gdx.files.external(
-                    "Documents/" + filePath);
+        final JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setDialogTitle("Choose save location");
+        if (captureDir != null) {
+            fc.setCurrentDirectory(captureDir);
         }
+        int returnVal = fc.showSaveDialog(new Component() {});
 
-        PixmapIO.writePNG(filePath, postcardPixmap);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            captureDir = fc.getSelectedFile();
+            FileHandle filePath =
+                    Gdx.files.absolute(captureDir + "/" + Capture.fileName());
+            PixmapIO.writePNG(filePath, postcardPixmap);
+        }
     }
 
     @Override
     public void dispose() {
-        postcardPixmap.dispose();
+        if (postcardPixmap != null) {
+            postcardPixmap.dispose();
+        }
     }
 }
