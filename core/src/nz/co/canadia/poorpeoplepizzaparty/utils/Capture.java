@@ -61,10 +61,26 @@ public class Capture {
         int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
                 - Constants.BASE_X;
         int pizzaY = Constants.BASE_Y;
+
+        // create temporary Pixmap from Pizza
         Pixmap pizzaPixmap = Capture.capturePizza(pizza);
-        Pixmap postcardPixmap = assets.get("graphics/postcard.png",
+
+        // load postcard background Pixmap
+        Pixmap backgroundPixmap = assets.get("graphics/postcard.png",
                 Pixmap.class);
+
+        // create new Pixmap to return as postcardPixmap
+        Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
+                backgroundPixmap.getHeight(), backgroundPixmap.getFormat());
+
+        // draw background to postcardPixmap
+        postcardPixmap.drawPixmap(backgroundPixmap, 0, 0);
+
+        // draw temporary pizzaPixmap to postcardPixmap
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
+        // dispose of temporary pizzaPixmap
+        pizzaPixmap.dispose();
+
         return postcardPixmap;
     }
 }

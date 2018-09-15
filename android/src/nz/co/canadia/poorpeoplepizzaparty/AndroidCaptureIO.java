@@ -24,6 +24,7 @@ public class AndroidCaptureIO implements CaptureIO {
 
     AndroidCaptureIO(AndroidLauncher activity) {
         this.activity = activity;
+        postcardPixmap = new Pixmap(0, 0, Pixmap.Format.RGBA8888);
     }
 
     @Override
@@ -35,14 +36,6 @@ public class AndroidCaptureIO implements CaptureIO {
         writePostcardPNG();
 
         sharePostcardPNG();
-
-//        deletePostcardPNG();
-    }
-
-    private void deletePostcardPNG() {
-        Gdx.app.log("AndroidCaptureIO",
-                "deleting postcard PNG " + postcardFilePath.toString());
-        postcardFilePath.delete();
     }
 
     private void sharePostcardPNG() {
@@ -68,7 +61,7 @@ public class AndroidCaptureIO implements CaptureIO {
                 activity.getResources().getText(R.string.share_header)));
     }
 
-    public void writePostcardPNG() {
+    private void writePostcardPNG() {
         Gdx.app.log("AndroidCaptureIO",
                 "writing postcard PNG to " + postcardFilePath.toString());
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
