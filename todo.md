@@ -1,12 +1,4 @@
 # TODO
-        
-  + implement DesktopCaptureIO
-      - ~~split Screenshot into Capture class and CaptureIO interface~~
-      - ~~generate sensible timestamped filename~~
-          - ~~Capture.fileName() returns filename~~
-          - ~~CaptureIO instances use Capture.fileName() in savePizza() to
-            save to sensible location~~
-      - implement choose file location dialog
   
   + implement Cook screen
       - ~~countdown timer~~
@@ -49,6 +41,14 @@
       - can I screenshot?
   
 ## Done
+        
+  + ~~implement DesktopCaptureIO~~
+      - ~~split Screenshot into Capture class and CaptureIO interface~~
+      - ~~generate sensible timestamped filename~~
+          - ~~Capture.fileName() returns filename~~
+          - ~~CaptureIO instances use Capture.fileName() in savePizza() to
+            save to sensible location~~
+      - ~~implement choose file location dialog~~
             
   + ~~implement AndroidDesktopCaptureIO~~
           - ~~save PNG file to `{Environment.DIRECTORY_PICTURES}/PoorPeople` 
