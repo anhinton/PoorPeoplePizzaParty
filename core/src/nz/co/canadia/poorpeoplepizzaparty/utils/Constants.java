@@ -38,7 +38,7 @@ public class Constants {
     }
 
     // everything is blocked out in terms of this unit
-    public static final int UNIT = 20;
+    static final int UNIT = 20;
 
     // UI font size is is 24pt/32px
     public static final float UI_FONT_RATIO = 32f / GAME_HEIGHT;
@@ -80,6 +80,9 @@ public class Constants {
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
 
     // Screenshot filename
-    public static final String CAPTURE_PREFIX = "pizza";
-    public static final String CAPTURE_SUFFX = ".png";
+    static final String CAPTURE_PREFIX = "pizza";
+    static final String CAPTURE_SUFFX = ".png";
+
+    // Options for serving cooked pizza
+    public enum ServeOption { BOSS, WORKERS }
 }

@@ -1,7 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -12,23 +11,27 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
-import nz.co.canadia.poorpeoplepizzaparty.ui.CookUi;
+import nz.co.canadia.poorpeoplepizzaparty.ui.BossUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class CookScreen implements InputProcessor, Screen {
+/**
+ * The ServeBossScreen, where you give your boss the pizza you made and he decides your fate
+ */
+
+public class ServeBossScreen implements InputProcessor, Screen {
 
     private final FitViewport viewport;
     private final PoorPeoplePizzaParty game;
     private final Stage stage;
     private final Pizza pizza;
-    private CookUi cookUi;
+    private final BossUi bossUi;
 
-    CookScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
+    public ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
         this.game = game;
         this.pizza = pizza;
 
-        game.assets.loadCookScreenAssets();
+        game.assets.loadBossScreenAssets();
 
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();
@@ -47,10 +50,10 @@ public class CookScreen implements InputProcessor, Screen {
                 viewport.getScreenHeight());
 
         stage = new Stage(viewport);
-        cookUi = new CookUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), this, game.skin,
+        bossUi = new BossUi(viewport.getScreenWidth(),
+                viewport.getScreenHeight(), game.skin,
                 game.assets, game.bundle);
-        stage.addActor(cookUi);
+        stage.addActor(bossUi);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
@@ -58,29 +61,8 @@ public class CookScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    private void goBack(PoorPeoplePizzaParty game, Pizza pizza) {
-        game.setScreen(new PizzaScreen(game, pizza));
-        dispose();
-    }
-
-    public void serve(Constants.ServeOption serveOption) {
-        switch (serveOption) {
-            case BOSS:
-                game.setScreen(new ServeBossScreen(game, pizza));
-                break;
-            case WORKERS:
-                break;
-        }
-        dispose();
-    }
-
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.BACK
-                | keycode == Input.Keys.ESCAPE) {
-            goBack(game, pizza);
-            return true;
-        }
         return false;
     }
 
@@ -130,12 +112,10 @@ public class CookScreen implements InputProcessor, Screen {
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        cookUi.update(delta);
-
         stage.getCamera().update();
         game.batch.setProjectionMatrix(stage.getCamera().combined);
         game.shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
-        
+
         stage.getCamera().update();
         stage.act(delta);
         stage.draw();
@@ -143,7 +123,7 @@ public class CookScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
+
     }
 
     @Override
@@ -163,6 +143,6 @@ public class CookScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+
     }
 }

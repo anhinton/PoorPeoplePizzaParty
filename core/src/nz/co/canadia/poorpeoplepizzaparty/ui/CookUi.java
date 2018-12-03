@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import nz.co.canadia.poorpeoplepizzaparty.screens.CookScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
@@ -24,16 +25,19 @@ public class CookUi extends Table {
     private final I18NBundle bundle;
     private final ProgressBar progressBar;
     private final Label remainingLabel;
+    private final CookScreen cookScreen;
     private int screenWidth;
     private int screenHeight;
     private float timeElapsed;
     private int padding;
 
     public CookUi(int screenWidth, int screenHeight,
-                  Skin skin, AssetManager assets, I18NBundle bundle) {
+                  final CookScreen cookScreen, Skin skin, AssetManager assets,
+                  I18NBundle bundle) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+        this.cookScreen = cookScreen;
         this.skin = skin;
         this.assets = assets;
         this.bundle = bundle;
@@ -115,7 +119,7 @@ public class CookUi extends Table {
         bossButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO: send to BossScreen
+                cookScreen.serve(Constants.ServeOption.BOSS);
                 Gdx.app.log("CookUi", "BOSSES selected");
             }
         });
