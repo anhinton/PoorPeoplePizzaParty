@@ -61,9 +61,6 @@ public class ServeBossUi extends Table {
                 break;
         }
 
-//        TextureRegionDrawable speechTexture = new TextureRegionDrawable(new TextureRegion(assets.get("graphics/speechBubble.png", Texture.class)));
-//        TextButton.TextButtonStyle speechStyle = new TextButton.TextButtonStyle(speechTexture, speechTexture, speechTexture, game.);
-
         Label bossDialog = new Label(bundle.get("servebossName") + ": \n\""
                 + firedString + "\"", uiSkin,
                 "default");
