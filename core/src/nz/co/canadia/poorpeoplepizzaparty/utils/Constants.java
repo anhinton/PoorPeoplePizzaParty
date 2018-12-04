@@ -85,4 +85,7 @@ public class Constants {
 
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
+
+    // Boss UI widths
+    static final int BOSS_BUTTON_WIDTH = GAME_WIDTH * 2 / 3;
 }
