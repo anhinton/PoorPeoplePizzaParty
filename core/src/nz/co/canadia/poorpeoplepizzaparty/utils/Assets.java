@@ -55,7 +55,6 @@ public class Assets extends AssetManager {
     public void loadBossScreenAssets() {
         super.load("graphics/boss.png",
                 Texture.class, param);
-        super.load("graphics/speechBubble.png", Texture.class, param);
         super.finishLoading();
     }
 
