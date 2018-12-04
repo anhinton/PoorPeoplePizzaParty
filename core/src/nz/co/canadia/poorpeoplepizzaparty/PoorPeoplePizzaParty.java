@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.CookScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.ServeBossScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -21,7 +20,7 @@ public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public UiSkin skin;
+    public UiSkin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
     private UiFont uiFont;
@@ -42,7 +41,7 @@ public class PoorPeoplePizzaParty extends Game {
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        skin = new UiSkin(uiFont);
+        uiSkin = new UiSkin(uiFont);
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
@@ -53,7 +52,9 @@ public class PoorPeoplePizzaParty extends Game {
         // TODO: stop loading assets once finished debugging ServeBossScreen
         assets.loadPizzaScreenAssets();
         // TODO: change back to PizzaScreen
+//        this.setScreen(new CookScreen(this, new Pizza(assets)));
         this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
+//        this.setScreen(new PizzaScreen(this));
     }
 
     @Override
@@ -67,7 +68,7 @@ public class PoorPeoplePizzaParty extends Game {
         batch.dispose();
         captureIO.dispose();
         shapeRenderer.dispose();
-        skin.dispose();
+        uiSkin.dispose();
 
         // clean up shared postcard files, if they exist
         switch (Gdx.app.getType()) {

@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
-import nz.co.canadia.poorpeoplepizzaparty.ui.BossUi;
+import nz.co.canadia.poorpeoplepizzaparty.ui.ServeBossUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -24,7 +24,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Stage stage;
     private final Pizza pizza;
-    private final BossUi bossUi;
+    private final ServeBossUi serveBossUi;
 
     public ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
@@ -50,10 +50,11 @@ public class ServeBossScreen implements InputProcessor, Screen {
                 viewport.getScreenHeight());
 
         stage = new Stage(viewport);
-        bossUi = new BossUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), game.skin,
+        stage.setDebugAll(true);
+        serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
+                viewport.getScreenHeight(), game.uiSkin,
                 game.assets, game.bundle);
-        stage.addActor(bossUi);
+        stage.addActor(serveBossUi);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);

@@ -48,7 +48,7 @@ public class CookScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         cookUi = new CookUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), this, game.skin,
+                viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle);
         stage.addActor(cookUi);
 
