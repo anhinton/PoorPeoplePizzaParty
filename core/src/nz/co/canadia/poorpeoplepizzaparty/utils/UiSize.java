@@ -1,5 +1,9 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
+/**
+ * calculate sizes for UI elements to handle being displayed on screens of various dimensions
+ */
+
 public class UiSize {
     public static int getPadding(int screenHeight) {
         return Math.round((float)Constants.UNIT / Constants.GAME_HEIGHT
@@ -43,5 +47,9 @@ public class UiSize {
 
     public static float getImageWidth(float imageHeight, int screenWidth) {
         return imageHeight / Constants.GAME_WIDTH * screenWidth;
+    }
+
+    public static float getServeBossButtonWidth(int screenWidth) {
+        return Math.round((float)Constants.BOSS_BUTTON_WIDTH / Constants.GAME_WIDTH * screenWidth);
     }
 }
