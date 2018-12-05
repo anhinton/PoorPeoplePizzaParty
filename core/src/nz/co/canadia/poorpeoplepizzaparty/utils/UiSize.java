@@ -27,6 +27,14 @@ public class UiSize {
         return getBaseWidth(screenWidth);
     }
 
+    public static int getBaseServeWidth (int screenWidth) {
+        return Math.round(getBaseWidth(screenWidth) * Constants.BASE_SERVE_SCALE);
+    }
+
+    public static int getBaseServeHeight (int screenWidth) {
+        return getBaseServeWidth(screenWidth);
+    }
+
     public static int getButtonWidthFull(int screenWidth, int screenHeight) {
         return Math.round(screenWidth - getBaseWidth(screenWidth)
                 - getPadding(screenHeight) * 3);
@@ -49,7 +57,4 @@ public class UiSize {
         return imageHeight / Constants.GAME_WIDTH * screenWidth;
     }
 
-    public static float getServeBossButtonWidth(int screenWidth) {
-        return Math.round((float)Constants.BOSS_BUTTON_WIDTH / Constants.GAME_WIDTH * screenWidth);
-    }
 }

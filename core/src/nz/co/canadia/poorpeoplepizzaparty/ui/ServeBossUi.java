@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,8 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
@@ -27,15 +31,18 @@ public class ServeBossUi extends Table {
     private final AssetManager assets;
     private final I18NBundle bundle;
     private final int padding;
+    private final Pizza pizza;
 
     public ServeBossUi(int screenWidth, int screenHeight,
-                       Skin uiSkin, AssetManager assets, I18NBundle bundle) {
+                       Skin uiSkin, AssetManager assets, I18NBundle bundle,
+                       Pizza pizza) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.uiSkin = uiSkin;
         this.assets = assets;
         this.bundle = bundle;
+        this.pizza = pizza;
         padding = UiSize.getPadding(screenHeight);
 
         super.setFillParent(true);
@@ -48,8 +55,10 @@ public class ServeBossUi extends Table {
         super.clear();
         super.pad(padding);
 
-        Table buttonTable = new Table(uiSkin);
-        super.add(buttonTable).maxWidth(screenWidth);
+        Table leftColumn = new Table(uiSkin);
+        super.add(leftColumn)
+//                .expand()
+        ;
 
         String firedString = "";
         switch(MathUtils.random(1, 2)) {
@@ -61,17 +70,32 @@ public class ServeBossUi extends Table {
                 break;
         }
 
+        Texture pizzaTexture = new Texture(Capture.capturePizza(pizza));
+        Image pizzaImage = new Image(pizzaTexture);
+        leftColumn.add(pizzaImage)
+                .prefSize(UiSize.getBaseServeWidth(screenWidth),
+                        UiSize.getBaseServeHeight(screenWidth))
+                .space(padding);
+        // TODO: remove pizza size debugging code
+        Gdx.app.log("ServeBossUi", "pizzaImage width: " + pizzaImage.getWidth());
+        Gdx.app.log("ServeBossUi", "pizzaImage height: " + pizzaImage.getWidth());
+        Gdx.app.log("ServeBossUi", "pizzaImage cell width: " + leftColumn.getCell(pizzaImage).getPrefWidth());
+        Gdx.app.log("ServeBossUi", "pizzaImage cell height: " + leftColumn.getCell(pizzaImage).getPrefHeight());
+        leftColumn.row();
+
         Label bossDialog = new Label(bundle.get("servebossName") + ": \n\""
                 + firedString + "\"", uiSkin,
                 "default");
-        buttonTable.add(bossDialog).space(padding).prefWidth(UiSize.getServeBossButtonWidth(screenWidth));
-        buttonTable.row();
+        bossDialog.setAlignment(Align.center);
+        leftColumn.add(bossDialog)
+                .space(padding);
+        leftColumn.row();
 
         TextButton textButton = new TextButton(bundle.get("servebossButton"), uiSkin,
                 "default");
         textButton.getLabel().setWrap(true);
         textButton.getLabel().setText(textButton.getText());
-        buttonTable.add(textButton)
+        leftColumn.add(textButton)
                 .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
                 UiSize.getButtonHeight(screenHeight))
                 .space(padding);
@@ -83,6 +107,7 @@ public class ServeBossUi extends Table {
                                 screenWidth),
                         UiSize.getImageHeight(bossImage.getPrefHeight(),
                                 screenHeight))
+//                .expand()
                 .space(padding);
     }
 

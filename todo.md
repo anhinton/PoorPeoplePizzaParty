@@ -15,6 +15,7 @@
       - boss says either "who eats this rubbish" or "is this game about me?"
         and then fires you
       - implement Android back button logic
+      - work out if the UI is fitting to the game bounds on Android or the screen bounds
       
   + implement CookScreen.serve()
       - ~~send to ServeBossScreen for BOSS~~

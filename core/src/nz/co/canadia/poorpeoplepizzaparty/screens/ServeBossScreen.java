@@ -50,10 +50,11 @@ public class ServeBossScreen implements InputProcessor, Screen {
                 viewport.getScreenHeight());
 
         stage = new Stage(viewport);
+        // TODO: remove debugging layout lines
         stage.setDebugAll(true);
         serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
                 viewport.getScreenHeight(), game.uiSkin,
-                game.assets, game.bundle);
+                game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
