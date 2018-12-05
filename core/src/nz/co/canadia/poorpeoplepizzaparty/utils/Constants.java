@@ -15,6 +15,8 @@ public class Constants {
     // Colours
     public static final Color BG_COLOUR =
             new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green
+    public static final Color BOSS_BG_COLOUR =
+            new Color(0.235f, 0.247f, 0.255f, 1); // a bit grey really
 
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
