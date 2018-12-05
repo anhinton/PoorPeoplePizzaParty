@@ -15,9 +15,11 @@
       - boss says either "who eats this rubbish" or "is this game about me?"
         and then fires you
       - implement Android back button logic
-      - work out if the UI is fitting to the game bounds on Android or the screen bounds,
-        which might explain why my pizzaImage looks squashed
-      
+      - work out if the UI is fitting to the game bounds on Android or 
+	    the screen bounds, which might explain why my pizzaImage looks 
+		squashed. my current bet is that calculating the pizzaImage height
+		using screenHeight and not screenWidth will solve this
+		
   + implement CookScreen.serve()
       - ~~send to ServeBossScreen for BOSS~~
       - send to ServerWorkersScreen.class for WORKERS
