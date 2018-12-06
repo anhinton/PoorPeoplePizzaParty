@@ -17,7 +17,6 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class CookScreen implements InputProcessor, Screen {
 
-    private final FitViewport viewport;
     private final PoorPeoplePizzaParty game;
     private final Stage stage;
     private final Pizza pizza;
@@ -33,6 +32,7 @@ public class CookScreen implements InputProcessor, Screen {
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();
         float screenHeight = Gdx.graphics.getBackBufferHeight();
+        FitViewport viewport;
         if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
             viewport = new FitViewport(
                     Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
@@ -133,17 +133,13 @@ public class CookScreen implements InputProcessor, Screen {
         cookUi.update(delta);
 
         stage.getCamera().update();
-        game.batch.setProjectionMatrix(stage.getCamera().combined);
-        game.shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
-        
-        stage.getCamera().update();
         stage.act(delta);
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

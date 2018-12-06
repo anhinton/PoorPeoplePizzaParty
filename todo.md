@@ -13,12 +13,9 @@
       - ~~make Boss sprite~~
       - ~~send here from CookScreen choice~~
       - boss says either "who eats this rubbish" or "is this game about me?"
-        and then fires you
-      - implement Android back button logic
-      - work out if the UI is fitting to the game bounds on Android or 
-	    the screen bounds, which might explain why my pizzaImage looks 
-		squashed. my current bet is that calculating the pizzaImage height
-		using screenHeight and not screenWidth will solve this
+      - "you have been fired..." button. pressing this starts a new pizza
+      - implement Android back button logic: go back to serve choice
+      - ~~fix aspect ratio of Pizza on ServeBossUi~~
 		
   + implement CookScreen.serve()
       - ~~send to ServeBossScreen for BOSS~~

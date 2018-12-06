@@ -74,7 +74,7 @@ public class Constants {
     public static final float BASE_SCALE = 1 / 5f;
 
     // Base serve scale
-    static final float BASE_SERVE_SCALE = 2 / 5f;
+    public static final float BASE_SERVE_SCALE = 2 / 5f;
 
     // Sauce topping sprite alpha
     public static final Color SAUCE_COLOR =

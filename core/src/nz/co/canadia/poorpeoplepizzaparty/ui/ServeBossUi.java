@@ -1,22 +1,19 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
@@ -71,16 +68,17 @@ public class ServeBossUi extends Table {
         }
 
         Texture pizzaTexture = new Texture(Capture.capturePizza(pizza));
+        pizzaTexture.setFilter(Texture.TextureFilter.Linear,
+                Texture.TextureFilter.Linear);
         Image pizzaImage = new Image(pizzaTexture);
         leftColumn.add(pizzaImage)
-                .prefSize(UiSize.getBaseServeWidth(screenWidth),
-                        UiSize.getBaseServeHeight(screenWidth))
+                .prefSize( // this Image is a full Base image, needs to be
+                           // scaled
+                        UiSize.getImageWidth(pizzaImage.getPrefWidth(),
+                                screenWidth) * Constants.BASE_SERVE_SCALE,
+                        UiSize.getImageHeight(pizzaImage.getPrefHeight(),
+                                screenHeight) * Constants.BASE_SERVE_SCALE)
                 .space(padding);
-        // TODO: remove pizza size debugging code
-        Gdx.app.log("ServeBossUi", "pizzaImage width: " + pizzaImage.getWidth());
-        Gdx.app.log("ServeBossUi", "pizzaImage height: " + pizzaImage.getWidth());
-        Gdx.app.log("ServeBossUi", "pizzaImage cell width: " + leftColumn.getCell(pizzaImage).getPrefWidth());
-        Gdx.app.log("ServeBossUi", "pizzaImage cell height: " + leftColumn.getCell(pizzaImage).getPrefHeight());
         leftColumn.row();
 
         Label bossDialog = new Label(bundle.get("servebossName") + ": \n\""

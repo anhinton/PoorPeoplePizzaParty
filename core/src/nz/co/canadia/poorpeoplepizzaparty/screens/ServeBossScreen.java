@@ -20,22 +20,16 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class ServeBossScreen implements InputProcessor, Screen {
 
-    private final FitViewport viewport;
-    private final PoorPeoplePizzaParty game;
     private final Stage stage;
-    private final Pizza pizza;
-    private final ServeBossUi serveBossUi;
 
     public ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
-
-        this.game = game;
-        this.pizza = pizza;
 
         game.assets.loadBossScreenAssets();
 
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();
         float screenHeight = Gdx.graphics.getBackBufferHeight();
+        FitViewport viewport;
         if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
             viewport = new FitViewport(
                     Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
@@ -46,13 +40,11 @@ public class ServeBossScreen implements InputProcessor, Screen {
                     screenWidth / Constants.GAME_ASPECT_RATIO,
                     uiCamera);
         }
-        uiCamera.setToOrtho(false, viewport.getScreenHeight(),
-                viewport.getScreenHeight());
 
         stage = new Stage(viewport);
         // TODO: remove debugging layout lines
         stage.setDebugAll(true);
-        serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
+        ServeBossUi serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
                 viewport.getScreenHeight(), game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
@@ -115,17 +107,13 @@ public class ServeBossScreen implements InputProcessor, Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.getCamera().update();
-        game.batch.setProjectionMatrix(stage.getCamera().combined);
-        game.shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
-
-        stage.getCamera().update();
         stage.act(delta);
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -145,6 +133,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

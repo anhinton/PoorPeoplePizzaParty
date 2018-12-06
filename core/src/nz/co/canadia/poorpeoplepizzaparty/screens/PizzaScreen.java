@@ -79,8 +79,6 @@ public class PizzaScreen implements InputProcessor, Screen {
                     screenWidth / Constants.GAME_ASPECT_RATIO,
                     uiCamera);
         }
-        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
-                uiViewport.getScreenHeight());
 
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
