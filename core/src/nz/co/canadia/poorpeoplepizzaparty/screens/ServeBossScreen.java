@@ -25,7 +25,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
 
-    public ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
+    ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
         this.game = game;
         this.pizza = pizza;
@@ -49,7 +49,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport);
         ServeBossUi serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), game.uiSkin,
+                viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
 
@@ -57,6 +57,11 @@ public class ServeBossScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+    }
+
+    public void getFired() {
+        game.setScreen(new PizzaScreen(game));
+        dispose();
     }
 
     private void goBack() {

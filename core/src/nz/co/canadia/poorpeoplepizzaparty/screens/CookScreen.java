@@ -22,8 +22,8 @@ public class CookScreen implements InputProcessor, Screen {
     private final Pizza pizza;
     private CookUi cookUi;
 
-    public CookScreen(final PoorPeoplePizzaParty game, Pizza pizza,
-                      boolean countdown) {
+    CookScreen(final PoorPeoplePizzaParty game, Pizza pizza,
+               boolean countdown) {
 
         this.game = game;
         this.pizza = pizza;

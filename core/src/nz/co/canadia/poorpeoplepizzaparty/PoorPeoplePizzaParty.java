@@ -10,9 +10,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.CookScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
-import nz.co.canadia.poorpeoplepizzaparty.screens.ServeBossScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
@@ -55,8 +53,8 @@ public class PoorPeoplePizzaParty extends Game {
         assets.loadPizzaScreenAssets();
         // TODO: change back to PizzaScreen
 //        this.setScreen(new CookScreen(this, new Pizza(assets),true));
-        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
-//        this.setScreen(new PizzaScreen(this));
+//        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
+        this.setScreen(new PizzaScreen(this));
     }
 
     @Override

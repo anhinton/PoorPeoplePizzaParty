@@ -3,15 +3,18 @@ package nz.co.canadia.poorpeoplepizzaparty.ui;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.screens.ServeBossScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
@@ -24,6 +27,7 @@ public class ServeBossUi extends Table {
 
     private final int screenWidth;
     private final int screenHeight;
+    private final ServeBossScreen serveBossScreen;
     private final Skin uiSkin;
     private final AssetManager assets;
     private final I18NBundle bundle;
@@ -31,11 +35,13 @@ public class ServeBossUi extends Table {
     private final Pizza pizza;
 
     public ServeBossUi(int screenWidth, int screenHeight,
+                       ServeBossScreen serveBossScreen,
                        Skin uiSkin, AssetManager assets, I18NBundle bundle,
                        Pizza pizza) {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+        this.serveBossScreen = serveBossScreen;
         this.uiSkin = uiSkin;
         this.assets = assets;
         this.bundle = bundle;
@@ -54,7 +60,6 @@ public class ServeBossUi extends Table {
 
         Table leftColumn = new Table(uiSkin);
         super.add(leftColumn)
-//                .expand()
         ;
 
         String firedString = "";
@@ -89,11 +94,17 @@ public class ServeBossUi extends Table {
                 .space(padding);
         leftColumn.row();
 
-        TextButton textButton = new TextButton(bundle.get("servebossButton"), uiSkin,
+        TextButton firedButton = new TextButton(bundle.get("servebossFiredButton"), uiSkin,
                 "default");
-        textButton.getLabel().setWrap(true);
-        textButton.getLabel().setText(textButton.getText());
-        leftColumn.add(textButton)
+        firedButton.getLabel().setWrap(true);
+        firedButton.getLabel().setText(firedButton.getText());
+        firedButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                serveBossScreen.getFired();
+            }
+        });
+        leftColumn.add(firedButton)
                 .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
                 UiSize.getButtonHeight(screenHeight))
                 .space(padding);

@@ -7,15 +7,9 @@
       - ~~take Pizza from PizzaScreen as argument~~
       - ~~implement Android back button logic~~
           - ~~go back to PizzaScreen with existing Pizza~~
-      - implement Bosses and Workers button actions
-  
-  + create ServeBossScreen class
-      - ~~make Boss sprite~~
-      - ~~send here from CookScreen choice~~
-      - ~~boss says either "who eats this rubbish" or "is this game about me?"~~
-      - "you have been fired..." button. pressing this starts a new pizza
-      - ~~implement Android back button logic: go back to serve choice~~
-      - ~~fix aspect ratio of Pizza on ServeBossUi~~
+      - implement CookScreen.serve()
+          - ~~send to ServeBossScreen for BOSS~~
+          - send to ServerWorkersScreen.class for WORKERS
 
   + move viewport boilerplate to a utils Class
         
@@ -29,10 +23,6 @@
         mass-produced rubbish"
       - everyone fired
       - implement Android back button logic
-		
-  + implement CookScreen.serve()
-      - ~~send to ServeBossScreen for BOSS~~
-      - send to ServerWorkersScreen.class for WORKERS
       
   + create TitleScreen class
       - pizza party, a party for pizza
@@ -57,6 +47,14 @@
       - screenshot button just displays the postcard
   
 ## Done
+  
+  + ~~create ServeBossScreen class~~
+      - ~~make Boss sprite~~
+      - ~~send here from CookScreen choice~~
+      - ~~boss says either "who eats this rubbish" or "is this game about me?"~~
+      - ~~"you have been fired..." button. pressing this starts a new pizza~~
+      - ~~implement Android back button logic: go back to serve choice~~
+      - ~~fix aspect ratio of Pizza on ServeBossUi~~
         
   + ~~implement DesktopCaptureIO~~
       - ~~split Screenshot into Capture class and CaptureIO interface~~
