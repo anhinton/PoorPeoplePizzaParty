@@ -25,7 +25,7 @@ public class PizzaMessage extends Container {
         super.setPosition(UiSize.getBaseX(screenHeight),
                 UiSize.getBaseY(screenHeight));
         super.setSize(UiSize.getBaseWidth(screenWidth),
-                UiSize.getBaseHeight(screenWidth));
+                UiSize.getBaseHeight(screenHeight));
 
         messageLabel = new TextButton("", skin, "default");
     }

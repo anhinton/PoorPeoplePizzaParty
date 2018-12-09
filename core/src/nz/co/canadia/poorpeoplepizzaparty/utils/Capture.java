@@ -15,7 +15,7 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
  */
 
 public class Capture {
-    private static Pixmap capturePizza(Pizza pizza) {
+    public static Pixmap capturePizza(Pizza pizza) {
 
         SpriteBatch batch = new SpriteBatch();
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,

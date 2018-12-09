@@ -20,7 +20,7 @@ public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public UiSkin skin;
+    public UiSkin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
     private UiFont uiFont;
@@ -41,7 +41,7 @@ public class PoorPeoplePizzaParty extends Game {
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        skin = new UiSkin(uiFont);
+        uiSkin = new UiSkin(uiFont);
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
@@ -49,6 +49,11 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
+        // TODO: stop loading assets once finished debugging ServeBossScreen
+        assets.loadPizzaScreenAssets();
+        // TODO: change back to PizzaScreen
+//        this.setScreen(new CookScreen(this, new Pizza(assets),true));
+//        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
         this.setScreen(new PizzaScreen(this));
     }
 
@@ -63,7 +68,7 @@ public class PoorPeoplePizzaParty extends Game {
         batch.dispose();
         captureIO.dispose();
         shapeRenderer.dispose();
-        skin.dispose();
+        uiSkin.dispose();
 
         // clean up shared postcard files, if they exist
         switch (Gdx.app.getType()) {

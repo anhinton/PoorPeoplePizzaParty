@@ -15,6 +15,8 @@ public class Constants {
     // Colours
     public static final Color BG_COLOUR =
             new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green
+    public static final Color BOSS_BG_COLOUR =
+            new Color(0.235f, 0.247f, 0.255f, 1); // a bit grey really
 
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
@@ -38,7 +40,7 @@ public class Constants {
     }
 
     // everything is blocked out in terms of this unit
-    public static final int UNIT = 20;
+    static final int UNIT = 20;
 
     // UI font size is is 24pt/32px
     public static final float UI_FONT_RATIO = 32f / GAME_HEIGHT;
@@ -69,7 +71,10 @@ public class Constants {
     public static final int PIZZA_TOP = BASE_X + BASE_HEIGHT;
 
     // Base selected sprite scale
-    public static final float BASE_SCALE = (float)1 / 5;
+    public static final float BASE_SCALE = 1 / 5f;
+
+    // Base serve scale
+    public static final float BASE_SERVE_SCALE = 2 / 5f;
 
     // Sauce topping sprite alpha
     public static final Color SAUCE_COLOR =
@@ -80,6 +85,12 @@ public class Constants {
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
 
     // Screenshot filename
-    public static final String CAPTURE_PREFIX = "pizza";
-    public static final String CAPTURE_SUFFX = ".png";
+    static final String CAPTURE_PREFIX = "pizza";
+    static final String CAPTURE_SUFFX = ".png";
+
+    // Options for serving cooked pizza
+    public enum ServeOption { BOSS, WORKERS }
+
+    // Boss UI widths
+    static final int BOSS_BUTTON_WIDTH = GAME_WIDTH * 2 / 3;
 }

@@ -79,16 +79,14 @@ public class PizzaScreen implements InputProcessor, Screen {
                     screenWidth / Constants.GAME_ASPECT_RATIO,
                     uiCamera);
         }
-        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
-                uiViewport.getScreenHeight());
 
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), this, game.skin,
+                uiViewport.getScreenHeight(), this, game.uiSkin,
                 game.bundle, game.captureIO, game.assets);
         uiStage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), game.skin);
+                uiViewport.getScreenHeight(), game.uiSkin);
         uiStage.addActor(pizzaMessage);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(uiStage);
@@ -102,7 +100,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     public void cook() {
-        game.setScreen(new CookScreen(game, pizza));
+        game.setScreen(new CookScreen(game, pizza, true));
         dispose();
     }
 
