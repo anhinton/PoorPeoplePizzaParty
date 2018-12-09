@@ -22,7 +22,8 @@ public class CookScreen implements InputProcessor, Screen {
     private final Pizza pizza;
     private CookUi cookUi;
 
-    CookScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
+    public CookScreen(final PoorPeoplePizzaParty game, Pizza pizza,
+                      boolean countdown) {
 
         this.game = game;
         this.pizza = pizza;
@@ -47,7 +48,7 @@ public class CookScreen implements InputProcessor, Screen {
                 viewport.getScreenHeight());
 
         stage = new Stage(viewport);
-        cookUi = new CookUi(viewport.getScreenWidth(),
+        cookUi = new CookUi(countdown, viewport.getScreenWidth(),
                 viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle);
         stage.addActor(cookUi);
@@ -58,7 +59,7 @@ public class CookScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    private void goBack(PoorPeoplePizzaParty game, Pizza pizza) {
+    private void goBack() {
         game.setScreen(new PizzaScreen(game, pizza));
         dispose();
     }
@@ -78,7 +79,7 @@ public class CookScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            goBack(game, pizza);
+            goBack();
             return true;
         }
         return false;

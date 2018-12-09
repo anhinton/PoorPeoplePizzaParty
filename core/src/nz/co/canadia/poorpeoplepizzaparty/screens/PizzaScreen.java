@@ -100,7 +100,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     public void cook() {
-        game.setScreen(new CookScreen(game, pizza));
+        game.setScreen(new CookScreen(game, pizza, true));
         dispose();
     }
 

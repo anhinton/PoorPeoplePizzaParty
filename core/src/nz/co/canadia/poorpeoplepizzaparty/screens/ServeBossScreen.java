@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -21,8 +22,13 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class ServeBossScreen implements InputProcessor, Screen {
 
     private final Stage stage;
+    private final PoorPeoplePizzaParty game;
+    private final Pizza pizza;
 
     public ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
+
+        this.game = game;
+        this.pizza = pizza;
 
         game.assets.loadBossScreenAssets();
 
@@ -42,8 +48,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
         }
 
         stage = new Stage(viewport);
-        // TODO: remove debugging layout lines
-        stage.setDebugAll(true);
         ServeBossUi serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
                 viewport.getScreenHeight(), game.uiSkin,
                 game.assets, game.bundle, pizza);
@@ -55,8 +59,18 @@ public class ServeBossScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+    private void goBack() {
+        game.setScreen(new CookScreen(game, pizza, false));
+        dispose();
+    }
+
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.BACK
+                | keycode == Input.Keys.ESCAPE) {
+            goBack();
+            return true;
+        }
         return false;
     }
 

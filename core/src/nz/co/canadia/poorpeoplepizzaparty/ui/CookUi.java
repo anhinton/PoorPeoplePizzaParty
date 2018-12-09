@@ -23,15 +23,16 @@ public class CookUi extends Table {
     private final Skin skin;
     private final AssetManager assets;
     private final I18NBundle bundle;
-    private final ProgressBar progressBar;
-    private final Label remainingLabel;
+    private ProgressBar progressBar;
+    private Label remainingLabel;
     private final CookScreen cookScreen;
     private int screenWidth;
     private int screenHeight;
     private float timeElapsed;
     private int padding;
+    private boolean cooking;
 
-    public CookUi(int screenWidth, int screenHeight,
+    public CookUi(boolean countdown, int screenWidth, int screenHeight,
                   final CookScreen cookScreen, Skin skin, AssetManager assets,
                   I18NBundle bundle) {
 
@@ -42,10 +43,25 @@ public class CookUi extends Table {
         this.assets = assets;
         this.bundle = bundle;
 
-        timeElapsed = 0;
         padding = UiSize.getPadding(screenHeight);
+        cooking = false;
 
         super.setFillParent(true);
+
+        if (countdown) {
+            showTimer();
+        } else {
+            showDecision();
+        }
+    }
+
+    private void showTimer() {
+
+        super.clear();
+        super.pad(padding);
+
+        cooking = true;
+        timeElapsed = 0;
 
         ProgressBar.ProgressBarStyle progressBarStyle =
                 skin.get("default-horizontal",
@@ -61,6 +77,7 @@ public class CookUi extends Table {
                             - progressBar.getValue();
                     remainingLabel.setText(Integer.toString(MathUtils.ceil(timeRemaining)));
                 } else {
+                    cooking = false;
                     showDecision();
                 }
             }
@@ -71,14 +88,6 @@ public class CookUi extends Table {
         remainingLabel =
                 new Label(Integer.toString(MathUtils.ceil(timeRemaining)), skin,
                         "default");
-
-        showTimer();
-    }
-
-    private void showTimer() {
-
-        super.clear();
-        super.pad(padding);
 
         Label timerLabel = new Label(bundle.get("timerLabel"), skin,
                 "default");
@@ -144,7 +153,9 @@ public class CookUi extends Table {
     }
 
     public void update(float delta) {
-        timeElapsed += delta;
-        progressBar.setValue(timeElapsed);
+        if (cooking) {
+            timeElapsed += delta;
+            progressBar.setValue(timeElapsed);
+        }
     }
 }
