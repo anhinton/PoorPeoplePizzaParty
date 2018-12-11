@@ -59,6 +59,11 @@ by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
 by Mariuszjbie is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
 
+`graphics/lunch.png`
+"[Lunch](https://www.flickr.com/photos/thomasbonte/4956496553/in/photostream/)"
+by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
+[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
 `graphics/postcard.png`
 "[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
 by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed

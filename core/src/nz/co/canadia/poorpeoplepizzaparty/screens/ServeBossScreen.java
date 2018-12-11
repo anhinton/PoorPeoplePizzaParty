@@ -30,7 +30,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        game.assets.loadBossScreenAssets();
+        game.assets.loadServeBossScreenAssets();
 
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();

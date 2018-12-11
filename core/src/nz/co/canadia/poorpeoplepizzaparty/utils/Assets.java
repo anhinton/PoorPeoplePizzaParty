@@ -50,15 +50,6 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Loads assets for Boss Screen. Blocks until all assets are loaded.
-     */
-    public void loadBossScreenAssets() {
-        super.load("graphics/boss.png",
-                Texture.class, param);
-        super.finishLoading();
-    }
-
-    /**
      * Loads assets for Cook Screen. Blocks until all assets are loaded.
      */
     public void loadCookScreenAssets() {
@@ -83,6 +74,24 @@ public class Assets extends AssetManager {
                 param);
         super.load("graphics/icons/undo.png", Texture.class,
                 param);
+        super.finishLoading();
+    }
+
+    /**
+     * Loads assets for Boss Screen. Blocks until all assets are loaded.
+     */
+    public void loadServeBossScreenAssets() {
+        super.load("graphics/boss.png",
+                Texture.class, param);
+        super.finishLoading();
+    }
+
+    /**
+     * Loads assets for Boss Screen. Blocks until all assets are loaded.
+     */
+    public void loadServeWorkersScreenAssets() {
+        super.load("graphics/lunch.png",
+                Texture.class, param);
         super.finishLoading();
     }
 }
