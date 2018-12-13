@@ -87,13 +87,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
+                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
         lunchPhoto.draw(game.batch);
+        pizza.draw(game.batch);
         game.batch.end();
     }
 
