@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,6 +22,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final Sprite lunchPhoto;
     private final OrthographicCamera camera;
     private final FitViewport viewport;
+    private final Sprite lunchGreyPhoto;
+    private final Sprite boss;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
@@ -39,6 +42,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 game.assets.get("graphics/lunch.png", Texture.class));
         lunchPhoto.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         lunchPhoto.setPosition(0, 0);
+
+        lunchGreyPhoto = new Sprite(
+                game.assets.get("graphics/lunch_grey.png", Texture.class));
+        lunchGreyPhoto.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        lunchGreyPhoto.setPosition(0, 0);
+
+        boss = new Sprite(
+                game.assets.get("graphics/boss.png", Texture.class));
+        boss.setCenterX(Constants.GAME_WIDTH * 3f / 4);
+        boss.setY(0 - boss.getHeight());
 
         Gdx.input.setInputProcessor(this);
     }
@@ -100,6 +113,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
+        if (boss.getY() < 0) {
+            boss.setY(boss.getY() + delta * 400);
+        } else {
+            boss.setY(0);
+        }
+
         Gdx.gl.glClearColor(Constants.WORKERS_BG_COLOUR.r, Constants.WORKERS_BG_COLOUR.g,
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -107,8 +126,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         camera.update();
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
-        lunchPhoto.draw(game.batch);
-        pizza.draw(game.batch);
+//        lunchPhoto.draw(game.batch);
+        lunchGreyPhoto.draw(game.batch);
+        boss.draw(game.batch);
         game.batch.end();
     }
 

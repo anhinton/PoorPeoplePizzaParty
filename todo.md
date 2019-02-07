@@ -8,8 +8,11 @@
           - streamers
       - ~~send here from CookScreen choice~~
       - it's a pizza party celebrate!
-      - boss pops up and says "I can't believe you people eat this 
-        mass-produced rubbish"
+	  - party picture turns grey
+	  - blood drip effect scrolls down from top
+	  - Boss class
+          - boss pops up and says "I can't believe you people eat this
+            mass-produced rubbish"
       - everyone fired
       - ~~implement Android back button logic~~
       

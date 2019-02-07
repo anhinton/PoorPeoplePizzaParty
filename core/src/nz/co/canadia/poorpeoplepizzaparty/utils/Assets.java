@@ -90,7 +90,11 @@ public class Assets extends AssetManager {
      * Loads assets for Boss Screen. Blocks until all assets are loaded.
      */
     public void loadServeWorkersScreenAssets() {
+        super.load("graphics/boss.png",
+                Texture.class, param);
         super.load("graphics/lunch.png",
+                Texture.class, param);
+        super.load("graphics/lunch_grey.png",
                 Texture.class, param);
         super.finishLoading();
     }
