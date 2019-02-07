@@ -306,7 +306,7 @@
   
 ## creating Topping and ToppingMenuButton objects
 
-The plan is to have eight toppings available from a UI menu which can
+~~The plan is to have eight toppings available from a UI menu which can
 be placed on the pizza:
   - sauce
   - cheese
@@ -336,4 +336,4 @@ There should be eight ToppingMenuButton objects, one for each topping in the
 list above. When a ToppingMenuButton is selected this should set the 
 toppingSelected field in PizzaScreen to topping name. While a 
 ToppingMenuItem is selected, clicking on the Pizza will add a Topping 
-object to the array of Topping objects held in Pizza.
+object to the array of Topping objects held in Pizza.~~
