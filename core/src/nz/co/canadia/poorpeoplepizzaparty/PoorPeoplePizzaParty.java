@@ -55,8 +55,8 @@ public class PoorPeoplePizzaParty extends Game {
         // TODO: change back to PizzaScreen
 //        this.setScreen(new CookScreen(this, new Pizza(assets),true));
 //        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
-//        this.setScreen(new ServeWorkersScreen(this, new Pizza(assets)));
-        this.setScreen(new PizzaScreen(this));
+        this.setScreen(new ServeWorkersScreen(this, new Pizza(assets)));
+//        this.setScreen(new PizzaScreen(this));
     }
 
     @Override

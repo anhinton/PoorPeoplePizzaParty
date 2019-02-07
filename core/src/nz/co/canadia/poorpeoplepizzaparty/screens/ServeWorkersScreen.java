@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -38,10 +39,22 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 game.assets.get("graphics/lunch.png", Texture.class));
         lunchPhoto.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         lunchPhoto.setPosition(0, 0);
+
+        Gdx.input.setInputProcessor(this);
+    }
+
+    private void goBack() {
+        game.setScreen(new CookScreen(game, pizza, false));
+        dispose();
     }
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.BACK
+                | keycode == Input.Keys.ESCAPE) {
+            goBack();
+            return true;
+        }
         return false;
     }
 
@@ -87,8 +100,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
-                Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
+        Gdx.gl.glClearColor(Constants.WORKERS_BG_COLOUR.r, Constants.WORKERS_BG_COLOUR.g,
+                Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();

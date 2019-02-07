@@ -4,14 +4,14 @@
         
   + create ServeWorkersScreen.class
       - make image assets
-          - pizza party/worker party
+          - ~~pizza party/worker party~~
           - streamers
-      - send here from CookScreen choice
+      - ~~send here from CookScreen choice~~
       - it's a pizza party celebrate!
       - boss pops up and says "I can't believe you people eat this 
         mass-produced rubbish"
       - everyone fired
-      - implement Android back button logic
+      - ~~implement Android back button logic~~
       
   + create TitleScreen class
       - pizza party, a party for pizza
