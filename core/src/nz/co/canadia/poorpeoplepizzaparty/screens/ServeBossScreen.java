@@ -24,6 +24,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final Stage stage;
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
+    private final ServeBossUi serveBossUi;
 
     ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
@@ -48,7 +49,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
         }
 
         stage = new Stage(viewport);
-        ServeBossUi serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
+        serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
                 viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
@@ -153,5 +154,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        serveBossUi.dispose();
     }
 }
