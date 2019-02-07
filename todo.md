@@ -8,6 +8,9 @@
           - streamers
       - ~~send here from CookScreen choice~~
       - it's a pizza party celebrate!
+	  - FlyingPizza class
+	      - spawn at random location off-screen
+		  - fly across screen
 	  - LunchPhoto class
 	      - ~~show colour Sprite by default~~
 		  - ~~function to switch to grey~~

@@ -72,7 +72,7 @@ public class ServeBossUi extends Table {
                 break;
         }
 
-        Texture pizzaTexture = new Texture(Capture.capturePizza(pizza));
+        Texture pizzaTexture = new Texture(pizza.getPixmap());
         pizzaTexture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear);
         Image pizzaImage = new Image(pizzaTexture);
