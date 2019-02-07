@@ -1,16 +1,5 @@
 # TODO
   
-  + implement Cook screen
-      - ~~countdown timer~~
-      - ~~then show a cooked pizza and give option to serve to Bosses or 
-        Workers~~
-      - ~~take Pizza from PizzaScreen as argument~~
-      - ~~implement Android back button logic~~
-          - ~~go back to PizzaScreen with existing Pizza~~
-      - implement CookScreen.serve()
-          - ~~send to ServeBossScreen for BOSS~~
-          - send to ServerWorkersScreen.class for WORKERS
-
   + move viewport boilerplate to a utils Class
         
   + create ServeWorkersScreen.class
@@ -48,6 +37,17 @@
   
 ## Done
   
+  + ~~implement Cook screen~~
+      - ~~countdown timer~~
+      - ~~then show a cooked pizza and give option to serve to Bosses or 
+        Workers~~
+      - ~~take Pizza from PizzaScreen as argument~~
+      - ~~implement Android back button logic~~
+          - ~~go back to PizzaScreen with existing Pizza~~
+      - implement CookScreen.serve()
+          - ~~send to ServeBossScreen for BOSS~~
+          - ~~send to ServerWorkersScreen.class for WORKERS~~
+
   + ~~create ServeBossScreen class~~
       - ~~make Boss sprite~~
       - ~~send here from CookScreen choice~~

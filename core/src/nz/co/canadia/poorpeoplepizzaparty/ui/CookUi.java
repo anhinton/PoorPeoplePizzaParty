@@ -142,7 +142,7 @@ public class CookUi extends Table {
         workersButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO: send to WorkerScreen
+                cookScreen.serve(Constants.ServeOption.WORKERS);
                 Gdx.app.log("CookUi", "WORKERS selected");
             }
         });

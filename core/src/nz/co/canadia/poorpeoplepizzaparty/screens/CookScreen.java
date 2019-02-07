@@ -70,6 +70,7 @@ public class CookScreen implements InputProcessor, Screen {
                 game.setScreen(new ServeBossScreen(game, pizza));
                 break;
             case WORKERS:
+                game.setScreen(new ServeWorkersScreen(game, pizza));
                 break;
         }
         dispose();
