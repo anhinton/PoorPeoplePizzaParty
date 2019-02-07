@@ -8,12 +8,19 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import nz.co.canadia.poorpeoplepizzaparty.FlyingPizza;
 import nz.co.canadia.poorpeoplepizzaparty.LunchPhoto;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+
+/**
+ * The ServerWorksersScreen is displayed after choosing WORKERS on CookPizzaScreen. Plays
+ * a party animation, which is interrupted by the boss, who fires everyone.
+ */
 
 public class ServeWorkersScreen implements InputProcessor, Screen {
 
@@ -23,6 +30,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final OrthographicCamera camera;
     private final FitViewport viewport;
     private final Sprite boss;
+    private final Array<FlyingPizza> flyingPizzaArray;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
@@ -44,6 +52,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 game.assets.get("graphics/boss.png", Texture.class));
         boss.setCenterX(Constants.GAME_WIDTH * 3f / 4);
         boss.setY(0 - boss.getHeight());
+
+        flyingPizzaArray = new Array<FlyingPizza>();
+        flyingPizzaArray.add(new FlyingPizza(pizza));
 
         Gdx.input.setInputProcessor(this);
     }
@@ -75,8 +86,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        lunchPhoto.switchColour();
-        return true;
+        return false;
     }
 
     @Override
@@ -104,11 +114,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
-        if (boss.getY() < 0) {
-            boss.setY(boss.getY() + delta * 400);
-        } else {
-            boss.setY(0);
-        }
+//        if (boss.getY() < 0) {
+//            boss.setY(boss.getY() + delta * 400);
+//        } else {
+//            boss.setY(0);
+//        }
 
         Gdx.gl.glClearColor(Constants.WORKERS_BG_COLOUR.r, Constants.WORKERS_BG_COLOUR.g,
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
@@ -118,7 +128,10 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
         lunchPhoto.draw(game.batch);
-        boss.draw(game.batch);
+//        boss.draw(game.batch);
+        for (FlyingPizza fp: flyingPizzaArray) {
+            fp.draw(game.batch);
+        }
         game.batch.end();
     }
 
@@ -144,6 +157,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-
+        // TODO: dispose of assets
+//        lunchPhoto.dispose();
+//        boss.dispose();
+        for (FlyingPizza fp: flyingPizzaArray) {
+            fp.dispose();
+        }
     }
 }
