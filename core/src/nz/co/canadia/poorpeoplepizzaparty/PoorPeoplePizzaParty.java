@@ -17,6 +17,11 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
+/**
+ * The PoorPeoplePizzaParty class is the main class for the game Poor People Pizza Party.
+ * It initiates a PizzaScreen and let's the party begin.
+ */
+
 public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;

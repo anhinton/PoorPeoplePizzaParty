@@ -6,6 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
+/**
+ * This class contains the pizza party photo displayed in the background of ServerWorkersScreen.
+ * The image has two states: colour, initially, and then greyscale. switchColour() to
+ * change.
+ */
+
 public class LunchPhoto {
     private Sprite colourSprite;
     private Sprite greySprite;
