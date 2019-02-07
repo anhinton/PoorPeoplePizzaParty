@@ -95,4 +95,7 @@ public class Constants {
 
     // Boss UI widths
     static final int BOSS_BUTTON_WIDTH = GAME_WIDTH * 2 / 3;
+
+    // Options for party background texture
+    public enum PartySprite { COLOUR, GREY }
 }
