@@ -8,6 +8,9 @@
           - streamers
       - ~~send here from CookScreen choice~~
       - it's a pizza party celebrate!
+	  - LunchPhoto class
+	      - ~~show colour Sprite by default~~
+		  - ~~function to switch to grey~~
 	  - party picture turns grey
 	  - blood drip effect scrolls down from top
 	  - Boss class

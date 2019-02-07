@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import nz.co.canadia.poorpeoplepizzaparty.LunchPhoto;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -19,10 +19,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
-    private final Sprite lunchPhoto;
+    private final LunchPhoto lunchPhoto;
     private final OrthographicCamera camera;
     private final FitViewport viewport;
-    private final Sprite lunchGreyPhoto;
     private final Sprite boss;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
@@ -38,15 +37,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 camera);
         camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
-        lunchPhoto = new Sprite(
-                game.assets.get("graphics/lunch.png", Texture.class));
-        lunchPhoto.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        lunchPhoto.setPosition(0, 0);
-
-        lunchGreyPhoto = new Sprite(
+        lunchPhoto = new LunchPhoto(game.assets.get("graphics/lunch.png", Texture.class),
                 game.assets.get("graphics/lunch_grey.png", Texture.class));
-        lunchGreyPhoto.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        lunchGreyPhoto.setPosition(0, 0);
 
         boss = new Sprite(
                 game.assets.get("graphics/boss.png", Texture.class));
@@ -83,13 +75,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+        lunchPhoto.switchColour();
+        return true;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) { return false; }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
@@ -126,8 +117,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         camera.update();
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
-//        lunchPhoto.draw(game.batch);
-        lunchGreyPhoto.draw(game.batch);
+        lunchPhoto.draw(game.batch);
         boss.draw(game.batch);
         game.batch.end();
     }
