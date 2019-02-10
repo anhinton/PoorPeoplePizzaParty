@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
@@ -31,6 +32,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final FitViewport viewport;
     private final Sprite boss;
     private final Array<FlyingPizza> flyingPizzaArray;
+    private final Pixmap pizzaPixmap;
+    private final Texture pizzaTexture;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
@@ -53,8 +56,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         boss.setCenterX(Constants.GAME_WIDTH * 3f / 4);
         boss.setY(0 - boss.getHeight());
 
+        pizzaPixmap = pizza.getPixmap();
+        pizzaTexture = new Texture(pizzaPixmap);
+
         flyingPizzaArray = new Array<FlyingPizza>();
-        flyingPizzaArray.add(new FlyingPizza(pizza));
+        for (int i = 0; i < 20; i++) {
+            flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
+        }
 
         Gdx.input.setInputProcessor(this);
     }
@@ -124,6 +132,10 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        for (FlyingPizza fp: flyingPizzaArray) {
+            fp.update(delta);
+        }
+
         camera.update();
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
@@ -160,6 +172,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         // TODO: dispose of assets
 //        lunchPhoto.dispose();
 //        boss.dispose();
+        pizzaPixmap.dispose();
+        pizzaTexture.dispose();
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.dispose();
         }

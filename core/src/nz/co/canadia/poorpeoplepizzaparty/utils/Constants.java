@@ -93,9 +93,14 @@ public class Constants {
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
 
-    // Boss UI widths
-    static final int BOSS_BUTTON_WIDTH = GAME_WIDTH * 2 / 3;
-
     // Options for party background texture
     public enum PartySprite { COLOUR, GREY }
+
+    // FlyingPizza scale
+    public static final float FLYING_PIZZA_SCALE = 1 / 3f;
+
+    // FlyingPizza speed range
+    public static final float FLYING_PIZZA_SPEED_LOWER = 600;
+    public static final float FLYING_PIZZA_SPEED_UPPER = 1600;
+
 }
