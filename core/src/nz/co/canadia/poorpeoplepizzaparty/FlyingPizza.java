@@ -7,8 +7,6 @@ import com.badlogic.gdx.math.MathUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-import static java.lang.Math.PI;
-
 /**
  * The FlyingPizza class is a scaled-down Sprite created from a Pizza.class object,
  * which starts in a random position off-screen, and flies across the screen. Used in the
@@ -30,7 +28,7 @@ public class FlyingPizza {
         speed = MathUtils.random(Constants.FLYING_PIZZA_SPEED_LOWER,
                 Constants.FLYING_PIZZA_SPEED_UPPER);
 //        speed = 1600;
-        float direction = MathUtils.random(0f, (float)(2 * Math.PI));
+        float direction = MathUtils.random(0f, MathUtils.PI2);
         changeX = MathUtils.cos(direction);
         changeY = MathUtils.sin(direction);
     }
