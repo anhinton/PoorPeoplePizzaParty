@@ -35,6 +35,7 @@ public class ServeBossUi extends Table {
     private final int padding;
     private final Pizza pizza;
     private Texture pizzaTexture;
+    private Pixmap pizzaPixmap;
 
     public ServeBossUi(int screenWidth, int screenHeight,
                        ServeBossScreen serveBossScreen,
@@ -74,7 +75,7 @@ public class ServeBossUi extends Table {
                 break;
         }
 
-        Pixmap pizzaPixmap = pizza.getPixmap();
+        pizzaPixmap = pizza.getPixmap();
         pizzaTexture = new Texture(pizzaPixmap);
         pizzaTexture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear);
@@ -124,6 +125,7 @@ public class ServeBossUi extends Table {
     }
 
     public void dispose() {
+        pizzaPixmap.dispose();
         pizzaTexture.dispose();
     }
 
