@@ -9,9 +9,10 @@
       - ~~send here from CookScreen choice~~
       - it's a pizza party celebrate!
 	  - FlyingPizza class
-	      - spawn at random location off-screen
+	      - ~~spawn at random location off-screen~~
 		  - ~~fly across screen~~
-		  - dispose once off-screen
+		  - ~~dispose once off-screen~~
+	  - spawn FlyingPizzas at random intervals
 	  - LunchPhoto class
 	      - ~~show colour Sprite by default~~
 		  - ~~function to switch to grey~~

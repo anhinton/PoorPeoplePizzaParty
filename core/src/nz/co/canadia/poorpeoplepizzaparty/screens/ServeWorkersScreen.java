@@ -60,9 +60,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         pizzaTexture = new Texture(pizzaPixmap);
 
         flyingPizzaArray = new Array<FlyingPizza>();
-        for (int i = 0; i < 20; i++) {
+//        for (int i = 0; i < 20; i++) {
             flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
-        }
+//        }
 
         Gdx.input.setInputProcessor(this);
     }
@@ -132,8 +132,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        for (FlyingPizza fp: flyingPizzaArray) {
-            fp.update(delta);
+        // update flying pizzas
+        for (int i = 0; i < flyingPizzaArray.size; i++) {
+            flyingPizzaArray.get(i).update(delta);
+            if (!flyingPizzaArray.get(i).isActive()) {
+                // remove if inactive
+                flyingPizzaArray.removeIndex(i);
+            }
         }
 
         camera.update();

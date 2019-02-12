@@ -14,6 +14,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  */
 
 public class FlyingPizza {
+
+    private boolean isActive;
     private Sprite sprite;
     private float speed;
     private float changeX;
@@ -23,23 +25,66 @@ public class FlyingPizza {
         sprite = new Sprite(texture);
         sprite.setSize(sprite.getWidth() * Constants.FLYING_PIZZA_SCALE,
                 sprite.getHeight() * Constants.FLYING_PIZZA_SCALE);
-        sprite.setCenter(Constants.GAME_WIDTH / 2f, Constants.GAME_HEIGHT / 2f);
 
-        speed = MathUtils.random(Constants.FLYING_PIZZA_SPEED_LOWER,
+        float direction = 0;
+        // randomise sprite start position and direction
+        switch (MathUtils.random(1, 4)) {
+            case 1:
+                // bottom
+                sprite.setX(MathUtils.randomTriangular(-sprite.getWidth(), Constants.GAME_WIDTH));
+                sprite.setY(-sprite.getHeight());
+                direction = MathUtils.randomTriangular(0f, MathUtils.PI);
+                break;
+            case 2:
+                // left
+                sprite.setX(-sprite.getWidth());
+                sprite.setY(MathUtils.randomTriangular(-sprite.getHeight(), Constants.GAME_HEIGHT));
+                direction = MathUtils.randomTriangular(-MathUtils.PI / 2, MathUtils.PI / 2);
+                break;
+            case 3:
+                // top
+                sprite.setX(MathUtils.randomTriangular(-sprite.getWidth(), Constants.GAME_WIDTH));
+                sprite.setY(Constants.GAME_HEIGHT);
+                direction = MathUtils.randomTriangular(MathUtils.PI, MathUtils.PI2);
+                break;
+            case 4:
+                // right
+                sprite.setX(Constants.GAME_WIDTH);
+                sprite.setY(MathUtils.randomTriangular(-sprite.getHeight(), Constants.GAME_HEIGHT));
+                direction = MathUtils.randomTriangular(MathUtils.PI / 2, 3 * MathUtils.PI / 2);
+                break;
+        }
+
+        speed = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPEED_LOWER,
                 Constants.FLYING_PIZZA_SPEED_UPPER);
-//        speed = 1600;
-        float direction = MathUtils.random(0f, MathUtils.PI2);
         changeX = MathUtils.cos(direction);
         changeY = MathUtils.sin(direction);
+
+        isActive = true;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void draw (SpriteBatch batch) {
-        sprite.draw(batch);
+        if (isActive) {
+            sprite.draw(batch);
+        }
     }
 
     public void update(float delta) {
-        sprite.setX(sprite.getX() + changeX * speed * delta);
-        sprite.setY(sprite.getY() + changeY * speed * delta);
+        if (isActive) {
+            sprite.setX(sprite.getX() + changeX * speed * delta);
+            sprite.setY(sprite.getY() + changeY * speed * delta);
+
+            if (sprite.getX() < -sprite.getWidth()
+                    | sprite.getX() > Constants.GAME_WIDTH
+                    | sprite.getY() < -sprite.getHeight()
+                    | sprite.getY() > Constants.GAME_HEIGHT) {
+                isActive = false;
+            }
+        }
     }
 
     public void dispose() {
