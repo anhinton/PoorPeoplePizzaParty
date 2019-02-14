@@ -12,12 +12,12 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  * change.
  */
 
-public class LunchPhoto {
+public class PartyScene {
     private Sprite colourSprite;
     private Sprite greySprite;
     private Constants.PartySprite currentColour;
 
-    public LunchPhoto(Texture colourTexture, Texture greyTexture) {
+    public PartyScene(Texture colourTexture, Texture greyTexture) {
         colourSprite = new Sprite(colourTexture);
         colourSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         colourSprite.setPosition(0, 0);

@@ -9,11 +9,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.FlyingPizza;
-import nz.co.canadia.poorpeoplepizzaparty.LunchPhoto;
+import nz.co.canadia.poorpeoplepizzaparty.PartyScene;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -27,13 +28,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
-    private final LunchPhoto lunchPhoto;
     private final OrthographicCamera camera;
     private final FitViewport viewport;
-    private final Sprite boss;
-    private final Array<FlyingPizza> flyingPizzaArray;
-    private final Pixmap pizzaPixmap;
-    private final Texture pizzaTexture;
+    private float timeElapsed;
+    private float nextSpawn;
+    private PartyScene partyScene;
+    private Sprite boss;
+    private Array<FlyingPizza> flyingPizzaArray;
+    private Pixmap pizzaPixmap;
+    private Texture pizzaTexture;
+    private Constants.ServerWorkersState state;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
@@ -48,7 +52,19 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 camera);
         camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
-        lunchPhoto = new LunchPhoto(game.assets.get("graphics/lunch.png", Texture.class),
+        state = Constants.ServerWorkersState.PARTY;
+        initParty();
+
+        Gdx.input.setInputProcessor(this);
+    }
+
+    private void initParty() {
+        timeElapsed = 0;
+
+        // set time to spawn new pizzas
+        nextSpawn = MathUtils.randomTriangular(.5f, 1.5f);
+
+        partyScene = new PartyScene(game.assets.get("graphics/lunch.png", Texture.class),
                 game.assets.get("graphics/lunch_grey.png", Texture.class));
 
         boss = new Sprite(
@@ -60,11 +76,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         pizzaTexture = new Texture(pizzaPixmap);
 
         flyingPizzaArray = new Array<FlyingPizza>();
-//        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
-//        }
-
-        Gdx.input.setInputProcessor(this);
+        }
     }
 
     private void goBack() {
@@ -132,19 +146,38 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // update flying pizzas
-        for (int i = 0; i < flyingPizzaArray.size; i++) {
-            flyingPizzaArray.get(i).update(delta);
-            if (!flyingPizzaArray.get(i).isActive()) {
-                // remove if inactive
-                flyingPizzaArray.removeIndex(i);
-            }
+        switch (state) {
+            case PARTY:
+                timeElapsed += delta;
+                if (timeElapsed >= nextSpawn) {
+                    // set time of next spawn
+                    nextSpawn = timeElapsed + MathUtils.randomTriangular(
+                            .2f, 1.2f);
+
+                    // spawn between 1 and 10 new pizzas
+                    for (int i = 1; i <= MathUtils.random(1, 10); i++) {
+                        flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
+                    }
+                }
+
+                // update flying pizzas
+                for (int i = 0; i < flyingPizzaArray.size; i++) {
+                    flyingPizzaArray.get(i).update(delta);
+                    if (!flyingPizzaArray.get(i).isActive()) {
+                        // remove if inactive
+                        flyingPizzaArray.removeIndex(i);
+                    }
+                }
+                break;
+            case BOSS:
+                break;
         }
+
 
         camera.update();
         game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
-        lunchPhoto.draw(game.batch);
+        partyScene.draw(game.batch);
 //        boss.draw(game.batch);
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.draw(game.batch);
@@ -175,7 +208,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         // TODO: dispose of assets
-//        lunchPhoto.dispose();
+//        partyScene.dispose();
 //        boss.dispose();
         pizzaPixmap.dispose();
         pizzaTexture.dispose();

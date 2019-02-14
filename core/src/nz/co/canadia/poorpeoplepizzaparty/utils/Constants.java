@@ -93,6 +93,9 @@ public class Constants {
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
 
+    // states for ServeWorkersScreen
+    public enum ServerWorkersState { PARTY, BOSS }
+
     // Options for party background texture
     public enum PartySprite { COLOUR, GREY }
 
