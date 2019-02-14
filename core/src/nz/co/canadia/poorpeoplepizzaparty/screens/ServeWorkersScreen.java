@@ -52,13 +52,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 camera);
         camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
-        state = Constants.ServerWorkersState.PARTY;
-        initParty();
+        init();
 
         Gdx.input.setInputProcessor(this);
     }
 
-    private void initParty() {
+    private void init() {
+        state = Constants.ServerWorkersState.PARTY;
         timeElapsed = 0;
 
         // set time to spawn new pizzas
@@ -67,11 +67,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         partyScene = new PartyScene(game.assets.get("graphics/lunch.png", Texture.class),
                 game.assets.get("graphics/lunch_grey.png", Texture.class));
 
-        boss = new Sprite(
-                game.assets.get("graphics/boss.png", Texture.class));
-        boss.setCenterX(Constants.GAME_WIDTH * 3f / 4);
-        boss.setY(0 - boss.getHeight());
-
         pizzaPixmap = pizza.getPixmap();
         pizzaTexture = new Texture(pizzaPixmap);
 
@@ -79,6 +74,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (int i = 0; i < 20; i++) {
             flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
         }
+
+        boss = new Sprite(
+                game.assets.get("graphics/boss.png", Texture.class));
+        boss.setCenterX(Constants.GAME_WIDTH * 3f / 4);
+        boss.setY(0 - boss.getHeight());
     }
 
     private void goBack() {
@@ -167,6 +167,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                         // remove if inactive
                         flyingPizzaArray.removeIndex(i);
                     }
+                }
+
+                if (timeElapsed > Constants.PARTY_TIME) {
+                    flyingPizzaArray.clear();
+                    partyScene.switchColour();
+                    state = Constants.ServerWorkersState.BOSS;
                 }
                 break;
             case BOSS:

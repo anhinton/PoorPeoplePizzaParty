@@ -96,6 +96,10 @@ public class Constants {
     // states for ServeWorkersScreen
     public enum ServerWorkersState { PARTY, BOSS }
 
+    // length of party in ServerWorkersScreen in seconds
+    // TODO: set length to Pizza Party song clip time
+    public static final float PARTY_TIME = 5;
+
     // Options for party background texture
     public enum PartySprite { COLOUR, GREY }
 

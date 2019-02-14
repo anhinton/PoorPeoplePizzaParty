@@ -13,10 +13,10 @@
 		  - ~~fly across screen~~
 		  - ~~dispose once off-screen~~
 	  - ~~spawn FlyingPizzas at random intervals~~
-	  - LunchPhoto class
+	  - ~~LunchPhoto class~~
 	      - ~~show colour Sprite by default~~
 		  - ~~function to switch to grey~~
-	  - party picture turns grey
+	  - ~~party picture turns grey~~
 	  - blood drip effect scrolls down from top
 	  - Boss class
           - boss pops up and says "I can't believe you people eat this
