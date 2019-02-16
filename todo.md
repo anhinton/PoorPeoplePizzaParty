@@ -3,12 +3,11 @@
   + move viewport boilerplate to a utils Class
         
   + create ServeWorkersScreen.class
-      - make image assets
+      - ~~make image assets~~
           - ~~pizza party/worker party~~
-          - streamers
       - ~~send here from CookScreen choice~~
-      - it's a pizza party celebrate!
-	  - FlyingPizza class
+      - ~~it's a pizza party celebrate!~~
+	  - ~~FlyingPizza class~~
 	      - ~~spawn at random location off-screen~~
 		  - ~~fly across screen~~
 		  - ~~dispose once off-screen~~
@@ -18,12 +17,13 @@
 		  - ~~function to switch to grey~~
 	  - ~~party picture turns grey~~
 	  - ~~blood drip effect scrolls down from top~~
-	  - Boss class
+	  - ~~Boss class~~
           - ~~boss pops up~~
-		  - says "I can't believe you people eat this mass-produced rubbish"
-      - everyone fired
+		  - ~~says "I can't believe you people eat this mass-produced rubbish"~~
+      - ~~everyone fired~~
       - ~~implement Android back button logic~~
-      
+      - fix UI scale for Android (didn't follow my rules)
+	  
   + create TitleScreen class
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
