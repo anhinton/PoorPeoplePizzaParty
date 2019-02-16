@@ -4,25 +4,33 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import nz.co.canadia.poorpeoplepizzaparty.screens.ServeWorkersScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class DoomDrips {
     private final Sprite sprite;
+    private final ServeWorkersScreen serveWorkersScreen;
+    private boolean isVisible;
     private boolean isActive;
+    private boolean hasFired;
 
-    public DoomDrips(Texture texture) {
+    public DoomDrips(Texture texture, ServeWorkersScreen serveWorkersScreen) {
+        this.serveWorkersScreen = serveWorkersScreen;
         isActive = false;
+        isVisible = false;
+        hasFired = false;
         sprite = new Sprite(texture);
         sprite.setPosition(0, Constants.GAME_HEIGHT);
-        sprite.setColor(1, 1, 1, .5f);
+        sprite.setColor(1, 1, 1, .25f);
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void start() {
+        isActive = true;
+        isVisible = true;
     }
 
     public void draw(SpriteBatch batch) {
-        if (isActive) {
+        if (isVisible) {
             sprite.draw(batch);
         }
     }
@@ -33,6 +41,12 @@ public class DoomDrips {
                 sprite.setY(sprite.getY() - delta * Constants.DOOM_DRIPS_SPEED);
             } else {
                 sprite.setY(Constants.GAME_HEIGHT - sprite.getHeight());
+                isActive = false;
+            }
+        } else {
+            if (!hasFired) {
+                serveWorkersScreen.showFiredButton();
+                hasFired = true;
             }
         }
     }

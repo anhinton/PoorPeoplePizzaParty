@@ -62,8 +62,7 @@ public class ServeBossUi extends Table {
         super.pad(padding);
 
         Table leftColumn = new Table(uiSkin);
-        super.add(leftColumn)
-        ;
+        super.add(leftColumn);
 
         String firedString = "";
         switch(MathUtils.random(1, 2)) {
