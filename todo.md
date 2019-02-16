@@ -24,6 +24,7 @@
       - ~~implement Android back button logic~~
       - ~~fix UI scale for Android~~
 	  - flash "PIZZA" and "PARTY" handwritten text on screen while partying
+	  - click/touch to advance
 	  
   + create TitleScreen class
       - pizza party, a party for pizza
