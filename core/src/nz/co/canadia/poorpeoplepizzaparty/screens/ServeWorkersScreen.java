@@ -123,16 +123,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         label.setPosition(padding,
                 screenHeight - padding - label.getHeight());
         label.setWidth(Constants.GAME_WIDTH * 2 / 3f);
-//        label.setWrap(true);
         uiStage.addActor(label);
     }
 
     public void showFiredButton() {
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
-        firedButton.setPosition(padding, padding);
-        firedButton.setSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                UiSize.getButtonHeight(screenHeight));
+        firedButton.setSize(screenWidth / 2f,
+                screenHeight / 5f);
+        firedButton.setPosition(screenWidth / 2f - firedButton.getWidth() / 2,
+                screenHeight / 2f - firedButton.getHeight() / 2);
         firedButton.pad(padding);
         firedButton.addListener(new ChangeListener() {
             @Override
