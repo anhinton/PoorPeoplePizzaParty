@@ -24,6 +24,7 @@
       - ~~implement Android back button logic~~
       - ~~fix UI scale for Android~~
 	  - ~~make "everyone has been fired" bigger and in middle of screen~~
+	  - ~~make grayscale version of LunchPhoto have inverted colours~~
 	  - flash "PIZZA" and "PARTY" handwritten text on screen while partying
 	  - click/touch to advance
 	  

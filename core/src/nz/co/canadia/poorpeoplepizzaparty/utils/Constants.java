@@ -101,7 +101,7 @@ public class Constants {
     public static final float PARTY_TIME = 5;
 
     // Options for party background texture
-    public enum PartySprite { COLOUR, GREY }
+    public enum PartySprite { NORMAL, INVERSE }
 
     // FlyingPizza scale
     public static final float FLYING_PIZZA_SCALE = 1 / 3f;

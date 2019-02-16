@@ -96,8 +96,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         // set time to spawn new pizzas
         nextSpawn = MathUtils.randomTriangular(.5f, 1.5f);
 
-        partyScene = new PartyScene(game.assets.get("graphics/lunch.png", Texture.class),
-                game.assets.get("graphics/lunch_grey.png", Texture.class));
+        partyScene = new PartyScene(game.assets.get("graphics/lunch_1.png", Texture.class),
+                game.assets.get("graphics/lunch_2.png", Texture.class));
 
         pizzaPixmap = pizza.getPixmap();
         pizzaTexture = new Texture(pizzaPixmap);
@@ -235,7 +235,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
                 if (timeElapsed > Constants.PARTY_TIME) {
                     flyingPizzaArray.clear();
-                    partyScene.switchColour();
+                    partyScene.switchState();
                     doomDrips.start();
                     partyBoss.start();
                     state = Constants.ServerWorkersState.BOSS;

@@ -8,47 +8,47 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
  * This class contains the pizza party photo displayed in the background of ServerWorkersScreen.
- * The image has two states: colour, initially, and then greyscale. switchColour() to
+ * The image has two states: colour, initially, and then greyscale. switchState() to
  * change.
  */
 
 public class PartyScene {
-    private Sprite colourSprite;
-    private Sprite greySprite;
-    private Constants.PartySprite currentColour;
+    private Sprite normalSprite;
+    private Sprite inverseSprite;
+    private Constants.PartySprite currentState;
 
-    public PartyScene(Texture colourTexture, Texture greyTexture) {
-        colourSprite = new Sprite(colourTexture);
-        colourSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        colourSprite.setPosition(0, 0);
-        greySprite = new Sprite(greyTexture);
-        greySprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        greySprite.setPosition(0, 0);
-        currentColour = Constants.PartySprite.COLOUR;
+    public PartyScene(Texture normalTexture, Texture inverseTexture) {
+        normalSprite = new Sprite(normalTexture);
+        normalSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        normalSprite.setPosition(0, 0);
+        inverseSprite = new Sprite(inverseTexture);
+        inverseSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        inverseSprite.setPosition(0, 0);
+        currentState = Constants.PartySprite.NORMAL;
     }
 
-    private void setCurrentColour(Constants.PartySprite colour) {
-        currentColour = colour;
+    private void setCurrentState(Constants.PartySprite colour) {
+        currentState = colour;
     }
 
-    public void switchColour() {
-        switch (currentColour) {
-            case COLOUR:
-                setCurrentColour(Constants.PartySprite.GREY);
+    public void switchState() {
+        switch (currentState) {
+            case NORMAL:
+                setCurrentState(Constants.PartySprite.INVERSE);
                 break;
-            case GREY:
-                setCurrentColour(Constants.PartySprite.COLOUR);
+            case INVERSE:
+                setCurrentState(Constants.PartySprite.NORMAL);
                 break;
         }
     }
 
     public void draw (SpriteBatch batch) {
-        switch (currentColour) {
-            case COLOUR:
-                colourSprite.draw(batch);
+        switch (currentState) {
+            case NORMAL:
+                normalSprite.draw(batch);
                 break;
-            case GREY:
-                greySprite.draw(batch);
+            case INVERSE:
+                inverseSprite.draw(batch);
                 break;
         }
     }

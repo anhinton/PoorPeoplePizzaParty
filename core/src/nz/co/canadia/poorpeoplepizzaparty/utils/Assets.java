@@ -94,9 +94,9 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/doomdrips.png",
                 Texture.class, param);
-        super.load("graphics/lunch.png",
+        super.load("graphics/lunch_1.png",
                 Texture.class, param);
-        super.load("graphics/lunch_grey.png",
+        super.load("graphics/lunch_2.png",
                 Texture.class, param);
         super.finishLoading();
     }
