@@ -123,7 +123,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     public void bossSpeaks() {
-        partyScene.switchState();
         Label label = new Label(game.bundle.get("serveworkersName") + ": \n\""
                 + game.bundle.get("serveworkersStatement") + "\"", game.uiSkin,
                 "default");
@@ -135,6 +134,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     public void showFiredButton() {
+        partyScene.switchState();
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
         firedButton.setSize(screenWidth / 2f,

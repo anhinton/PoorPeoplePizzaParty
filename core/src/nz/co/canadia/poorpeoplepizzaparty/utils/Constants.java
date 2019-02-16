@@ -111,8 +111,8 @@ public class Constants {
     public static final int FLYING_PIZZA_SPAWN_COUNT_MAX = 10;
 
     // FlyingPizza spawn rate
-    public static final float FLYING_PIZZA_SPAWN_WAIT_MIN = 0.5f;
-    public static final float FLYING_PIZZA_SPAWN_WAIT_MAX = 1.5f;
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MIN = 0.2f;
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MAX = 1.2f;
 
     // FlyingPizza scale
     public static final float FLYING_PIZZA_SCALE = 1 / 3f;
