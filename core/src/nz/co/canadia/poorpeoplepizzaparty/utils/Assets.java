@@ -98,6 +98,10 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/lunch_2.png",
                 Texture.class, param);
+        super.load("graphics/pizzaparty_0.png",
+                Texture.class, param);
+        super.load("graphics/pizzaparty_1.png",
+                Texture.class, param);
         super.finishLoading();
     }
 }

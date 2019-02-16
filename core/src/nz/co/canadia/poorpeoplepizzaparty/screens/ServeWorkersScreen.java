@@ -25,6 +25,7 @@ import nz.co.canadia.poorpeoplepizzaparty.FlyingPizza;
 import nz.co.canadia.poorpeoplepizzaparty.PartyBoss;
 import nz.co.canadia.poorpeoplepizzaparty.PartyScene;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.PizzaPartyAnimation;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
@@ -44,6 +45,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final int screenWidth;
     private final int screenHeight;
     private final int padding;
+    private final PizzaPartyAnimation pizzaPartyAnimation;
     private float timeElapsed;
     private float nextSpawn;
     private PartyScene partyScene;
@@ -94,7 +96,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         timeElapsed = 0;
 
         // set time to spawn new pizzas
-        nextSpawn = MathUtils.randomTriangular(.5f, 1.5f);
+        nextSpawn = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPAWN_WAIT_MIN,
+                Constants.FLYING_PIZZA_SPAWN_WAIT_MAX);
 
         partyScene = new PartyScene(game.assets.get("graphics/lunch_1.png", Texture.class),
                 game.assets.get("graphics/lunch_2.png", Texture.class));
@@ -103,9 +106,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         pizzaTexture = new Texture(pizzaPixmap);
 
         flyingPizzaArray = new Array<FlyingPizza>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < Constants.FLYING_PIZZA_INITIAL_SPAWN_COUNT; i++) {
             flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
         }
+
+        pizzaPartyAnimation = new PizzaPartyAnimation(
+                game.assets.get("graphics/pizzaparty_0.png", Texture.class),
+                game.assets.get("graphics/pizzaparty_1.png", Texture.class));
 
         partyBoss = new PartyBoss (game.assets.get("graphics/boss.png", Texture.class),
                 this);
@@ -116,6 +123,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     public void bossSpeaks() {
+        partyScene.switchState();
         Label label = new Label(game.bundle.get("serveworkersName") + ": \n\""
                 + game.bundle.get("serveworkersStatement") + "\"", game.uiSkin,
                 "default");
@@ -216,10 +224,14 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 if (timeElapsed >= nextSpawn) {
                     // set time of next spawn
                     nextSpawn = timeElapsed + MathUtils.randomTriangular(
-                            .2f, 1.2f);
+                            Constants.FLYING_PIZZA_SPAWN_WAIT_MIN,
+                            Constants.FLYING_PIZZA_SPAWN_WAIT_MAX);
 
-                    // spawn between 1 and 10 new pizzas
-                    for (int i = 1; i <= MathUtils.random(1, 10); i++) {
+                    // spawn new pizzas
+                    for (int i = 1;
+                         i <= MathUtils.random(Constants.FLYING_PIZZA_SPAWN_COUNT_MIN,
+                                 Constants.FLYING_PIZZA_SPAWN_COUNT_MAX);
+                         i++) {
                         flyingPizzaArray.add(new FlyingPizza(pizzaTexture));
                     }
                 }
@@ -233,9 +245,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                     }
                 }
 
+                // update pizza party animation
+                pizzaPartyAnimation.update(delta);
+
                 if (timeElapsed > Constants.PARTY_TIME) {
+                    pizzaPartyAnimation.stop();
                     flyingPizzaArray.clear();
-                    partyScene.switchState();
+//                    partyScene.switchState();
                     doomDrips.start();
                     partyBoss.start();
                     state = Constants.ServerWorkersState.BOSS;
@@ -254,6 +270,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.draw(game.batch);
         }
+        pizzaPartyAnimation.draw(game.batch);
         doomDrips.draw(game.batch);
         partyBoss.draw(game.batch);
         game.batch.end();

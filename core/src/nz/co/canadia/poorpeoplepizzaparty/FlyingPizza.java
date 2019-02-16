@@ -55,8 +55,8 @@ public class FlyingPizza {
                 break;
         }
 
-        speed = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPEED_LOWER,
-                Constants.FLYING_PIZZA_SPEED_UPPER);
+        speed = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPEED_MIN,
+                Constants.FLYING_PIZZA_SPEED_MAX);
         changeX = MathUtils.cos(direction);
         changeY = MathUtils.sin(direction);
 

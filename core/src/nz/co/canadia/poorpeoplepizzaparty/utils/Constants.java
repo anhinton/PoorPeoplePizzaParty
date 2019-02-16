@@ -103,16 +103,28 @@ public class Constants {
     // Options for party background texture
     public enum PartySprite { NORMAL, INVERSE }
 
+    // number of Flying Pizzas to spawn initially
+    public static final int FLYING_PIZZA_INITIAL_SPAWN_COUNT = 20;
+
+    // range of FlyingPizzas to spawn
+    public static final int FLYING_PIZZA_SPAWN_COUNT_MIN = 1;
+    public static final int FLYING_PIZZA_SPAWN_COUNT_MAX = 10;
+
+    // FlyingPizza spawn rate
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MIN = 0.5f;
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MAX = 1.5f;
+
     // FlyingPizza scale
     public static final float FLYING_PIZZA_SCALE = 1 / 3f;
 
     // FlyingPizza speed range
-    public static final float FLYING_PIZZA_SPEED_LOWER = 600;
-    public static final float FLYING_PIZZA_SPEED_UPPER = 1600;
+    public static final float FLYING_PIZZA_SPEED_MIN = 600;
+    public static final float FLYING_PIZZA_SPEED_MAX = 1600;
 
     // PartyBoss speed
     public static final float PARTY_BOSS_SPEED = 400;
     // DoomDrips speed
     public static final float DOOM_DRIPS_SPEED = PARTY_BOSS_SPEED / 3;
 
+    public static final float PIZZA_PARTY_FRAME_DURATION = 0.9f;
 }
