@@ -55,6 +55,10 @@ public class FlyingPizza {
                 break;
         }
 
+//        // randomise sprite rotation
+//        float rotation = MathUtils.random(0f, 360f);
+//        sprite.setRotation(rotation);
+
         speed = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPEED_MIN,
                 Constants.FLYING_PIZZA_SPEED_MAX);
         changeX = MathUtils.cos(direction);
