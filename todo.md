@@ -22,7 +22,7 @@
 		  - ~~says "I can't believe you people eat this mass-produced rubbish"~~
       - ~~everyone fired~~
       - ~~implement Android back button logic~~
-      - fix UI scale for Android (didn't follow my rules)
+      - ~~fix UI scale for Android~~
 	  
   + create TitleScreen class
       - pizza party, a party for pizza

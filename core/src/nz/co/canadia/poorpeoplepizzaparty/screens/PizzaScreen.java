@@ -127,8 +127,8 @@ public class PizzaScreen implements InputProcessor, Screen {
             x = selectedTopping.getX();
             y = selectedTopping.getY();
         } else {
-            x = Constants.GAME_WIDTH / 2;
-            y = Constants.GAME_HEIGHT / 2;
+            x = Constants.GAME_WIDTH / 2f;
+            y = Constants.GAME_HEIGHT / 2f;
         }
         selectedTopping = new Topping(
                 x,
