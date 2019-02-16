@@ -17,10 +17,10 @@
 	      - ~~show colour Sprite by default~~
 		  - ~~function to switch to grey~~
 	  - ~~party picture turns grey~~
-	  - blood drip effect scrolls down from top
+	  - ~~blood drip effect scrolls down from top~~
 	  - Boss class
-          - boss pops up and says "I can't believe you people eat this
-            mass-produced rubbish"
+          - ~~boss pops up~~
+		  - says "I can't believe you people eat this mass-produced rubbish"
       - everyone fired
       - ~~implement Android back button logic~~
       

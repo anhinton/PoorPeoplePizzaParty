@@ -78,7 +78,7 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Loads assets for Boss Screen. Blocks until all assets are loaded.
+     * Loads assets for ServeBossScreen. Blocks until all assets are loaded.
      */
     public void loadServeBossScreenAssets() {
         super.load("graphics/boss.png",
@@ -87,10 +87,12 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Loads assets for Boss Screen. Blocks until all assets are loaded.
+     * Loads assets for ServeWorkersScreen. Blocks until all assets are loaded.
      */
     public void loadServeWorkersScreenAssets() {
         super.load("graphics/boss.png",
+                Texture.class, param);
+        super.load("graphics/doomdrips.png",
                 Texture.class, param);
         super.load("graphics/lunch.png",
                 Texture.class, param);

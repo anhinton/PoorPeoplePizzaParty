@@ -110,4 +110,9 @@ public class Constants {
     public static final float FLYING_PIZZA_SPEED_LOWER = 600;
     public static final float FLYING_PIZZA_SPEED_UPPER = 1600;
 
+    // PartyBoss speed
+    public static final float PARTY_BOSS_SPEED = 400;
+    // DoomDrips speed
+    public static final float DOOM_DRIPS_SPEED = PARTY_BOSS_SPEED / 3;
+
 }
