@@ -49,6 +49,8 @@
 	  - Android: share and back UI buttons
 	  - Desktop: back UI button on mouse movement
 	  - create some more postcards for variety
+	  
+  + pick a better font
         
   + implement audio
       - topping sound effects
