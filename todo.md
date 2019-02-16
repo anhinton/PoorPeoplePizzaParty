@@ -37,6 +37,17 @@
         to here
       - change "you have been fired" button behaviour in ServeBossScreen and 
         ServerWorkersScreen to go back to here
+		
+  + bring back web version
+		
+  + create PostcardScreen class
+      - photo button takes you to this screen so you can see the postcard
+	    before saving/sharing
+	  - back button/Esc goes back to PizzaScreen
+	  - Desktop: save and back UI buttons
+	  - Android: share and back UI buttons
+	  - Desktop: back UI button on mouse movement
+	  - create some more postcards for variety
         
   + implement audio
       - topping sound effects
