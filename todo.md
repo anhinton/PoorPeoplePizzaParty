@@ -11,7 +11,8 @@
 	      - ~~spawn at random location off-screen~~
 		  - ~~fly across screen~~
 		  - ~~dispose once off-screen~~
-		  - randomise sprite rotation: will require re-calculating when sprite leaves screen
+		  - ~~randomise sprite rotation: will require re-calculating 
+		    when sprite leaves screen~~
 	  - ~~spawn FlyingPizzas at random intervals~~
 	  - ~~LunchPhoto class~~
 	      - ~~show colour Sprite by default~~

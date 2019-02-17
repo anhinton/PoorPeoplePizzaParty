@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -236,22 +238,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                     }
                 }
 
-                // update flying pizzas
-                for (int i = 0; i < flyingPizzaArray.size; i++) {
-                    flyingPizzaArray.get(i).update(delta);
-                    if (!flyingPizzaArray.get(i).isActive()) {
-                        // remove if inactive
-                        flyingPizzaArray.removeIndex(i);
-                    }
-                }
-
                 // update pizza party animation
                 pizzaPartyAnimation.update(delta);
 
                 if (timeElapsed > Constants.PARTY_TIME) {
                     pizzaPartyAnimation.stop();
-                    flyingPizzaArray.clear();
-//                    partyScene.switchState();
                     doomDrips.start();
                     partyBoss.start();
                     state = Constants.ServerWorkersState.BOSS;
@@ -261,6 +252,17 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 doomDrips.update(delta);
                 partyBoss.update(delta);
                 break;
+        }
+
+        // update flying pizzas
+        if (flyingPizzaArray.size > 0) {
+            for (int i = 0; i < flyingPizzaArray.size; i++) {
+                flyingPizzaArray.get(i).update(delta);
+                if (!flyingPizzaArray.get(i).isActive()) {
+                    // remove if inactive
+                    flyingPizzaArray.removeIndex(i);
+                }
+            }
         }
 
         gameCamera.update();
@@ -274,6 +276,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         doomDrips.draw(game.batch);
         partyBoss.draw(game.batch);
         game.batch.end();
+
+        if (Constants.DEBUG_GRAPHICS) {
+            game.shapeRenderer.setColor(1,0,0,1);
+            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            for (FlyingPizza fp: flyingPizzaArray) {
+                Rectangle r = fp.getBoundingRectangle();
+                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
+            }
+            game.shapeRenderer.end();
+        }
 
         uiStage.getViewport().apply();
         uiStage.getCamera().update();

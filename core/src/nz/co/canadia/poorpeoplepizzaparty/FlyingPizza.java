@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -55,9 +56,10 @@ public class FlyingPizza {
                 break;
         }
 
-//        // randomise sprite rotation
-//        float rotation = MathUtils.random(0f, 360f);
-//        sprite.setRotation(rotation);
+        // randomise sprite rotation
+        float rotation = MathUtils.random(0f, 360f);
+        sprite.setOriginCenter();
+        sprite.setRotation(rotation);
 
         speed = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPEED_MIN,
                 Constants.FLYING_PIZZA_SPEED_MAX);
@@ -93,5 +95,9 @@ public class FlyingPizza {
 
     public void dispose() {
 
+    }
+
+    public Rectangle getBoundingRectangle() {
+        return sprite.getBoundingRectangle();
     }
 }
