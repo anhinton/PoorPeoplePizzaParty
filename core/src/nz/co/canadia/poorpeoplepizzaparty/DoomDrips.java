@@ -10,6 +10,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class DoomDrips {
     private final Sprite sprite;
     private final ServeWorkersScreen serveWorkersScreen;
+    private final float speed;
     private boolean isVisible;
     private boolean isActive;
     private boolean hasFired;
@@ -22,11 +23,25 @@ public class DoomDrips {
         sprite = new Sprite(texture);
         sprite.setPosition(0, Constants.GAME_HEIGHT);
         sprite.setColor(1, 1, 1, .25f);
+        speed = sprite.getHeight() / Constants.DOOM_DRIPS_TIME;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void start() {
         isActive = true;
         isVisible = true;
+    }
+
+    public void stop() {
+        sprite.setY(Constants.GAME_HEIGHT - sprite.getHeight());
+        isActive = false;
+        if (!hasFired) {
+            serveWorkersScreen.showFiredButton();
+            hasFired = true;
+        }
     }
 
     public void draw(SpriteBatch batch) {
@@ -38,15 +53,9 @@ public class DoomDrips {
     public void update(float delta) {
         if (isActive) {
             if (sprite.getY() > Constants.GAME_HEIGHT - sprite.getHeight()) {
-                sprite.setY(sprite.getY() - delta * Constants.DOOM_DRIPS_SPEED);
+                sprite.setY(sprite.getY() - delta * speed);
             } else {
-                sprite.setY(Constants.GAME_HEIGHT - sprite.getHeight());
-                isActive = false;
-            }
-        } else {
-            if (!hasFired) {
-                serveWorkersScreen.showFiredButton();
-                hasFired = true;
+                stop();
             }
         }
     }

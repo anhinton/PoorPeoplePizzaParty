@@ -94,7 +94,7 @@ public class Constants {
     public enum ServeOption { BOSS, WORKERS }
 
     // states for ServeWorkersScreen
-    public enum ServerWorkersState { PARTY, BOSS }
+    public enum ServerWorkersState { PARTY, BOSS, FINISHED }
 
     // length of party in ServerWorkersScreen in seconds
     // TODO: set length to Pizza Party song clip time
@@ -121,10 +121,10 @@ public class Constants {
     public static final float FLYING_PIZZA_SPEED_MIN = 600;
     public static final float FLYING_PIZZA_SPEED_MAX = 1600;
 
-    // PartyBoss speed
-    public static final float PARTY_BOSS_SPEED = 400;
-    // DoomDrips speed
-    public static final float DOOM_DRIPS_SPEED = PARTY_BOSS_SPEED / 3;
+    // time taken by PartyBoss in seconds
+    public static final float PARTY_BOSS_TIME = 1;
+    // time taken by DoomDrips in seconds
+    public static final float DOOM_DRIPS_TIME = 2;
 
     public static final float PIZZA_PARTY_FRAME_DURATION = 0.9f;
 }

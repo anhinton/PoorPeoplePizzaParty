@@ -10,6 +10,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PartyBoss {
     private final Sprite sprite;
     private final ServeWorkersScreen serveWorkersScreen;
+    private final float speed;
+
     private boolean isActive;
     private boolean isVisible;
     private boolean hasSpoken;
@@ -22,11 +24,25 @@ public class PartyBoss {
         sprite = new Sprite(texture);
         sprite.setCenterX(Constants.GAME_WIDTH * 3f / 4);
         sprite.setY(0 - sprite.getHeight());
+        speed = sprite.getHeight() / Constants.PARTY_BOSS_TIME;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void start() {
         isVisible = true;
         isActive = true;
+    }
+
+    public void stop() {
+        sprite.setY(0);
+        isActive = false;
+        if(!hasSpoken) {
+            serveWorkersScreen.bossSpeaks();
+            hasSpoken = true;
+        }
     }
 
     public void draw(SpriteBatch batch) {
@@ -38,15 +54,9 @@ public class PartyBoss {
     public void update(float delta) {
         if (isActive) {
             if (sprite.getY() < 0) {
-                sprite.setY(sprite.getY() + delta * Constants.PARTY_BOSS_SPEED);
+                sprite.setY(sprite.getY() + delta * speed);
             } else {
-                sprite.setY(0);
-                isActive = false;
-            }
-        } else {
-            if (!hasSpoken) {
-                serveWorkersScreen.bossSpeaks();
-                hasSpoken = true;
+                stop();
             }
         }
     }

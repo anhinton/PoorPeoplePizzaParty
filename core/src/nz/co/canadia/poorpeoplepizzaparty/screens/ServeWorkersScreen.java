@@ -135,6 +135,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         uiStage.addActor(label);
     }
 
+    private void newPizzaScreen() {
+        game.setScreen(new PizzaScreen(game));
+        dispose();
+    }
+
     public void showFiredButton() {
         partyScene.switchState();
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
@@ -147,15 +152,23 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         firedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getFired();
+                newPizzaScreen();
             }
         });
         uiStage.addActor(firedButton);
     }
 
-    private void getFired() {
-        game.setScreen(new PizzaScreen(game));
-        dispose();
+    private void stopBoss() {
+        partyBoss.stop();
+        doomDrips.stop();
+        state = Constants.ServerWorkersState.FINISHED;
+    }
+
+    private void stopParty() {
+        pizzaPartyAnimation.stop();
+        doomDrips.start();
+        partyBoss.start();
+        state = Constants.ServerWorkersState.BOSS;
     }
 
     private void goBack() {
@@ -165,6 +178,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public boolean keyDown(int keycode) {
+        // back button goes back one screen
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
             goBack();
@@ -185,6 +199,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        switch(state) {
+            case PARTY:
+                stopParty();
+                return true;
+            case BOSS:
+                stopBoss();
+                return true;
+            case FINISHED:
+                break;
+        }
         return false;
     }
 
@@ -242,15 +266,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 pizzaPartyAnimation.update(delta);
 
                 if (timeElapsed > Constants.PARTY_TIME) {
-                    pizzaPartyAnimation.stop();
-                    doomDrips.start();
-                    partyBoss.start();
-                    state = Constants.ServerWorkersState.BOSS;
+                    stopParty();
                 }
                 break;
             case BOSS:
                 doomDrips.update(delta);
                 partyBoss.update(delta);
+                if (!doomDrips.isActive() & !partyBoss.isActive()) {
+                    stopBoss();
+                }
                 break;
         }
 
@@ -277,12 +301,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         partyBoss.draw(game.batch);
         game.batch.end();
 
+        // TODO: remove debugging before release
         if (Constants.DEBUG_GRAPHICS) {
             game.shapeRenderer.setColor(1,0,0,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             for (FlyingPizza fp: flyingPizzaArray) {
-                Rectangle r = fp.getBoundingRectangle();
-                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
+                game.shapeRenderer.rect(fp.getBoundingRectangle().x,
+                        fp.getBoundingRectangle().y,
+                        fp.getBoundingRectangle().width,
+                        fp.getBoundingRectangle().height);
             }
             game.shapeRenderer.end();
         }
