@@ -55,13 +55,7 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        // TODO: stop loading assets once finished debugging ServeBossScreen
-        assets.loadPizzaScreenAssets();
-        // TODO: change back to PizzaScreen
-//        this.setScreen(new CookScreen(this, new Pizza(assets),true));
-//        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
-        this.setScreen(new ServeWorkersScreen(this, new Pizza(assets)));
-//        this.setScreen(new PizzaScreen(this));
+        this.setScreen(new PizzaScreen(this));
     }
 
     @Override
