@@ -1,35 +1,57 @@
 # TODO
   
-  + implement Cook screen
-      - ~~countdown timer~~
-      - ~~then show a cooked pizza and give option to serve to Bosses or 
-        Workers~~
-      - ~~take Pizza from PizzaScreen as argument~~
-      - ~~implement Android back button logic~~
-          - ~~go back to PizzaScreen with existing Pizza~~
-      - implement CookScreen.serve()
-          - ~~send to ServeBossScreen for BOSS~~
-          - send to ServerWorkersScreen.class for WORKERS
-
   + move viewport boilerplate to a utils Class
         
   + create ServeWorkersScreen.class
-      - make image assets
-          - pizza party/worker party
-          - streamers
-      - send here from CookScreen choice
-      - it's a pizza party celebrate!
-      - boss pops up and says "I can't believe you people eat this 
-        mass-produced rubbish"
-      - everyone fired
-      - implement Android back button logic
-      
+      - ~~make image assets~~
+          - ~~pizza party/worker party~~
+      - ~~send here from CookScreen choice~~
+      - ~~it's a pizza party celebrate!~~
+	  - ~~FlyingPizza class~~
+	      - ~~spawn at random location off-screen~~
+		  - ~~fly across screen~~
+		  - ~~dispose once off-screen~~
+		  - ~~randomise sprite rotation: will require re-calculating 
+		    when sprite leaves screen~~
+	  - ~~spawn FlyingPizzas at random intervals~~
+	  - ~~LunchPhoto class~~
+	      - ~~show colour Sprite by default~~
+		  - ~~function to switch to grey~~
+	  - ~~party picture turns grey~~
+	  - ~~blood drip effect scrolls down from top~~
+	  - ~~Boss class~~
+          - ~~boss pops up~~
+		  - ~~says "I can't believe you people eat this mass-produced
+		    rubbish"~~
+      - ~~everyone fired~~
+      - ~~implement Android back button logic~~
+      - ~~fix UI scale for Android~~
+	  - ~~make "everyone has been fired" bigger and in middle of screen~~
+	  - ~~make grayscale version of LunchPhoto have inverted colours~~
+	  - ~~PizzaPartyAnimation.class~~
+	      - ~~flash "PIZZA" and "PARTY" handwritten text on screen while 
+		    partying~~
+	  - ~~click/touch to advance~~
+	  
   + create TitleScreen class
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
         to here
       - change "you have been fired" button behaviour in ServeBossScreen and 
         ServerWorkersScreen to go back to here
+		
+  + bring back web version
+		
+  + create PostcardScreen class
+      - photo button takes you to this screen so you can see the postcard
+	    before saving/sharing
+	  - back button/Esc goes back to PizzaScreen
+	  - Desktop: save and back UI buttons
+	  - Android: share and back UI buttons
+	  - Desktop: back UI button on mouse movement
+	  - create some more postcards for variety
+	  
+  + pick a better font
         
   + implement audio
       - topping sound effects
@@ -48,6 +70,17 @@
   
 ## Done
   
+  + ~~implement Cook screen~~
+      - ~~countdown timer~~
+      - ~~then show a cooked pizza and give option to serve to Bosses or 
+        Workers~~
+      - ~~take Pizza from PizzaScreen as argument~~
+      - ~~implement Android back button logic~~
+          - ~~go back to PizzaScreen with existing Pizza~~
+      - implement CookScreen.serve()
+          - ~~send to ServeBossScreen for BOSS~~
+          - ~~send to ServerWorkersScreen.class for WORKERS~~
+
   + ~~create ServeBossScreen class~~
       - ~~make Boss sprite~~
       - ~~send here from CookScreen choice~~

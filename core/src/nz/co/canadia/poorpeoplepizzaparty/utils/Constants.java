@@ -17,6 +17,8 @@ public class Constants {
             new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green
     public static final Color BOSS_BG_COLOUR =
             new Color(0.235f, 0.247f, 0.255f, 1); // a bit grey really
+    public static final Color WORKERS_BG_COLOUR =
+            new Color(0, 0, 0, 1);
 
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
@@ -91,6 +93,38 @@ public class Constants {
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
 
-    // Boss UI widths
-    static final int BOSS_BUTTON_WIDTH = GAME_WIDTH * 2 / 3;
+    // states for ServeWorkersScreen
+    public enum ServerWorkersState { PARTY, BOSS, FINISHED }
+
+    // length of party in ServerWorkersScreen in seconds
+    // TODO: set length to Pizza Party song clip time
+    public static final float PARTY_TIME = 5;
+
+    // Options for party background texture
+    public enum PartySprite { NORMAL, INVERSE }
+
+    // number of Flying Pizzas to spawn initially
+    public static final int FLYING_PIZZA_INITIAL_SPAWN_COUNT = 20;
+
+    // range of FlyingPizzas to spawn
+    public static final int FLYING_PIZZA_SPAWN_COUNT_MIN = 1;
+    public static final int FLYING_PIZZA_SPAWN_COUNT_MAX = 10;
+
+    // FlyingPizza spawn rate
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MIN = 0.2f;
+    public static final float FLYING_PIZZA_SPAWN_WAIT_MAX = 1.2f;
+
+    // FlyingPizza scale
+    public static final float FLYING_PIZZA_SCALE = 1 / 3f;
+
+    // FlyingPizza speed range
+    public static final float FLYING_PIZZA_SPEED_MIN = 600;
+    public static final float FLYING_PIZZA_SPEED_MAX = 1600;
+
+    // time taken by PartyBoss in seconds
+    public static final float PARTY_BOSS_TIME = 1;
+    // time taken by DoomDrips in seconds
+    public static final float DOOM_DRIPS_TIME = 2;
+
+    public static final float PIZZA_PARTY_FRAME_DURATION = 0.9f;
 }
