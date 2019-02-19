@@ -1,8 +1,45 @@
 # TODO
   
+  + create PostcardScreen class
+      - photo button takes you to this screen so you can see the postcard
+	    before saving/sharing
+	  - back button/Esc goes back to PizzaScreen
+	  - Desktop: save and back UI buttons
+	  - Android: share and back UI buttons
+	  - Desktop: back UI button on mouse movement
+	  - create some more postcards for variety
+	  
+  + pick a better font
+        
   + move viewport boilerplate to a utils Class
         
-  + create ServeWorkersScreen.class
+  + create TitleScreen class
+      - pizza party, a party for pizza
+      - change Android back button behaviour in PizzaScreen.class to go back 
+        to here
+      - change "you have been fired" button behaviour in ServeBossScreen and 
+        ServerWorkersScreen to go back to here
+		
+  + bring back web version
+		
+  + implement audio
+      - topping sound effects
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
+      
+  + do a Vector Android app icon
+  
+  + stop debugging for release
+  
+  + investigate desktop full screen and window resizing
+  
+  + investigate html build
+      - screenshot button just displays the postcard
+  
+## Done
+  
+  + ~~create ServeWorkersScreen.class~~
       - ~~make image assets~~
           - ~~pizza party/worker party~~
       - ~~send here from CookScreen choice~~
@@ -33,43 +70,6 @@
 		    partying~~
 	  - ~~click/touch to advance~~
 	  
-  + create TitleScreen class
-      - pizza party, a party for pizza
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - change "you have been fired" button behaviour in ServeBossScreen and 
-        ServerWorkersScreen to go back to here
-		
-  + bring back web version
-		
-  + create PostcardScreen class
-      - photo button takes you to this screen so you can see the postcard
-	    before saving/sharing
-	  - back button/Esc goes back to PizzaScreen
-	  - Desktop: save and back UI buttons
-	  - Android: share and back UI buttons
-	  - Desktop: back UI button on mouse movement
-	  - create some more postcards for variety
-	  
-  + pick a better font
-        
-  + implement audio
-      - topping sound effects
-      
-  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
-    is last placed
-      
-  + do a Vector Android app icon
-  
-  + stop debugging for release
-  
-  + investigate desktop full screen and window resizing
-  
-  + investigate html build
-      - screenshot button just displays the postcard
-  
-## Done
-  
   + ~~implement Cook screen~~
       - ~~countdown timer~~
       - ~~then show a cooked pizza and give option to serve to Bosses or 
