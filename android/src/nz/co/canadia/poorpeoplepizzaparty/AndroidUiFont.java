@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
@@ -10,12 +11,11 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
 public class AndroidUiFont implements UiFont {
 
     @Override
-    public BitmapFont getUiFont() {
+    public BitmapFont getUiFont(FileHandle fontFile) {
 
         // create ui-font based on screen size
         FreeTypeFontGenerator generator =
-                new FreeTypeFontGenerator(Gdx.files.internal(
-                        "fonts/Cagliostro-Regular/Cagliostro-Regular.ttf"));
+                new FreeTypeFontGenerator(fontFile);
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = Math.round(Constants.UI_FONT_RATIO
