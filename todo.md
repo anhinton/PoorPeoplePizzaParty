@@ -9,8 +9,6 @@
 	  - Desktop: back UI button on mouse movement
 	  - create some more postcards for variety
 	  
-  + pick a better font
-        
   + move viewport boilerplate to a utils Class
         
   + create TitleScreen class
@@ -39,6 +37,9 @@
   
 ## Done
   
+  + ~~pick a better font~~
+      - ~~Inconsolata for buttons and Podkova for labels~~
+        
   + ~~create ServeWorkersScreen.class~~
       - ~~make image assets~~
           - ~~pizza party/worker party~~
