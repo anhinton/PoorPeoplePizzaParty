@@ -144,8 +144,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         partyScene.switchState();
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
-        firedButton.setSize(screenWidth / 2f,
-                screenHeight / 5f);
+        firedButton.setSize(screenWidth * 2 / 3f,
+                UiSize.getButtonHeight(screenHeight) * 2);
         firedButton.setPosition(screenWidth / 2f - firedButton.getWidth() / 2,
                 screenHeight / 2f - firedButton.getHeight() / 2);
         firedButton.pad(padding);

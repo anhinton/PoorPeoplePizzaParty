@@ -74,6 +74,8 @@ public class ServeBossUi extends Table {
                 break;
         }
 
+        Image bossImage = new Image(assets.get("graphics/boss.png", Texture.class));
+
         pizzaPixmap = pizza.getPixmap();
         pizzaTexture = new Texture(pizzaPixmap);
         pizzaTexture.setFilter(Texture.TextureFilter.Linear,
@@ -99,7 +101,7 @@ public class ServeBossUi extends Table {
 
         TextButton firedButton = new TextButton(bundle.get("servebossFiredButton"), uiSkin,
                 "default");
-        firedButton.getLabel().setWrap(true);
+//        firedButton.getLabel().setWrap(true);
         firedButton.getLabel().setText(firedButton.getText());
         firedButton.addListener(new ChangeListener() {
             @Override
@@ -108,11 +110,10 @@ public class ServeBossUi extends Table {
             }
         });
         leftColumn.add(firedButton)
-                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                UiSize.getButtonHeight(screenHeight))
+                .prefSize(screenWidth / 2f,
+                        UiSize.getButtonHeight(screenHeight))
                 .space(padding);
 
-        Image bossImage = new Image(assets.get("graphics/boss.png", Texture.class));
         super.add(bossImage)
                 .prefSize(
                         UiSize.getImageWidth(bossImage.getPrefWidth(),

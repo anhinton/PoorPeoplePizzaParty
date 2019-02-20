@@ -10,9 +10,14 @@ public class UiSkin extends Skin {
 
     public UiSkin (UiFont uiFont) {
 
-        super.add("ui-font",
+        super.add("button-font",
                 uiFont.getUiFont(Gdx.files.internal(
-                        "fonts/Cagliostro-Regular/Cagliostro-Regular.ttf")),
+                        "fonts/Inconsolata/Inconsolata-Regular.ttf")),
+                BitmapFont.class);
+
+        super.add("label-font",
+                uiFont.getUiFont(Gdx.files.internal(
+                        "fonts/Podkova-Regular/Podkova-Regular.ttf")),
                 BitmapFont.class);
 
         // load uiskin atlas

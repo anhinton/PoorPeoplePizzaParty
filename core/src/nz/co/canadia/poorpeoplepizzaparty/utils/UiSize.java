@@ -46,8 +46,8 @@ public class UiSize {
         return imageHeight / Constants.GAME_HEIGHT * screenHeight;
     }
 
-    public static float getImageWidth(float imageHeight, int screenWidth) {
-        return imageHeight / Constants.GAME_WIDTH * screenWidth;
+    public static float getImageWidth(float imageWidth, int screenWidth) {
+        return imageWidth / Constants.GAME_WIDTH * screenWidth;
     }
 
 }
