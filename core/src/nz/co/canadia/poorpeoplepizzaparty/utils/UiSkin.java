@@ -17,7 +17,7 @@ public class UiSkin extends Skin {
 
         super.add("label-font",
                 uiFont.getUiFont(Gdx.files.internal(
-                        "fonts/Podkova-Regular/Podkova-Regular.ttf")),
+                        "fonts/Podkova/Podkova-Regular.ttf")),
                 BitmapFont.class);
 
         // load uiskin atlas
