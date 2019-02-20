@@ -44,10 +44,10 @@ public class Constants {
     // everything is blocked out in terms of this unit
     static final int UNIT = 20;
 
-    // UI font size is is 24pt/32px
-    public static final float UI_FONT_RATIO = 32f / GAME_HEIGHT;
-    public static final float UI_SHADOW_X = 2f/ GAME_HEIGHT;
-    public static final float UI_SHADOW_Y = 2f/ GAME_HEIGHT;
+    // font size should be 6% of screen height
+    public static final float UI_FONT_RATIO = 0.06f; // pro
+    public static final float UI_SHADOW_X = 2f / GAME_HEIGHT;
+    public static final float UI_SHADOW_Y = 2f / GAME_HEIGHT;
     public static final Color UI_SHADOW_COLOR =
             new Color(0, 0, 0, 0.6f);
 
