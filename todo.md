@@ -22,6 +22,9 @@
 		
   + implement audio
       - topping sound effects
+	  - add a mute audio in Settings (add a Settings)
+	  - don't mute system audio? or when you mute game audio it enables
+	    system audio?
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
