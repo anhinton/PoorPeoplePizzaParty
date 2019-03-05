@@ -322,7 +322,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height);
+        gameViewport.update(width, height, true);
+        uiStage.getViewport().update(width, height, true);
     }
 
     @Override
