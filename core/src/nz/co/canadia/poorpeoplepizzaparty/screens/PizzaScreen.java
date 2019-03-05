@@ -95,8 +95,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     public void capturePizza() {
-        game.assets.loadPostcardAssets();
-        game.captureIO.savePizza(pizza, game.assets);
+        game.setScreen(new PostcardScreen(game, pizza));
+        dispose();
     }
 
     public void cook() {
