@@ -37,8 +37,9 @@ is licensed under the SIL Open Font License, Version 1.1.
 `fonts/Podkova` "Podkova" Copyright 2011 The Podkova Project Authors 
 (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
 
-`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/undo.png`
-"arrow_back", "camera_alt" and "undo" by 
+`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/save.png` 
+`graphics/icons/share.png` `graphics/icons/undo.png`
+"arrow_back", "camera_alt", "save_alt", "share", and "undo" by 
 [Google](https://material.io/tools/icons/) are licensed under 
 [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
 
