@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
@@ -18,8 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import java.awt.Color;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
@@ -76,37 +75,41 @@ public class PostcardScreen implements InputProcessor, Screen {
 
         postcard = new Postcard(pizza, game.assets);
 
-        // add share button
-        ImageButton.ImageButtonStyle shareButtonStyle =
-                new ImageButton.ImageButtonStyle(
-                        game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite shareSprite = new Sprite(
-                game.assets.get("graphics/icons/share.png",
-                        Texture.class));
-        shareSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
-        shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
-        ImageButton shareButton = new ImageButton(shareButtonStyle);
-        // TODO: add action to button
-        uiTable.add(shareButton)
-                .space(padding)
-                .prefSize(buttonWidth, buttonHeight);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            // add share button
+            ImageButton.ImageButtonStyle shareButtonStyle =
+                    new ImageButton.ImageButtonStyle(
+                            game.uiSkin.get("default", Button.ButtonStyle.class));
+            Sprite shareSprite = new Sprite(
+                    game.assets.get("graphics/icons/share.png",
+                            Texture.class));
+            shareSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
+                    Constants.UI_ICON_RATIO * screenHeight);
+            shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
+            ImageButton shareButton = new ImageButton(shareButtonStyle);
+            // TODO: add action to button
+            uiTable.add(shareButton)
+                    .space(padding)
+                    .prefSize(buttonWidth, buttonHeight);
+        }
 
-        // add save button
-        ImageButton.ImageButtonStyle saveButtonStyle =
-                new ImageButton.ImageButtonStyle(
-                        game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite saveSprite = new Sprite(
-                game.assets.get("graphics/icons/save.png",
-                        Texture.class));
-        saveSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
-        saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
-        ImageButton saveButton = new ImageButton(saveButtonStyle);
-        // TODO: add action to button
-        uiTable.add(saveButton)
-                .space(padding)
-                .prefSize(buttonWidth, buttonHeight);
+        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            // add save button
+            ImageButton.ImageButtonStyle saveButtonStyle =
+                    new ImageButton.ImageButtonStyle(
+                            game.uiSkin.get("default", Button.ButtonStyle.class));
+            Sprite saveSprite = new Sprite(
+                    game.assets.get("graphics/icons/save.png",
+                            Texture.class));
+            saveSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
+                    Constants.UI_ICON_RATIO * screenHeight);
+            saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
+            ImageButton saveButton = new ImageButton(saveButtonStyle);
+            // TODO: add action to button
+            uiTable.add(saveButton)
+                    .space(padding)
+                    .prefSize(buttonWidth, buttonHeight);
+        }
 
         // add back button
         ImageButton.ImageButtonStyle backButtonStyle =
@@ -188,8 +191,7 @@ public class PostcardScreen implements InputProcessor, Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(Color.BLACK.getRed(), Color.BLACK.getGreen(),
-                Color.BLACK.getBlue(), Color.BLACK.getAlpha());
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         gameCamera.update();
