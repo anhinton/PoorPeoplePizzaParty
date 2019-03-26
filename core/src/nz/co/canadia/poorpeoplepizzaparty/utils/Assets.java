@@ -44,7 +44,13 @@ public class Assets extends AssetManager {
     /**
      * Load assets for Postcard screen
      */
-    void loadPostcardAssets() {
+    public void loadPostcardAssets() {
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
+        super.load("graphics/icons/save.png", Texture.class,
+                param);
+        super.load("graphics/icons/share.png", Texture.class,
+                param);
         super.load("graphics/postcard.png", Pixmap.class);
         super.finishLoading();
     }
