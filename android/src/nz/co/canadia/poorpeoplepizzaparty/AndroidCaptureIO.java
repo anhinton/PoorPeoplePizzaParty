@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import java.io.File;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class AndroidCaptureIO implements CaptureIO {
@@ -27,10 +27,10 @@ public class AndroidCaptureIO implements CaptureIO {
     }
 
     @Override
-    public void savePizza(Pizza pizza, Assets assets) {
-        postcardPixmap = Capture.postcardPixmap(pizza, assets);
+    public void savePostcardImage(Pizza pizza, Assets assets) {
+        postcardPixmap = Postcard.postcardPixmap(pizza, assets);
 
-        postcardFilePath = Gdx.files.local("postcards/" + Capture.fileName());
+        postcardFilePath = Gdx.files.local("postcards/" + Postcard.fileName());
 
         writePostcardPNG();
 

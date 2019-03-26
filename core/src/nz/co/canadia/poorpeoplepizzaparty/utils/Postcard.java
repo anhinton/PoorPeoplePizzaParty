@@ -1,20 +1,38 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.utils.BufferUtils;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 
 /**
- * The Capture class is used to capture a Pixmap from the game.
+ * The Postcard class is used to capture a Pixmap from the game.
  */
 
-public class Capture {
+public class Postcard {
+    private final Pixmap postcardPixmap;
+    private final Sprite postcardSprite;
+    private final Texture postcardTexture;
+
+    public Postcard(Pizza pizza, Assets assets) {
+        assets.loadPostcardAssets();
+        postcardPixmap = postcardPixmap(pizza, assets);
+        postcardTexture = new Texture(postcardPixmap);
+        postcardSprite = new Sprite(postcardTexture);
+    }
+
+    public void draw(SpriteBatch batch) {
+        postcardSprite.draw(batch);
+    }
+
+    public void dispose() {
+        postcardPixmap.dispose();
+        postcardTexture.dispose();
+    }
+
     /**
      * Returns a timestamped filename string
      * @return String with timestamp

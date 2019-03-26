@@ -10,17 +10,21 @@ import java.awt.Color;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
 
 public class PostcardScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
+    private final Postcard postcard;
 
     PostcardScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
 
+        postcard = new Postcard(pizza, game.assets);
+
 //        game.assets.loadPostcardAssets();
-//        game.captureIO.savePizza(pizza, game.assets);
+//        game.captureIO.savePostcardImage(pizza, game.assets);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -87,6 +91,10 @@ public class PostcardScreen implements InputProcessor, Screen {
                 Color.BLACK.getBlue(), Color.BLACK.getAlpha());
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        game.batch.begin();
+        postcard.draw(game.batch);
+        game.batch.end();
+
     }
 
     @Override
@@ -111,6 +119,6 @@ public class PostcardScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-
+        postcard.dispose();
     }
 }
