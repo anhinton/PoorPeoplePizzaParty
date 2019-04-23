@@ -34,7 +34,7 @@ public class PostcardScreen implements InputProcessor, Screen {
     private final FitViewport gameViewport;
     private final Stage uiStage;
 
-    PostcardScreen(PoorPeoplePizzaParty game, Pizza pizza) {
+    PostcardScreen(final PoorPeoplePizzaParty game, final Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
         int screenWidth = Gdx.graphics.getBackBufferWidth();
@@ -105,6 +105,12 @@ public class PostcardScreen implements InputProcessor, Screen {
                     Constants.UI_ICON_RATIO * screenHeight);
             saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
             ImageButton saveButton = new ImageButton(saveButtonStyle);
+            saveButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    game.captureIO.savePostcardImage(pizza, game.assets);
+                }
+            });
             // TODO: add action to button
             uiTable.add(saveButton)
                     .space(padding)
