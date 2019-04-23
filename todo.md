@@ -19,6 +19,9 @@
         ServerWorkersScreen to go back to here
 		
   + bring back web version
+      - get web version to run
+      - test web version actually works
+      - work out how to handle screenshotting
 		
   + implement audio
       - topping sound effects
