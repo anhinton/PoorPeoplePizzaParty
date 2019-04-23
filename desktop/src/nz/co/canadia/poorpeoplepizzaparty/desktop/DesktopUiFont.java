@@ -29,6 +29,9 @@ public class DesktopUiFont implements UiFont {
                         * Gdx.graphics.getBackBufferHeight());
         BitmapFont uiFont = generator.generateFont(parameter);
 
+        // DEBUGGING FONT SIZE
+        Gdx.app.log("DesktopUiFont", "font size: " + parameter.size);
+
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
 
         return uiFont;

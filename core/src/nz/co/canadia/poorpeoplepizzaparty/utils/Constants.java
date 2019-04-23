@@ -29,8 +29,8 @@ public class Constants {
     public static final int DESKTOP_WIDTH = 960;
     public static final int DESKTOP_HEIGHT = 600;
 
-//    public static final int HTML_WIDTH = 960;
-//    public static final int HTML_HEIGHT = 600;
+    public static final int HTML_WIDTH = 960;
+    public static final int HTML_HEIGHT = 600;
 
     // Available menus in PizzaUi.class
     public enum CurrentPizzaMenu { MAIN, TOPPING }
