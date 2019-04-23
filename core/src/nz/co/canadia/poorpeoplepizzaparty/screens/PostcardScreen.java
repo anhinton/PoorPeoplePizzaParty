@@ -87,7 +87,12 @@ public class PostcardScreen implements InputProcessor, Screen {
                     Constants.UI_ICON_RATIO * screenHeight);
             shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
             ImageButton shareButton = new ImageButton(shareButtonStyle);
-            // TODO: add action to button
+            shareButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    game.captureIO.savePostcardImage(pizza, game.assets);
+                }
+            });
             uiTable.add(shareButton)
                     .space(padding)
                     .prefSize(buttonWidth, buttonHeight);
@@ -111,7 +116,6 @@ public class PostcardScreen implements InputProcessor, Screen {
                     game.captureIO.savePostcardImage(pizza, game.assets);
                 }
             });
-            // TODO: add action to button
             uiTable.add(saveButton)
                     .space(padding)
                     .prefSize(buttonWidth, buttonHeight);

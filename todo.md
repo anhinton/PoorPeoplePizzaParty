@@ -5,7 +5,7 @@
 	    before saving/sharing~~
 	  - ~~back button/Esc goes back to PizzaScreen~~
 	  - ~~Desktop: save and back UI buttons~~
-	  - Android: share and back UI buttons
+	  - ~~Android: share and back UI buttons~~
 	  - Html: back button
 	  - create some more postcards for variety
 	  
