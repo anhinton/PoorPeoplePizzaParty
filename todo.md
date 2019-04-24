@@ -3,6 +3,7 @@ q# TODO
   + bring back web version
       - ~~get web version to run~~
       - test web version actually works
+          - currently failing in Pizza.getPixmap() when doing BufferUtils.copy()
       - work out how to handle screenshotting
   
   + create PostcardScreen class

@@ -91,7 +91,7 @@ public class PizzaUi extends Table {
         cameraButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                pizzaScreen.capturePizza();
+                pizzaScreen.createPostcard();
             }
         });
 
@@ -178,14 +178,11 @@ public class PizzaUi extends Table {
      */
     public boolean goBack() {
         boolean result;
-        switch (currentMenu) {
-            case TOPPING:
-                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-                result = true;
-                break;
-            default:
-                result = false;
-                break;
+        if (currentMenu == Constants.CurrentPizzaMenu.TOPPING) {
+            setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
+            result = true;
+        } else {
+            result = false;
         }
         return result;
     }

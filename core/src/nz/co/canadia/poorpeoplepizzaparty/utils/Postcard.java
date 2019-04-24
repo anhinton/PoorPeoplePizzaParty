@@ -22,6 +22,7 @@ public class Postcard {
 
     public Postcard(Pizza pizza, Assets assets) {
         assets.loadPostcardAssets();
+
         postcardPixmap = postcardPixmap(pizza, assets);
         postcardTexture = new Texture(postcardPixmap);
         postcardSprite = new Sprite(postcardTexture);

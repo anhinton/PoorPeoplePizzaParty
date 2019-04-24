@@ -75,6 +75,8 @@ public class PostcardScreen implements InputProcessor, Screen {
 
         postcard = new Postcard(pizza, game.assets);
 
+        Gdx.app.log("PostcardScreen", "after Postcard()");
+
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             // add share button
             ImageButton.ImageButtonStyle shareButtonStyle =
