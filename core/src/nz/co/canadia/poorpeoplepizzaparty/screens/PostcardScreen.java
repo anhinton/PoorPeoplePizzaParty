@@ -204,9 +204,10 @@ public class PostcardScreen implements InputProcessor, Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-//        gameViewport.apply();
+        gameViewport.apply();
         gameCamera.update();
         game.batch.setProjectionMatrix(gameCamera.combined);
+
         game.batch.begin();
         postcard.draw(game.batch);
         game.batch.end();
@@ -219,7 +220,8 @@ public class PostcardScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        gameViewport.update(width, height);
+        uiStage.getViewport().update(width, height, true);
     }
 
     @Override

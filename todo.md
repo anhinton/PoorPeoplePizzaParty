@@ -1,4 +1,4 @@
-# TODO
+q# TODO
 		
   + bring back web version
       - ~~get web version to run~~
@@ -12,7 +12,9 @@
 	  - ~~Desktop: save and back UI buttons~~
 	  - ~~Android: share and back UI buttons~~
 	  - ~~create some more postcards for variety~~
-	  - work out why screen is resizing on Android
+	  - ~~work out why screen is resizing on Android~~
+	  - work out why background from old postcard shows behind pizza when quickly going
+	    back and forth from PostcardScreen
 	  - Html: back button
 	  
   + move viewport boilerplate to a utils Class
