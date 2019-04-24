@@ -204,8 +204,9 @@ public class PostcardScreen implements InputProcessor, Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+//        gameViewport.apply();
         gameCamera.update();
-        game.batch.setProjectionMatrix(gameViewport.getCamera().combined);
+        game.batch.setProjectionMatrix(gameCamera.combined);
         game.batch.begin();
         postcard.draw(game.batch);
         game.batch.end();

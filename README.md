@@ -68,7 +68,17 @@ by Mariuszjbie is licensed under
 by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
 [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
 
-`graphics/postcard.png`
+`graphics/postcards/postcard01.png`
 "[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
 by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
 under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
+
+`graphics/postcards/postcard02.png`
+"[Waipori River](https://www.flickr.com/photos/itravelnz/28166819765/)"
+by [itravelNZ® - New Zealand in your pocket™](https://www.flickr.com/photos/itravelnz/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+`graphics/postcards/postcard03.png`
+"[018](https://www.flickr.com/photos/93842075@N04/8596242513/)" 
+by [Phillip Cossar](https://www.flickr.com/photos/93842075@N04/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).

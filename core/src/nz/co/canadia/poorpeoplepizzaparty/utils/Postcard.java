@@ -1,9 +1,12 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
@@ -53,9 +56,10 @@ public class Postcard {
         // create temporary Pixmap from Pizza
         Pixmap pizzaPixmap = pizza.getPixmap();
 
-        // load postcard background Pixmap
-        Pixmap backgroundPixmap = assets.get("graphics/postcard.png",
-                Pixmap.class);
+        // load random postcard background Pixmap
+        FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
+        String postcardFile = postcardsDir.list()[MathUtils.random(postcardsDir.list().length - 1)].toString();
+        Pixmap backgroundPixmap = assets.get(postcardFile);
 
         // create new Pixmap to return as postcardPixmap
         Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
