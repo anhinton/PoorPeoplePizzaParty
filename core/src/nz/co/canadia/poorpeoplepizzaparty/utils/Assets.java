@@ -1,7 +1,9 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -42,10 +44,19 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Load assets for CaptureIO.savePizza()
+     * Load assets for Postcard screen
      */
     public void loadPostcardAssets() {
-        super.load("graphics/postcard.png", Pixmap.class);
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
+        super.load("graphics/icons/save.png", Texture.class,
+                param);
+        super.load("graphics/icons/share.png", Texture.class,
+                param);
+        FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
+        for (FileHandle fh: postcardsDir.list()) {
+            super.load(fh.toString(), Pixmap.class);
+        }
         super.finishLoading();
     }
 

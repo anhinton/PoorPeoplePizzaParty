@@ -5,7 +5,7 @@ import java.util.Locale;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 
 public interface CaptureIO {
-    void savePizza(Pizza pizza, Assets assets);
+    void savePostcardImage(Pizza pizza, Assets assets);
 
     void dispose();
 }

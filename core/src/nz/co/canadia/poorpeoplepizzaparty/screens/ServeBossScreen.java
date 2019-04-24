@@ -25,6 +25,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
     private final ServeBossUi serveBossUi;
+    private FitViewport viewport;
 
     ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
@@ -36,7 +37,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();
         float screenHeight = Gdx.graphics.getBackBufferHeight();
-        FitViewport viewport;
         if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
             viewport = new FitViewport(
                     Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
@@ -133,6 +133,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
+        viewport.update(width, height, true);
         stage.getViewport().update(width, height, true);
     }
 
