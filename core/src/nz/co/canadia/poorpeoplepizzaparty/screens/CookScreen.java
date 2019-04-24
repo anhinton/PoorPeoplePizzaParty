@@ -21,6 +21,7 @@ public class CookScreen implements InputProcessor, Screen {
     private final Stage stage;
     private final Pizza pizza;
     private CookUi cookUi;
+    private FitViewport viewport;
 
     CookScreen(final PoorPeoplePizzaParty game, Pizza pizza,
                boolean countdown) {
@@ -33,7 +34,6 @@ public class CookScreen implements InputProcessor, Screen {
         OrthographicCamera uiCamera = new OrthographicCamera();
         float screenWidth = Gdx.graphics.getBackBufferWidth();
         float screenHeight = Gdx.graphics.getBackBufferHeight();
-        FitViewport viewport;
         if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
             viewport = new FitViewport(
                     Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
@@ -141,6 +141,7 @@ public class CookScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
+        viewport.update(width, height, true);
         stage.getViewport().update(width, height, true);
     }
 

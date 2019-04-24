@@ -1,13 +1,21 @@
-# TODO
+q# TODO
+		
+  + bring back web version
+      - ~~get web version to run~~
+      - test web version actually works
+      - work out how to handle screenshotting
   
   + create PostcardScreen class
-      - photo button takes you to this screen so you can see the postcard
-	    before saving/sharing
-	  - back button/Esc goes back to PizzaScreen
-	  - Desktop: save and back UI buttons
-	  - Android: share and back UI buttons
-	  - Desktop: back UI button on mouse movement
-	  - create some more postcards for variety
+      - ~~photo button takes you to this screen so you can see the postcard
+	    before saving/sharing~~
+	  - ~~back button/Esc goes back to PizzaScreen~~
+	  - ~~Desktop: save and back UI buttons~~
+	  - ~~Android: share and back UI buttons~~
+	  - ~~create some more postcards for variety~~
+	  - ~~work out why screen is resizing on Android~~
+	  - work out why background from old postcard shows behind pizza when quickly going
+	    back and forth from PostcardScreen
+	  - Html: back button
 	  
   + move viewport boilerplate to a utils Class
         
@@ -17,11 +25,6 @@
         to here
       - change "you have been fired" button behaviour in ServeBossScreen and 
         ServerWorkersScreen to go back to here
-		
-  + bring back web version
-      - get web version to run
-      - test web version actually works
-      - work out how to handle screenshotting
 		
   + implement audio
       - topping sound effects
