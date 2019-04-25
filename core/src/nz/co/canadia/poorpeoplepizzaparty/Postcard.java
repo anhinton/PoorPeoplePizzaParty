@@ -25,7 +25,6 @@ public class Postcard {
     public Postcard(Pizza pizza, Assets assets) {
         assets.loadPostcardAssets();
         postcardPixmap = postcardPixmap(pizza, assets);
-        Gdx.app.log("Postcard", "after postcardPixmap");
         postcardTexture = new Texture(postcardPixmap);
         postcardSprite = new Sprite(postcardTexture);
     }
@@ -70,7 +69,6 @@ public class Postcard {
         Pixmap backgroundPixmap = assets.get(
                 postcardFiles[MathUtils.random(postcardFiles.length - 1)]
         );
-        Gdx.app.log("Postcard", "after backgroundPixmap");
 
         // create new Pixmap to return as postcardPixmap
         Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
