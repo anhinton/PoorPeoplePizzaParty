@@ -1,4 +1,4 @@
-package nz.co.canadia.poorpeoplepizzaparty.utils;
+package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
  * The Postcard class is used to capture a Pixmap from the game.
@@ -22,8 +24,8 @@ public class Postcard {
 
     public Postcard(Pizza pizza, Assets assets) {
         assets.loadPostcardAssets();
-
         postcardPixmap = postcardPixmap(pizza, assets);
+        Gdx.app.log("Postcard", "after postcardPixmap");
         postcardTexture = new Texture(postcardPixmap);
         postcardSprite = new Sprite(postcardTexture);
     }
@@ -59,8 +61,11 @@ public class Postcard {
 
         // load random postcard background Pixmap
         FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
+        Gdx.app.log("Postcard", "postcardsDir: " + postcardsDir.toString());
         String postcardFile = postcardsDir.list()[MathUtils.random(postcardsDir.list().length - 1)].toString();
+        Gdx.app.log("Postcard", "after postcardFile");
         Pixmap backgroundPixmap = assets.get(postcardFile);
+        Gdx.app.log("Postcard", "after backgroundPixmap");
 
         // create new Pixmap to return as postcardPixmap
         Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),

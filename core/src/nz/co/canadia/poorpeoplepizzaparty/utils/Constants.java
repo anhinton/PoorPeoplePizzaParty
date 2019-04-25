@@ -87,8 +87,8 @@ public class Constants {
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
 
     // Screenshot filename
-    static final String CAPTURE_PREFIX = "pizza";
-    static final String CAPTURE_SUFFX = ".png";
+    public static final String CAPTURE_PREFIX = "pizza";
+    public static final String CAPTURE_SUFFX = ".png";
 
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }

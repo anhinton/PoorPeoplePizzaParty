@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -102,13 +103,18 @@ public class Pizza {
         batch.begin();
         draw(batch);
         batch.end();
-        byte[] pixels = ScreenUtils.getFrameBufferPixels(Constants.BASE_X,
-                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-                true);
-        Pixmap pixmap = new Pixmap(Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-                Pixmap.Format.RGBA8888);
-        //TODO: html is failing after BufferUtils.copy()
-        BufferUtils.copy(pixels, 0, pixmap.getPixels(), pixels.length);
+
+        //TODO: clean up pixmap fetching
+//        Texture t = buffer.getColorBufferTexture();
+
+//        byte[] pixels = ScreenUtils.getFrameBufferPixels(Constants.BASE_X,
+//                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
+//                true);
+//        Pixmap pixmap = new Pixmap(Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
+//                Pixmap.Format.RGBA8888);
+//        BufferUtils.copy(pixels, 0, pixmap.getPixels(), pixels.length);
+        Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(Constants.BASE_X,
+                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
         buffer.end();
 
         batch.dispose();

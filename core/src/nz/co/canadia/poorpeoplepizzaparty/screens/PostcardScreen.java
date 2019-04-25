@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
+import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class PostcardScreen implements InputProcessor, Screen {
