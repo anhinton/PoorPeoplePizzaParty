@@ -61,10 +61,15 @@ public class Postcard {
 
         // load random postcard background Pixmap
         FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
-        Gdx.app.log("Postcard", "postcardsDir: " + postcardsDir.toString());
-        String postcardFile = postcardsDir.list()[MathUtils.random(postcardsDir.list().length - 1)].toString();
-        Gdx.app.log("Postcard", "after postcardFile");
-        Pixmap backgroundPixmap = assets.get(postcardFile);
+
+        String[] postcardFiles = {
+                "graphics/postcards/postcard01.png",
+                "graphics/postcards/postcard02.png",
+                "graphics/postcards/postcard03.png"
+        };
+        Pixmap backgroundPixmap = assets.get(
+                postcardFiles[MathUtils.random(postcardFiles.length - 1)]
+        );
         Gdx.app.log("Postcard", "after backgroundPixmap");
 
         // create new Pixmap to return as postcardPixmap
