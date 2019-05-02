@@ -1,4 +1,4 @@
-q# TODO
+# TODO
 		
   + bring back web version
       - ~~get web version to run~~
@@ -41,14 +41,6 @@ q# TODO
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
-    
-  + ~~**BUG** work out why background from old postcard shows behind pizza when quickly going
-  	back and forth from PostcardScreen~~
-	  - ~~this seems to only happen when quickly creating a new Pizza pixmap after 
-	    disposing of one. It's possible to recreate this when going back and forth
-        from ServeBossScreen. Currently only happening on Linux laptop Desktop and
-        Android emulator build. Not happening in WebGl build on laptop, or on desktop PC.
-        I need to test on some other computers, maybe do a proper build.~~
       
   + do a Vector Android app icon
   
@@ -60,6 +52,14 @@ q# TODO
       - screenshot button just displays the postcard
   
 ## Done
+    
+  + ~~**BUG** work out why background from old postcard shows behind pizza when quickly going
+  	back and forth from PostcardScreen~~
+	  - ~~this seems to only happen when quickly creating a new Pizza pixmap after 
+	    disposing of one. It's possible to recreate this when going back and forth
+        from ServeBossScreen. Currently only happening on Linux laptop Desktop and
+        Android emulator build. Not happening in WebGl build on laptop, or on desktop PC.
+        I need to test on some other computers, maybe do a proper build.~~
   
   + ~~pick a better font~~
       - ~~Inconsolata for buttons and Podkova for labels~~
