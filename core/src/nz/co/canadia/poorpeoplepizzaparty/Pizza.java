@@ -105,6 +105,8 @@ public class Pizza {
         Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(Constants.BASE_X,
                 Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
 
+        buffer.end();
+
         batch.dispose();
         buffer.dispose();
         return pixmap;
