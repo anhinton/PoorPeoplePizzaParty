@@ -92,7 +92,7 @@ public class Pizza {
                 Constants.GAME_WIDTH, Constants.GAME_HEIGHT, false);
 
         OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.GAME_WIDTH,
+        camera.setToOrtho(true, Constants.GAME_WIDTH,
                 Constants.GAME_HEIGHT);
         batch.setProjectionMatrix(camera.combined);
 

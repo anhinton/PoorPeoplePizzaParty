@@ -20,6 +20,7 @@ q# TODO
 	  - ~~Android: share and back UI buttons~~
 	  - ~~create some more postcards for variety~~
 	  - ~~work out why screen is resizing on Android~~
+	  - ~~render pizza y-up~~
 	  - work out why background from old postcard shows behind pizza when quickly going
 	    back and forth from PostcardScreen
 	  - Html: back button
