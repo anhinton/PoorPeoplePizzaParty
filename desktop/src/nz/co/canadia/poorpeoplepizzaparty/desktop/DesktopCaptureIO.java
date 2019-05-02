@@ -20,8 +20,8 @@ public class DesktopCaptureIO implements CaptureIO {
     private File captureDir;
 
     @Override
-    public void savePostcardImage(Pizza pizza, Assets assets) {
-        postcardPixmap = Postcard.postcardPixmap(pizza, assets);
+    public void savePostcardImage(Postcard postcard) {
+        postcardPixmap = postcard.getPixmap();
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -34,7 +34,7 @@ public class DesktopCaptureIO implements CaptureIO {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             captureDir = fc.getSelectedFile();
             FileHandle filePath =
-                    Gdx.files.absolute(captureDir + "/" + Postcard.fileName());
+                    Gdx.files.absolute(captureDir + "/" + postcard.fileName());
             PixmapIO.writePNG(filePath, postcardPixmap);
         }
     }

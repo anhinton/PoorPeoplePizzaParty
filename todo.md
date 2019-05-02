@@ -23,6 +23,7 @@ q# TODO
 	  - work out why background from old postcard shows behind pizza when quickly going
 	    back and forth from PostcardScreen
 	  - Html: back button
+	  - move Postcard.fileName() somewhere sensible
 	  
   + move viewport boilerplate to a utils Class
         

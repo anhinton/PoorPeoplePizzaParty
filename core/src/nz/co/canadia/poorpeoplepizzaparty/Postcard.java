@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -18,31 +18,31 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  */
 
 public class Postcard {
-    private final Pixmap postcardPixmap;
-    private final Sprite postcardSprite;
-    private final Texture postcardTexture;
+    private final Pixmap pixmap;
+    private final Sprite sprite;
+    private final Texture texture;
 
     public Postcard(Pizza pizza, Assets assets) {
         assets.loadPostcardAssets();
-        postcardPixmap = postcardPixmap(pizza, assets);
-        postcardTexture = new Texture(postcardPixmap);
-        postcardSprite = new Sprite(postcardTexture);
+        pixmap = initPixmap(pizza, assets);
+        texture = new Texture(pixmap);
+        sprite = new Sprite(texture);
     }
 
     public void draw(SpriteBatch batch) {
-        postcardSprite.draw(batch);
+        sprite.draw(batch);
     }
 
     public void dispose() {
-        postcardPixmap.dispose();
-        postcardTexture.dispose();
+        pixmap.dispose();
+        texture.dispose();
     }
 
     /**
      * Returns a timestamped filename string
      * @return String with timestamp
      */
-    public static String fileName() {
+    public String fileName() {
         return Constants.CAPTURE_PREFIX + TimeUtils.millis() + Constants.CAPTURE_SUFFX;
     }
 
@@ -50,7 +50,11 @@ public class Postcard {
      * Returns a pixmap of a Pizza postcard
      * @return pixmap
      */
-    public static Pixmap postcardPixmap(Pizza pizza, Assets assets) {
+    public Pixmap getPixmap() {
+        return pixmap;
+    }
+
+    private Pixmap initPixmap(Pizza pizza, Assets assets) {
         int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
                 - Constants.BASE_X;
         int pizzaY = Constants.BASE_Y;
@@ -70,14 +74,14 @@ public class Postcard {
                 postcardFiles[MathUtils.random(postcardFiles.length - 1)]
         );
 
-        // create new Pixmap to return as postcardPixmap
+        // create new Pixmap to return as pixmap
         Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
                 backgroundPixmap.getHeight(), backgroundPixmap.getFormat());
 
-        // draw background to postcardPixmap
+        // draw background to pixmap
         postcardPixmap.drawPixmap(backgroundPixmap, 0, 0);
 
-        // draw temporary pizzaPixmap to postcardPixmap
+        // draw temporary pizzaPixmap to pixmap
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);
         // dispose of temporary pizzaPixmap
         pizzaPixmap.dispose();

@@ -1,14 +1,11 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
@@ -100,22 +97,13 @@ public class Pizza {
         batch.setProjectionMatrix(camera.combined);
 
         buffer.begin();
+
         batch.begin();
         draw(batch);
         batch.end();
 
-        //TODO: clean up pixmap fetching
-//        Texture t = buffer.getColorBufferTexture();
-
-//        byte[] pixels = ScreenUtils.getFrameBufferPixels(Constants.BASE_X,
-//                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-//                true);
-//        Pixmap pixmap = new Pixmap(Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-//                Pixmap.Format.RGBA8888);
-//        BufferUtils.copy(pixels, 0, pixmap.getPixels(), pixels.length);
         Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(Constants.BASE_X,
                 Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
-        buffer.end();
 
         batch.dispose();
         buffer.dispose();
