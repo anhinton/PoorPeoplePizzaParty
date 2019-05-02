@@ -94,7 +94,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void capturePizza() {
+    public void createPostcard() {
         game.setScreen(new PostcardScreen(game, pizza));
         dispose();
     }

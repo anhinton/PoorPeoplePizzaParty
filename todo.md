@@ -3,7 +3,14 @@ q# TODO
   + bring back web version
       - ~~get web version to run~~
       - test web version actually works
+          - ~~currently failing in Pizza.getPixmap() when doing BufferUtils.copy()~~
+          - CookScreen
+          - PizzaScreen
+          - PostcardScreen
+          - ServeBossScreen
+          - ServeWorkersScreen
       - work out how to handle screenshotting
+          - can the back button only appear on mouse move?
   
   + create PostcardScreen class
       - ~~photo button takes you to this screen so you can see the postcard

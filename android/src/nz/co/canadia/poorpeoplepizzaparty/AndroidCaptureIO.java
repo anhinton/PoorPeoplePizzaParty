@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import java.io.File;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class AndroidCaptureIO implements CaptureIO {

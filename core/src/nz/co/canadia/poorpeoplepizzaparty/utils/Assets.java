@@ -53,10 +53,9 @@ public class Assets extends AssetManager {
                 param);
         super.load("graphics/icons/share.png", Texture.class,
                 param);
-        FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
-        for (FileHandle fh: postcardsDir.list()) {
-            super.load(fh.toString(), Pixmap.class);
-        }
+        super.load("graphics/postcards/postcard01.png", Pixmap.class);
+        super.load("graphics/postcards/postcard02.png", Pixmap.class);
+        super.load("graphics/postcards/postcard03.png", Pixmap.class);
         super.finishLoading();
     }
 

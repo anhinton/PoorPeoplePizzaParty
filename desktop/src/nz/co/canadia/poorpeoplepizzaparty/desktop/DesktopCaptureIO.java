@@ -12,7 +12,7 @@ import javax.swing.JFileChooser;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
+import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class DesktopCaptureIO implements CaptureIO {
