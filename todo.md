@@ -21,7 +21,7 @@ q# TODO
 	  - ~~create some more postcards for variety~~
 	  - ~~work out why screen is resizing on Android~~
 	  - ~~render pizza y-up~~
-	  - Html: back button
+	  - ~~Html: back button~~
 	  - move Postcard.fileName() somewhere sensible
 	  
   + move viewport boilerplate to a utils Class
