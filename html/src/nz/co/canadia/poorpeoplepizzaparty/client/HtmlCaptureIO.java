@@ -11,9 +11,4 @@ public class HtmlCaptureIO implements CaptureIO {
     public void savePostcardImage(Postcard postcard) {
 
     }
-
-    @Override
-    public void dispose() {
-
-    }
 }

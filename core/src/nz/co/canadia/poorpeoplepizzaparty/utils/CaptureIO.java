@@ -7,6 +7,4 @@ import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 
 public interface CaptureIO {
     void savePostcardImage(Postcard postcard);
-
-    void dispose();
 }

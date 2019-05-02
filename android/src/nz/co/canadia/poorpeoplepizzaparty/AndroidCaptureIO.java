@@ -16,21 +16,19 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 public class AndroidCaptureIO implements CaptureIO {
 
     private AndroidLauncher activity;
-    private Pixmap postcardPixmap;
     private FileHandle postcardFilePath;
 
     AndroidCaptureIO(AndroidLauncher activity) {
         this.activity = activity;
-        this.postcardPixmap = new Pixmap(0, 0, Pixmap.Format.RGBA8888);
     }
 
     @Override
     public void savePostcardImage(Postcard postcard) {
-        postcardPixmap = postcard.getPixmap();
+        Pixmap postcardPixmap = postcard.getPixmap();
 
         postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
 
-        writePostcardPNG();
+        writePostcardPNG(postcardPixmap);
 
         sharePostcardPNG();
     }
@@ -58,14 +56,10 @@ public class AndroidCaptureIO implements CaptureIO {
                 activity.getResources().getText(R.string.share_header)));
     }
 
-    private void writePostcardPNG() {
+    private void writePostcardPNG(Pixmap postcardPixmap) {
         Gdx.app.log("AndroidCaptureIO",
                 "writing postcard PNG to " + postcardFilePath.toString());
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
-    }
-
-    public void dispose() {
-        postcardPixmap.dispose();
     }
 
 }

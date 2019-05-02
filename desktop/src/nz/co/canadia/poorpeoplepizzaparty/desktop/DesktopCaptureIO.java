@@ -16,12 +16,11 @@ import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class DesktopCaptureIO implements CaptureIO {
-    private Pixmap postcardPixmap;
     private File captureDir;
 
     @Override
     public void savePostcardImage(Postcard postcard) {
-        postcardPixmap = postcard.getPixmap();
+        Pixmap postcardPixmap = postcard.getPixmap();
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -36,13 +35,6 @@ public class DesktopCaptureIO implements CaptureIO {
             FileHandle filePath =
                     Gdx.files.absolute(captureDir + "/" + postcard.fileName());
             PixmapIO.writePNG(filePath, postcardPixmap);
-        }
-    }
-
-    @Override
-    public void dispose() {
-        if (postcardPixmap != null) {
-            postcardPixmap.dispose();
         }
     }
 }
