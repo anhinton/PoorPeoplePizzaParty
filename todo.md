@@ -1,16 +1,6 @@
 # TODO
-  
-  + create PostcardScreen class
-      - ~~photo button takes you to this screen so you can see the postcard
-	    before saving/sharing~~
-	  - ~~back button/Esc goes back to PizzaScreen~~
-	  - ~~Desktop: save and back UI buttons~~
-	  - ~~Android: share and back UI buttons~~
-	  - ~~create some more postcards for variety~~
-	  - ~~work out why screen is resizing on Android~~
-	  - ~~render pizza y-up~~
-	  - ~~Html: back button~~
-	  - move Postcard.fileName() somewhere sensible
+
+  + hold Undo button on PizzaScreen to remove all toppings
 	  
   + move viewport boilerplate to a utils Class
         
@@ -36,10 +26,19 @@
   
   + investigate desktop full screen and window resizing
   
-  + investigate html build
-      - screenshot button just displays the postcard
-  
 ## Done
+  
+  + ~~create PostcardScreen class~~
+      - ~~photo button takes you to this screen so you can see the postcard
+	    before saving/sharing~~
+	  - ~~back button/Esc goes back to PizzaScreen~~
+	  - ~~Desktop: save and back UI buttons~~
+	  - ~~Android: share and back UI buttons~~
+	  - ~~create some more postcards for variety~~
+	  - ~~work out why screen is resizing on Android~~
+	  - ~~render pizza y-up~~
+	  - ~~Html: back button~~
+	  - ~~**IT'S FINE WHERE IT IS**: move Postcard.fileName() somewhere sensible~~
 		
   + ~~bring back web version~~
       - ~~get web version to run~~
