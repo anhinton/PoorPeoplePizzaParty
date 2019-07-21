@@ -343,9 +343,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        // TODO: dispose of assets
-//        partyScene.dispose();
-//        partyBoss.dispose();
         pizzaPixmap.dispose();
         pizzaTexture.dispose();
         for (FlyingPizza fp: flyingPizzaArray) {
