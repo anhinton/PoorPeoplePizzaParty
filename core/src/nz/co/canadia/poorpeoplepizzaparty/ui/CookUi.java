@@ -129,7 +129,6 @@ public class CookUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 cookScreen.serve(Constants.ServeOption.BOSS);
-                Gdx.app.log("CookUi", "BOSSES selected");
             }
         });
         super.add(bossButton)
@@ -143,7 +142,6 @@ public class CookUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 cookScreen.serve(Constants.ServeOption.WORKERS);
-                Gdx.app.log("CookUi", "WORKERS selected");
             }
         });
         super.add(workersButton)
