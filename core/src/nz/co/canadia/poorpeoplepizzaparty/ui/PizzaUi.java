@@ -104,7 +104,7 @@ public class PizzaUi extends Table {
         undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
-        undoButton = new ImageButton(undoButtonStyle);
+        undoButton = new UndoButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
