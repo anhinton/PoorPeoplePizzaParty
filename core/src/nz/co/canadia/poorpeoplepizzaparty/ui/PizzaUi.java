@@ -49,7 +49,7 @@ public class PizzaUi extends Table {
 
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
-                   final I18NBundle bundle, final CaptureIO captureIO,
+                   final I18NBundle bundle,
                    final AssetManager assets) {
 
         this.screenWidth = screenWidth;
@@ -104,7 +104,7 @@ public class PizzaUi extends Table {
         undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
-        undoButton = new UndoButton(undoButtonStyle);
+        undoButton = new UndoButton(undoButtonStyle, this);
         undoButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -189,6 +189,10 @@ public class PizzaUi extends Table {
 
     public Constants.CurrentPizzaMenu getCurrentMenu() {
         return currentMenu;
+    }
+
+    void removeAllToppings() {
+        pizzaScreen.removeAllToppings();
     }
 
     private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {

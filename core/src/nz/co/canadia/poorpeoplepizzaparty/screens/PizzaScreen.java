@@ -83,7 +83,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), this, game.uiSkin,
-                game.bundle, game.captureIO, game.assets);
+                game.bundle, game.assets);
         uiStage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), game.uiSkin);
