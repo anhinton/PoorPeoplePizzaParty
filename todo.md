@@ -1,10 +1,6 @@
 # TODO
 
-  + ~~hold Undo button on PizzaScreen to remove all toppings~~
-      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
-      - ~~handle long press logic in PizzaScreen.render()~~
-      - ~~implement Pizza.removeAllToppings()~~
-      - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
+  + save Pizza to local storage on exit, reload on start
 	  
   + move viewport boilerplate to a utils Class
         
@@ -31,6 +27,12 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~hold Undo button on PizzaScreen to remove all toppings~~
+      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
+      - ~~handle long press logic in PizzaScreen.render()~~
+      - ~~implement Pizza.removeAllToppings()~~
+      - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
   
   + ~~create PostcardScreen class~~
       - ~~photo button takes you to this screen so you can see the postcard
