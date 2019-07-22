@@ -27,8 +27,15 @@ public class Pizza {
     public Pizza(final Assets assets) {
         this.assets = assets;
 
-        // add the base Topping to the topping array
         toppings = new Array<Topping>();
+        toppingOrder = new Array<Constants.ToppingName>();
+        baseToppingOrder = new Array<Constants.ToppingName>();
+
+        initialize();
+    }
+
+    private void initialize() {
+        // add the base Topping to the topping array
         toppings.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, Constants.ToppingName.BASE,
                 assets.get(assets.toppingPath(Constants.ToppingName.BASE),
@@ -36,8 +43,6 @@ public class Pizza {
                 true));
 
         // initialise toppingOrder and baseToppingOrder arrays
-        toppingOrder = new Array<Constants.ToppingName>();
-        baseToppingOrder = new Array<Constants.ToppingName>();
         baseToppingOrder.add(Constants.ToppingName.BASE);
     }
 
@@ -58,13 +63,23 @@ public class Pizza {
     }
 
     /**
+     * Remove all toppings from the pizza: the nuclear option
+     */
+    public void removeAllToppings() {
+        toppings.clear();
+        toppingOrder.clear();
+        baseToppingOrder.clear();
+        initialize();
+    }
+
+    /**
      * Remove the last topping added to the pizza
      */
     public void undoLastTopping() {
         if (toppingOrder.size > 0) {
             switch (toppingOrder.peek()) {
                 case BASE:
-                    setBaseTopping(Constants.ToppingName.BASE);
+                    //setBaseTopping(Constants.ToppingName.BASE);
                     break;
                 case SAUCE:
                     baseToppingOrder.pop();
