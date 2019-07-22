@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
@@ -104,7 +103,7 @@ public class PizzaUi extends Table {
         undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
                 Constants.UI_ICON_RATIO * screenHeight);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
-        undoButton = new UndoButton(undoButtonStyle, this);
+        undoButton = new ImageButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -189,15 +188,6 @@ public class PizzaUi extends Table {
 
     public Constants.CurrentPizzaMenu getCurrentMenu() {
         return currentMenu;
-    }
-
-    public ImageButton getUndoButton() {
-        return undoButton;
-    }
-
-
-    void removeAllToppings() {
-        pizzaScreen.removeAllToppings();
     }
 
     private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {
@@ -297,5 +287,9 @@ public class PizzaUi extends Table {
 
     private void setSelectedTopping(TextButton button) {
         toppingSelectButton.setText(button.getText().toString());
+    }
+
+    public boolean undoButtonPressed() {
+        return undoButton.isPressed();
     }
 }

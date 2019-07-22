@@ -1,8 +1,10 @@
 # TODO
 
-  + hold Undo button on PizzaScreen to remove all toppings
-      - ~~create UndoButton which implements GestureListener~~
-      - on longPress() clear out the pizza stack
+  + ~~hold Undo button on PizzaScreen to remove all toppings~~
+      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
+      - ~~handle long press logic in PizzaScreen.render()~~
+      - ~~implement Pizza.removeAllToppings()~~
+      - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
 	  
   + move viewport boilerplate to a utils Class
         
