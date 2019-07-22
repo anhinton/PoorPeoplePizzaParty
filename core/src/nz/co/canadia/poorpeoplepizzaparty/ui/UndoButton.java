@@ -6,8 +6,11 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class UndoButton extends ImageButton implements GestureDetector.GestureListener {
-    UndoButton(ImageButtonStyle style) {
+    private PizzaUi pizzaUi;
+
+    UndoButton(ImageButtonStyle style, PizzaUi pizzaUi) {
         super(style);
+        this.pizzaUi = pizzaUi;
     }
 
     @Override
@@ -22,7 +25,8 @@ public class UndoButton extends ImageButton implements GestureDetector.GestureLi
 
     @Override
     public boolean longPress(float x, float y) {
-        return false;
+        pizzaUi.removeAllToppings();
+        return true;
     }
 
     @Override

@@ -191,6 +191,11 @@ public class PizzaUi extends Table {
         return currentMenu;
     }
 
+    public ImageButton getUndoButton() {
+        return undoButton;
+    }
+
+
     void removeAllToppings() {
         pizzaScreen.removeAllToppings();
     }
