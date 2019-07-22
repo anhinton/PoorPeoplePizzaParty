@@ -311,15 +311,17 @@ public class PizzaScreen implements InputProcessor, Screen {
         // check for undoButton long presses
         if (pizzaUi.undoButtonPressed()) {
             if (!removeAllFired) {
-                if (undoPressedTime > 1.1f) {
+                if (undoPressedTime > 1.1f) { // TODO: move this float to Constants
                     removeAllToppings();
                     removeAllFired = true;
                 }
             }
             undoPressedTime += delta;
         } else {
-            removeAllFired = false;
-            undoPressedTime = 0;
+            if (removeAllFired) {
+                removeAllFired = false;
+                undoPressedTime = 0;
+            }
         }
     }
 
