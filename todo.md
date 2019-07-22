@@ -1,21 +1,6 @@
-q# TODO
-		
-  + bring back web version
-      - ~~get web version to run~~
-      - test web version actually works
-      - work out how to handle screenshotting
-  
-  + create PostcardScreen class
-      - ~~photo button takes you to this screen so you can see the postcard
-	    before saving/sharing~~
-	  - ~~back button/Esc goes back to PizzaScreen~~
-	  - ~~Desktop: save and back UI buttons~~
-	  - ~~Android: share and back UI buttons~~
-	  - ~~create some more postcards for variety~~
-	  - ~~work out why screen is resizing on Android~~
-	  - work out why background from old postcard shows behind pizza when quickly going
-	    back and forth from PostcardScreen
-	  - Html: back button
+# TODO
+
+  + save Pizza to local storage on exit, reload on start
 	  
   + move viewport boilerplate to a utils Class
         
@@ -41,10 +26,44 @@ q# TODO
   
   + investigate desktop full screen and window resizing
   
-  + investigate html build
-      - screenshot button just displays the postcard
-  
 ## Done
+
+  + ~~hold Undo button on PizzaScreen to remove all toppings~~
+      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
+      - ~~handle long press logic in PizzaScreen.render()~~
+      - ~~implement Pizza.removeAllToppings()~~
+      - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
+  
+  + ~~create PostcardScreen class~~
+      - ~~photo button takes you to this screen so you can see the postcard
+	    before saving/sharing~~
+	  - ~~back button/Esc goes back to PizzaScreen~~
+	  - ~~Desktop: save and back UI buttons~~
+	  - ~~Android: share and back UI buttons~~
+	  - ~~create some more postcards for variety~~
+	  - ~~work out why screen is resizing on Android~~
+	  - ~~render pizza y-up~~
+	  - ~~Html: back button~~
+	  - ~~**IT'S FINE WHERE IT IS**: move Postcard.fileName() somewhere sensible~~
+		
+  + ~~bring back web version~~
+      - ~~get web version to run~~
+      - test web version actually works
+          - ~~currently failing in Pizza.getPixmap() when doing BufferUtils.copy()~~
+          - ~~CookScreen~~
+          - ~~PizzaScreen~~
+          - ~~PostcardScreen~~
+          - ~~ServeBossScreen~~
+          - ~~ServeWorkersScreen~~
+      - ~~only the back button shows on the HTML postcard screen. use snipping tool, gamers!~~
+    
+  + ~~**BUG** work out why background from old postcard shows behind pizza when quickly going
+  	back and forth from PostcardScreen~~
+	  - ~~this seems to only happen when quickly creating a new Pizza pixmap after 
+	    disposing of one. It's possible to recreate this when going back and forth
+        from ServeBossScreen. Currently only happening on Linux laptop Desktop and
+        Android emulator build. Not happening in WebGl build on laptop, or on desktop PC.
+        I need to test on some other computers, maybe do a proper build.~~
   
   + ~~pick a better font~~
       - ~~Inconsolata for buttons and Podkova for labels~~

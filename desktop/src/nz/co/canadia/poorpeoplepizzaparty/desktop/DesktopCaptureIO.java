@@ -10,18 +10,15 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import nz.co.canadia.poorpeoplepizzaparty.Pizza;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
+import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class DesktopCaptureIO implements CaptureIO {
-    private Pixmap postcardPixmap;
     private File captureDir;
 
     @Override
-    public void savePostcardImage(Pizza pizza, Assets assets) {
-        postcardPixmap = Postcard.postcardPixmap(pizza, assets);
+    public void savePostcardImage(Postcard postcard) {
+        Pixmap postcardPixmap = postcard.getPixmap();
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -34,15 +31,8 @@ public class DesktopCaptureIO implements CaptureIO {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             captureDir = fc.getSelectedFile();
             FileHandle filePath =
-                    Gdx.files.absolute(captureDir + "/" + Postcard.fileName());
+                    Gdx.files.absolute(captureDir + "/" + postcard.fileName());
             PixmapIO.writePNG(filePath, postcardPixmap);
-        }
-    }
-
-    @Override
-    public void dispose() {
-        if (postcardPixmap != null) {
-            postcardPixmap.dispose();
         }
     }
 }

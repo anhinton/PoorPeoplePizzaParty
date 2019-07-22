@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Postcard;
+import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class PostcardScreen implements InputProcessor, Screen {
@@ -90,7 +90,7 @@ public class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(pizza, game.assets);
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             uiTable.add(shareButton)
@@ -113,7 +113,7 @@ public class PostcardScreen implements InputProcessor, Screen {
             saveButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(pizza, game.assets);
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             uiTable.add(saveButton)

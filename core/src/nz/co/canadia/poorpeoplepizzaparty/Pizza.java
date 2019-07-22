@@ -1,12 +1,13 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
@@ -26,8 +27,15 @@ public class Pizza {
     public Pizza(final Assets assets) {
         this.assets = assets;
 
-        // add the base Topping to the topping array
         toppings = new Array<Topping>();
+        toppingOrder = new Array<Constants.ToppingName>();
+        baseToppingOrder = new Array<Constants.ToppingName>();
+
+        initialize();
+    }
+
+    private void initialize() {
+        // add the base Topping to the topping array
         toppings.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, Constants.ToppingName.BASE,
                 assets.get(assets.toppingPath(Constants.ToppingName.BASE),
@@ -35,8 +43,6 @@ public class Pizza {
                 true));
 
         // initialise toppingOrder and baseToppingOrder arrays
-        toppingOrder = new Array<Constants.ToppingName>();
-        baseToppingOrder = new Array<Constants.ToppingName>();
         baseToppingOrder.add(Constants.ToppingName.BASE);
     }
 
@@ -57,13 +63,23 @@ public class Pizza {
     }
 
     /**
+     * Remove all toppings from the pizza: the nuclear option
+     */
+    public void removeAllToppings() {
+        toppings.clear();
+        toppingOrder.clear();
+        baseToppingOrder.clear();
+        initialize();
+    }
+
+    /**
      * Remove the last topping added to the pizza
      */
     public void undoLastTopping() {
         if (toppingOrder.size > 0) {
             switch (toppingOrder.peek()) {
                 case BASE:
-                    setBaseTopping(Constants.ToppingName.BASE);
+                    //setBaseTopping(Constants.ToppingName.BASE);
                     break;
                 case SAUCE:
                     baseToppingOrder.pop();
@@ -87,25 +103,28 @@ public class Pizza {
      * return a Pixmap of the pizza and toppings
      */
     public Pixmap getPixmap() {
+
         SpriteBatch batch = new SpriteBatch();
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
                 Constants.GAME_WIDTH, Constants.GAME_HEIGHT, false);
 
         OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.GAME_WIDTH,
+        camera.setToOrtho(true, Constants.GAME_WIDTH,
                 Constants.GAME_HEIGHT);
         batch.setProjectionMatrix(camera.combined);
 
         buffer.begin();
+
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
         batch.begin();
         draw(batch);
         batch.end();
-        byte[] pixels = ScreenUtils.getFrameBufferPixels(Constants.BASE_X,
-                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-                true);
-        Pixmap pixmap = new Pixmap(Constants.BASE_WIDTH, Constants.BASE_HEIGHT,
-                Pixmap.Format.RGBA8888);
-        BufferUtils.copy(pixels, 0, pixmap.getPixels(), pixels.length);
+
+        Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(Constants.BASE_X,
+                Constants.BASE_Y, Constants.BASE_WIDTH, Constants.BASE_HEIGHT);
+
         buffer.end();
 
         batch.dispose();

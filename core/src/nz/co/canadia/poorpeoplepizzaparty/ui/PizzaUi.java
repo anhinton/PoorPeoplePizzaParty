@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
@@ -49,7 +48,7 @@ public class PizzaUi extends Table {
 
     public PizzaUi(int screenWidth, int screenHeight,
                    final PizzaScreen pizzaScreen, final Skin skin,
-                   final I18NBundle bundle, final CaptureIO captureIO,
+                   final I18NBundle bundle,
                    final AssetManager assets) {
 
         this.screenWidth = screenWidth;
@@ -91,7 +90,7 @@ public class PizzaUi extends Table {
         cameraButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                pizzaScreen.capturePizza();
+                pizzaScreen.createPostcard();
             }
         });
 
@@ -178,14 +177,11 @@ public class PizzaUi extends Table {
      */
     public boolean goBack() {
         boolean result;
-        switch (currentMenu) {
-            case TOPPING:
-                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-                result = true;
-                break;
-            default:
-                result = false;
-                break;
+        if (currentMenu == Constants.CurrentPizzaMenu.TOPPING) {
+            setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
+            result = true;
+        } else {
+            result = false;
         }
         return result;
     }
@@ -291,5 +287,9 @@ public class PizzaUi extends Table {
 
     private void setSelectedTopping(TextButton button) {
         toppingSelectButton.setText(button.getText().toString());
+    }
+
+    public boolean undoButtonPressed() {
+        return undoButton.isPressed();
     }
 }

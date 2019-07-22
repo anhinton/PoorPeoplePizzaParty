@@ -38,10 +38,14 @@ public class PizzaScreen implements InputProcessor, Screen {
     private PizzaMessage pizzaMessage;
     private Topping selectedTopping;
     private boolean showedToppingTutorial;
+    private float undoPressedTime;
+    private boolean removeAllFired;
 
     public PizzaScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
         showedToppingTutorial = false;
+        undoPressedTime = 0;
+        removeAllFired = false;
 
         initialise();
         pizza = new Pizza(game.assets);
@@ -83,7 +87,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage = new Stage(uiViewport);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), this, game.uiSkin,
-                game.bundle, game.captureIO, game.assets);
+                game.bundle, game.assets);
         uiStage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), game.uiSkin);
@@ -94,7 +98,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void capturePizza() {
+    public void createPostcard() {
         game.setScreen(new PostcardScreen(game, pizza));
         dispose();
     }
@@ -102,6 +106,11 @@ public class PizzaScreen implements InputProcessor, Screen {
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
         dispose();
+
+    }
+
+    private void removeAllToppings() {
+        pizza.removeAllToppings();
     }
 
     public void undoLastTopping() {
@@ -297,6 +306,20 @@ public class PizzaScreen implements InputProcessor, Screen {
                 }
                 showMessage(s);
             }
+        }
+
+        // check for undoButton long presses
+        if (pizzaUi.undoButtonPressed()) {
+            if (!removeAllFired) {
+                if (undoPressedTime > 1.1f) {
+                    removeAllToppings();
+                    removeAllFired = true;
+                }
+            }
+            undoPressedTime += delta;
+        } else {
+            removeAllFired = false;
+            undoPressedTime = 0;
         }
     }
 
