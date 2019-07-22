@@ -105,6 +105,10 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     }
 
+    public void removeAllToppings() {
+        pizza.removeAllToppings();
+    }
+
     public void undoLastTopping() {
         pizza.undoLastTopping();
     }
