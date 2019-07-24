@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -59,11 +60,24 @@ public class Topping {
         return selectedSprite.getBoundingRectangle();
     }
 
+    /**
+     * Returns an ObjectMap of properties for constructing Topping
+     */
+    ObjectMap<String, Object> getProperties() {
+        ObjectMap<String, Object> properties = new ObjectMap<String, Object>(5);
+        properties.put("x", getX());
+        properties.put("y", getY());
+        properties.put("rotation", sprite.getRotation());
+        properties.put("toppingName", getToppingName());
+        properties.put("visible", getVisible());
+        return properties;
+    }
+
     public Constants.ToppingName getToppingName() {
         return toppingName;
     }
 
-    public boolean getVisible() {
+    boolean getVisible() {
         return visible;
     }
 

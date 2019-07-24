@@ -1,6 +1,16 @@
 # TODO
 
   + save Pizza to local storage on exit, reload on start
+      - ~~create Topping.getProperties() which returns and ObjectMap for each Topping~~
+      - create Pizza.save() to serialize Pizza to JSON
+          - ~~create Array of Topping properties via Topping.getProperties()~~
+          - ~~serialize properties Array to JSON~~
+          - ~~add debugging key in PizzaScreen to trigger save~~
+          - store JSON using Preferences
+      - create Pizza.load() to unserialize Pizza
+      - save() on PizzaScreen.pause()
+      - load() on init
+      - remove save() debugging code
 	  
   + move viewport boilerplate to a utils Class
         

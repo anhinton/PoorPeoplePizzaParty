@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
@@ -130,6 +132,15 @@ public class Pizza {
         batch.dispose();
         buffer.dispose();
         return pixmap;
+    }
+
+    public void save() {
+        Array<ObjectMap> toppingsProperties = new Array<ObjectMap>(toppings.size);
+        for(Topping t: toppings) {
+            toppingsProperties.add(t.getProperties());
+        }
+        Json toppingsJson = new Json();
+        Gdx.app.log("Pizza", toppingsJson.prettyPrint(toppingsProperties));
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

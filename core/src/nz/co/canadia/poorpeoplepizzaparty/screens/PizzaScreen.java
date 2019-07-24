@@ -157,6 +157,11 @@ public class PizzaScreen implements InputProcessor, Screen {
             }
             return true;
         }
+
+        // TODO: remove save debugging code
+        if (keycode ==Input.Keys.NUM_5) {
+            pizza.save();
+        }
         return false;
     }
 
