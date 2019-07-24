@@ -6,10 +6,12 @@
           - ~~create Array of Topping properties via Topping.getProperties()~~
           - ~~serialize properties Array to JSON~~
           - ~~add debugging key in PizzaScreen to trigger save~~
-          - store JSON using Preferences
+          - ~~store JSON as "pizzaToppings" using Preferences~~
       - create Pizza.load() to unserialize Pizza
       - save() on PizzaScreen.pause()
       - load() on init
+      - decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume
       - remove save() debugging code
 	  
   + move viewport boilerplate to a utils Class

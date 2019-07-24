@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -141,6 +142,10 @@ public class Pizza {
         }
         Json toppingsJson = new Json();
         Gdx.app.log("Pizza", toppingsJson.prettyPrint(toppingsProperties));
+
+        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
+        preferences.putString("pizzaToppings", toppingsJson.toJson(toppingsProperties));
+        preferences.flush();
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {
