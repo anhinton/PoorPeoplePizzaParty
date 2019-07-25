@@ -1,18 +1,26 @@
 # TODO
 
   + save Pizza to local storage on exit, reload on start
+      - decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume:
+          - NOT use Preference as it a) confusing mixes my JSON into an XML file and
+            b) this is not a preference, it's an autosave
       - ~~create Topping.getProperties() which returns and ObjectMap for each Topping~~
-      - create Pizza.save() to serialize Pizza to JSON
+      - ~~create Pizza.serialize() to serialize Pizza to JSON~~
           - ~~create Array of Topping properties via Topping.getProperties()~~
           - ~~serialize properties Array to JSON~~
           - ~~add debugging key in PizzaScreen to trigger save~~
-          - ~~store JSON as "pizzaToppings" using Preferences~~
+          - ~~return Json as String~~
+      - create PizzaScreen.save() to call Pizza.serialize() and save Json to Preferences
+      - ~~save() on exiting PizzaScreen~~
+          - ~~PizzaScreen.pause()~~
+          - ~~cook()~~
+          - ~~createPostcard()~~
       - create Pizza.load() to unserialize Pizza
-      - save() on PizzaScreen.pause()
       - load() on init
-      - decide whether Preferences or a Local file is better for this, remembering
-        that Preferences will be used for Music/Audio volume
-      - remove save() debugging code
+      - remove save() debugging code 
+          - hotkey
+          - prettyPrint()
 	  
   + move viewport boilerplate to a utils Class
         

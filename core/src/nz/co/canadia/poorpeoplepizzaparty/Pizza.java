@@ -1,7 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -135,17 +134,15 @@ public class Pizza {
         return pixmap;
     }
 
-    public void save() {
+    public String serialize() {
         Array<ObjectMap> toppingsProperties = new Array<ObjectMap>(toppings.size);
         for(Topping t: toppings) {
             toppingsProperties.add(t.getProperties());
         }
         Json toppingsJson = new Json();
+        // TODO: remove debugging code
         Gdx.app.log("Pizza", toppingsJson.prettyPrint(toppingsProperties));
-
-        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
-        preferences.putString("pizzaToppings", toppingsJson.prettyPrint(toppingsProperties));
-        preferences.flush();
+        return toppingsJson.prettyPrint(toppingsProperties);
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

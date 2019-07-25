@@ -22,7 +22,7 @@ public class DesktopCaptureIO implements CaptureIO {
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fc.setDialogTitle("Choose save location");
+        fc.setDialogTitle("Choose serialize location");
         if (captureDir != null) {
             fc.setCurrentDirectory(captureDir);
         }

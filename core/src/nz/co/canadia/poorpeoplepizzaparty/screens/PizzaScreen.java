@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -100,17 +101,26 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void createPostcard() {
         game.setScreen(new PostcardScreen(game, pizza));
+        save();
         dispose();
     }
 
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
+        save();
         dispose();
-
     }
 
     private void removeAllToppings() {
         pizza.removeAllToppings();
+    }
+
+    private void save() {
+        String pizzaJson = pizza.serialize();
+
+        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
+        preferences.putString("pizzaToppings", pizzaJson);
+        preferences.flush();
     }
 
     public void undoLastTopping() {
@@ -158,9 +168,9 @@ public class PizzaScreen implements InputProcessor, Screen {
             return true;
         }
 
-        // TODO: remove save debugging code
+        // TODO: remove serialize debugging code
         if (keycode ==Input.Keys.NUM_5) {
-            pizza.save();
+            save();
         }
         return false;
     }
@@ -338,7 +348,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void pause() {
-
+        save();
     }
 
     @Override
