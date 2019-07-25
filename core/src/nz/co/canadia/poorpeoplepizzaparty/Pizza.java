@@ -144,7 +144,7 @@ public class Pizza {
         Gdx.app.log("Pizza", toppingsJson.prettyPrint(toppingsProperties));
 
         Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
-        preferences.putString("pizzaToppings", toppingsJson.toJson(toppingsProperties));
+        preferences.putString("pizzaToppings", toppingsJson.prettyPrint(toppingsProperties));
         preferences.flush();
     }
 
