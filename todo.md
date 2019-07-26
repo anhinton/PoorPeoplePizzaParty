@@ -11,7 +11,7 @@
           - ~~serialize properties Array to JSON~~
           - ~~add debugging key in PizzaScreen to trigger save~~
           - ~~return Json as String~~
-      - create PizzaScreen.save() to call Pizza.serialize() and save Json to Preferences
+      - create PizzaScreen.save() to call Pizza.serialize() and save Json to Local file
       - ~~save() on exiting PizzaScreen~~
           - ~~PizzaScreen.pause()~~
           - ~~cook()~~

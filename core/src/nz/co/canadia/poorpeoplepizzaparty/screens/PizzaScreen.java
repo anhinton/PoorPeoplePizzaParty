@@ -118,9 +118,18 @@ public class PizzaScreen implements InputProcessor, Screen {
     private void save() {
         String pizzaJson = pizza.serialize();
 
-        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
-        preferences.putString("pizzaToppings", pizzaJson);
-        preferences.flush();
+        switch(Gdx.app.getType()) {
+            case Desktop:
+            case Android:
+                String saveDir = System.getProperty("user.home");
+                Gdx.app.log("PizzaScreen", "Local storage available: " + Gdx.files.isLocalStorageAvailable());
+                Gdx.app.log("PizzaScreen", "Local storage: " + Gdx.files.getLocalStoragePath());
+                break;
+        }
+
+//        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
+//        preferences.putString("pizzaToppings", pizzaJson);
+//        preferences.flush();
     }
 
     public void undoLastTopping() {
