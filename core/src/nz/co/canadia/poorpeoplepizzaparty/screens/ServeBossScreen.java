@@ -61,7 +61,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
     }
 
     public void getFired() {
-        game.setScreen(new PizzaScreen(game));
+        game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 

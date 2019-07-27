@@ -43,14 +43,19 @@ public class PizzaScreen implements InputProcessor, Screen {
     private float undoPressedTime;
     private boolean removeAllFired;
 
-    public PizzaScreen(final PoorPeoplePizzaParty game) {
+    public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
         showedToppingTutorial = false;
         undoPressedTime = 0;
         removeAllFired = false;
 
         initialise();
-        pizza = new Pizza(game.assets);
+        if (loadAutosave) {
+            pizza = new Pizza(game.assets);
+            load();
+        } else {
+            pizza = new Pizza(game.assets);
+        }
     }
 
     PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
@@ -119,18 +124,26 @@ public class PizzaScreen implements InputProcessor, Screen {
     private void save() {
         if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
             String pizzaXml = pizza.serialize();
-            FileHandle saveFile = saveFile();
-            boolean dirExists = saveFile.parent().exists();
+            FileHandle autosaveFile = autosaveFile();
+            boolean dirExists = autosaveFile.parent().exists();
             if (!dirExists) {
-                dirExists = saveFile.parent().file().mkdir();
+                dirExists = autosaveFile.parent().file().mkdir();
             }
             if (dirExists) {
-                saveFile.writeString(pizzaXml, false);
+                autosaveFile.writeString(pizzaXml, false);
             }
         }
     }
 
-    private FileHandle saveFile() {
+    private void load() {
+        if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
+            FileHandle autosaveFile = autosaveFile();
+            String xmlString = autosaveFile.readString();
+            pizza.deserialize(xmlString);
+        }
+    }
+
+    private FileHandle autosaveFile() {
         FileHandle saveFile = Gdx.files.external("." + Constants.autosaveLocation);
         String osName = System.getProperty("os.name").toLowerCase();
         if (osName.contains("windows")) {

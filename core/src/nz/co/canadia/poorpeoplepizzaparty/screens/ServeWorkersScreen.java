@@ -136,7 +136,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void newPizzaScreen() {
-        game.setScreen(new PizzaScreen(game));
+        game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 

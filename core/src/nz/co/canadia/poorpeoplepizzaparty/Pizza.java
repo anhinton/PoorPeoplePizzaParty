@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 
 import java.io.IOException;
@@ -159,6 +160,21 @@ public class Pizza {
         //TODO: remove debugging code
         Gdx.app.log("Pizza", writer.toString());
         return writer.toString();
+    }
+
+    public void deserialize(String xmlString) {
+        XmlReader xml = new XmlReader();
+        XmlReader.Element rootElement = xml.parse(xmlString);
+        Array<XmlReader.Element> toppingElements = rootElement.getChildrenByName("topping");
+        for (XmlReader.Element e : toppingElements) {
+            float x = e.getFloat("x");
+            float y = e.getFloat("y");
+            float rotation = e.getFloat("rotation");
+            Constants.ToppingName toppingName = Constants.ToppingName.valueOf(e.get("toppingName"));
+            boolean visible = e.getBoolean("visible");
+            addTopping(new Topping(x, y, rotation, toppingName,
+                    assets.get(assets.toppingPath(toppingName), Texture.class), visible));
+        }
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

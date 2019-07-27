@@ -13,11 +13,11 @@
           - ~~Desktop saves to External storage~~
           - Android saves to Local storage
           - no save support for WebGl/html
-      - save() on exiting PizzaScreen
-          - PizzaScreen.pause()
-          - cook()
-          - createPostcard()
-      - create Pizza.load() to unserialize Pizza
+      - ~~save() on exiting PizzaScreen~~
+          - ~~PizzaScreen.pause()~~
+          - ~~cook()~~
+          - ~~createPostcard()~~
+      - ~~create Pizza.load() to unserialize Pizza~~
       - load() on init
       - implement for Desktop, then go back and do Android
       - remove save() debugging code 

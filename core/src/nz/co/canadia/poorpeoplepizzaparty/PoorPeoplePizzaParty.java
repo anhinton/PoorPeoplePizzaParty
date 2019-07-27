@@ -54,7 +54,7 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        this.setScreen(new PizzaScreen(this));
+        this.setScreen(new PizzaScreen(this, true));
     }
 
     @Override
