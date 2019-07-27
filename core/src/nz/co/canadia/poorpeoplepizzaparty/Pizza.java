@@ -139,10 +139,10 @@ public class Pizza {
         for(Topping t: toppings) {
             toppingsProperties.add(t.getProperties());
         }
-        Json toppingsJson = new Json();
-        // TODO: remove debugging code
-        Gdx.app.log("Pizza", toppingsJson.prettyPrint(toppingsProperties));
-        return toppingsJson.prettyPrint(toppingsProperties);
+        Json json = new Json();
+        //TODO: switch .prettyPrint() to .toJson() once done debugging
+        Gdx.app.log("Pizza",json.prettyPrint(toppingsProperties));
+        return json.prettyPrint(toppingsProperties);
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

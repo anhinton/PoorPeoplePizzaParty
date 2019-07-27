@@ -48,6 +48,10 @@ public class Topping {
         }
     }
 
+    private float getRotation() {
+        return selectedSprite.getRotation();
+    }
+
     public float getX() {
         return selectedSprite.getX();
     }
@@ -67,7 +71,7 @@ public class Topping {
         ObjectMap<String, Object> properties = new ObjectMap<String, Object>(5);
         properties.put("x", getX());
         properties.put("y", getY());
-        properties.put("rotation", sprite.getRotation());
+        properties.put("rotation", getRotation());
         properties.put("toppingName", getToppingName());
         properties.put("visible", getVisible());
         return properties;

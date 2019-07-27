@@ -12,6 +12,9 @@ public class Constants {
 
     public static final boolean DEBUG_GRAPHICS = false;
 
+    // Preferences and save files
+    public static final String autosaveLocation = "nz.co.canadia.poorpeoplepizzaparty.autosave";
+
     // Colours
     public static final Color BG_COLOUR =
             new Color(48/255f, 184/255f, 73/255f, 1); // green, it's green

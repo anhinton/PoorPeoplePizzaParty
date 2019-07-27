@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
@@ -99,7 +100,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void createPostcard() {
+    public void createPostcard(){
         game.setScreen(new PostcardScreen(game, pizza));
         save();
         dispose();
@@ -116,20 +117,13 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void save() {
-        String pizzaJson = pizza.serialize();
-
-        switch(Gdx.app.getType()) {
-            case Desktop:
-            case Android:
-                String saveDir = System.getProperty("user.home");
-                Gdx.app.log("PizzaScreen", "Local storage available: " + Gdx.files.isLocalStorageAvailable());
-                Gdx.app.log("PizzaScreen", "Local storage: " + Gdx.files.getLocalStoragePath());
-                break;
+        if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
+            String pizzaJson = pizza.serialize();
+            Preferences preferences =
+                    Gdx.app.getPreferences(Constants.autosaveLocation);
+            preferences.putString("pizzaToppings", pizzaJson);
+            preferences.flush();
         }
-
-//        Preferences preferences = Gdx.app.getPreferences("PoorPeoplePizzaParty");
-//        preferences.putString("pizzaToppings", pizzaJson);
-//        preferences.flush();
     }
 
     public void undoLastTopping() {

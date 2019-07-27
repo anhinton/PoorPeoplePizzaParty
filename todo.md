@@ -1,17 +1,21 @@
 # TODO
 
   + save Pizza to local storage on exit, reload on start
-      - decide whether Preferences or a Local file is better for this, remembering
-        that Preferences will be used for Music/Audio volume:
-          - NOT use Preference as it a) confusing mixes my JSON into an XML file and
-            b) this is not a preference, it's an autosave
+      - ~~decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume:~~
+          - ~~DO use Preferences as this saves me having to account for multiple destkop
+            platform storage locations~~
       - ~~create Topping.getProperties() which returns and ObjectMap for each Topping~~
       - ~~create Pizza.serialize() to serialize Pizza to JSON~~
           - ~~create Array of Topping properties via Topping.getProperties()~~
           - ~~serialize properties Array to JSON~~
           - ~~add debugging key in PizzaScreen to trigger save~~
           - ~~return Json as String~~
-      - create PizzaScreen.save() to call Pizza.serialize() and save Json to Local file
+      - ~~PizzaScreen.save() calls Pizza.serialize() and saves data~~
+          - ~~uses Preference to store pizza Json in "pizzaToppings" key of
+            Constants.autosaveLocation~~
+          - ~~does not save on WebGL/html as the combination of ObjectMap in an Array
+            does not seem to be serializable~~
       - ~~save() on exiting PizzaScreen~~
           - ~~PizzaScreen.pause()~~
           - ~~cook()~~
