@@ -107,13 +107,11 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void createPostcard(){
         game.setScreen(new PostcardScreen(game, pizza));
-        save();
         dispose();
     }
 
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
-        save();
         dispose();
     }
 
@@ -138,8 +136,10 @@ public class PizzaScreen implements InputProcessor, Screen {
     private void load() {
         if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
             FileHandle autosaveFile = autosaveFile();
-            String xmlString = autosaveFile.readString();
-            pizza.deserialize(xmlString);
+            if (autosaveFile.exists()) {
+                String xmlString = autosaveFile.readString();
+                pizza.deserialize(xmlString);
+            }
         }
     }
 

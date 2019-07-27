@@ -64,19 +64,6 @@ public class Topping {
         return selectedSprite.getBoundingRectangle();
     }
 
-    /**
-     * Returns an ObjectMap of properties for constructing Topping
-     */
-    ObjectMap<String, Object> getProperties() {
-        ObjectMap<String, Object> properties = new ObjectMap<String, Object>(5);
-        properties.put("x", getX());
-        properties.put("y", getY());
-        properties.put("rotation", getRotation());
-        properties.put("toppingName", getToppingName());
-        properties.put("visible", getVisible());
-        return properties;
-    }
-
     public Constants.ToppingName getToppingName() {
         return toppingName;
     }

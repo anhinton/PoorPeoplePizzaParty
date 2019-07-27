@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
@@ -55,7 +53,9 @@ public class Pizza {
 
     public void addTopping(Topping topping) {
         if (topping.getVisible()) {
-            if (topping.getToppingName() == Constants.ToppingName.SAUCE
+            if (topping.getToppingName() == Constants.ToppingName.BASE) {
+                setBaseTopping(topping.getToppingName());
+            } else if (topping.getToppingName() == Constants.ToppingName.SAUCE
                     | topping.getToppingName() == Constants.ToppingName.CHEESE) {
                 if (topping.getToppingName() != baseToppingOrder.peek()) {
                     setBaseTopping(topping.getToppingName());

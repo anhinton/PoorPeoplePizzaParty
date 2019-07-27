@@ -15,10 +15,14 @@
           - no save support for WebGl/html
       - ~~save() on exiting PizzaScreen~~
           - ~~PizzaScreen.pause()~~
-          - ~~cook()~~
-          - ~~createPostcard()~~
-      - ~~create Pizza.load() to unserialize Pizza~~
-      - load() on init
+          - ~~don't save on cook() or createPostcard(): the current way of passing Pizza
+            objects can handle this~~
+      - ~~create Pizza.load() to deserialize Pizza~~
+          - ~~create Pizza.addTopping() case for BASE: setBaseTopping() but nothing else,
+            otherwise BASE stacks as you save and load~~
+      - ~~load() on init~~
+          - ~~add loadAutosave argument to new Pizza() constructor. true when called from
+            PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
       - implement for Desktop, then go back and do Android
       - remove save() debugging code 
           - hotkey
@@ -30,8 +34,7 @@
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
         to here
-      - change "you have been fired" button behaviour in ServeBossScreen and 
-        ServerWorkersScreen to go back to here
+      - revisit logic around loading save data in PizzaScreen
 		
   + implement audio
       - topping sound effects
