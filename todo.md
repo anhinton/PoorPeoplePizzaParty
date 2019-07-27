@@ -24,6 +24,7 @@
           - ~~add loadAutosave argument to new Pizza() constructor. true when called from
             PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
       - implement for Desktop, then go back and do Android
+      - test test test!
       - remove save() debugging code 
           - hotkey
           - prettyPrint()
