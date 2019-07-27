@@ -48,7 +48,7 @@ public class Topping {
         }
     }
 
-    private float getRotation() {
+    float getRotation() {
         return selectedSprite.getRotation();
     }
 

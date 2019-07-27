@@ -11,6 +11,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.XmlWriter;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -135,14 +139,26 @@ public class Pizza {
     }
 
     public String serialize() {
-        Array<ObjectMap> toppingsProperties = new Array<ObjectMap>(toppings.size);
-        for(Topping t: toppings) {
-            toppingsProperties.add(t.getProperties());
+        StringWriter writer = new StringWriter();
+        XmlWriter xml = new XmlWriter(writer);
+        try {
+            xml.element("pizza");
+            for(Topping t: toppings) {
+                xml.element("topping")
+                        .attribute("x", t.getX())
+                        .attribute("y", t.getY())
+                        .attribute("rotation", t.getRotation())
+                        .attribute("toppingName", t.getToppingName())
+                        .attribute("visible", t.getVisible())
+                        .pop();
+            }
+            xml.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Json json = new Json();
-        //TODO: switch .prettyPrint() to .toJson() once done debugging
-        Gdx.app.log("Pizza",json.prettyPrint(toppingsProperties));
-        return json.prettyPrint(toppingsProperties);
+        //TODO: remove debugging code
+        Gdx.app.log("Pizza", writer.toString());
+        return writer.toString();
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

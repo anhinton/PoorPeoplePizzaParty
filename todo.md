@@ -1,27 +1,25 @@
 # TODO
 
   + save Pizza to local storage on exit, reload on start
+      - DO IT AGAIN BUT USE XML
       - ~~decide whether Preferences or a Local file is better for this, remembering
         that Preferences will be used for Music/Audio volume:~~
-          - ~~DO use Preferences as this saves me having to account for multiple destkop
-            platform storage locations~~
-      - ~~create Topping.getProperties() which returns and ObjectMap for each Topping~~
-      - ~~create Pizza.serialize() to serialize Pizza to JSON~~
-          - ~~create Array of Topping properties via Topping.getProperties()~~
-          - ~~serialize properties Array to JSON~~
-          - ~~add debugging key in PizzaScreen to trigger save~~
-          - ~~return Json as String~~
-      - ~~PizzaScreen.save() calls Pizza.serialize() and saves data~~
-          - ~~uses Preference to store pizza Json in "pizzaToppings" key of
-            Constants.autosaveLocation~~
-          - ~~does not save on WebGL/html as the combination of ObjectMap in an Array
-            does not seem to be serializable~~
-      - ~~save() on exiting PizzaScreen~~
-          - ~~PizzaScreen.pause()~~
-          - ~~cook()~~
-          - ~~createPostcard()~~
+          - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
+            gets escaped out~~
+      - ~~Pizza.serialize() returns XML of toppings list~~
+      - PizzaScreen.save() saves XML of toppings to storage
+          - ~~calls Pizza.serialize() to get XML~~
+          - ~~calls Pizza.saveFile() to get FileHandle~~
+          - ~~Desktop saves to External storage~~
+          - Android saves to Local storage
+          - no save support for WebGl/html
+      - save() on exiting PizzaScreen
+          - PizzaScreen.pause()
+          - cook()
+          - createPostcard()
       - create Pizza.load() to unserialize Pizza
       - load() on init
+      - implement for Desktop, then go back and do Android
       - remove save() debugging code 
           - hotkey
           - prettyPrint()

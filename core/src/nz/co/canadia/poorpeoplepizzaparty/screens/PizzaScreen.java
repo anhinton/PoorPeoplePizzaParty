@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -118,12 +118,30 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void save() {
         if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
-            String pizzaJson = pizza.serialize();
-            Preferences preferences =
-                    Gdx.app.getPreferences(Constants.autosaveLocation);
-            preferences.putString("pizzaToppings", pizzaJson);
-            preferences.flush();
+            String pizzaXml = pizza.serialize();
+            FileHandle saveFile = saveFile();
+            boolean dirExists = saveFile.parent().exists();
+            if (!dirExists) {
+                dirExists = saveFile.parent().file().mkdir();
+            }
+            if (dirExists) {
+                saveFile.writeString(pizzaXml, false);
+            }
         }
+    }
+
+    private FileHandle saveFile() {
+        FileHandle saveFile = Gdx.files.external("." + Constants.autosaveLocation);
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("windows")) {
+            saveFile = Gdx.files.external("AppData/Roaming/" + Constants.autosaveLocation);
+        } else if (osName.contains("linux")) {
+            saveFile = Gdx.files.external(".local/share/" + Constants.autosaveLocation);
+        } else if (osName.contains("mac")) {
+            saveFile = Gdx.files.external("Library/Application Support/"
+                    + Constants.autosaveLocation);
+        }
+        return saveFile;
     }
 
     public void undoLastTopping() {

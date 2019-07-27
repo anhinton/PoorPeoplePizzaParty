@@ -13,7 +13,7 @@ public class Constants {
     public static final boolean DEBUG_GRAPHICS = false;
 
     // Preferences and save files
-    public static final String autosaveLocation = "nz.co.canadia.poorpeoplepizzaparty.autosave";
+    public static final String autosaveLocation = "poorpeoplepizzaparty/autosave.xml";
 
     // Colours
     public static final Color BG_COLOUR =
