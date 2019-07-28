@@ -144,17 +144,22 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private FileHandle autosaveFile() {
-        FileHandle saveFile = Gdx.files.external("." + Constants.autosaveLocation);
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("windows")) {
-            saveFile = Gdx.files.external("AppData/Roaming/" + Constants.autosaveLocation);
-        } else if (osName.contains("linux")) {
-            saveFile = Gdx.files.external(".local/share/" + Constants.autosaveLocation);
-        } else if (osName.contains("mac")) {
-            saveFile = Gdx.files.external("Library/Application Support/"
-                    + Constants.autosaveLocation);
+        FileHandle autosaveFile = Gdx.files.local(Constants.autosaveFile);
+        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            String osName = System.getProperty("os.name").toLowerCase();
+            FileHandle saveDir;
+            if (osName.contains("windows")) {
+                saveDir = Gdx.files.external("AppData/Roaming/" + Constants.autosavePath);
+            } else if (osName.contains("linux")) {
+                saveDir = Gdx.files.external(".local/share/" + Constants.autosavePath);
+            } else if (osName.contains("mac")) {
+                saveDir = Gdx.files.external("Library/Application Support/" + Constants.autosavePath);
+            } else {
+                saveDir = Gdx.files.external("." + Constants.autosavePath);
+            }
+            autosaveFile = Gdx.files.external(saveDir + "/" + autosaveFile);
         }
-        return saveFile;
+        return autosaveFile;
     }
 
     public void undoLastTopping() {

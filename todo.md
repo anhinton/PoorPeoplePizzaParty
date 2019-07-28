@@ -7,12 +7,12 @@
           - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
             gets escaped out~~
       - ~~Pizza.serialize() returns XML of toppings list~~
-      - PizzaScreen.save() saves XML of toppings to storage
+      - ~~PizzaScreen.save() saves XML of toppings to storage~~
           - ~~calls Pizza.serialize() to get XML~~
           - ~~calls Pizza.saveFile() to get FileHandle~~
           - ~~Desktop saves to External storage~~
-          - Android saves to Local storage
-          - no save support for WebGl/html
+          - ~~Android saves to Local storage~~
+          - ~~no save support for WebGl/html~~
       - ~~save() on exiting PizzaScreen~~
           - ~~PizzaScreen.pause()~~
           - ~~don't save on cook() or createPostcard(): the current way of passing Pizza
@@ -23,7 +23,7 @@
       - ~~load() on init~~
           - ~~add loadAutosave argument to new Pizza() constructor. true when called from
             PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
-      - implement for Desktop, then go back and do Android
+      - ~~implement for Desktop, then go back and do Android~~
       - test test test!
       - remove save() debugging code 
           - hotkey
