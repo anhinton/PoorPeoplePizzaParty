@@ -24,6 +24,9 @@
           - ~~add loadAutosave argument to new Pizza() constructor. true when called from
             PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
       - ~~implement for Desktop, then go back and do Android~~
+      - WebGl/html now failing to complie: I probably need to re-implement this using
+        platform-specific code
+        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
       - test test test!
       - remove save() debugging code 
           - hotkey
