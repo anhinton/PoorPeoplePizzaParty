@@ -1,12 +1,10 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -120,46 +118,13 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void save() {
-        if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
-            String pizzaXml = pizza.serialize();
-            FileHandle autosaveFile = autosaveFile();
-            boolean dirExists = autosaveFile.parent().exists();
-            if (!dirExists) {
-                dirExists = autosaveFile.parent().file().mkdir();
-            }
-            if (dirExists) {
-                autosaveFile.writeString(pizzaXml, false);
-            }
-        }
+        String pizzaXml = pizza.serialize();
+        game.captureIO.savePizzaXml(pizzaXml);
     }
 
     private void load() {
-        if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
-            FileHandle autosaveFile = autosaveFile();
-            if (autosaveFile.exists()) {
-                String xmlString = autosaveFile.readString();
-                pizza.deserialize(xmlString);
-            }
-        }
-    }
-
-    private FileHandle autosaveFile() {
-        FileHandle autosaveFile = Gdx.files.local(Constants.autosaveFile);
-        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            String osName = System.getProperty("os.name").toLowerCase();
-            FileHandle saveDir;
-            if (osName.contains("windows")) {
-                saveDir = Gdx.files.external("AppData/Roaming/" + Constants.autosavePath);
-            } else if (osName.contains("linux")) {
-                saveDir = Gdx.files.external(".local/share/" + Constants.autosavePath);
-            } else if (osName.contains("mac")) {
-                saveDir = Gdx.files.external("Library/Application Support/" + Constants.autosavePath);
-            } else {
-                saveDir = Gdx.files.external("." + Constants.autosavePath);
-            }
-            autosaveFile = Gdx.files.external(saveDir + "/" + autosaveFile);
-        }
-        return autosaveFile;
+        String pizzaXml = game.captureIO.loadPizzaXml();
+        pizza.deserialize(pizzaXml);
     }
 
     public void undoLastTopping() {

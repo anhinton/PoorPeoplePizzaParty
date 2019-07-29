@@ -165,15 +165,17 @@ public class Pizza {
     public void deserialize(String xmlString) {
         XmlReader xml = new XmlReader();
         XmlReader.Element rootElement = xml.parse(xmlString);
-        Array<XmlReader.Element> toppingElements = rootElement.getChildrenByName("topping");
-        for (XmlReader.Element e : toppingElements) {
-            float x = e.getFloat("x");
-            float y = e.getFloat("y");
-            float rotation = e.getFloat("rotation");
-            Constants.ToppingName toppingName = Constants.ToppingName.valueOf(e.get("toppingName"));
-            boolean visible = e.getBoolean("visible");
-            addTopping(new Topping(x, y, rotation, toppingName,
-                    assets.get(assets.toppingPath(toppingName), Texture.class), visible));
+        if (rootElement != null) {
+            Array<XmlReader.Element> toppingElements = rootElement.getChildrenByName("topping");
+            for (XmlReader.Element e : toppingElements) {
+                float x = e.getFloat("x");
+                float y = e.getFloat("y");
+                float rotation = e.getFloat("rotation");
+                Constants.ToppingName toppingName = Constants.ToppingName.valueOf(e.get("toppingName"));
+                boolean visible = e.getBoolean("visible");
+                addTopping(new Topping(x, y, rotation, toppingName,
+                        assets.get(assets.toppingPath(toppingName), Texture.class), visible));
+            }
         }
     }
 

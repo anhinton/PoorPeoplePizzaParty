@@ -24,9 +24,16 @@
           - ~~add loadAutosave argument to new Pizza() constructor. true when called from
             PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
       - ~~implement for Desktop, then go back and do Android~~
-      - WebGl/html now failing to complie: I probably need to re-implement this using
+      - WebGl/html now failing to complie: I need to re-implement this using
         platform-specific code
-        <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+          - ~~CaptureIO.savePizzaXml(String pizzaXml) called by PizzaScreen.save()~~
+          - ~~String CaptureIO.loadPizzaXml() called by PizzaScreen.load()~~
+              - ~~returns an empty String when load file doesn't exist~~
+              - ~~Pizza.deserialize() does not attempt to read XML if rootElement is null,
+                i.e. if empty string is passed in~~
+          - ~~implement methods in DesktopCaptureIO~~
+          - implement methods in AndroidCaptureIO
+          - empty methods in HtmlCaptureIO
       - test test test!
       - remove save() debugging code 
           - hotkey
