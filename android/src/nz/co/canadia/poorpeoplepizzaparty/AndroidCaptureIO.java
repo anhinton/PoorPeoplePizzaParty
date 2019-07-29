@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import java.io.File;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class AndroidCaptureIO implements CaptureIO {
 
@@ -31,6 +32,21 @@ public class AndroidCaptureIO implements CaptureIO {
         writePostcardPNG(postcardPixmap);
 
         sharePostcardPNG();
+    }
+
+    @Override
+    public void savePizzaXml(String pizzaXml) {
+        FileHandle autosaveFile = Gdx.files.local(Constants.autosaveFile);
+        autosaveFile.writeString(pizzaXml, false);
+    }
+
+    @Override
+    public String loadPizzaXml() {
+        String xmlString = "";
+        if (Gdx.files.local(Constants.autosaveFile).exists()) {
+            xmlString = Gdx.files.local(Constants.autosaveFile).readString();
+        }
+        return xmlString;
     }
 
     private void sharePostcardPNG() {
