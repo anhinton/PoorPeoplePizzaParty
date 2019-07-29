@@ -51,11 +51,11 @@ public class DesktopCaptureIO implements CaptureIO {
 
     @Override
     public String loadPizzaXml() {
-        String xmlString = "";
         if (autosaveFile().exists()) {
-            xmlString = autosaveFile().readString();
+            return autosaveFile().readString();
+        } else {
+            return "";
         }
-        return xmlString;
     }
 
     private FileHandle autosaveFile() {

@@ -42,11 +42,11 @@ public class AndroidCaptureIO implements CaptureIO {
 
     @Override
     public String loadPizzaXml() {
-        String xmlString = "";
         if (Gdx.files.local(Constants.autosaveFile).exists()) {
-            xmlString = Gdx.files.local(Constants.autosaveFile).readString();
+            return Gdx.files.local(Constants.autosaveFile).readString();
+        } else {
+            return "";
         }
-        return xmlString;
     }
 
     private void sharePostcardPNG() {
