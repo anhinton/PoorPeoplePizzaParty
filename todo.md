@@ -32,8 +32,8 @@
               - ~~Pizza.deserialize() does not attempt to read XML if rootElement is null,
                 i.e. if empty string is passed in~~
           - ~~implement methods in DesktopCaptureIO~~
-          - implement methods in AndroidCaptureIO
-          - empty methods in HtmlCaptureIO
+          - ~~implement methods in AndroidCaptureIO~~
+          - ~~empty methods in HtmlCaptureIO~~
       - test test test!
       - remove save() debugging code 
           - hotkey
