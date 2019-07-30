@@ -1,7 +1,40 @@
 # TODO
+          
+  + remove postcard debugging code
+  
+  + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
+          
+  + pop up a fake "score" when a topping is placed
+      - "+6" 2x then "+666"
+	  
+  + move viewport boilerplate to a utils Class
+        
+  + create TitleScreen class
+      - pizza party, a party for pizza
+      - change Android back button behaviour in PizzaScreen.class to go back 
+        to here
+      - revisit logic around loading save data in PizzaScreen
+		
+  + implement audio
+      - topping sound effects
+	  - add a mute audio in Settings (add a Settings)
+	  - don't mute system audio? or when you mute game audio it enables
+	    system audio?
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
+      
+  + do a Vector Android app icon
+  
+  + stop debugging for release
+      - remove debugging statements Gdx.app.log
+  
+  + investigate desktop full screen and window resizing
+  
+## Done
 
-  + save Pizza to local storage on exit, reload on start
-      - DO IT AGAIN BUT USE XML
+  + ~~save Pizza to local storage on exit, reload on start~~
+      - ~~DO IT AGAIN BUT USE XML~~
       - ~~decide whether Preferences or a Local file is better for this, remembering
         that Preferences will be used for Music/Audio volume:~~
           - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
@@ -38,39 +71,6 @@
       - ~~remove save() debugging code~~
           - ~~hotkey~~
           - ~~print XML~~
-          
-  + remove postcard debugging code
-  
-  + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
-          
-  + pop up a fake "score" when a topping is placed
-      - "+6" 2x then "+666"
-	  
-  + move viewport boilerplate to a utils Class
-        
-  + create TitleScreen class
-      - pizza party, a party for pizza
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - revisit logic around loading save data in PizzaScreen
-		
-  + implement audio
-      - topping sound effects
-	  - add a mute audio in Settings (add a Settings)
-	  - don't mute system audio? or when you mute game audio it enables
-	    system audio?
-      
-  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
-    is last placed
-      
-  + do a Vector Android app icon
-  
-  + stop debugging for release
-      - remove debugging statements Gdx.app.log
-  
-  + investigate desktop full screen and window resizing
-  
-## Done
 
   + ~~hold Undo button on PizzaScreen to remove all toppings~~
       - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
