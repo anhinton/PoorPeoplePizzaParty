@@ -1,6 +1,4 @@
 # TODO
-          
-  + remove postcard debugging code
   
   + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
           
@@ -32,6 +30,8 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+          
+  + ~~remove postcard debugging code~~
 
   + ~~save Pizza to local storage on exit, reload on start~~
       - ~~DO IT AGAIN BUT USE XML~~

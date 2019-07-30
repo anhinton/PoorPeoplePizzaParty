@@ -72,13 +72,9 @@ public class PoorPeoplePizzaParty extends Game {
         // clean up shared postcard files, if they exist
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             if (Gdx.files.local("postcards/").exists()) {
-                //TODO: remove debugging code
-                Gdx.app.log("PoorPeoplePizzaParty", "deleting postcards");
                 FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
                 for (FileHandle file : postcardFiles) {
                     file.delete();
-                    Gdx.app.log("PoorPeoplePizzaParty",
-                            file.toString() + " deleted");
                 }
             }
         }
