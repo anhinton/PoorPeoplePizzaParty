@@ -9,6 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlWriter;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -48,7 +53,9 @@ public class Pizza {
 
     public void addTopping(Topping topping) {
         if (topping.getVisible()) {
-            if (topping.getToppingName() == Constants.ToppingName.SAUCE
+            if (topping.getToppingName() == Constants.ToppingName.BASE) {
+                setBaseTopping(topping.getToppingName());
+            } else if (topping.getToppingName() == Constants.ToppingName.SAUCE
                     | topping.getToppingName() == Constants.ToppingName.CHEESE) {
                 if (topping.getToppingName() != baseToppingOrder.peek()) {
                     setBaseTopping(topping.getToppingName());
@@ -130,6 +137,44 @@ public class Pizza {
         batch.dispose();
         buffer.dispose();
         return pixmap;
+    }
+
+    public String serialize() {
+        StringWriter writer = new StringWriter();
+        XmlWriter xml = new XmlWriter(writer);
+        try {
+            xml.element("pizza");
+            for(Topping t: toppings) {
+                xml.element("topping")
+                        .attribute("x", t.getX())
+                        .attribute("y", t.getY())
+                        .attribute("rotation", t.getRotation())
+                        .attribute("toppingName", t.getToppingName())
+                        .attribute("visible", t.getVisible())
+                        .pop();
+            }
+            xml.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return writer.toString();
+    }
+
+    public void deserialize(String xmlString) {
+        XmlReader xml = new XmlReader();
+        XmlReader.Element rootElement = xml.parse(xmlString);
+        if (rootElement != null) {
+            Array<XmlReader.Element> toppingElements = rootElement.getChildrenByName("topping");
+            for (XmlReader.Element e : toppingElements) {
+                float x = e.getFloat("x");
+                float y = e.getFloat("y");
+                float rotation = e.getFloat("rotation");
+                Constants.ToppingName toppingName = Constants.ToppingName.valueOf(e.get("toppingName"));
+                boolean visible = e.getBoolean("visible");
+                addTopping(new Topping(x, y, rotation, toppingName,
+                        assets.get(assets.toppingPath(toppingName), Texture.class), visible));
+            }
+        }
     }
 
     private void setBaseTopping(Constants.ToppingName toppingName) {

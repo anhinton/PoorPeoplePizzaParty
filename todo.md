@@ -1,6 +1,11 @@
 # TODO
-
-  + save Pizza to local storage on exit, reload on start
+          
+  + remove postcard debugging code
+  
+  + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
+          
+  + pop up a fake "score" when a topping is placed
+      - "+6" 2x then "+666"
 	  
   + move viewport boilerplate to a utils Class
         
@@ -8,8 +13,7 @@
       - pizza party, a party for pizza
       - change Android back button behaviour in PizzaScreen.class to go back 
         to here
-      - change "you have been fired" button behaviour in ServeBossScreen and 
-        ServerWorkersScreen to go back to here
+      - revisit logic around loading save data in PizzaScreen
 		
   + implement audio
       - topping sound effects
@@ -23,10 +27,50 @@
   + do a Vector Android app icon
   
   + stop debugging for release
+      - remove debugging statements Gdx.app.log
   
   + investigate desktop full screen and window resizing
   
 ## Done
+
+  + ~~save Pizza to local storage on exit, reload on start~~
+      - ~~DO IT AGAIN BUT USE XML~~
+      - ~~decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume:~~
+          - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
+            gets escaped out~~
+      - ~~Pizza.serialize() returns XML of toppings list~~
+      - ~~PizzaScreen.save() saves XML of toppings to storage~~
+          - ~~calls Pizza.serialize() to get XML~~
+          - ~~calls Pizza.saveFile() to get FileHandle~~
+          - ~~Desktop saves to External storage~~
+          - ~~Android saves to Local storage~~
+          - ~~no save support for WebGl/html~~
+      - ~~save() on exiting PizzaScreen~~
+          - ~~PizzaScreen.pause()~~
+          - ~~don't save on cook() or createPostcard(): the current way of passing Pizza
+            objects can handle this~~
+      - ~~create Pizza.load() to deserialize Pizza~~
+          - ~~create Pizza.addTopping() case for BASE: setBaseTopping() but nothing else,
+            otherwise BASE stacks as you save and load~~
+      - ~~load() on init~~
+          - ~~add loadAutosave argument to new Pizza() constructor. true when called from
+            PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
+      - ~~implement for Desktop, then go back and do Android~~
+      - ~~WebGl/html now failing to compile: I need to re-implement this using
+        platform-specific code~~
+          - ~~CaptureIO.savePizzaXml(String pizzaXml) called by PizzaScreen.save()~~
+          - ~~String CaptureIO.loadPizzaXml() called by PizzaScreen.load()~~
+              - ~~returns an empty String when load file doesn't exist~~
+              - ~~Pizza.deserialize() does not attempt to read XML if rootElement is null,
+                i.e. if empty string is passed in~~
+          - ~~implement methods in DesktopCaptureIO~~
+          - ~~implement methods in AndroidCaptureIO~~
+          - ~~empty methods in HtmlCaptureIO~~
+      - `~~test test test!~~
+      - ~~remove save() debugging code~~
+          - ~~hotkey~~
+          - ~~print XML~~
 
   + ~~hold Undo button on PizzaScreen to remove all toppings~~
       - ~~**UNDID THIS: create UndoButton which implements GestureListener~~

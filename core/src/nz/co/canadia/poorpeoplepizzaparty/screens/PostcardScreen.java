@@ -99,7 +99,7 @@ public class PostcardScreen implements InputProcessor, Screen {
         }
 
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            // add save button
+            // add serialize button
             ImageButton.ImageButtonStyle saveButtonStyle =
                     new ImageButton.ImageButtonStyle(
                             game.uiSkin.get("default", Button.ButtonStyle.class));

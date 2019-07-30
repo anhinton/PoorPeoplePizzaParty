@@ -41,14 +41,19 @@ public class PizzaScreen implements InputProcessor, Screen {
     private float undoPressedTime;
     private boolean removeAllFired;
 
-    public PizzaScreen(final PoorPeoplePizzaParty game) {
+    public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
         showedToppingTutorial = false;
         undoPressedTime = 0;
         removeAllFired = false;
 
         initialise();
-        pizza = new Pizza(game.assets);
+        if (loadAutosave) {
+            pizza = new Pizza(game.assets);
+            load();
+        } else {
+            pizza = new Pizza(game.assets);
+        }
     }
 
     PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
@@ -98,7 +103,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void createPostcard() {
+    public void createPostcard(){
         game.setScreen(new PostcardScreen(game, pizza));
         dispose();
     }
@@ -106,11 +111,20 @@ public class PizzaScreen implements InputProcessor, Screen {
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
         dispose();
-
     }
 
     private void removeAllToppings() {
         pizza.removeAllToppings();
+    }
+
+    private void save() {
+        String pizzaXml = pizza.serialize();
+        game.captureIO.savePizzaXml(pizzaXml);
+    }
+
+    private void load() {
+        String pizzaXml = game.captureIO.loadPizzaXml();
+        pizza.deserialize(pizzaXml);
     }
 
     public void undoLastTopping() {
@@ -333,7 +347,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void pause() {
-
+        save();
     }
 
     @Override
