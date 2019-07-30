@@ -2,6 +2,8 @@
           
   + pop up a fake "score" when a topping is placed
       - "+6" 2x then "+666"
+      - drifts upwards and fades
+      - centred on topping x, y
 	  
   + move viewport boilerplate to a utils Class
         

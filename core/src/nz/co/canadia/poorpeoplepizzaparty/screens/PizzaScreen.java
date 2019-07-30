@@ -13,10 +13,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.Points;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Topping;
 import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMessage;
@@ -40,6 +42,8 @@ public class PizzaScreen implements InputProcessor, Screen {
     private boolean showedToppingTutorial;
     private float undoPressedTime;
     private boolean removeAllFired;
+    private Array<Points> points;
+    private int pointsCount;
 
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
@@ -65,6 +69,8 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void initialise() {
         selectedTopping = null;
+        points = new Array<Points>();
+        pointsCount = 0;
 
         game.assets.loadPizzaScreenAssets();
 
@@ -113,6 +119,11 @@ public class PizzaScreen implements InputProcessor, Screen {
         dispose();
     }
 
+    private void addTopping (Topping topping) {
+        pizza.addTopping(topping);
+        scorePoints(topping.getX(), topping.getY());
+    }
+
     private void removeAllToppings() {
         pizza.removeAllToppings();
     }
@@ -133,6 +144,10 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void clearMessage() {
         pizzaMessage.clearMessage();
+    }
+
+    private void scorePoints(float x, float y) {
+        points.add(new Points(x, y, game.uiSkin.getFont("label-font"), "+6"));
     }
 
     private void showMessage(String s) {
@@ -209,7 +224,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     touchCoords.x < Constants.PIZZA_RIGHT &
                     touchCoords.y > Constants.PIZZA_BOTTOM &
                     touchCoords.y < Constants.PIZZA_TOP) {
-                pizza.addTopping(selectedTopping);
+                addTopping(selectedTopping);
             }
             selectedTopping = new Topping(selectedTopping.getX(),
                     selectedTopping.getY(),
@@ -280,6 +295,9 @@ public class PizzaScreen implements InputProcessor, Screen {
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
             selectedTopping.drawSelected(game.batch);
+        }
+        for (Points p: points) {
+            p.draw(game.batch);
         }
         game.batch.end();
 
