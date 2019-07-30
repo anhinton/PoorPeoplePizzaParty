@@ -24,7 +24,7 @@
           - ~~add loadAutosave argument to new Pizza() constructor. true when called from
             PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
       - ~~implement for Desktop, then go back and do Android~~
-      - ~~WebGl/html now failing to complie: I need to re-implement this using
+      - ~~WebGl/html now failing to compile: I need to re-implement this using
         platform-specific code~~
           - ~~CaptureIO.savePizzaXml(String pizzaXml) called by PizzaScreen.save()~~
           - ~~String CaptureIO.loadPizzaXml() called by PizzaScreen.load()~~
@@ -34,10 +34,17 @@
           - ~~implement methods in DesktopCaptureIO~~
           - ~~implement methods in AndroidCaptureIO~~
           - ~~empty methods in HtmlCaptureIO~~
-      - test test test!
-      - remove save() debugging code 
-          - hotkey
-          - prettyPrint()
+      - `~~test test test!~~
+      - ~~remove save() debugging code~~
+          - ~~hotkey~~
+          - ~~print XML~~
+          
+  + remove postcard debugging code
+  
+  + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
+          
+  + pop up a fake "score" when a topping is placed
+      - "+6" 2x then "+666"
 	  
   + move viewport boilerplate to a utils Class
         
@@ -59,6 +66,7 @@
   + do a Vector Android app icon
   
   + stop debugging for release
+      - remove debugging statements Gdx.app.log
   
   + investigate desktop full screen and window resizing
   

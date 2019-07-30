@@ -73,6 +73,7 @@ public class AndroidCaptureIO implements CaptureIO {
     }
 
     private void writePostcardPNG(Pixmap postcardPixmap) {
+        //TODO: remove debugging code
         Gdx.app.log("AndroidCaptureIO",
                 "writing postcard PNG to " + postcardFilePath.toString());
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);

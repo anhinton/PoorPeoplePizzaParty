@@ -157,8 +157,6 @@ public class Pizza {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO: remove debugging code
-        Gdx.app.log("Pizza", writer.toString());
         return writer.toString();
     }
 

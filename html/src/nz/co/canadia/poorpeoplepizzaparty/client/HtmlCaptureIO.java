@@ -9,19 +9,17 @@ public class HtmlCaptureIO implements CaptureIO {
 
     @Override
     public void savePostcardImage(Postcard postcard) {
-
+        // No postcard export on WebGl
     }
 
     @Override
     public void savePizzaXml(String pizzaXml) {
-        //TODO: remove debugging code
-        Gdx.app.log("HtmlCaptureIO", "No save/load on WebGl");
+        // No save/load on WebGl
     }
 
     @Override
     public String loadPizzaXml() {
-        //TODO: remove debugging code
-        Gdx.app.log("HtmlCaptureIO", "No save/load on WebGl");
+        // No save/load on WebGl
         return "";
     }
 }
