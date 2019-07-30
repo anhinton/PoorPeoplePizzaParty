@@ -1,6 +1,4 @@
 # TODO
-  
-  + change title desktop on save postcard to... dialog (currently says "serialize" =P) 
           
   + pop up a fake "score" when a topping is placed
       - "+6" 2x then "+666"
@@ -30,6 +28,8 @@
   + investigate desktop full screen and window resizing
   
 ## Done
+  
+  + ~~change title desktop on save postcard to... dialog (currently says "serialize" =P)~~ 
           
   + ~~remove postcard debugging code~~
 
