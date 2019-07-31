@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -42,7 +43,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     private boolean showedToppingTutorial;
     private float undoPressedTime;
     private boolean removeAllFired;
-    private Array<Points> points;
+    private Array<Points> pointsArray;
     private int pointsCount;
 
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
@@ -69,7 +70,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void initialise() {
         selectedTopping = null;
-        points = new Array<Points>();
+        pointsArray = new Array<Points>();
         pointsCount = 0;
 
         game.assets.loadPizzaScreenAssets();
@@ -119,9 +120,9 @@ public class PizzaScreen implements InputProcessor, Screen {
         dispose();
     }
 
-    private void addTopping (Topping topping) {
+    private void addTopping(Topping topping, float x, float y) {
         pizza.addTopping(topping);
-        scorePoints(topping.getX(), topping.getY());
+        scorePoints(x, y);
     }
 
     private void removeAllToppings() {
@@ -147,7 +148,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void scorePoints(float x, float y) {
-        points.add(new Points(x, y, game.uiSkin.getFont("label-font"), "+6"));
+        pointsArray.add(new Points(x, y, game.uiSkin.get("default", Label.LabelStyle.class), "+6"));
     }
 
     private void showMessage(String s) {
@@ -224,7 +225,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     touchCoords.x < Constants.PIZZA_RIGHT &
                     touchCoords.y > Constants.PIZZA_BOTTOM &
                     touchCoords.y < Constants.PIZZA_TOP) {
-                addTopping(selectedTopping);
+                addTopping(selectedTopping, touchCoords.x, touchCoords.y);
             }
             selectedTopping = new Topping(selectedTopping.getX(),
                     selectedTopping.getY(),
@@ -282,25 +283,38 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
+        // clear screen
         Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // update game camera
         gameViewport.apply();
         gameCamera.update();
         game.batch.setProjectionMatrix(gameCamera.combined);
         game.shapeRenderer.setProjectionMatrix(gameCamera.combined);
 
+        // update Points array
+        for (int i = 0; i < pointsArray.size; i++) {
+            if (pointsArray.get(i).isVisible()) {
+                pointsArray.get(i).update(delta);
+            } else {
+                pointsArray.removeIndex(i);
+            }
+        }
+
+        // draw sprites
         game.batch.begin();
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
             selectedTopping.drawSelected(game.batch);
         }
-        for (Points p: points) {
+        for (Points p: pointsArray) {
             p.draw(game.batch);
         }
         game.batch.end();
 
+        // draw debugging bounds
         if (Constants.DEBUG_GRAPHICS) {
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -318,9 +332,12 @@ public class PizzaScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
+        // update UI camera
         uiStage.getViewport().apply();
         uiStage.getCamera().update();
         uiStage.act(delta);
+
+        // draw UI
         uiStage.draw();
 
         // show topping tutorial the first time a topping is selected

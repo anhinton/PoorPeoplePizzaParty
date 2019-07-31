@@ -1,33 +1,42 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Points {
-    private final BitmapFont font;
-    private final String scoreDisplay;
-    private float x;
-    private float y;
+    private final Label label;
     private boolean visible;
-    private float timeElapsed;
+    private float alpha;
 
-    public Points(float x, float y, BitmapFont font, String scoreDisplay) {
-        this.x = x;
-        this.y = y;
-        this.font = font;
-        this.scoreDisplay = scoreDisplay;
+    public Points(float x, float y, Label.LabelStyle labelStyle, String text) {
+        label = new Label(text, labelStyle);
+        label.setPosition(x - label.getWidth() / 2, y - label.getHeight() / 2);
         visible = true;
-        timeElapsed = 0.0f;
+        alpha = 1;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 
     public void draw(SpriteBatch batch) {
         if (visible) {
-            font.draw(batch, scoreDisplay, x, y);
+            label.draw(batch, 1);
         }
     }
 
-    public void update(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public void update(float delta) {
+        if (visible) {
+            label.setY(label.getY() + delta * Constants.POINTS_MOVEMENT_SPEED);
+            alpha -= delta * Constants.POINTS_FADE_RATE;
+            if (alpha <= 0) {
+                alpha = 0;
+                visible = false;
+            }
+            label.setColor(new Color(1, 1, 1, alpha));
+        }
     }
 }

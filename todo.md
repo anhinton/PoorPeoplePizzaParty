@@ -4,6 +4,7 @@
       - "+6" 2x then "+666"
       - drifts upwards and fades
       - centred on topping x, y
+      - work out why font is so much bigger on Android than on Desktop
 	  
   + move viewport boilerplate to a utils Class
         
