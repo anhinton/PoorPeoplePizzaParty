@@ -13,7 +13,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -148,7 +147,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void scorePoints(float x, float y) {
-        pointsArray.add(new Points(x, y, game.uiSkin.get("default", Label.LabelStyle.class), "+6"));
+        pointsArray.add(new Points(x, y, game.uiSkin.getFont("label-font"), "+6"));
     }
 
     private void showMessage(String s) {
