@@ -1,6 +1,11 @@
 # TODO
+
+  + switched to fixed font sizes for screen heights
+      - >= 1080
+      - >= 720
+      - < 720
           
-  + pop up a fake "score" when a topping is placed
+  + pop up a fake "score" when a topping is placed (scorePoints branch)
       - "+6" 2x then "+666"
 	  
   + move viewport boilerplate to a utils Class
