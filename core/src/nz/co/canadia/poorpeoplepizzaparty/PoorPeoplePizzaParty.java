@@ -13,7 +13,6 @@ import java.util.Locale;
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
 /**
@@ -28,11 +27,9 @@ public class PoorPeoplePizzaParty extends Game {
     public UiSkin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
-    private UiFont uiFont;
 
-    public PoorPeoplePizzaParty(CaptureIO captureIO, UiFont uiFont) {
+    public PoorPeoplePizzaParty(CaptureIO captureIO) {
         this.captureIO = captureIO;
-        this.uiFont = uiFont;
     }
 
     @Override
@@ -46,7 +43,7 @@ public class PoorPeoplePizzaParty extends Game {
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        uiSkin = new UiSkin(uiFont);
+        uiSkin = new UiSkin(Gdx.graphics.getBackBufferHeight());
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
