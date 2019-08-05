@@ -112,4 +112,13 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.finishLoading();
     }
+
+    /**
+     * Loads assets for TitleScreen. Blocks until all assets are loaded.
+     */
+    public void loadTitleScreenAssets() {
+        super.load("graphics/headers/titleScreen.png",
+                Texture.class, param);
+        super.finishLoading();
+    }
 }

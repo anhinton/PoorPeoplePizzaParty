@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import java.util.Locale;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
@@ -51,7 +52,8 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        this.setScreen(new PizzaScreen(this, true));
+//        this.setScreen(new PizzaScreen(this, true));
+        this.setScreen(new TitleScreen(this));
     }
 
     @Override
