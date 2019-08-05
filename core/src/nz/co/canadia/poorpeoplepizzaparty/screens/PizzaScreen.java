@@ -151,13 +151,13 @@ public class PizzaScreen implements InputProcessor, Screen {
         pointsCount++;
         String text;
         if (MathUtils.random(1, 420) == 420) {
-            text = "+420";
+            text = game.bundle.get("scorePointsRandom");
         } else if (pointsCount % 69 == 0) {
-            text = "+69";
+            text = game.bundle.get("scorePointsSixtyNine");
         } else if (pointsCount % 3 == 0) {
-            text = "+666";
+            text = game.bundle.get("scorePointsThree");
         } else {
-            text = "+6";
+            text = game.bundle.get("scorePointsBasic");
         }
         pointsArray.add(new Points(x, y, game.uiSkin.getFont("label-font"), text));
     }
