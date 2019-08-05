@@ -1,9 +1,4 @@
 # TODO
-
-  + switched to fixed font sizes for screen heights
-      - >= 1080
-      - >= 720
-      - < 720
       
   + create platform-specific UiFont to provide BitmapFont for webgl, 
     FreetypeFont for desktop and android
@@ -41,8 +36,15 @@
       - remove debugging statements Gdx.app.log
   
   + investigate desktop full screen and window resizing
+      - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
+        sizes
   
 ## Done
+
+  + ~~switch to fixed font sizes for screen heights >= 1080, >= 720, < 720~~
+      - ~~delete DesktopUiFont, AndroidUiFont, HtmlUiFont, UiFont~~
+      - ~~UiSkin() takes height argument: screen height~~
+      - ~~UiFont loads 64pt, 43pt, or 36pt button and label fonts for above screen sizes~~
   
   + ~~change title desktop on save postcard to... dialog (currently says "serialize" =P)~~ 
           
