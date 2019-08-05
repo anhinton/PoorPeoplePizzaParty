@@ -3,21 +3,20 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class UiSkin extends Skin {
 
-    public UiSkin (UiFont uiFont) {
+    public UiSkin () {
 
         super.add("button-font",
-                uiFont.getUiFont(Gdx.files.internal(
-                        "fonts/Inconsolata/Inconsolata-Regular.ttf")),
+                new BitmapFont(
+                        Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-36.fnt")),
                 BitmapFont.class);
 
         super.add("label-font",
-                uiFont.getUiFont(Gdx.files.internal(
-                        "fonts/Podkova/Podkova-Regular.ttf")),
+                new BitmapFont(
+                        Gdx.files.internal("fonts/Podkova/Podkova-Regular-36.fnt")),
                 BitmapFont.class);
 
         // load uiskin atlas

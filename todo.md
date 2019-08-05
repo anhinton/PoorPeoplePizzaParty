@@ -4,6 +4,16 @@
       - >= 1080
       - >= 720
       - < 720
+      
+  + create platform-specific UiFont to provide BitmapFont for webgl, 
+    FreetypeFont for desktop and android
+    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
+      - create UiFont interface
+      - create UiSkin() constructor which takes a UiFont argument
+      - UiSkin calls uiFont.getUiFont()
+      - implement DesktopUiFont
+      - implement AndroidUiFont
+      - implement HtmlUiFont
           
   + pop up a fake "score" when a topping is placed (scorePoints branch)
       - "+6" 2x then "+666"
@@ -226,16 +236,6 @@
   + ~~get WebGL working~~
       - ~~it didn't seem to like the async loading in 
         Assets.loadCookScreenAssets() yesterday but now today it's fine?~~
-
-  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
-    FreetypeFont for desktop and android~~
-    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~create UiFont interface~~
-      - ~~create UiSkin() constructor which takes a UiFont argument~~
-      - ~~UiSkin calls uiFont.getUiFont()~~
-      - ~~implement DesktopUiFont~~
-      - ~~implement AndroidUiFont~~
-      - ~~implement HtmlUiFont~~
   
   + ~~get WebGL working~~
       - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
