@@ -62,7 +62,7 @@ public class PostcardScreen implements InputProcessor, Screen {
                     screenWidth / Constants.GAME_ASPECT_RATIO,
                     uiCamera);
         }
-        uiStage = new Stage(uiViewport);
+        uiStage = new Stage(uiViewport, game.batch);
         Table uiTable = new Table();
         uiTable.setFillParent(true);
         uiTable.bottom().right().pad(padding);
@@ -214,6 +214,7 @@ public class PostcardScreen implements InputProcessor, Screen {
 
         uiStage.getViewport().apply();
         uiStage.getCamera().update();
+        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
         uiStage.act(delta);
         uiStage.draw();
     }

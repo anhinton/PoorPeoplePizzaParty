@@ -48,7 +48,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
                     uiCamera);
         }
 
-        stage = new Stage(viewport);
+        stage = new Stage(viewport, game.batch);
         serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
                 viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle, pizza);
@@ -127,6 +127,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
         stage.act(delta);
         stage.draw();
     }

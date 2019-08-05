@@ -79,6 +79,10 @@ public class Constants {
     public static final Color SAUCE_COLOR =
             new Color(1,1,1, (float)3 / 5);
 
+    // Points change rates
+    public static final float POINTS_MOVEMENT_SPEED = 100f;
+    public static final float POINTS_FADE_RATE = 1.5f;
+
     // Cook timer
     public static final float COOK_TIME_TOTAL = 3f;
     public static final float COOK_TIME_INCREMENT = 1 / 30f;

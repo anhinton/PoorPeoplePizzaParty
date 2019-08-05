@@ -47,7 +47,7 @@ public class CookScreen implements InputProcessor, Screen {
         uiCamera.setToOrtho(false, viewport.getScreenHeight(),
                 viewport.getScreenHeight());
 
-        stage = new Stage(viewport);
+        stage = new Stage(viewport, game.batch);
         cookUi = new CookUi(countdown, viewport.getScreenWidth(),
                 viewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle);
@@ -135,6 +135,7 @@ public class CookScreen implements InputProcessor, Screen {
         cookUi.update(delta);
 
         stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
         stage.act(delta);
         stage.draw();
     }
