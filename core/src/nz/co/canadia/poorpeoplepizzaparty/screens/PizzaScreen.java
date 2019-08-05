@@ -216,15 +216,17 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Vector3 touchCoords = gameCamera.unproject(
+        Vector3 pizzaCoords = gameCamera.unproject(
+                new Vector3(screenX, screenY, 0));
+        Vector3 uiCoords = uiStage.getCamera().unproject(
                 new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()
                 & pizzaUi.getCurrentMenu() == Constants.CurrentPizzaMenu.MAIN) {
-            if (touchCoords.x > Constants.PIZZA_LEFT &
-                    touchCoords.x < Constants.PIZZA_RIGHT &
-                    touchCoords.y > Constants.PIZZA_BOTTOM &
-                    touchCoords.y < Constants.PIZZA_TOP) {
-                addTopping(selectedTopping, touchCoords.x, touchCoords.y);
+            if (pizzaCoords.x > Constants.PIZZA_LEFT &
+                    pizzaCoords.x < Constants.PIZZA_RIGHT &
+                    pizzaCoords.y > Constants.PIZZA_BOTTOM &
+                    pizzaCoords.y < Constants.PIZZA_TOP) {
+                addTopping(selectedTopping, uiCoords.x, uiCoords.y);
             }
             selectedTopping = new Topping(selectedTopping.getX(),
                     selectedTopping.getY(),
@@ -302,14 +304,11 @@ public class PizzaScreen implements InputProcessor, Screen {
             }
         }
 
-        // draw sprites
+        // draw pizza sprites
         game.batch.begin();
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
             selectedTopping.drawSelected(game.batch);
-        }
-        for (Points p: pointsArray) {
-            p.draw(game.batch);
         }
         game.batch.end();
 
@@ -335,6 +334,13 @@ public class PizzaScreen implements InputProcessor, Screen {
         uiStage.getViewport().apply();
         uiStage.getCamera().update();
         uiStage.act(delta);
+
+        // draw Points in UI layer
+        uiStage.getBatch().begin();
+        for (Points p: pointsArray) {
+            p.draw(uiStage.getBatch());
+        }
+        uiStage.getBatch().end();
 
         // draw UI
         uiStage.draw();

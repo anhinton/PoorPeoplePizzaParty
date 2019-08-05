@@ -1,9 +1,9 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -13,7 +13,7 @@ public class Points {
     private float alpha;
 
     public Points(float x, float y, BitmapFont font, String text) {
-        fontCache = new BitmapFontCache(font, font.usesIntegerPositions());
+        fontCache = font.newFontCache();
         GlyphLayout glyphLayout = new GlyphLayout(font, text);
         fontCache.setText(glyphLayout, x - glyphLayout.width / 2, y + glyphLayout.height / 2);
         visible = true;
@@ -24,7 +24,7 @@ public class Points {
         return visible;
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw(Batch batch) {
         if (visible) {
             fontCache.draw(batch);
         }
