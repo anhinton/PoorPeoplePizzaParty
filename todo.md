@@ -1,12 +1,4 @@
 # TODO
-          
-  + pop up a fake "score" when a topping is placed
-      - "+6" 2x then "+666"
-      - ~~drifts upwards and fades~~
-      - ~~centred on topping x, y~~
-      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
-        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
-        coordinates~~
 	  
   + move viewport boilerplate to a utils Class
         
@@ -35,6 +27,14 @@
         sizes
   
 ## Done
+          
+  + ~~pop up a fake "score" when a topping is placed~~
+      - ~~"+6" 2x then "+666"~~
+      - ~~drifts upwards and fades~~
+      - ~~centred on topping x, y~~
+      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
+        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
+        coordinates~~
 
   + ~~switch to fixed font sizes for screen heights >= 1080, >= 720, < 720~~
       - ~~delete DesktopUiFont, AndroidUiFont, HtmlUiFont, UiFont~~
