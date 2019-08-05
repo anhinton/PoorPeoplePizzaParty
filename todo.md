@@ -1,10 +1,12 @@
 # TODO
           
-  + pop up a fake "score" when a topping is placed (scorePoints branch)
+  + pop up a fake "score" when a topping is placed
       - "+6" 2x then "+666"
-      - drifts upwards and fades
-      - centred on topping x, y
-      - work out why font is so much bigger on Android than on Desktop
+      - ~~drifts upwards and fades~~
+      - ~~centred on topping x, y~~
+      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
+        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
+        coordinates~~
 	  
   + move viewport boilerplate to a utils Class
         
