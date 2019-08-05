@@ -87,7 +87,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                     screenWidth / Constants.GAME_ASPECT_RATIO,
                     uiCamera);
         }
-        uiStage = new Stage(uiViewport);
+        uiStage = new Stage(uiViewport, game.batch);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(uiStage);
@@ -316,6 +316,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
         uiStage.getViewport().apply();
         uiStage.getCamera().update();
+        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
         uiStage.act(delta);
         uiStage.draw();
     }

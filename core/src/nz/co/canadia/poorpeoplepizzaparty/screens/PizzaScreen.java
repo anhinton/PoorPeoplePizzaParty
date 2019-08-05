@@ -95,7 +95,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     uiCamera);
         }
 
-        uiStage = new Stage(uiViewport);
+        uiStage = new Stage(uiViewport, game.batch);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
                 uiViewport.getScreenHeight(), this, game.uiSkin,
                 game.bundle, game.assets);
@@ -333,6 +333,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         // update UI camera
         uiStage.getViewport().apply();
         uiStage.getCamera().update();
+        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
         uiStage.act(delta);
 
         // draw Points in UI layer
