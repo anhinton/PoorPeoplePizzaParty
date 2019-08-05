@@ -126,6 +126,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void removeAllToppings() {
         pizza.removeAllToppings();
+        pointsCount = 0;
     }
 
     private void save() {
@@ -147,7 +148,18 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void scorePoints(float x, float y) {
-        pointsArray.add(new Points(x, y, game.uiSkin.getFont("label-font"), "+6"));
+        pointsCount++;
+        String text;
+        if (MathUtils.random(1, 420) == 420) {
+            text = "+420";
+        } else if (pointsCount % 69 == 0) {
+            text = "+69";
+        } else if (pointsCount % 3 == 0) {
+            text = "+666";
+        } else {
+            text = "+6";
+        }
+        pointsArray.add(new Points(x, y, game.uiSkin.getFont("label-font"), text));
     }
 
     private void showMessage(String s) {
