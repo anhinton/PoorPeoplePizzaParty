@@ -43,7 +43,7 @@ public class PoorPeoplePizzaParty extends Game {
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        uiSkin = new UiSkin();
+        uiSkin = new UiSkin(Gdx.graphics.getBackBufferHeight());
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =

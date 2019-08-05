@@ -7,16 +7,38 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class UiSkin extends Skin {
 
-    public UiSkin () {
+    public UiSkin (int height) {
+
+        BitmapFont buttonFont;
+        if (height >= 1080) {
+            buttonFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-64.fnt"));
+        } else if (height >= 720) {
+            buttonFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-43.fnt"));
+        } else {
+            buttonFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-36.fnt"));
+        }
+
+        BitmapFont labelFont;
+        if (height >= 1080) {
+            labelFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Podkova/Podkova-Regular-64.fnt"));
+        } else if (height >= 720) {
+            labelFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Podkova/Podkova-Regular-43.fnt"));
+        } else {
+            labelFont = new BitmapFont(
+                    Gdx.files.internal("fonts/Podkova/Podkova-Regular-36.fnt"));
+        }
 
         super.add("button-font",
-                new BitmapFont(
-                        Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-36.fnt")),
+                buttonFont,
                 BitmapFont.class);
 
         super.add("label-font",
-                new BitmapFont(
-                        Gdx.files.internal("fonts/Podkova/Podkova-Regular-36.fnt")),
+                labelFont,
                 BitmapFont.class);
 
         // load uiskin atlas
