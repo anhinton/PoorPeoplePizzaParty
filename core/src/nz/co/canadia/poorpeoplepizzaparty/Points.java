@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
@@ -9,6 +10,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Points {
     private final BitmapFontCache fontCache;
+    private final float speed;
     private boolean visible;
     private float alpha;
 
@@ -16,6 +18,8 @@ public class Points {
         fontCache = font.newFontCache();
         GlyphLayout glyphLayout = new GlyphLayout(font, text);
         fontCache.setText(glyphLayout, x - glyphLayout.width / 2, y + glyphLayout.height / 2);
+        speed = Constants.POINTS_MOVEMENT_SPEED / Constants.GAME_HEIGHT
+                * Gdx.graphics.getBackBufferHeight();
         visible = true;
         alpha = 1;
     }
@@ -32,7 +36,7 @@ public class Points {
 
     public void update(float delta) {
         if (visible) {
-            fontCache.translate(0, delta * Constants.POINTS_MOVEMENT_SPEED);
+            fontCache.translate(0, delta * speed);
             alpha -= delta * Constants.POINTS_FADE_RATE;
             if (alpha <= 0) {
                 alpha = 0;
