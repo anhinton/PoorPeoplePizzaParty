@@ -2,19 +2,22 @@ package nz.co.canadia.poorpeoplepizzaparty.ui;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class TitleUi extends Table {
@@ -27,6 +30,15 @@ public class TitleUi extends Table {
     private final TextButton playButton;
     private final TextButton settingsButton;
     private final TextButton quitButton;
+    private final Label soundVolumeLabel;
+    private final Slider soundVolumeSlider;
+    private final Label musicVolumeLabel;
+    private final Slider musicVolumeSlider;
+    private final Label soundVolumeValueLabel;
+    private final TitleScreen titleScreen;
+    private final Label musicVolumeValueLabel;
+    private final ImageButton backButton;
+    private final I18NBundle bundle;
 
     public TitleUi(int viewportWidth, int viewportHeight,
                    final TitleScreen titleScreen, final Skin skin,
@@ -34,6 +46,9 @@ public class TitleUi extends Table {
                    final AssetManager assets) {
 
         super.setFillParent(true);
+
+        this.titleScreen = titleScreen;
+        this.bundle = bundle;
 
         buttonWidthHalf = UiSize.getButtonWidthHalf(viewportWidth, viewportHeight);
         buttonWidthFull = UiSize.getButtonWidthFull(viewportWidth, viewportHeight);
@@ -43,6 +58,7 @@ public class TitleUi extends Table {
         header = new Image(assets.get("graphics/headers/titleScreen.png",
                 Texture.class));
 
+        // create Play Button
         playButton = new TextButton(bundle.get("playButton"), skin, "default");
         playButton.addListener(new ChangeListener() {
             @Override
@@ -51,8 +67,16 @@ public class TitleUi extends Table {
             }
         });
 
+        // create Settings button
         settingsButton = new TextButton(bundle.get("settingsButton"), skin, "default");
+        settingsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                showSettings();
+            }
+        });
 
+        // create Quit Button
         quitButton = new TextButton(bundle.get("quitButton"), skin, "default");
         quitButton.addListener(new ChangeListener() {
             @Override
@@ -61,32 +85,87 @@ public class TitleUi extends Table {
             }
         });
 
+        // create SliderStlye
         Slider.SliderStyle sliderStyle =
                 skin.get("default-horizontal",
                         Slider.SliderStyle.class);
 
-        Label soundVolumeLabel = new Label("Sound volume:", skin, "default");
-        soundVolumeLabel.setAlignment(Align.top);
-
-        Slider soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
+        // Sound Volume idgets
+        // Label
+        soundVolumeLabel = new Label("Sound volume:", skin, "default");
+        // Slider
+        soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         soundVolumeSlider.setValue(titleScreen.getSoundVolume());
+        soundVolumeSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setSoundVolume(soundVolumeSlider.getValue());
+            }
+        });
+        // Value Label
+        soundVolumeValueLabel = new Label(printVolume(getSoundVolume()), skin, "default");
 
-        Label musicVolumeLabel = new Label("Music volume:", skin, "default");
-        musicVolumeLabel.setAlignment(Align.top);
-
-        Slider musicVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
+        // Music Volume widgets
+        // Label
+        musicVolumeLabel = new Label("Music volume:", skin, "default");
+        // Slider
+        musicVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         musicVolumeSlider.setValue(titleScreen.getMusicVolume());
+        musicVolumeSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setMusicVolume(musicVolumeSlider.getValue());
+            }
+        });
+        // Value Label
+        musicVolumeValueLabel = new Label(printVolume(getMusicVolume()), skin, "default");
 
-        super.setDebug(true);
-        super.clear();
-        super.pad(padding);
-        super.add(soundVolumeLabel).pad(padding);
-        super.add(soundVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
-        super.row();
-        super.add(musicVolumeLabel).pad(padding);
-        super.add(musicVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
+        // create Settings Back Button
+        ImageButton.ImageButtonStyle backButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        Sprite backSprite = new Sprite(
+                assets.get("graphics/icons/back.png",
+                        Texture.class));
+        backSprite.setSize(Constants.UI_ICON_RATIO * viewportHeight,
+                Constants.UI_ICON_RATIO * viewportHeight);
+        backButtonStyle.imageUp = new SpriteDrawable(backSprite);
+        backButton = new ImageButton(backButtonStyle);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                showMainMenu();
+            }
+        });
 
-//        showMainMenu();
+//        showSettings();
+        showMainMenu();
+    }
+
+    public boolean goBack() {
+        return false;
+    }
+
+    private float getMusicVolume() {
+        return titleScreen.getMusicVolume();
+    }
+
+    private void setMusicVolume(float MusicVolume) {
+        titleScreen.setMusicVolume(MusicVolume);
+        musicVolumeValueLabel.setText(printVolume(getMusicVolume()));
+    }
+
+    private float getSoundVolume() {
+        return titleScreen.getSoundVolume();
+    }
+
+    private String printVolume(float volume) {
+        return String.format(bundle.getLocale(),"%.0f", volume * 100);
+    }
+
+    private void setSoundVolume(float soundVolume) {
+        titleScreen.setSoundVolume(soundVolume);
+        soundVolumeValueLabel.setText(printVolume(getSoundVolume()));
     }
 
     private void showMainMenu() {
@@ -103,5 +182,15 @@ public class TitleUi extends Table {
     }
 
     private void showSettings() {
+        super.setDebug(true);
+        super.clear();
+        super.pad(padding);
+        super.add(soundVolumeLabel).pad(padding);
+        super.add(soundVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
+        super.add(soundVolumeValueLabel).pad(padding).prefWidth(soundVolumeValueLabel.getPrefWidth());
+        super.row();
+        super.add(musicVolumeLabel).pad(padding);
+        super.add(musicVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
+        super.add(musicVolumeValueLabel).pad(padding).prefWidth(musicVolumeValueLabel.getPrefWidth());
     }
 }

@@ -142,7 +142,9 @@ public class TitleScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            quit();
+            if (!titleUi.goBack()) {
+                quit();
+            }
             return true;
         }
         return false;

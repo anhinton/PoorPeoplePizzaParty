@@ -119,6 +119,8 @@ public class Assets extends AssetManager {
     public void loadTitleScreenAssets() {
         super.load("graphics/headers/titleScreen.png",
                 Texture.class, param);
+        super.load("graphics/icons/back.png",
+                Texture.class, param);
         super.finishLoading();
     }
 }
