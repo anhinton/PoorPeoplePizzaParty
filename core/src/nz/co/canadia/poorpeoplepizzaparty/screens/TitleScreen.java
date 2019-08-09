@@ -2,23 +2,29 @@ package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
+import nz.co.canadia.poorpeoplepizzaparty.ui.TitleUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class TitleScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final OrthographicCamera gameCamera;
     private final FitViewport gameViewport;
-    private final Sprite header;
+    private final Stage uiStage;
+    private final TitleUi titleUi;
 
     public TitleScreen (final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -31,10 +37,47 @@ public class TitleScreen implements InputProcessor, Screen {
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
                 Constants.GAME_HEIGHT);
 
-        header = new Sprite(game.assets.get("graphics/headers/titleScreen.png",
-                Texture.class));
+        OrthographicCamera uiCamera = new OrthographicCamera();
+        int screenWidth = Gdx.graphics.getBackBufferWidth();
+        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
+        uiStage = new Stage(uiViewport, game.batch);
+        titleUi = new TitleUi(uiViewport.getScreenWidth(),
+                uiViewport.getScreenHeight(), this, game.uiSkin,
+                game.bundle, game.assets);
+        uiStage.addActor(titleUi);
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(uiStage);
+        multiplexer.addProcessor(this);
+        Gdx.input.setInputProcessor(multiplexer);
+    }
 
-        Gdx.input.setInputProcessor(this);
+    public void play() {
+        game.setScreen(new PizzaScreen(game, true));
+        dispose();
+    }
+
+    public void quit() {
+        Gdx.app.exit();
+    }
+
+    public float getSoundVolume() {
+        return game.getSoundVolume();
+    }
+
+    public void setSoundVolume(float soundVolume) {
+        game.setSoundVolume(soundVolume);
+    }
+
+    public float getMusicVolume() {
+        return game.getMusicVolume();
+    }
+
+    public void setMusicVolume(float musicVolume) {
+        game.setMusicVolume(musicVolume);
     }
 
     @Override
@@ -57,13 +100,22 @@ public class TitleScreen implements InputProcessor, Screen {
 
         // draw sprites
         game.batch.begin();
-        header.draw(game.batch);
         game.batch.end();
+
+        // update UI camera
+        uiStage.getViewport().apply();
+        uiStage.getCamera().update();
+        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
+        uiStage.act(delta);
+
+        // draw UI
+        uiStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
         gameViewport.update(width, height);
+        uiStage.getViewport().update(width, height);
     }
 
     @Override
@@ -83,14 +135,14 @@ public class TitleScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-
+        uiStage.dispose();
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            Gdx.app.exit();
+            quit();
             return true;
         }
         return false;

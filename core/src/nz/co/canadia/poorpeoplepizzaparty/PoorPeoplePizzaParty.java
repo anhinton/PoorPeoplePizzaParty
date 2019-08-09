@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -28,9 +27,27 @@ public class PoorPeoplePizzaParty extends Game {
     public UiSkin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
+    private float soundVolume;
+    private float musicVolume;
 
     public PoorPeoplePizzaParty(CaptureIO captureIO) {
         this.captureIO = captureIO;
+    }
+
+    public float getSoundVolume() {
+        return soundVolume;
+    }
+
+    public void setSoundVolume(float soundVolume) {
+        this.soundVolume = soundVolume;
+    }
+
+    public float getMusicVolume() {
+        return musicVolume;
+    }
+
+    public void setMusicVolume(float musicVolume) {
+        this.musicVolume = musicVolume;
     }
 
     @Override
@@ -51,6 +68,9 @@ public class PoorPeoplePizzaParty extends Game {
                 Gdx.files.internal("i18n/StringBundle");
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
+
+        soundVolume = 1;
+        musicVolume = 1;
 
 //        this.setScreen(new PizzaScreen(this, true));
         this.setScreen(new TitleScreen(this));

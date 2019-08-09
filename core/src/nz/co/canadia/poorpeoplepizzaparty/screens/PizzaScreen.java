@@ -24,6 +24,7 @@ import nz.co.canadia.poorpeoplepizzaparty.Topping;
 import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMessage;
 import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * The main game screen where we create our pizza.
@@ -81,19 +82,24 @@ public class PizzaScreen implements InputProcessor, Screen {
                 Constants.GAME_HEIGHT);
 
         OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
+        int screenWidth = Gdx.graphics.getBackBufferWidth();
+        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
+        // TODO: get rid of reduntant code
+//        Viewport uiViewport;
+//        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
+//            uiViewport = new FitViewport(
+//                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
+//                    screenHeight,
+//                    uiCamera);
+//        } else {
+//            uiViewport = new FitViewport(screenWidth,
+//                    screenWidth / Constants.GAME_ASPECT_RATIO,
+//                    uiCamera);
+//        }
 
         uiStage = new Stage(uiViewport, game.batch);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
@@ -116,6 +122,12 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
+        dispose();
+    }
+
+    private void goBack() {
+        save();
+        game.setScreen(new TitleScreen(game));
         dispose();
     }
 
@@ -194,7 +206,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
             if (!pizzaUi.goBack()) {
-                Gdx.app.exit();
+                goBack();
             }
             return true;
         }

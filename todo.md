@@ -1,12 +1,20 @@
 # TODO
-	  
-  + move viewport boilerplate to a utils Class
         
   + create TitleScreen class
       - pizza party, a party for pizza
+      - Play, Settings, Quit buttons
+      - Settings has audio and music volume sliders
       - change Android back button behaviour in PizzaScreen.class to go back 
         to here
       - revisit logic around loading save data in PizzaScreen
+      
+  + add "close" button to PizzaScreen which goes back to TitleScreen
+  
+  + add "do you want to quit?" dialog to TitleScreen.quit()
+	  
+  + move viewport boilerplate to a utils Class
+      - created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()
+      - button width problems when viewport is taller than expected
 		
   + implement audio
       - topping sound effects

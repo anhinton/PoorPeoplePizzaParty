@@ -61,5 +61,9 @@
   com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
     default-horizontal: { background: default-slider, knob: default-slider-knob },
     default-vertical: { background: default-slider, knob: default-round-large }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+    default-horizontal: { background: default-slider, knob: default-slider-knob },
+    default-vertical: { background: default-slider, knob: default-round-large }
   }
 }
