@@ -27,9 +27,6 @@ public class TitleUi extends Table {
     private final int buttonWidthFull;
     private final int buttonHeight;
     private final int padding;
-    private final TextButton playButton;
-    private final TextButton settingsButton;
-    private final TextButton quitButton;
     private final Label soundVolumeLabel;
     private final Slider soundVolumeSlider;
     private final Label musicVolumeLabel;
@@ -39,6 +36,9 @@ public class TitleUi extends Table {
     private final Label musicVolumeValueLabel;
     private final ImageButton backButton;
     private final I18NBundle bundle;
+    private final Label settingsTitleLabel;
+    private final Table mainMenuTable;
+    private Constants.CurrentTitleMenu currentMenu;
 
     public TitleUi(int viewportWidth, int viewportHeight,
                    final TitleScreen titleScreen, final Skin skin,
@@ -59,7 +59,7 @@ public class TitleUi extends Table {
                 Texture.class));
 
         // create Play Button
-        playButton = new TextButton(bundle.get("playButton"), skin, "default");
+        TextButton playButton = new TextButton(bundle.get("playButton"), skin, "default");
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -68,22 +68,39 @@ public class TitleUi extends Table {
         });
 
         // create Settings button
-        settingsButton = new TextButton(bundle.get("settingsButton"), skin, "default");
+        TextButton settingsButton = new TextButton(bundle.get("settingsButton"), skin, "default");
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showSettings();
+                setCurrentMenu(Constants.CurrentTitleMenu.SETTINGS);
             }
         });
 
         // create Quit Button
-        quitButton = new TextButton(bundle.get("quitButton"), skin, "default");
+        TextButton quitButton = new TextButton(bundle.get("quitButton"), skin, "default");
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 titleScreen.quit();
             }
         });
+        
+        // Main Menu table
+        mainMenuTable = new Table();
+        mainMenuTable.add(playButton)
+                .prefSize(buttonWidthFull, buttonHeight)
+                .right()
+                .space(padding);
+        mainMenuTable.add(settingsButton)
+                .prefSize(buttonWidthHalf, buttonHeight)
+                .left()
+                .space(padding);
+        mainMenuTable.add(quitButton)
+                .prefSize(buttonWidthHalf, buttonHeight)
+                .space(padding);
+
+        // Settings title Label
+        settingsTitleLabel = new Label(bundle.get("settingsTitleLabel"), skin, "default");
 
         // create SliderStlye
         Slider.SliderStyle sliderStyle =
@@ -92,7 +109,7 @@ public class TitleUi extends Table {
 
         // Sound Volume idgets
         // Label
-        soundVolumeLabel = new Label("Sound volume:", skin, "default");
+        soundVolumeLabel = new Label(bundle.get("soundVolumeLabel") + ":", skin, "default");
         // Slider
         soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         soundVolumeSlider.setValue(titleScreen.getSoundVolume());
@@ -107,7 +124,7 @@ public class TitleUi extends Table {
 
         // Music Volume widgets
         // Label
-        musicVolumeLabel = new Label("Music volume:", skin, "default");
+        musicVolumeLabel = new Label(bundle.get("musicVolumeLabel") + ":", skin, "default");
         // Slider
         musicVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         musicVolumeSlider.setValue(titleScreen.getMusicVolume());
@@ -134,16 +151,31 @@ public class TitleUi extends Table {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showMainMenu();
+                setCurrentMenu(Constants.CurrentTitleMenu.MAIN);
             }
         });
 
-//        showSettings();
-        showMainMenu();
+        setCurrentMenu(Constants.CurrentTitleMenu.MAIN);
     }
 
     public boolean goBack() {
-        return false;
+        if (currentMenu == Constants.CurrentTitleMenu.SETTINGS) {
+            setCurrentMenu(Constants.CurrentTitleMenu.MAIN);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void setCurrentMenu(Constants.CurrentTitleMenu currentMenu) {
+        this.currentMenu = currentMenu;
+        switch (currentMenu) {
+            case MAIN:
+                showMainMenu();
+                break;
+            case SETTINGS:
+                showSettingsMenu();
+        }
     }
 
     private float getMusicVolume() {
@@ -170,27 +202,45 @@ public class TitleUi extends Table {
 
     private void showMainMenu() {
         super.clear();
-        super.pad(padding);
+        super.bottom()
+                .pad(padding);
         super.add(header)
-                .space(padding)
-                .colspan(2);
+                .space(padding);
         super.row();
-        super.add(playButton).prefSize(buttonWidthFull, buttonHeight).space(padding).colspan(2);
-        super.row();
-        super.add(settingsButton).prefSize(buttonWidthHalf, buttonHeight).space(padding).right();
-        super.add(quitButton).prefSize(buttonWidthHalf, buttonHeight).space(padding).left();
+        super.add(mainMenuTable);
     }
 
-    private void showSettings() {
-        super.setDebug(true);
+    private void  showSettingsMenu() {
+        // TODO: remove table debugging
+//        super.setDebug(true);
         super.clear();
-        super.pad(padding);
-        super.add(soundVolumeLabel).pad(padding);
-        super.add(soundVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
-        super.add(soundVolumeValueLabel).pad(padding).prefWidth(soundVolumeValueLabel.getPrefWidth());
+        super.center()
+                .pad(padding);
+        super.add(settingsTitleLabel)
+                .colspan(3)
+                .space(padding);
         super.row();
-        super.add(musicVolumeLabel).pad(padding);
-        super.add(musicVolumeSlider).pad(padding).prefWidth(buttonWidthFull);
-        super.add(musicVolumeValueLabel).pad(padding).prefWidth(musicVolumeValueLabel.getPrefWidth());
+        super.add(soundVolumeLabel)
+                .space(padding);
+        super.add(soundVolumeSlider)
+                .space(padding)
+                .prefWidth(buttonWidthFull);
+        super.add(soundVolumeValueLabel)
+                .space(padding)
+                .prefWidth(soundVolumeValueLabel.getPrefWidth());
+        super.row();
+        super.add(musicVolumeLabel)
+                .space(padding);
+        super.add(musicVolumeSlider)
+                .space(padding)
+                .prefWidth(buttonWidthFull);
+        super.add(musicVolumeValueLabel)
+                .space(padding)
+                .prefWidth(musicVolumeValueLabel.getPrefWidth());
+        super.row();
+        super.add(backButton)
+                .colspan(3)
+                .space(padding)
+                .prefSize(buttonWidthHalf, buttonHeight);
     }
 }
