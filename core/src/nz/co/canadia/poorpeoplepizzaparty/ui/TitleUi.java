@@ -3,6 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty.ui;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -192,7 +193,7 @@ public class TitleUi extends Table {
     }
 
     private String printVolume(float volume) {
-        return String.format(bundle.getLocale(),"%.0f", volume * 100);
+        return Integer.toString(MathUtils.round(volume * 100));
     }
 
     private void setSoundVolume(float soundVolume) {
