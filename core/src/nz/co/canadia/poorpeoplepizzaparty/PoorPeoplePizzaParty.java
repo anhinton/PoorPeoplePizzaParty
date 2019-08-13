@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -73,8 +72,7 @@ public class PoorPeoplePizzaParty extends Game {
         soundVolume = 1;
         musicVolume = 1;
 
-        this.setScreen(new PizzaScreen(this, true));
-//        this.setScreen(new TitleScreen(this));
+        this.setScreen(new TitleScreen(this));
     }
 
     @Override

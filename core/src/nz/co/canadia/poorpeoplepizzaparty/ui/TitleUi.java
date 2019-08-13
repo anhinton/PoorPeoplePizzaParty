@@ -36,11 +36,12 @@ public class TitleUi extends Table {
     private final TitleScreen titleScreen;
     private final Label musicVolumeValueLabel;
     private final ImageButton backButton;
-    private final I18NBundle bundle;
     private final Label settingsTitleLabel;
     private final TextButton playButton;
     private final TextButton settingsButton;
     private final TextButton quitButton;
+    private final int viewportHeight;
+    private final int viewportWidth;
     private Constants.CurrentTitleMenu currentMenu;
 
     public TitleUi(int viewportWidth, int viewportHeight,
@@ -51,7 +52,8 @@ public class TitleUi extends Table {
         super.setFillParent(true);
 
         this.titleScreen = titleScreen;
-        this.bundle = bundle;
+        this.viewportWidth = viewportWidth;
+        this.viewportHeight = viewportHeight;
 
         buttonWidthHalf = UiSize.getButtonWidthHalf(viewportWidth, viewportHeight);
         buttonWidthFull = UiSize.getButtonWidthFull(viewportWidth, viewportHeight);
@@ -99,6 +101,7 @@ public class TitleUi extends Table {
         // Sound Volume idgets
         // Label
         soundVolumeLabel = new Label(bundle.get("soundVolumeLabel") + ":", skin, "default");
+
         // Slider
         soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         soundVolumeSlider.setValue(titleScreen.getSoundVolume());
@@ -209,6 +212,11 @@ public class TitleUi extends Table {
         super.bottom()
                 .pad(padding);
         super.add(header)
+                .prefSize(
+                        UiSize.getImageWidth(header.getPrefWidth(),
+                                viewportWidth),
+                        UiSize.getImageHeight(header.getPrefHeight(),
+                                viewportHeight))
                 .space(padding);
         super.row();
         super.add(mainMenuTable);
@@ -244,7 +252,8 @@ public class TitleUi extends Table {
         super.row();
         super.add(backButton)
                 .colspan(3)
-                .space(padding)
-                .prefSize(buttonWidthHalf, buttonHeight);
+                .prefSize(buttonWidthHalf, buttonHeight)
+                .right()
+                .space(padding);
     }
 }

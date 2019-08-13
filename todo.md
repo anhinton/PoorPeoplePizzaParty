@@ -1,14 +1,12 @@
 # TODO
         
   + create TitleScreen class
-      - pizza party, a party for pizza
-      - Play, Settings, Quit buttons
-      - Settings has audio and music volume sliders
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - revisit logic around loading save data in PizzaScreen
-      
-  + add "close" button to PizzaScreen which goes back to TitleScreen
+      - ~~Poor People Pizza Party~~
+      - ~~Play, Settings, Quit buttons~~
+      - ~~Settings has audio and music volume sliders~~
+      - ~~change Android back button behaviour in PizzaScreen.class to go back 
+        to here~~
+      - scale Settings slider on higher resolution screens
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
@@ -35,6 +33,8 @@
         sizes
   
 ## Done
+      
+  + ~~add "close" button to PizzaScreen which goes back to TitleScreen~~
           
   + ~~pop up a fake "score" when a topping is placed~~
       - ~~"+6" 2x then "+666"~~
