@@ -123,6 +123,14 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/icons/back.png",
                 Texture.class, param);
+        super.load("graphics/icons/close.png",
+                Texture.class, param);
+        super.load("graphics/icons/settings.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_mute.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_up.png",
+                Texture.class, param);
         super.finishLoading();
     }
 }
