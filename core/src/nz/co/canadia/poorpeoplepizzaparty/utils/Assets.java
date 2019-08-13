@@ -80,6 +80,8 @@ public class Assets extends AssetManager {
                 param);
         super.load("graphics/icons/camera.png", Texture.class,
                 param);
+        super.load("graphics/icons/close.png", Texture.class,
+                param);
         super.load("graphics/icons/undo.png", Texture.class,
                 param);
         super.finishLoading();

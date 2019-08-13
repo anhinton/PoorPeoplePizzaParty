@@ -38,7 +38,9 @@ public class TitleUi extends Table {
     private final ImageButton backButton;
     private final I18NBundle bundle;
     private final Label settingsTitleLabel;
-    private final Table mainMenuTable;
+    private final TextButton playButton;
+    private final TextButton settingsButton;
+    private final TextButton quitButton;
     private Constants.CurrentTitleMenu currentMenu;
 
     public TitleUi(int viewportWidth, int viewportHeight,
@@ -60,7 +62,7 @@ public class TitleUi extends Table {
                 Texture.class));
 
         // create Play Button
-        TextButton playButton = new TextButton(bundle.get("playButton"), skin, "default");
+        playButton = new TextButton(bundle.get("playButton"), skin, "default");
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -69,7 +71,7 @@ public class TitleUi extends Table {
         });
 
         // create Settings button
-        TextButton settingsButton = new TextButton(bundle.get("settingsButton"), skin, "default");
+        settingsButton = new TextButton(bundle.get("settingsButton"), skin, "default");
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -78,27 +80,13 @@ public class TitleUi extends Table {
         });
 
         // create Quit Button
-        TextButton quitButton = new TextButton(bundle.get("quitButton"), skin, "default");
+        quitButton = new TextButton(bundle.get("quitButton"), skin, "default");
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 titleScreen.quit();
             }
         });
-        
-        // Main Menu table
-        mainMenuTable = new Table();
-        mainMenuTable.add(playButton)
-                .prefSize(buttonWidthFull, buttonHeight)
-                .right()
-                .space(padding);
-        mainMenuTable.add(settingsButton)
-                .prefSize(buttonWidthHalf, buttonHeight)
-                .left()
-                .space(padding);
-        mainMenuTable.add(quitButton)
-                .prefSize(buttonWidthHalf, buttonHeight)
-                .space(padding);
 
         // Settings title Label
         settingsTitleLabel = new Label(bundle.get("settingsTitleLabel"), skin, "default");
@@ -202,6 +190,21 @@ public class TitleUi extends Table {
     }
 
     private void showMainMenu() {
+
+        // Main Menu table
+        Table mainMenuTable = new Table();
+        mainMenuTable.add(playButton)
+                .prefSize(buttonWidthFull, buttonHeight)
+                .right()
+                .space(padding);
+        mainMenuTable.add(settingsButton)
+                .prefSize(buttonWidthHalf, buttonHeight)
+                .left()
+                .space(padding);
+        mainMenuTable.add(quitButton)
+                .prefSize(buttonWidthHalf, buttonHeight)
+                .space(padding);
+
         super.clear();
         super.bottom()
                 .pad(padding);

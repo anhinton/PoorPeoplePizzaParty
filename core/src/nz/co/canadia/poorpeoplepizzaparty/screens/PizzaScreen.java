@@ -125,7 +125,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         dispose();
     }
 
-    private void goBack() {
+    public void goBack() {
         save();
         game.setScreen(new TitleScreen(game));
         dispose();
