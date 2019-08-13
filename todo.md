@@ -6,6 +6,7 @@
       - ~~Settings has audio and music volume sliders~~
       - ~~change Android back button behaviour in PizzaScreen.class to go back 
         to here~~
+      - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
       - scale Settings slider on higher resolution screens
   
   + add "do you want to quit?" dialog to TitleScreen.quit()

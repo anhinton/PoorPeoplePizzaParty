@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
@@ -101,7 +103,11 @@ public class TitleUi extends Table {
         // Sound Volume idgets
         // Label
         soundVolumeLabel = new Label(bundle.get("soundVolumeLabel") + ":", skin, "default");
-
+        soundVolumeLabel.addListener(new ClickListener() {
+            public void clicked (InputEvent event, float x, float y) {
+                soundVolumeSlider.setValue(0);
+            }
+        });
         // Slider
         soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         soundVolumeSlider.setValue(titleScreen.getSoundVolume());
@@ -113,10 +119,20 @@ public class TitleUi extends Table {
         });
         // Value Label
         soundVolumeValueLabel = new Label(printVolume(getSoundVolume()), skin, "default");
+        soundVolumeValueLabel.addListener(new ClickListener() {
+            public void clicked (InputEvent event, float x, float y) {
+                soundVolumeSlider.setValue(1);
+            }
+        });
 
         // Music Volume widgets
         // Label
         musicVolumeLabel = new Label(bundle.get("musicVolumeLabel") + ":", skin, "default");
+        musicVolumeLabel.addListener(new ClickListener() {
+            public void clicked (InputEvent event, float x, float y) {
+                musicVolumeSlider.setValue(0);
+            }
+        });
         // Slider
         musicVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
         musicVolumeSlider.setValue(titleScreen.getMusicVolume());
@@ -128,6 +144,11 @@ public class TitleUi extends Table {
         });
         // Value Label
         musicVolumeValueLabel = new Label(printVolume(getMusicVolume()), skin, "default");
+        musicVolumeValueLabel.addListener(new ClickListener() {
+            public void clicked (InputEvent event, float x, float y) {
+                musicVolumeSlider.setValue(1);
+            }
+        });
 
         // create Settings Back Button
         ImageButton.ImageButtonStyle backButtonStyle =
