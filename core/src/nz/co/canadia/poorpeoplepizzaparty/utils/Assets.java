@@ -116,20 +116,27 @@ public class Assets extends AssetManager {
     }
 
     /**
+     * Loads assets for SettingsScreen. Blocks until all assets are loaded.
+     */
+    public void loadSettingsScreenAssets() {
+        super.load("graphics/icons/back.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_mute.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_up.png",
+                Texture.class, param);
+        super.finishLoading();
+    }
+
+    /**
      * Loads assets for TitleScreen. Blocks until all assets are loaded.
      */
     public void loadTitleScreenAssets() {
         super.load("graphics/headers/titleScreen.png",
                 Texture.class, param);
-        super.load("graphics/icons/back.png",
-                Texture.class, param);
         super.load("graphics/icons/close.png",
                 Texture.class, param);
         super.load("graphics/icons/settings.png",
-                Texture.class, param);
-        super.load("graphics/icons/volume_mute.png",
-                Texture.class, param);
-        super.load("graphics/icons/volume_up.png",
                 Texture.class, param);
         super.finishLoading();
     }

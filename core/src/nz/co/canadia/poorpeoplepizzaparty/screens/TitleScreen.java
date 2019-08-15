@@ -7,8 +7,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -21,21 +19,13 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 public class TitleScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
-    private final OrthographicCamera gameCamera;
-    private final FitViewport gameViewport;
     private final Stage uiStage;
     private final TitleUi titleUi;
 
-    public TitleScreen (final PoorPeoplePizzaParty game) {
+    TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
         game.assets.loadTitleScreenAssets();
-
-        gameCamera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
-                gameCamera);
-        gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
-                Constants.GAME_HEIGHT);
 
         OrthographicCamera uiCamera = new OrthographicCamera();
         int screenWidth = Gdx.graphics.getBackBufferWidth();
@@ -64,22 +54,6 @@ public class TitleScreen implements InputProcessor, Screen {
         Gdx.app.exit();
     }
 
-    public float getSoundVolume() {
-        return game.getSoundVolume();
-    }
-
-    public void setSoundVolume(float soundVolume) {
-        game.setSoundVolume(soundVolume);
-    }
-
-    public float getMusicVolume() {
-        return game.getMusicVolume();
-    }
-
-    public void setMusicVolume(float musicVolume) {
-        game.setMusicVolume(musicVolume);
-    }
-
     @Override
     public void show() {
 
@@ -91,12 +65,6 @@ public class TitleScreen implements InputProcessor, Screen {
         Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // update game camera
-        gameViewport.apply();
-        gameCamera.update();
-        game.batch.setProjectionMatrix(gameCamera.combined);
-        game.shapeRenderer.setProjectionMatrix(gameCamera.combined);
 
         // draw sprites
         game.batch.begin();
@@ -114,7 +82,6 @@ public class TitleScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height);
         uiStage.getViewport().update(width, height);
     }
 

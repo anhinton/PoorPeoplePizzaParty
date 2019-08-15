@@ -30,22 +30,12 @@ public class TitleUi extends Table {
     private final int buttonWidthFull;
     private final int buttonHeight;
     private final int padding;
-    private final Label soundVolumeLabel;
-    private final Slider soundVolumeSlider;
-    private final Label musicVolumeLabel;
-    private final Slider musicVolumeSlider;
     private final TitleScreen titleScreen;
-    private final ImageButton backButton;
-    private final Label settingsTitleLabel;
     private final TextButton playButton;
     private final ImageButton settingsButton;
     private final ImageButton quitButton;
     private final int viewportHeight;
     private final int viewportWidth;
-    private final Image musicVolumeMuteImage;
-    private final Image musicVolumeFullImage;
-    private final Image soundVolumeMuteImage;
-    private final Image soundVolumeFullImage;
     private Constants.CurrentTitleMenu currentMenu;
 
     public TitleUi(int viewportWidth, int viewportHeight,
@@ -112,101 +102,6 @@ public class TitleUi extends Table {
             }
         });
 
-        // Settings title Label
-        settingsTitleLabel = new Label(bundle.get("settingsTitleLabel"), skin, "default");
-
-        // create SliderStlye
-        Slider.SliderStyle sliderStyle =
-                skin.get("default-horizontal",
-                        Slider.SliderStyle.class);
-
-        // Sound Volume widgets
-        // Label
-        soundVolumeLabel = new Label(bundle.get("soundVolumeLabel") + ":", skin, "default");
-        soundVolumeLabel.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(0);
-            }
-        });
-        // Mute Image
-        soundVolumeMuteImage = new Image(assets.get("graphics/icons/volume_mute.png",
-                Texture.class));
-        soundVolumeMuteImage.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(0);
-            }
-        });
-        // Slider
-        soundVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
-        soundVolumeSlider.setValue(titleScreen.getSoundVolume());
-        soundVolumeSlider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                setSoundVolume(soundVolumeSlider.getValue());
-            }
-        });
-        // Full volume image
-        soundVolumeFullImage = new Image(assets.get("graphics/icons/volume_up.png",
-                Texture.class));
-        soundVolumeFullImage.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(1);
-            }
-        });
-
-        // Music Volume widgets
-        // Label
-        musicVolumeLabel = new Label(bundle.get("musicVolumeLabel") + ":", skin,
-                "default");
-        musicVolumeLabel.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(0);
-            }
-        });
-        // Mute Image
-        musicVolumeMuteImage = new Image(assets.get("graphics/icons/volume_mute.png",
-                Texture.class));
-        musicVolumeMuteImage.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(0);
-            }
-        });
-        // Slider
-        musicVolumeSlider = new Slider(0, 1, .05f, false, sliderStyle);
-        musicVolumeSlider.setValue(titleScreen.getMusicVolume());
-        musicVolumeSlider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                setMusicVolume(musicVolumeSlider.getValue());
-            }
-        });
-        // Full volume image
-        musicVolumeFullImage = new Image(assets.get("graphics/icons/volume_up.png",
-                Texture.class));
-        musicVolumeFullImage.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(1);
-            }
-        });
-
-        // create Settings Back Button
-        ImageButton.ImageButtonStyle backButtonStyle =
-                new ImageButton.ImageButtonStyle(
-                        skin.get("default", Button.ButtonStyle.class));
-        Sprite backSprite = new Sprite(
-                assets.get("graphics/icons/back.png",
-                        Texture.class));
-        backSprite.setSize(Constants.UI_ICON_RATIO * viewportHeight,
-                Constants.UI_ICON_RATIO * viewportHeight);
-        backButtonStyle.imageUp = new SpriteDrawable(backSprite);
-        backButton = new ImageButton(backButtonStyle);
-        backButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                setCurrentMenu(Constants.CurrentTitleMenu.MAIN);
-            }
-        });
-
         setCurrentMenu(Constants.CurrentTitleMenu.MAIN);
     }
 
@@ -228,22 +123,6 @@ public class TitleUi extends Table {
             case SETTINGS:
                 showSettingsMenu();
         }
-    }
-
-    private float getMusicVolume() {
-        return titleScreen.getMusicVolume();
-    }
-
-    private void setMusicVolume(float MusicVolume) {
-        titleScreen.setMusicVolume(MusicVolume);
-    }
-
-    private float getSoundVolume() {
-        return titleScreen.getSoundVolume();
-    }
-
-    private void setSoundVolume(float soundVolume) {
-        titleScreen.setSoundVolume(soundVolume);
     }
 
     private void showMainMenu() {
@@ -277,47 +156,6 @@ public class TitleUi extends Table {
     }
 
     private void  showSettingsMenu() {
-        // TODO: remove table debugging
-//        super.setDebug(true);
-        super.clear();
-        super.left().top()
-                .pad(padding);
-        super.add(settingsTitleLabel)
-                .colspan(4)
-                .space(padding);
-        super.row();
-        super.add(soundVolumeLabel)
-                .space(padding);
-        super.add(soundVolumeMuteImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight,
-                        Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        super.add(soundVolumeSlider)
-                .space(padding)
-                .prefWidth(viewportWidth);
-        super.add(soundVolumeFullImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        super.row();
-        super.add(musicVolumeLabel)
-                .space(padding);
-        super.add(musicVolumeMuteImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        super.add(musicVolumeSlider)
-                .space(padding)
-                .fillX();
-        super.add(musicVolumeFullImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        super.row();
-        super.add(backButton)
-                .bottom()
-                .colspan(4)
-                .expandY()
-                .prefSize(buttonWidthHalf, buttonHeight)
-                .right()
-                .space(padding);
-        super.row();
+
     }
 }
