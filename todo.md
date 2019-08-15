@@ -9,6 +9,7 @@
       - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
       - scale Settings slider on higher resolution screens
       - credits screen off Settings screen
+      - no Quit button on Html/WebGL
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
   
