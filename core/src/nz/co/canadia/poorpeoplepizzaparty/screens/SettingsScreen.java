@@ -152,11 +152,11 @@ public class SettingsScreen implements InputProcessor, Screen {
         });
 
         // create Settings Credits Button
-        TextButton creditsButton = new TextButton("Credits", game.uiSkin, "default");
+        TextButton creditsButton = new TextButton(game.bundle.get("creditsButton"), game.uiSkin, "default");
         creditsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                //TODO: load CreditsScreen
             }
         });
 
@@ -188,8 +188,6 @@ public class SettingsScreen implements InputProcessor, Screen {
                 .prefSize(buttonWidthHalf, buttonHeight)
                 .space(padding);
 
-        // TODO: remove table debugging
-//        super.setDebug(true);
         table.clear();
         table.left().top()
                 .pad(padding);

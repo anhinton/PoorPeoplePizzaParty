@@ -73,8 +73,8 @@ public class PoorPeoplePizzaParty extends Game {
         soundVolume = 1;
         musicVolume = 1;
 
-//        this.setScreen(new TitleScreen(this));
-        this.setScreen(new SettingsScreen(this));
+        this.setScreen(new TitleScreen(this));
+//        this.setScreen(new SettingsScreen(this));
     }
 
     @Override

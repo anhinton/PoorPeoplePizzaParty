@@ -11,6 +11,10 @@
       - credits screen off Settings screen
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
+  
+  + make Title header way cooler
+  
+  + write up credits
 	  
   + move viewport boilerplate to a utils Class
       - created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()
@@ -33,6 +37,8 @@
   + investigate desktop full screen and window resizing
       - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
         sizes
+        
+  + revise credits
   
 ## Done
       
