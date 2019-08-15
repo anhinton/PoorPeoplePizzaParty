@@ -39,14 +39,15 @@ public class SettingsScreen implements InputProcessor, Screen {
 
         game.assets.loadSettingsScreenAssets();
 
-        OrthographicCamera uiCamera = new OrthographicCamera();
+        OrthographicCamera camera = new OrthographicCamera();
         int screenWidth = Gdx.graphics.getBackBufferWidth();
         int screenHeight = Gdx.graphics.getBackBufferHeight();
         FitViewport viewport = new FitViewport(
                 UiSize.getViewportWidth(screenWidth, screenHeight),
                 UiSize.getViewportHeight(screenWidth, screenHeight),
-                uiCamera);
-
+                camera);
+        camera.setToOrtho(false, viewport.getScreenHeight(),
+                viewport.getScreenHeight());
         stage = new Stage(viewport, game.batch);
         table = new Table();
         stage.addActor(table);
