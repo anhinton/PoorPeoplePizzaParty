@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -38,7 +39,7 @@ public class TitleScreen implements InputProcessor, Screen {
         OrthographicCamera camera = new OrthographicCamera();
         int screenWidth = Gdx.graphics.getBackBufferWidth();
         int screenHeight = Gdx.graphics.getBackBufferHeight();
-        FitViewport viewport = new FitViewport(
+        Viewport viewport = new FitViewport(
                 UiSize.getViewportWidth(screenWidth, screenHeight),
                 UiSize.getViewportHeight(screenWidth, screenHeight),
                 camera);

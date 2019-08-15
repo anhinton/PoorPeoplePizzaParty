@@ -17,7 +17,7 @@
   + write up credits
 	  
   + move viewport boilerplate to a utils Class
-      - created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()
+      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
       - button width problems when viewport is taller than expected
 		
   + implement audio

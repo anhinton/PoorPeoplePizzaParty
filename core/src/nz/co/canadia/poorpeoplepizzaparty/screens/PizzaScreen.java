@@ -88,18 +88,6 @@ public class PizzaScreen implements InputProcessor, Screen {
                 UiSize.getViewportWidth(screenWidth, screenHeight),
                 UiSize.getViewportHeight(screenWidth, screenHeight),
                 uiCamera);
-        // TODO: get rid of reduntant code
-//        Viewport uiViewport;
-//        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-//            uiViewport = new FitViewport(
-//                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-//                    screenHeight,
-//                    uiCamera);
-//        } else {
-//            uiViewport = new FitViewport(screenWidth,
-//                    screenWidth / Constants.GAME_ASPECT_RATIO,
-//                    uiCamera);
-//        }
 
         uiStage = new Stage(uiViewport, game.batch);
         pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),

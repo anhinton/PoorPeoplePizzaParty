@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
@@ -47,7 +48,7 @@ public class CookScreen implements InputProcessor, Screen {
         OrthographicCamera camera = new OrthographicCamera();
         int screenWidth = Gdx.graphics.getBackBufferWidth();
         int screenHeight = Gdx.graphics.getBackBufferHeight();
-        FitViewport viewport = new FitViewport(
+        Viewport viewport = new FitViewport(
                 UiSize.getViewportWidth(screenWidth, screenHeight),
                 UiSize.getViewportHeight(screenWidth, screenHeight),
                 camera);

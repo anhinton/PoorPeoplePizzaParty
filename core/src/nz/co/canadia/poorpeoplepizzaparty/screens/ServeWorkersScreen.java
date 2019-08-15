@@ -73,19 +73,14 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
         OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
+        int screenWidth = Gdx.graphics.getBackBufferWidth();
+        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
+        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
+                uiViewport.getScreenHeight());
         uiStage = new Stage(uiViewport, game.batch);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
