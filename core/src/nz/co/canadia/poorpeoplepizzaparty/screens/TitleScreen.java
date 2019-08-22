@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
@@ -121,9 +122,11 @@ public class TitleScreen implements InputProcessor, Screen {
                 .prefSize(buttonHeight)
                 .left()
                 .space(padding);
-        mainMenuTable.add(quitButton)
-                .prefSize(buttonHeight)
-                .space(padding);
+        if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
+            mainMenuTable.add(quitButton)
+                    .prefSize(buttonHeight)
+                    .space(padding);
+        }
 
         table.clear();
         table.bottom()
