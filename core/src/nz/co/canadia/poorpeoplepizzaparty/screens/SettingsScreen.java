@@ -9,10 +9,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -22,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -34,6 +37,10 @@ public class SettingsScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Stage stage;
     private final Table table;
+    private Label soundVolumeValueLabel;
+    private Slider soundVolumeSlider;
+    private Label musicVolumeValueLabel;
+    private Slider musicVolumeSlider;
 
     public SettingsScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -78,8 +85,14 @@ public class SettingsScreen implements InputProcessor, Screen {
                         Slider.SliderStyle.class);
 
         // Sound Volume widgets
+        // Label
+        Label soundVolumeLabel = new Label(game.bundle.get("soundVolumeLabel") + ":",
+                game.uiSkin, "default");
+        // Volume Level Label
+        soundVolumeValueLabel = new Label(printVolume(getSoundVolume()),
+                game.uiSkin, "default");
         // Slider
-        final Slider soundVolumeSlider = new Slider(0, 1, .05f,
+        soundVolumeSlider = new Slider(0, 1, .05f,
                 false, sliderStyle);
         soundVolumeSlider.setValue(getSoundVolume());
         soundVolumeSlider.addListener(new ChangeListener() {
@@ -88,21 +101,13 @@ public class SettingsScreen implements InputProcessor, Screen {
                 setSoundVolume(soundVolumeSlider.getValue());
             }
         });
-        // Label
-        Label soundVolumeLabel = new Label(game.bundle.get("soundVolumeLabel") + ":",
-                game.uiSkin, "default");
-        soundVolumeLabel.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(0);
-            }
-        });
         // Mute Image
         Image soundVolumeMuteImage = new Image(
                 game.assets.get("graphics/icons/volume_mute.png",
-                Texture.class));
+                        Texture.class));
         soundVolumeMuteImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(0);
+                decreaseSoundVolume();
             }
         });
         // Full volume image
@@ -111,13 +116,19 @@ public class SettingsScreen implements InputProcessor, Screen {
                 Texture.class));
         soundVolumeFullImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
-                soundVolumeSlider.setValue(1);
+                increaseSoundVolume();
             }
         });
 
         // Music Volume widgets
+        // Label
+        Label musicVolumeLabel = new Label(game.bundle.get("musicVolumeLabel") + ":",
+                game.uiSkin,"default");
+        // Volume Level Label
+        musicVolumeValueLabel = new Label(printVolume(getMusicVolume()),
+                game.uiSkin, "default");
         // Slider
-        final Slider musicVolumeSlider = new Slider(0, 1, .05f,
+        musicVolumeSlider = new Slider(0, 1, .05f,
                 false, sliderStyle);
         musicVolumeSlider.setValue(getMusicVolume());
         musicVolumeSlider.addListener(new ChangeListener() {
@@ -126,21 +137,13 @@ public class SettingsScreen implements InputProcessor, Screen {
                 setMusicVolume(musicVolumeSlider.getValue());
             }
         });
-        // Label
-        Label musicVolumeLabel = new Label(game.bundle.get("musicVolumeLabel") + ":",
-                game.uiSkin,"default");
-        musicVolumeLabel.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(0);
-            }
-        });
         // Mute Image
         Image musicVolumeMuteImage = new Image(
                 game.assets.get("graphics/icons/volume_mute.png",
                 Texture.class));
         musicVolumeMuteImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(0);
+                decreaseMusicVolume();
             }
         });
         // Full volume image
@@ -149,9 +152,44 @@ public class SettingsScreen implements InputProcessor, Screen {
                 Texture.class));
         musicVolumeFullImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
-                musicVolumeSlider.setValue(1);
+                increaseMusicVolume();
             }
         });
+        
+        // Volumes table
+        Table volumesTable = new Table();
+        volumesTable.add(soundVolumeLabel)
+                .space(padding);
+        volumesTable.add(soundVolumeMuteImage)
+                .size(Constants.UI_ICON_RATIO * viewportHeight,
+                        Constants.UI_ICON_RATIO * viewportHeight)
+                .space(padding);
+        volumesTable.add(soundVolumeSlider)
+                .fillX()
+                .space(padding);
+        volumesTable.add(soundVolumeFullImage)
+                .size(Constants.UI_ICON_RATIO * viewportHeight)
+                .space(padding);
+        volumesTable.add(soundVolumeValueLabel)
+                .prefWidth(buttonHeight)
+                .right()
+                .space(padding);
+        volumesTable.row();
+        volumesTable.add(musicVolumeLabel)
+                .space(padding);
+        volumesTable.add(musicVolumeMuteImage)
+                .size(Constants.UI_ICON_RATIO * viewportHeight)
+                .space(padding);
+        volumesTable.add(musicVolumeSlider)
+                .fillX()
+                .space(padding);
+        volumesTable.add(musicVolumeFullImage)
+                .size(Constants.UI_ICON_RATIO * viewportHeight)
+                .space(padding);
+        volumesTable.add(musicVolumeValueLabel)
+                .prefWidth(buttonHeight)
+                .right()
+                .space(padding);
 
         // create Settings Credits Button
         TextButton creditsButton = new TextButton(game.bundle.get("creditsButton"), game.uiSkin, "default");
@@ -191,41 +229,36 @@ public class SettingsScreen implements InputProcessor, Screen {
                 .space(padding);
 
         table.clear();
-        table.left().top()
+        table.top()
                 .pad(padding);
         table.add(settingsTitleLabel)
-                .colspan(4)
                 .space(padding);
         table.row();
-        table.add(soundVolumeLabel)
-                .space(padding);
-        table.add(soundVolumeMuteImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight,
-                        Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        table.add(soundVolumeSlider)
-                .space(padding)
-                .prefWidth(viewportWidth);
-        table.add(soundVolumeFullImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        table.row();
-        table.add(musicVolumeLabel)
-                .space(padding);
-        table.add(musicVolumeMuteImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
-        table.add(musicVolumeSlider)
-                .space(padding)
-                .fillX();
-        table.add(musicVolumeFullImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight)
-                .space(padding);
+        table.add(volumesTable).prefWidth(viewportWidth);
         table.row();
         table. add(bottomButtons)
-                .colspan(4)
                 .expand()
                 .prefSize(viewportWidth, viewportHeight);
+    }
+
+    private void decreaseMusicVolume() {
+        setMusicVolume(getMusicVolume() - Constants.VOLUME_STEP);
+    }
+
+    private void increaseMusicVolume() {
+        setMusicVolume(getMusicVolume() + Constants.VOLUME_STEP);
+    }
+
+    private String printVolume(float volume) {
+        return Integer.toString(MathUtils.round(volume * 100));
+    }
+
+    private void increaseSoundVolume() {
+        setSoundVolume(getSoundVolume() + Constants.VOLUME_STEP);
+    }
+
+    private void decreaseSoundVolume() {
+        setSoundVolume(getSoundVolume() - Constants.VOLUME_STEP);
     }
 
     private void goBack() {
@@ -239,6 +272,8 @@ public class SettingsScreen implements InputProcessor, Screen {
 
     private void setSoundVolume(float soundVolume) {
         game.setSoundVolume(soundVolume);
+        soundVolumeValueLabel.setText(printVolume(getSoundVolume()));
+        soundVolumeSlider.setValue(getSoundVolume());
     }
 
     private float getMusicVolume() {
@@ -247,6 +282,8 @@ public class SettingsScreen implements InputProcessor, Screen {
 
     private void setMusicVolume(float musicVolume) {
         game.setMusicVolume(musicVolume);
+        musicVolumeValueLabel.setText(printVolume(getMusicVolume()));
+        musicVolumeSlider.setValue(getMusicVolume());
     }
 
     @Override

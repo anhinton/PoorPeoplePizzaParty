@@ -36,6 +36,8 @@ public class Constants {
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
 
+    public static float VOLUME_STEP = 0.05f;
+
     // Available menus in PizzaUi.class
     public enum CurrentPizzaMenu { MAIN, TOPPING }
 

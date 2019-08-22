@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
@@ -40,7 +41,7 @@ public class PoorPeoplePizzaParty extends Game {
     }
 
     public void setSoundVolume(float soundVolume) {
-        this.soundVolume = soundVolume;
+        this.soundVolume = MathUtils.clamp(soundVolume, 0, 1);
     }
 
     public float getMusicVolume() {
@@ -48,7 +49,7 @@ public class PoorPeoplePizzaParty extends Game {
     }
 
     public void setMusicVolume(float musicVolume) {
-        this.musicVolume = musicVolume;
+        this.musicVolume = MathUtils.clamp(musicVolume, 0, 1);
     }
 
     @Override
@@ -73,8 +74,8 @@ public class PoorPeoplePizzaParty extends Game {
         soundVolume = 1;
         musicVolume = 1;
 
-        this.setScreen(new TitleScreen(this));
-//        this.setScreen(new SettingsScreen(this));
+//        this.setScreen(new TitleScreen(this));
+        this.setScreen(new SettingsScreen(this));
     }
 
     @Override
