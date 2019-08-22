@@ -14,8 +14,6 @@
   + add "do you want to quit?" dialog to TitleScreen.quit()
       - make quitScreen.class
   
-  + ~~make Title header somewhat cooler~~
-  
   + write up credits
 	  
   + move viewport boilerplate to a utils Class
@@ -43,6 +41,8 @@
   + revise credits
   
 ## Done
+  
+  + ~~make Title header somewhat cooler~~
       
   + ~~add "close" button to PizzaScreen which goes back to TitleScreen~~
           
