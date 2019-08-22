@@ -14,7 +14,7 @@
   + add "do you want to quit?" dialog to TitleScreen.quit()
       - make quitScreen.class
   
-  + make Title header way cooler
+  + ~~make Title header somewhat cooler~~
   
   + write up credits
 	  
