@@ -7,7 +7,8 @@
       - ~~change Android back button behaviour in PizzaScreen.class to go back 
         to here~~
       - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
-      - scale Settings slider on higher resolution screens
+      - ~~volume Image icons press to raise or lower volumes~~
+      - ~~volume level /100 displayed to right~~
       - credits screen off Settings screen
       - ~~no Quit button on Html/WebGL~~
   

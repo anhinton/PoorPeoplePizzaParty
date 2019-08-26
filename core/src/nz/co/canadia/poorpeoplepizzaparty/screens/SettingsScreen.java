@@ -72,7 +72,7 @@ public class SettingsScreen implements InputProcessor, Screen {
 
         int buttonWidthHalf = UiSize.getButtonWidthHalf(viewportWidth, viewportHeight);
         int buttonWidthFull = UiSize.getButtonWidthFull(viewportWidth, viewportHeight);
-        int buttonHeight = UiSize.getButtonHeight(viewportHeight);
+        int buttonSize = UiSize.getButtonHeight(viewportHeight);
         int padding = UiSize.getPadding(viewportHeight);
 
         // Settings title Label
@@ -91,6 +91,7 @@ public class SettingsScreen implements InputProcessor, Screen {
         // Volume Level Label
         soundVolumeValueLabel = new Label(printVolume(getSoundVolume()),
                 game.uiSkin, "default");
+        soundVolumeValueLabel.setAlignment(Align.center);
         // Slider
         soundVolumeSlider = new Slider(0, 1, .05f,
                 false, sliderStyle);
@@ -127,6 +128,7 @@ public class SettingsScreen implements InputProcessor, Screen {
         // Volume Level Label
         musicVolumeValueLabel = new Label(printVolume(getMusicVolume()),
                 game.uiSkin, "default");
+        musicVolumeValueLabel.setAlignment(Align.center);
         // Slider
         musicVolumeSlider = new Slider(0, 1, .05f,
                 false, sliderStyle);
@@ -161,18 +163,17 @@ public class SettingsScreen implements InputProcessor, Screen {
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
         volumesTable.add(soundVolumeMuteImage)
-                .size(Constants.UI_ICON_RATIO * viewportHeight,
-                        Constants.UI_ICON_RATIO * viewportHeight)
+                .size(Constants.UI_ICON_RATIO * viewportHeight)
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
+                .prefWidth(viewportWidth)
                 .fillX()
                 .space(padding);
         volumesTable.add(soundVolumeFullImage)
                 .size(Constants.UI_ICON_RATIO * viewportHeight)
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
-                .prefWidth(buttonHeight)
-                .right()
+                .prefWidth(buttonSize)
                 .space(padding);
         volumesTable.row();
         volumesTable.add(musicVolumeLabel)
@@ -187,8 +188,7 @@ public class SettingsScreen implements InputProcessor, Screen {
                 .size(Constants.UI_ICON_RATIO * viewportHeight)
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
-                .prefWidth(buttonHeight)
-                .right()
+                .prefWidth(buttonSize)
                 .space(padding);
 
         // create Settings Credits Button
@@ -221,11 +221,11 @@ public class SettingsScreen implements InputProcessor, Screen {
         bottomButtons.add(creditsButton)
                 .bottom().left()
                 .expand()
-                .prefSize(buttonWidthFull, buttonHeight)
+                .prefSize(buttonWidthFull, buttonSize)
                 .space(padding);
         bottomButtons.add(backButton)
                 .bottom().right()
-                .prefSize(buttonWidthHalf, buttonHeight)
+                .prefSize(buttonWidthHalf, buttonSize)
                 .space(padding);
 
         table.clear();
