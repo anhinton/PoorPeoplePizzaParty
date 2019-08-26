@@ -173,7 +173,7 @@ public class SettingsScreen implements InputProcessor, Screen {
                 .size(Constants.UI_ICON_RATIO * viewportHeight)
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
-                .prefWidth(buttonSize)
+                .width(buttonSize)
                 .space(padding);
         volumesTable.row();
         volumesTable.add(musicVolumeLabel)
@@ -188,7 +188,7 @@ public class SettingsScreen implements InputProcessor, Screen {
                 .size(Constants.UI_ICON_RATIO * viewportHeight)
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
-                .prefWidth(buttonSize)
+                .width(buttonSize)
                 .space(padding);
 
         // create Settings Credits Button
