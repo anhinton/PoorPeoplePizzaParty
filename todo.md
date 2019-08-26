@@ -1,12 +1,12 @@
 # TODO
+      
+  + go back to a single viewport size for UI, do away with all these font sizes?
+  
+  + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
   + move viewport boilerplate to a utils Class
-        
-  + create TitleScreen class
-      - pizza party, a party for pizza
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - revisit logic around loading save data in PizzaScreen
+      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
+      - button width problems when viewport is taller than expected
 		
   + implement audio
       - topping sound effects
@@ -25,8 +25,27 @@
   + investigate desktop full screen and window resizing
       - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
         sizes
+        
+  + revise credits
   
 ## Done
+        
+  + ~~create TitleScreen class~~
+      - ~~Poor People Pizza Party~~
+      - ~~Play, Settings, Quit buttons~~
+      - ~~Settings has audio and music volume sliders~~
+      - ~~change Android back button behaviour in PizzaScreen.class to go back 
+        to here~~
+      - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
+      - ~~volume Image icons press to raise or lower volumes~~
+      - ~~volume level /100 displayed to right~~
+      - ~~no Quit button on Html/WebGL~~
+      - ~~Credits button in Settings menu displays Credits ui~~
+      - ~~implement goBack() to catch ESC presses~~
+  
+  + ~~make Title header somewhat cooler~~
+      
+  + ~~add "close" button to PizzaScreen which goes back to TitleScreen~~
           
   + ~~pop up a fake "score" when a topping is placed~~
       - ~~"+6" 2x then "+666"~~

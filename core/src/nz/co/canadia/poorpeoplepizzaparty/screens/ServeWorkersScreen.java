@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -74,19 +73,14 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
         OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
+        int screenWidth = Gdx.graphics.getBackBufferWidth();
+        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
+        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
+                uiViewport.getScreenHeight());
         uiStage = new Stage(uiViewport, game.batch);
 
         InputMultiplexer multiplexer = new InputMultiplexer();

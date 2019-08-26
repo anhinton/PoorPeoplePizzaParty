@@ -8,7 +8,7 @@ at <https://github.com/libgdx/libgdx/wiki/Gradle-and-Intellij-IDEA>.
 
 ### License
 
-Poor People Pizza Party copyright 2018 Ashley Noel Hinton.
+Poor People Pizza Party copyright 2019 Ashley Noel Hinton.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,7 +39,8 @@ is licensed under the SIL Open Font License, Version 1.1.
 
 `graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/save.png` 
 `graphics/icons/share.png` `graphics/icons/undo.png`
-"arrow_back", "camera_alt", "save_alt", "share", and "undo" by 
+"arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", 
+"volume_mute", and "volume_up" by 
 [Google](https://material.io/tools/icons/) are licensed under 
 [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
 

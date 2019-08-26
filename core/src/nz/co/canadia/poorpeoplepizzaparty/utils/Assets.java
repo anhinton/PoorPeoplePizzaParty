@@ -80,6 +80,8 @@ public class Assets extends AssetManager {
                 param);
         super.load("graphics/icons/camera.png", Texture.class,
                 param);
+        super.load("graphics/icons/close.png", Texture.class,
+                param);
         super.load("graphics/icons/undo.png", Texture.class,
                 param);
         super.finishLoading();
@@ -109,6 +111,25 @@ public class Assets extends AssetManager {
         super.load("graphics/pizzaparty_0.png",
                 Texture.class, param);
         super.load("graphics/pizzaparty_1.png",
+                Texture.class, param);
+        super.finishLoading();
+    }
+
+    /**
+     * Loads assets for TitleScreen. Blocks until all assets are loaded.
+     */
+    public void loadTitleScreenAssets() {
+        super.load("graphics/headers/titleScreen.png",
+                Texture.class, param);
+        super.load("graphics/icons/back.png",
+                Texture.class, param);
+        super.load("graphics/icons/close.png",
+                Texture.class, param);
+        super.load("graphics/icons/settings.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_mute.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_up.png",
                 Texture.class, param);
         super.finishLoading();
     }

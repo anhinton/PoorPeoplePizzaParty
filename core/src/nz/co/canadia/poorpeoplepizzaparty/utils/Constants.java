@@ -27,7 +27,7 @@ public class Constants {
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
 
-    public static final float GAME_ASPECT_RATIO =
+    static final float GAME_ASPECT_RATIO =
             (float)GAME_WIDTH / GAME_HEIGHT;
 
     public static final int DESKTOP_WIDTH = 960;
@@ -35,6 +35,11 @@ public class Constants {
 
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
+
+    public static float VOLUME_STEP = 0.05f;
+
+    // Available menus in TitleScreen.class
+    public enum CurrentTitleMenu { TITLE, SETTINGS, CREDITS }
 
     // Available menus in PizzaUi.class
     public enum CurrentPizzaMenu { MAIN, TOPPING }

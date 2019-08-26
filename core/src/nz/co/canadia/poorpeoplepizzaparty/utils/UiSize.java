@@ -50,4 +50,34 @@ public class UiSize {
         return imageWidth / Constants.GAME_WIDTH * screenWidth;
     }
 
+    /**
+     * Clamp viewportHeight to one of the pre-determined screen sizes: 1080, 720, 600.
+     * @param viewportHeight
+     * @return
+     */
+    private static int clampViewportHeight(int viewportHeight) {
+        int clampedHeight = viewportHeight;
+        if (clampedHeight >= 1080) {
+            clampedHeight = 1080;
+        } else if (clampedHeight >= 720) {
+            clampedHeight = 720;
+        } else {
+            clampedHeight = Constants.GAME_HEIGHT;
+        }
+        return clampedHeight;
+    }
+
+    public static int getViewportHeight(int screenWidth, int screenHeight) {
+        int viewportHeight = screenHeight;
+        if (screenWidth / screenHeight <= Constants.GAME_ASPECT_RATIO) {
+            viewportHeight = Math.round(screenWidth / Constants.GAME_ASPECT_RATIO);
+        }
+        return clampViewportHeight(viewportHeight);
+    }
+
+    public static int getViewportWidth(int screenWidth, int screenHeight) {
+        int viewportHeight = getViewportHeight(screenWidth, screenHeight);
+        return Math.round(viewportHeight * Constants.GAME_ASPECT_RATIO);
+    }
+
 }

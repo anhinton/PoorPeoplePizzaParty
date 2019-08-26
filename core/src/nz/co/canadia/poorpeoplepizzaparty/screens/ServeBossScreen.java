@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.ui.ServeBossUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
+import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * The ServeBossScreen, where you give your boss the pizza you made and he decides your fate
@@ -25,7 +27,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
     private final ServeBossUi serveBossUi;
-    private FitViewport viewport;
 
     ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
@@ -35,22 +36,18 @@ public class ServeBossScreen implements InputProcessor, Screen {
         game.assets.loadServeBossScreenAssets();
 
         OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            viewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            viewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
+        int screenWidth = Gdx.graphics.getBackBufferWidth();
+        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
+        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
+                uiViewport.getScreenHeight());
 
-        stage = new Stage(viewport, game.batch);
-        serveBossUi = new ServeBossUi(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), this, game.uiSkin,
+        stage = new Stage(uiViewport, game.batch);
+        serveBossUi = new ServeBossUi(uiViewport.getScreenWidth(),
+                uiViewport.getScreenHeight(), this, game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
 
@@ -134,7 +131,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
         stage.getViewport().update(width, height, true);
     }
 

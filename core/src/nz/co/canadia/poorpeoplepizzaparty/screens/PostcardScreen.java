@@ -51,17 +51,10 @@ public class PostcardScreen implements InputProcessor, Screen {
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
         OrthographicCamera uiCamera = new OrthographicCamera();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
+        Viewport uiViewport = new FitViewport(
+                UiSize.getViewportWidth(screenWidth, screenHeight),
+                UiSize.getViewportHeight(screenWidth, screenHeight),
+                uiCamera);
         uiStage = new Stage(uiViewport, game.batch);
         Table uiTable = new Table();
         uiTable.setFillParent(true);

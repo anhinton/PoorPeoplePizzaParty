@@ -33,12 +33,19 @@ public class UiSkin extends Skin {
                     Gdx.files.internal("fonts/Podkova/Podkova-Regular-36.fnt"));
         }
 
+        BitmapFont creditsFont = new BitmapFont(
+                Gdx.files.internal("fonts/Inconsolata/Inconsolata-Regular-18.fnt"));
+
         super.add("button-font",
                 buttonFont,
                 BitmapFont.class);
 
         super.add("label-font",
                 labelFont,
+                BitmapFont.class);
+
+        super.add("credits-font",
+                creditsFont,
                 BitmapFont.class);
 
         // load uiskin atlas
