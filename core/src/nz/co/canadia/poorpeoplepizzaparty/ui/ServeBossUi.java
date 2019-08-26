@@ -25,8 +25,6 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class ServeBossUi extends Table {
 
-    private final int screenWidth;
-    private final int screenHeight;
     private final ServeBossScreen serveBossScreen;
     private final Skin uiSkin;
     private final AssetManager assets;
@@ -36,19 +34,16 @@ public class ServeBossUi extends Table {
     private Texture pizzaTexture;
     private Pixmap pizzaPixmap;
 
-    public ServeBossUi(int screenWidth, int screenHeight,
-                       ServeBossScreen serveBossScreen,
+    public ServeBossUi(ServeBossScreen serveBossScreen,
                        Skin uiSkin, AssetManager assets, I18NBundle bundle,
                        Pizza pizza) {
 
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
         this.serveBossScreen = serveBossScreen;
         this.uiSkin = uiSkin;
         this.assets = assets;
         this.bundle = bundle;
         this.pizza = pizza;
-        padding = UiSize.getPadding(screenHeight);
+        padding = UiSize.getPadding();
 
         super.setFillParent(true);
 
@@ -83,10 +78,10 @@ public class ServeBossUi extends Table {
         leftColumn.add(pizzaImage)
                 .prefSize( // this Image is a full Base image, needs to be
                            // scaled
-                        UiSize.getImageWidth(pizzaImage.getPrefWidth(),
-                                screenWidth) * Constants.BASE_SERVE_SCALE,
-                        UiSize.getImageHeight(pizzaImage.getPrefHeight(),
-                                screenHeight) * Constants.BASE_SERVE_SCALE)
+                        UiSize.getImageWidth(pizzaImage.getPrefWidth())
+                                * Constants.BASE_SERVE_SCALE,
+                        UiSize.getImageHeight(pizzaImage.getPrefHeight())
+                                * Constants.BASE_SERVE_SCALE)
                 .space(padding);
         leftColumn.row();
 
@@ -109,16 +104,14 @@ public class ServeBossUi extends Table {
             }
         });
         leftColumn.add(firedButton)
-                .prefSize(screenWidth / 2f,
-                        UiSize.getButtonHeight(screenHeight))
+                .prefSize(Constants.GAME_WIDTH / 2f,
+                        UiSize.getButtonHeight())
                 .space(padding);
 
         super.add(bossImage)
                 .prefSize(
-                        UiSize.getImageWidth(bossImage.getPrefWidth(),
-                                screenWidth),
-                        UiSize.getImageHeight(bossImage.getPrefHeight(),
-                                screenHeight))
+                        UiSize.getImageWidth(bossImage.getPrefWidth()),
+                        UiSize.getImageHeight(bossImage.getPrefHeight()))
 //                .expand()
                 .space(padding);
     }

@@ -54,7 +54,7 @@ public class Constants {
     static final int UNIT = 20;
 
     // UI button icons are 50px
-    public static final float UI_ICON_RATIO = 50f / GAME_HEIGHT;
+    static final int UI_ICON_SIZE = 50;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;

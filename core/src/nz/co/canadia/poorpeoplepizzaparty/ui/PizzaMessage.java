@@ -21,10 +21,10 @@ public class PizzaMessage extends Container {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
 
-        super.setPosition(UiSize.getBaseX(screenHeight),
-                UiSize.getBaseY(screenHeight));
-        super.setSize(UiSize.getBaseWidth(screenWidth),
-                UiSize.getBaseHeight(screenHeight));
+        super.setPosition(UiSize.getBaseX(),
+                UiSize.getBaseY());
+        super.setSize(UiSize.getBaseWidth(),
+                UiSize.getBaseHeight());
 
         messageLabel = new TextButton("", skin, "default");
     }
@@ -36,16 +36,16 @@ public class PizzaMessage extends Container {
     public void showMessage(String s) {
         clearMessage();
         messageLabel = new TextButton(s, skin, "default");
-        messageLabel.setSize(UiSize.getBaseWidth(screenWidth),
-                UiSize.getButtonHeight(screenHeight));
+        messageLabel.setSize(UiSize.getBaseWidth(),
+                UiSize.getButtonHeight());
         messageLabel.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 clearMessage();
             }
         });
-        super.prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                UiSize.getButtonHeight(screenHeight));
+        super.prefSize(UiSize.getButtonWidthFull(),
+                UiSize.getButtonHeight());
 
         // TODO: work out what the IDE warning here means, and how to fix it
         super.setActor(messageLabel);

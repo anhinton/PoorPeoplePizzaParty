@@ -59,12 +59,12 @@ public class CookScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        padding = UiSize.getPadding(screenHeight);
+        padding = UiSize.getPadding();
 
         if (countdown) {
-            showTimer(viewport.getScreenWidth(), viewport.getScreenHeight());
+            showTimer();
         } else {
-            showDecision(viewport.getScreenWidth(), viewport.getScreenHeight());
+            showDecision();
         }
 
         InputMultiplexer multiplexer = new InputMultiplexer();
@@ -73,7 +73,7 @@ public class CookScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    private void showTimer(final int viewportWidth, final int viewportHeight) {
+    private void showTimer() {
 
         table.clear();
         table.pad(padding);
@@ -100,7 +100,7 @@ public class CookScreen implements InputProcessor, Screen {
                     remainingLabel.setText(Integer.toString(MathUtils.ceil(timeRemaining)));
                 } else {
                     cooking = false;
-                    showDecision(viewportWidth, viewportHeight);
+                    showDecision();
                 }
             }
         });
@@ -116,7 +116,7 @@ public class CookScreen implements InputProcessor, Screen {
         table.add(remainingLabel).space(padding);        
     }
 
-    private void showDecision(int viewportWidth, int viewportHeight) {
+    private void showDecision() {
 
         table.clear();
         table.pad(padding);
@@ -127,10 +127,8 @@ public class CookScreen implements InputProcessor, Screen {
         table.add(headerImage)
                 .colspan(2)
                 .prefSize(
-                        UiSize.getImageWidth(headerImage.getPrefWidth(),
-                                viewportWidth),
-                        UiSize.getImageHeight(headerImage.getPrefHeight(),
-                                viewportHeight))
+                        UiSize.getImageWidth(headerImage.getPrefWidth()),
+                        UiSize.getImageHeight(headerImage.getPrefHeight()))
                 .space(padding);
         table.row();
 
@@ -148,8 +146,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(bossButton)
-                .prefSize(UiSize.getButtonWidthFull(viewportWidth, viewportHeight),
-                        UiSize.getButtonHeight(viewportHeight))
+                .prefSize(UiSize.getButtonWidthFull(),
+                        UiSize.getButtonHeight())
                 .space(padding);
 
         TextButton workersButton = new TextButton(game.bundle.get("serveworkersButton"),
@@ -161,8 +159,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(workersButton)
-                .prefSize(UiSize.getButtonWidthFull(viewportWidth, viewportHeight),
-                        UiSize.getButtonHeight(viewportHeight))
+                .prefSize(UiSize.getButtonWidthFull(),
+                        UiSize.getButtonHeight())
                 .space(padding);
     }
 

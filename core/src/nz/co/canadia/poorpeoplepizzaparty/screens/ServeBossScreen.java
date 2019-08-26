@@ -46,8 +46,7 @@ public class ServeBossScreen implements InputProcessor, Screen {
                 uiViewport.getScreenHeight());
 
         stage = new Stage(uiViewport, game.batch);
-        serveBossUi = new ServeBossUi(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), this, game.uiSkin,
+        serveBossUi = new ServeBossUi(this, game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
 

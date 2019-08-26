@@ -5,49 +5,49 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
  */
 
 public class UiSize {
-    public static int getPadding(int screenHeight) {
-        return Math.round((float)Constants.UNIT / Constants.GAME_HEIGHT
-                * screenHeight);
+    public static int getPadding() {
+        return Constants.UNIT;
     }
 
-    public static int getBaseX(int screenHeight) {
-        return getPadding(screenHeight);
+    public static int getIconSize() {
+        return Constants.UI_ICON_SIZE;
     }
 
-    public static int getBaseY(int screenHeight) {
-        return getBaseX(screenHeight);
+    public static int getBaseX() {
+        return getPadding();
     }
 
-    public static int getBaseWidth(int screenWidth) {
-        return Math.round((float)Constants.BASE_WIDTH / Constants.GAME_WIDTH
-                * screenWidth);
+    public static int getBaseY() {
+        return getBaseX();
     }
 
-    public static int getBaseHeight(int screenHeight) {
-        return Math.round((float)Constants.BASE_HEIGHT / Constants.GAME_HEIGHT
-                * screenHeight);
+    public static int getBaseWidth() {
+        return Constants.BASE_WIDTH;
     }
 
-    public static int getButtonWidthFull(int screenWidth, int screenHeight) {
-        return Math.round(screenWidth - getBaseWidth(screenWidth)
-                - getPadding(screenHeight) * 3);
+    public static int getBaseHeight() {
+        return Constants.BASE_HEIGHT;
     }
 
-    public static int getButtonWidthHalf(int screenWidth, int screenHeight) {
-        return (getButtonWidthFull(screenWidth, screenHeight)
-                - getPadding(screenHeight)) / 2;
+    public static int getButtonWidthFull() {
+        return Math.round(Constants.GAME_WIDTH - getBaseWidth()
+                - getPadding() * 3);
     }
 
-    public static int getButtonHeight(int screenHeight) {
-        return getPadding(screenHeight) * 4;
+    public static int getButtonWidthHalf() {
+        return (getButtonWidthFull() - getPadding()) / 2;
     }
 
-    public static float getImageHeight(float imageHeight, int screenHeight) {
-        return imageHeight / Constants.GAME_HEIGHT * screenHeight;
+    public static int getButtonHeight() {
+        return getPadding() * 4;
     }
 
-    public static float getImageWidth(float imageWidth, int screenWidth) {
-        return imageWidth / Constants.GAME_WIDTH * screenWidth;
+    public static float getImageHeight(float imageHeight) {
+        return imageHeight;
+    }
+
+    public static float getImageWidth(float imageWidth) {
+        return imageWidth;
     }
 
     /**
@@ -68,16 +68,18 @@ public class UiSize {
     }
 
     public static int getViewportHeight(int screenWidth, int screenHeight) {
-        int viewportHeight = screenHeight;
-        if (screenWidth / screenHeight <= Constants.GAME_ASPECT_RATIO) {
-            viewportHeight = Math.round(screenWidth / Constants.GAME_ASPECT_RATIO);
-        }
-        return clampViewportHeight(viewportHeight);
+//        int viewportHeight = screenHeight;
+//        if (screenWidth / screenHeight <= Constants.GAME_ASPECT_RATIO) {
+//            viewportHeight = Math.round(screenWidth / Constants.GAME_ASPECT_RATIO);
+//        }
+//        return clampViewportHeight(viewportHeight);
+        return Constants.GAME_HEIGHT;
     }
 
     public static int getViewportWidth(int screenWidth, int screenHeight) {
-        int viewportHeight = getViewportHeight(screenWidth, screenHeight);
-        return Math.round(viewportHeight * Constants.GAME_ASPECT_RATIO);
+//        int viewportHeight = getViewportHeight(screenWidth, screenHeight);
+//        return Math.round(viewportHeight * Constants.GAME_ASPECT_RATIO);
+        return Constants.GAME_WIDTH;
     }
 
 }

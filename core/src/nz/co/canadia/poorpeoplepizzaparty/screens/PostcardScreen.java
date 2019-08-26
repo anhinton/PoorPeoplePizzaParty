@@ -39,9 +39,9 @@ public class PostcardScreen implements InputProcessor, Screen {
         this.pizza = pizza;
         int screenWidth = Gdx.graphics.getBackBufferWidth();
         int screenHeight = Gdx.graphics.getBackBufferHeight();
-        int padding = UiSize.getPadding(screenHeight);
-        int buttonWidth = UiSize.getButtonWidthHalf(screenWidth, screenHeight);
-        int buttonHeight = UiSize.getButtonHeight(screenHeight);
+        int padding = UiSize.getPadding();
+        int buttonWidth = UiSize.getButtonWidthHalf();
+        int buttonHeight = UiSize.getButtonHeight();
 
         game.assets.loadPostcardAssets();
 
@@ -76,8 +76,8 @@ public class PostcardScreen implements InputProcessor, Screen {
             Sprite shareSprite = new Sprite(
                     game.assets.get("graphics/icons/share.png",
                             Texture.class));
-            shareSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                    Constants.UI_ICON_RATIO * screenHeight);
+            shareSprite.setSize(UiSize.getIconSize(),
+                    UiSize.getIconSize());
             shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
             ImageButton shareButton = new ImageButton(shareButtonStyle);
             shareButton.addListener(new ChangeListener() {
@@ -99,8 +99,8 @@ public class PostcardScreen implements InputProcessor, Screen {
             Sprite saveSprite = new Sprite(
                     game.assets.get("graphics/icons/save.png",
                             Texture.class));
-            saveSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                    Constants.UI_ICON_RATIO * screenHeight);
+            saveSprite.setSize(UiSize.getIconSize(),
+                    UiSize.getIconSize());
             saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
             ImageButton saveButton = new ImageButton(saveButtonStyle);
             saveButton.addListener(new ChangeListener() {
@@ -121,8 +121,8 @@ public class PostcardScreen implements InputProcessor, Screen {
         Sprite backSprite = new Sprite(
                 game.assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
+        backSprite.setSize(UiSize.getIconSize(),
+                UiSize.getIconSize());
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         ImageButton backButton = new ImageButton(backButtonStyle);
         backButton.addListener(new ChangeListener() {

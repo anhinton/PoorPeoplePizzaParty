@@ -43,8 +43,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final OrthographicCamera gameCamera;
     private final FitViewport gameViewport;
     private final Stage uiStage;
-    private final int screenWidth;
-    private final int screenHeight;
     private final int padding;
     private final PizzaPartyAnimation pizzaPartyAnimation;
     private float timeElapsed;
@@ -61,9 +59,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        screenWidth = Gdx.graphics.getBackBufferWidth();
-        screenHeight = Gdx.graphics.getBackBufferHeight();
-        padding = UiSize.getPadding(screenHeight);
+        padding = UiSize.getPadding();
 
         game.assets.loadServeWorkersScreenAssets();
 
@@ -124,7 +120,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 "default");
         label.setAlignment(Align.topLeft);
         label.setPosition(padding,
-                screenHeight - padding - label.getHeight());
+                Constants.GAME_HEIGHT - padding - label.getHeight());
         label.setWidth(Constants.GAME_WIDTH * 2 / 3f);
         uiStage.addActor(label);
     }
@@ -138,10 +134,10 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         partyScene.switchState();
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
-        firedButton.setSize(screenWidth * 2 / 3f,
-                UiSize.getButtonHeight(screenHeight) * 2);
-        firedButton.setPosition(screenWidth / 2f - firedButton.getWidth() / 2,
-                screenHeight / 2f - firedButton.getHeight() / 2);
+        firedButton.setSize(Constants.GAME_WIDTH * 2 / 3f,
+                UiSize.getButtonHeight() * 2);
+        firedButton.setPosition(Constants.GAME_WIDTH/ 2f - firedButton.getWidth() / 2,
+                Constants.GAME_HEIGHT / 2f - firedButton.getHeight() / 2);
         firedButton.pad(padding);
         firedButton.addListener(new ChangeListener() {
             @Override

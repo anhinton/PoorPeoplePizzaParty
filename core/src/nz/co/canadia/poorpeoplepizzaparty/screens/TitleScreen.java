@@ -91,10 +91,10 @@ public class TitleScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        buttonWidthFull = UiSize.getButtonWidthFull(viewport.getScreenWidth(), viewport.getScreenHeight());
-        buttonWidthHalf = UiSize.getButtonWidthHalf(viewport.getScreenWidth(), viewport.getScreenHeight());
-        buttonSize = UiSize.getButtonHeight(viewport.getScreenHeight());
-        padding = UiSize.getPadding(viewport.getScreenHeight());
+        buttonWidthFull = UiSize.getButtonWidthFull();
+        buttonWidthHalf = UiSize.getButtonWidthHalf();
+        buttonSize = UiSize.getButtonHeight();
+        padding = UiSize.getPadding();
 
         // Title menu assets
 
@@ -118,8 +118,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite settingsSprite = new Sprite(
                 game.assets.get("graphics/icons/settings.png",
                         Texture.class));
-        settingsSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        settingsSprite.setSize(UiSize.getIconSize(),
+                UiSize.getIconSize());
         settingsButtonStyle.imageUp = new SpriteDrawable(settingsSprite);
         settingsButton = new ImageButton(settingsButtonStyle);
         settingsButton.addListener(new ChangeListener() {
@@ -136,8 +136,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite quitSprite = new Sprite(
                 game.assets.get("graphics/icons/close.png",
                         Texture.class));
-        quitSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        quitSprite.setSize(UiSize.getIconSize(),
+                UiSize.getIconSize());
         quitButtonStyle.imageUp = new SpriteDrawable(quitSprite);
         quitButton = new ImageButton(quitButtonStyle);
         quitButton.addListener(new ChangeListener() {
@@ -248,8 +248,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite backSprite = new Sprite(
                 game.assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        backSprite.setSize(UiSize.getIconSize(),
+                UiSize.getIconSize());
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         settingsBackButton = new ImageButton(backButtonStyle);
         settingsBackButton.addListener(new ChangeListener() {
@@ -316,10 +316,8 @@ public class TitleScreen implements InputProcessor, Screen {
                 .pad(padding);
         table.add(header)
                 .prefSize(
-                        UiSize.getImageWidth(header.getPrefWidth(),
-                                viewport.getScreenWidth()),
-                        UiSize.getImageHeight(header.getPrefHeight(),
-                                viewport.getScreenHeight()))
+                        UiSize.getImageWidth(header.getPrefWidth()),
+                        UiSize.getImageHeight(header.getPrefHeight()))
                 .space(padding);
         table.row();
         table.add(mainMenuTable);
@@ -332,14 +330,14 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
         volumesTable.add(soundVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(UiSize.getIconSize())
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
                 .prefWidth(viewport.getScreenWidth())
                 .fillX()
                 .space(padding);
         volumesTable.add(soundVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(UiSize.getIconSize())
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
                 .width(buttonSize)
@@ -348,13 +346,13 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(musicVolumeLabel)
                 .space(padding);
         volumesTable.add(musicVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(UiSize.getIconSize())
                 .space(padding);
         volumesTable.add(musicVolumeSlider)
                 .fillX()
                 .space(padding);
         volumesTable.add(musicVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(UiSize.getIconSize())
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
                 .width(buttonSize)
@@ -397,7 +395,7 @@ public class TitleScreen implements InputProcessor, Screen {
         table.add(creditsBackButton)
                 .bottom()
                 .height(buttonSize)
-                .prefWidth(buttonWidthHalf)
+                .width(buttonWidthHalf)
                 .space(padding);
     }
 
