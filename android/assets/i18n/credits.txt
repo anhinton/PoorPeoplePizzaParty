@@ -28,7 +28,7 @@ Fonts:
 
 Icons:
 
-  + "arrow_back", "close", "camera_alt", "save_alt", "share", and "undo" by Google are licensed under Apache license version 2.0.
+  + "arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", "volume_mute", and "volume_up" by Google are licensed under Apache license version 2.0.
 
 Textures:
 

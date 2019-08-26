@@ -56,13 +56,13 @@ public class TitleScreen implements InputProcessor, Screen {
     private final Label soundVolumeLabel;
     private final Slider soundVolumeSlider;
     private final Label settingsTitleLabel;
-    private final Image soundVolumeMuteImage;
-    private final Image soundVolumeFullImage;
+    private final Image soundVolumeDownImage;
+    private final Image soundVolumeUpImage;
     private final Label musicVolumeLabel;
     private final Label musicVolumeValueLabel;
     private final Slider musicVolumeSlider;
-    private final Image musicVolumeMuteImage;
-    private final Image musicVolumeFullImage;
+    private final Image musicVolumeDownImage;
+    private final Image musicVolumeUpImage;
     private final TextButton settingsCreditsButton;
     private final ImageButton settingsBackButton;
 
@@ -177,19 +177,19 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Mute Image
-        soundVolumeMuteImage = new Image(
+        soundVolumeDownImage = new Image(
                 game.assets.get("graphics/icons/volume_mute.png",
                         Texture.class));
-        soundVolumeMuteImage.addListener(new ClickListener() {
+        soundVolumeDownImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 decreaseSoundVolume();
             }
         });
         // Full volume image
-        soundVolumeFullImage = new Image(
+        soundVolumeUpImage = new Image(
                 game.assets.get("graphics/icons/volume_up.png",
                         Texture.class));
-        soundVolumeFullImage.addListener(new ClickListener() {
+        soundVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseSoundVolume();
             }
@@ -214,19 +214,19 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Mute Image
-        musicVolumeMuteImage = new Image(
+        musicVolumeDownImage = new Image(
                 game.assets.get("graphics/icons/volume_mute.png",
                         Texture.class));
-        musicVolumeMuteImage.addListener(new ClickListener() {
+        musicVolumeDownImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 decreaseMusicVolume();
             }
         });
         // Full volume image
-        musicVolumeFullImage = new Image(
+        musicVolumeUpImage = new Image(
                 game.assets.get("graphics/icons/volume_up.png",
                         Texture.class));
-        musicVolumeFullImage.addListener(new ClickListener() {
+        musicVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseMusicVolume();
             }
@@ -331,14 +331,14 @@ public class TitleScreen implements InputProcessor, Screen {
         Table volumesTable = new Table();
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
-        volumesTable.add(soundVolumeMuteImage)
+        volumesTable.add(soundVolumeDownImage)
                 .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
                 .prefWidth(viewport.getScreenWidth())
                 .fillX()
                 .space(padding);
-        volumesTable.add(soundVolumeFullImage)
+        volumesTable.add(soundVolumeUpImage)
                 .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
@@ -347,13 +347,13 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.row();
         volumesTable.add(musicVolumeLabel)
                 .space(padding);
-        volumesTable.add(musicVolumeMuteImage)
+        volumesTable.add(musicVolumeDownImage)
                 .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
                 .space(padding);
         volumesTable.add(musicVolumeSlider)
                 .fillX()
                 .space(padding);
-        volumesTable.add(musicVolumeFullImage)
+        volumesTable.add(musicVolumeUpImage)
                 .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)

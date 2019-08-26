@@ -1,6 +1,6 @@
 # TODO
         
-  + create TitleScreen class
+  + ~~create TitleScreen class~~
       - ~~Poor People Pizza Party~~
       - ~~Play, Settings, Quit buttons~~
       - ~~Settings has audio and music volume sliders~~
@@ -10,8 +10,8 @@
       - ~~volume Image icons press to raise or lower volumes~~
       - ~~volume level /100 displayed to right~~
       - ~~no Quit button on Html/WebGL~~
-      - Credits button in Settings menu displays Credits ui
-      - implement goBack() to catch ESC presses
+      - ~~Credits button in Settings menu displays Credits ui~~
+      - ~~implement goBack() to catch ESC presses~~
       
   + go back to a single viewport size for UI, do away with all these font sizes?
   
