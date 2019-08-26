@@ -9,13 +9,11 @@
       - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
       - ~~volume Image icons press to raise or lower volumes~~
       - ~~volume level /100 displayed to right~~
-      - credits screen off Settings screen
       - ~~no Quit button on Html/WebGL~~
+      - Credits button in Settings menu displays Credits ui
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
       - make quitScreen.class
-  
-  + write up credits
 	  
   + move viewport boilerplate to a utils Class
       - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
