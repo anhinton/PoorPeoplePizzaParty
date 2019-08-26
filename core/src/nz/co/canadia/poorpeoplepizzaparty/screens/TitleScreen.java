@@ -332,14 +332,14 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
         volumesTable.add(soundVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
+                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
                 .prefWidth(viewport.getScreenWidth())
                 .fillX()
                 .space(padding);
         volumesTable.add(soundVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
+                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
                 .width(buttonSize)
@@ -348,13 +348,13 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(musicVolumeLabel)
                 .space(padding);
         volumesTable.add(musicVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
+                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
                 .space(padding);
         volumesTable.add(musicVolumeSlider)
                 .fillX()
                 .space(padding);
         volumesTable.add(musicVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenWidth())
+                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
                 .width(buttonSize)
