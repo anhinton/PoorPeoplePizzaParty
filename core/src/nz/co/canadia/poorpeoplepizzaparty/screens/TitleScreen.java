@@ -43,6 +43,7 @@ public class TitleScreen implements InputProcessor, Screen {
     private final int buttonWidthHalf;
     private final int buttonSize;
     private final int padding;
+    private Constants.CurrentTitleMenu currentMenu;
 
     // Title menu assets
     private final Image header;
@@ -124,7 +125,7 @@ public class TitleScreen implements InputProcessor, Screen {
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showSettingsMenu();
+                setCurrentMenu(Constants.CurrentTitleMenu.SETTINGS);
             }
         });
 
@@ -254,7 +255,7 @@ public class TitleScreen implements InputProcessor, Screen {
         settingsBackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showTitleMenu();
+                setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
             }
         });
 
@@ -284,8 +285,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
 
-//        showTitleMenu();
-        showCredits();
+        setCurrentMenu(Constants.CurrentTitleMenu.CREDITS);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
@@ -402,6 +402,32 @@ public class TitleScreen implements InputProcessor, Screen {
     }
 
     private void goBack() {
+        switch (currentMenu) {
+            case TITLE:
+                quit();
+                break;
+            case SETTINGS:
+                setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
+                break;
+            case CREDITS:
+                setCurrentMenu(Constants.CurrentTitleMenu.SETTINGS);
+                break;
+        }
+    }
+
+    private void setCurrentMenu(Constants.CurrentTitleMenu menu) {
+        currentMenu = menu;
+        switch (menu) {
+            case TITLE:
+                showTitleMenu();
+                break;
+            case SETTINGS:
+                showSettingsMenu();
+                break;
+            case CREDITS:
+                showCredits();
+                break;
+        }
     }
 
     private void play() {
@@ -413,16 +439,16 @@ public class TitleScreen implements InputProcessor, Screen {
         Gdx.app.exit();
     }
 
+    private String printVolume(float volume) {
+        return Integer.toString(MathUtils.round(volume * 100));
+    }
+
     private void decreaseMusicVolume() {
         setMusicVolume(getMusicVolume() - Constants.VOLUME_STEP);
     }
 
     private void increaseMusicVolume() {
         setMusicVolume(getMusicVolume() + Constants.VOLUME_STEP);
-    }
-
-    private String printVolume(float volume) {
-        return Integer.toString(MathUtils.round(volume * 100));
     }
 
     private void increaseSoundVolume() {
@@ -508,7 +534,7 @@ public class TitleScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            quit();
+            goBack();
             return true;
         }
         return false;

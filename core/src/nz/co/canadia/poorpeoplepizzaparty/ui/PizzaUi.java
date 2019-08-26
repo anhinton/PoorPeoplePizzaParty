@@ -209,9 +209,9 @@ public class PizzaUi extends Table {
         return currentMenu;
     }
 
-    private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {
-        this.currentMenu = currentMenu;
-        switch(currentMenu) {
+    private void setCurrentMenu(Constants.CurrentPizzaMenu menu) {
+        currentMenu = menu;
+        switch(menu) {
             case MAIN:
                 showMainMenu();
                 break;
