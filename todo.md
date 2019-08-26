@@ -2,6 +2,8 @@
       
   + go back to a single viewport size for UI, do away with all these font sizes?
   
+  + give fonts meaningful names
+  
   + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
   + move viewport boilerplate to a utils Class
