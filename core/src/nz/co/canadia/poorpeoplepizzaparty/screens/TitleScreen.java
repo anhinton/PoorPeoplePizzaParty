@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -62,6 +64,11 @@ public class TitleScreen implements InputProcessor, Screen {
     private final Image musicVolumeFullImage;
     private final TextButton settingsCreditsButton;
     private final ImageButton settingsBackButton;
+
+    // Credits assets
+    private final Label creditsTitleLabel;
+    private final ScrollPane creditsPane;
+    private final ImageButton creditsBackButton;
 
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
@@ -251,8 +258,35 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
 
-        showTitleMenu();
-        
+        // Credits assets
+
+        // Credits title Label
+        creditsTitleLabel = new Label(game.bundle.get("creditsTitleLabel"), game.uiSkin,
+                "default");
+
+        // credits ScrollPane
+        FileHandle file = Gdx.files.internal("i18n/credits.txt");
+        String creditsText = file.readString();
+        Label creditsLabel = new Label(creditsText, game.uiSkin, "credits");
+        creditsLabel.setWrap(true);
+        ScrollPane.ScrollPaneStyle creditsPaneStyle =
+                new ScrollPane.ScrollPaneStyle(
+                        game.uiSkin.get("credits", ScrollPane.ScrollPaneStyle.class));
+        creditsPane = new ScrollPane(creditsLabel, creditsPaneStyle);
+        creditsPane.setFadeScrollBars(false);
+
+        // credits Back Button
+        creditsBackButton = new ImageButton(backButtonStyle);
+        creditsBackButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                goBack();
+            }
+        });
+
+//        showTitleMenu();
+        showCredits();
+
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
@@ -349,9 +383,25 @@ public class TitleScreen implements InputProcessor, Screen {
                 .expand()
                 .prefSize(viewport.getScreenWidth(), viewport.getScreenHeight());
     }
-    
+
+    private void showCredits() {
+        table.clear();
+        table.pad(padding);
+        table.add(creditsTitleLabel)
+                .left()
+                .space(padding);
+        table.row();
+        table.add(creditsPane)
+                .prefWidth(viewport.getScreenWidth())
+                .space(padding);
+        table.add(creditsBackButton)
+                .bottom()
+                .height(buttonSize)
+                .prefWidth(buttonWidthHalf)
+                .space(padding);
+    }
+
     private void goBack() {
-        
     }
 
     private void play() {

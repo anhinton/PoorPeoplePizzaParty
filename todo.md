@@ -11,6 +11,7 @@
       - ~~volume level /100 displayed to right~~
       - ~~no Quit button on Html/WebGL~~
       - Credits button in Settings menu displays Credits ui
+      - implement goBack() to catch ESC presses
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
       - make quitScreen.class
