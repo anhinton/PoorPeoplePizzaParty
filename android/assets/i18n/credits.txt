@@ -1,51 +1,49 @@
-"Inconsolata" Copyright 2006 The Inconsolata Project Authors
-is licensed under the SIL Open Font License, Version 1.1.
+Poor People Pizza Party by Ashley Noel Hinton.
 
-"Podkova" Copyright 2011 The Podkova Project Authors
-(contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
+http://poorpeoplepizzaparty.canadia.co.nz/
 
-`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/save.png`
-`graphics/icons/share.png` `graphics/icons/undo.png`
-"arrow_back", "close", "camera_alt", "save_alt", "share", and "undo" by
-[Google](https://material.io/tools/icons/) are licensed under
-[Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
+Everything made by Ashley Noel Hinton, except the assets listed below.
 
-`graphics/toppings/bacon-topping.png`
-"[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
-by Made20rder555 is in the public domain.
+Created with libGDX http://libgdx.badlogicgames.com/
 
-`graphics/toppings/chicken-topping.png`
-"[Chicken McNuggets, Indonesia.jpg](https://commons.wikimedia.org/wiki/File:Chicken_McNuggets,_Indonesia.jpg)"
-by [Crisco 1492](https://commons.wikimedia.org/wiki/User:Crisco_1492) is
-licensed under
-[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
+---
 
-`graphics/toppings/salami-topping.png`
-"[Spanish salami in Poznan.JPG](https://commons.wikimedia.org/wiki/File:Spanish_salami_in_Poznan.JPG)"
-by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
+Poor People Pizza Party copyright 2019 Ashley Noel Hinton.
 
-`graphics/toppings/sausage-topping.png`
-"[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
-by Mariuszjbie is licensed under
-[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-`graphics/lunch.png`
-"[Lunch](https://www.flickr.com/photos/thomasbonte/4956496553/in/photostream/)"
-by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
-[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-`graphics/postcards/postcard01.png`
-"[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
-by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
-under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
+You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
 
-`graphics/postcards/postcard02.png`
-"[Waipori River](https://www.flickr.com/photos/itravelnz/28166819765/)"
-by [itravelNZ® - New Zealand in your pocket™](https://www.flickr.com/photos/itravelnz/)
-is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+---
 
-`graphics/postcards/postcard03.png`
-"[018](https://www.flickr.com/photos/93842075@N04/8596242513/)"
-by [Phillip Cossar](https://www.flickr.com/photos/93842075@N04/)
-is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+Unless declared otherwise below the assets in this game are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+
+Fonts:
+
+  + "Inconsolata" Copyright 2006 The Inconsolata Project Authors is licensed under the SIL Open Font License, Version 1.1.
+
+  + "Podkova" Copyright 2011 The Podkova Project Authors (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
+
+Icons:
+
+  + "arrow_back", "close", "camera_alt", "save_alt", "share", and "undo" by Google are licensed under Apache license version 2.0.
+
+Textures:
+
+  + "Made20bacon.png" by Made20rder555 is in the public domain.
+
+  + "Chicken McNuggets, Indonesia.jpg" by Crisco 1492 is licensed under CC BY-SA 3.0.
+
+  + "Spanish salami in Poznan.JPG" by MOs810 is licensed under CC BY-SA 4.0.
+
+  + "Kielbasa szynkowa.jpg" by Mariuszjbie is licensed under CC BY 3.0.
+
+  + "Lunch" by Thomas Bonte is licensed under CC BY 2.0.
+
+  + "Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg" by Phillip Capper is licensed under CC BY 2.0.
+
+  + "Waipori River" by itravelNZ® - New Zealand in your pocket™ is licensed under CC BY 2.0.
+
+  + "018" by Phillip Cossar is licensed under CC BY 2.0.

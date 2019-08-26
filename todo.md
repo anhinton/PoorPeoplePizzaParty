@@ -12,6 +12,8 @@
       - ~~no Quit button on Html/WebGL~~
       - Credits button in Settings menu displays Credits ui
       - implement goBack() to catch ESC presses
+      
+  + go back to a single viewport size for UI, do away with all these font sizes?
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
       - make quitScreen.class

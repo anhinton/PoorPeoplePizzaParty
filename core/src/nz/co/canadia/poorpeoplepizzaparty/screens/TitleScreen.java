@@ -237,7 +237,7 @@ public class TitleScreen implements InputProcessor, Screen {
         settingsCreditsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //TODO: show credits
+                setCurrentMenu(Constants.CurrentTitleMenu.CREDITS);
             }
         });
 
@@ -285,7 +285,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
 
-        setCurrentMenu(Constants.CurrentTitleMenu.CREDITS);
+        setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
