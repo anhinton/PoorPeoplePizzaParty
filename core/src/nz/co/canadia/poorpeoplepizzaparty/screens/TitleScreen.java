@@ -31,7 +31,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class TitleScreen implements InputProcessor, Screen {
 
@@ -77,11 +76,9 @@ public class TitleScreen implements InputProcessor, Screen {
         game.assets.loadTitleScreenAssets();
 
         OrthographicCamera camera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
         viewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
+                Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT,
                 camera);
         camera.setToOrtho(false, viewport.getScreenHeight(),
                 viewport.getScreenHeight());
@@ -91,10 +88,10 @@ public class TitleScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        buttonWidthFull = UiSize.getButtonWidthFull(viewport.getScreenWidth(), viewport.getScreenHeight());
-        buttonWidthHalf = UiSize.getButtonWidthHalf(viewport.getScreenWidth(), viewport.getScreenHeight());
-        buttonSize = UiSize.getButtonHeight(viewport.getScreenHeight());
-        padding = UiSize.getPadding(viewport.getScreenHeight());
+        buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
+        buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
+        buttonSize = Constants.BUTTON_HEIGHT;
+        padding = Constants.UNIT;
 
         // Title menu assets
 
@@ -118,8 +115,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite settingsSprite = new Sprite(
                 game.assets.get("graphics/icons/settings.png",
                         Texture.class));
-        settingsSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        settingsSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         settingsButtonStyle.imageUp = new SpriteDrawable(settingsSprite);
         settingsButton = new ImageButton(settingsButtonStyle);
         settingsButton.addListener(new ChangeListener() {
@@ -136,8 +133,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite quitSprite = new Sprite(
                 game.assets.get("graphics/icons/close.png",
                         Texture.class));
-        quitSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        quitSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         quitButtonStyle.imageUp = new SpriteDrawable(quitSprite);
         quitButton = new ImageButton(quitButtonStyle);
         quitButton.addListener(new ChangeListener() {
@@ -248,8 +245,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite backSprite = new Sprite(
                 game.assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(Constants.UI_ICON_RATIO * viewport.getScreenHeight(),
-                Constants.UI_ICON_RATIO * viewport.getScreenHeight());
+        backSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         settingsBackButton = new ImageButton(backButtonStyle);
         settingsBackButton.addListener(new ChangeListener() {
@@ -315,11 +312,6 @@ public class TitleScreen implements InputProcessor, Screen {
         table.bottom()
                 .pad(padding);
         table.add(header)
-                .prefSize(
-                        UiSize.getImageWidth(header.getPrefWidth(),
-                                viewport.getScreenWidth()),
-                        UiSize.getImageHeight(header.getPrefHeight(),
-                                viewport.getScreenHeight()))
                 .space(padding);
         table.row();
         table.add(mainMenuTable);
@@ -332,14 +324,14 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
         volumesTable.add(soundVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
                 .prefWidth(viewport.getScreenWidth())
                 .fillX()
                 .space(padding);
         volumesTable.add(soundVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
                 .width(buttonSize)
@@ -348,13 +340,13 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(musicVolumeLabel)
                 .space(padding);
         volumesTable.add(musicVolumeDownImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(musicVolumeSlider)
                 .fillX()
                 .space(padding);
         volumesTable.add(musicVolumeUpImage)
-                .size(Constants.UI_ICON_RATIO * viewport.getScreenHeight())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
                 .width(buttonSize)
@@ -397,7 +389,7 @@ public class TitleScreen implements InputProcessor, Screen {
         table.add(creditsBackButton)
                 .bottom()
                 .height(buttonSize)
-                .prefWidth(buttonWidthHalf)
+                .width(buttonWidthHalf)
                 .space(padding);
     }
 

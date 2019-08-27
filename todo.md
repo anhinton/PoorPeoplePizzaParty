@@ -1,8 +1,6 @@
 # TODO
-      
-  + go back to a single viewport size for UI, do away with all these font sizes?
   
-  + give fonts meaningful names
+  + consider a thicker font for credits to make more legible on mobile
   
   + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
@@ -31,6 +29,12 @@
   + revise credits
   
 ## Done
+  
+  + ~~give fonts meaningful names~~
+      
+  + ~~go back to a single viewport size for UI; do away with all these font sizes~~
+      - ~~it turns out maintaining all of this UI size logic is a reall pain in the butt that
+        I don't really need to bother about~~
         
   + ~~create TitleScreen class~~
       - ~~Poor People Pizza Party~~

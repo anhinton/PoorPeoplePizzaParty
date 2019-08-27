@@ -15,7 +15,6 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.ui.ServeBossUi;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * The ServeBossScreen, where you give your boss the pizza you made and he decides your fate
@@ -35,19 +34,16 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
         game.assets.loadServeBossScreenAssets();
 
-        OrthographicCamera uiCamera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
+        OrthographicCamera camera = new OrthographicCamera();
         Viewport uiViewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
-                uiCamera);
-        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
+                Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT,
+                camera);
+        camera.setToOrtho(false, uiViewport.getScreenHeight(),
                 uiViewport.getScreenHeight());
 
         stage = new Stage(uiViewport, game.batch);
-        serveBossUi = new ServeBossUi(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), this, game.uiSkin,
+        serveBossUi = new ServeBossUi(this, game.uiSkin,
                 game.assets, game.bundle, pizza);
         stage.addActor(serveBossUi);
 

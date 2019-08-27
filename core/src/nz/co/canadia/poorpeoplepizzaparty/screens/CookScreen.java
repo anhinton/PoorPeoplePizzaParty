@@ -23,7 +23,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class CookScreen implements InputProcessor, Screen {
 
@@ -46,11 +45,9 @@ public class CookScreen implements InputProcessor, Screen {
         game.assets.loadCookScreenAssets();
 
         OrthographicCamera camera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
         Viewport viewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
+                Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT,
                 camera);
         camera.setToOrtho(false, viewport.getScreenHeight(),
                 viewport.getScreenHeight());
@@ -59,12 +56,12 @@ public class CookScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        padding = UiSize.getPadding(screenHeight);
+        padding = Constants.UNIT;
 
         if (countdown) {
-            showTimer(viewport.getScreenWidth(), viewport.getScreenHeight());
+            showTimer();
         } else {
-            showDecision(viewport.getScreenWidth(), viewport.getScreenHeight());
+            showDecision();
         }
 
         InputMultiplexer multiplexer = new InputMultiplexer();
@@ -73,7 +70,7 @@ public class CookScreen implements InputProcessor, Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    private void showTimer(final int viewportWidth, final int viewportHeight) {
+    private void showTimer() {
 
         table.clear();
         table.pad(padding);
@@ -100,7 +97,7 @@ public class CookScreen implements InputProcessor, Screen {
                     remainingLabel.setText(Integer.toString(MathUtils.ceil(timeRemaining)));
                 } else {
                     cooking = false;
-                    showDecision(viewportWidth, viewportHeight);
+                    showDecision();
                 }
             }
         });
@@ -116,7 +113,7 @@ public class CookScreen implements InputProcessor, Screen {
         table.add(remainingLabel).space(padding);        
     }
 
-    private void showDecision(int viewportWidth, int viewportHeight) {
+    private void showDecision() {
 
         table.clear();
         table.pad(padding);
@@ -126,11 +123,6 @@ public class CookScreen implements InputProcessor, Screen {
                         Texture.class));
         table.add(headerImage)
                 .colspan(2)
-                .prefSize(
-                        UiSize.getImageWidth(headerImage.getPrefWidth(),
-                                viewportWidth),
-                        UiSize.getImageHeight(headerImage.getPrefHeight(),
-                                viewportHeight))
                 .space(padding);
         table.row();
 
@@ -148,8 +140,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(bossButton)
-                .prefSize(UiSize.getButtonWidthFull(viewportWidth, viewportHeight),
-                        UiSize.getButtonHeight(viewportHeight))
+                .prefSize(Constants.BUTTON_WIDTH_FULL,
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
 
         TextButton workersButton = new TextButton(game.bundle.get("serveworkersButton"),
@@ -161,8 +153,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(workersButton)
-                .prefSize(UiSize.getButtonWidthFull(viewportWidth, viewportHeight),
-                        UiSize.getButtonHeight(viewportHeight))
+                .prefSize(Constants.BUTTON_WIDTH_FULL,
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
     }
 
