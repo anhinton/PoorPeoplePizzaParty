@@ -1,6 +1,8 @@
 # TODO
       
   + go back to a single viewport size for UI, do away with all these font sizes?
+      - it turns out maintaining all of this UI size logic is a reall pain in the butt that
+        I don't really need to bother about
   
   + give fonts meaningful names
   

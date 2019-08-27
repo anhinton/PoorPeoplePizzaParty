@@ -40,9 +40,9 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
-    private final OrthographicCamera gameCamera;
-    private final FitViewport gameViewport;
-    private final Stage uiStage;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Stage stage;
     private final int padding;
     private final PizzaPartyAnimation pizzaPartyAnimation;
     private float timeElapsed;
@@ -63,24 +63,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
         game.assets.loadServeWorkersScreenAssets();
 
-        gameCamera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
-                gameCamera);
-        gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-
-        OrthographicCamera uiCamera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
-                uiCamera);
-        uiCamera.setToOrtho(false, uiViewport.getScreenHeight(),
-                uiViewport.getScreenHeight());
-        uiStage = new Stage(uiViewport, game.batch);
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+                camera);
+        camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        
+        stage = new Stage(viewport, game.batch);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(uiStage);
+        multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -122,7 +113,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         label.setPosition(padding,
                 Constants.GAME_HEIGHT - padding - label.getHeight());
         label.setWidth(Constants.GAME_WIDTH * 2 / 3f);
-        uiStage.addActor(label);
+        stage.addActor(label);
     }
 
     private void newPizzaScreen() {
@@ -145,7 +136,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 newPizzaScreen();
             }
         });
-        uiStage.addActor(firedButton);
+        stage.addActor(firedButton);
     }
 
     private void stopBoss() {
@@ -232,7 +223,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        uiStage.act();
+        stage.act();
 
         switch (state) {
             case PARTY:
@@ -279,8 +270,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
             }
         }
 
-        gameCamera.update();
-        game.batch.setProjectionMatrix(gameViewport.getCamera().combined);
+        camera.update();
+        game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
         partyScene.draw(game.batch);
         for (FlyingPizza fp: flyingPizzaArray) {
@@ -304,17 +295,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        uiStage.getViewport().apply();
-        uiStage.getCamera().update();
-        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
-        uiStage.act(delta);
-        uiStage.draw();
+        stage.getViewport().apply();
+        stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height, true);
-        uiStage.getViewport().update(width, height, true);
+        viewport.update(width, height, true);
     }
 
     @Override

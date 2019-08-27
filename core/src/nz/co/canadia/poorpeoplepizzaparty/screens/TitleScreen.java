@@ -77,11 +77,9 @@ public class TitleScreen implements InputProcessor, Screen {
         game.assets.loadTitleScreenAssets();
 
         OrthographicCamera camera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
         viewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
+                Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT,
                 camera);
         camera.setToOrtho(false, viewport.getScreenHeight(),
                 viewport.getScreenHeight());
@@ -315,9 +313,6 @@ public class TitleScreen implements InputProcessor, Screen {
         table.bottom()
                 .pad(padding);
         table.add(header)
-                .prefSize(
-                        UiSize.getImageWidth(header.getPrefWidth()),
-                        UiSize.getImageHeight(header.getPrefHeight()))
                 .space(padding);
         table.row();
         table.add(mainMenuTable);

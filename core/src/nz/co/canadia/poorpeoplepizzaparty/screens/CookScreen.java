@@ -46,11 +46,9 @@ public class CookScreen implements InputProcessor, Screen {
         game.assets.loadCookScreenAssets();
 
         OrthographicCamera camera = new OrthographicCamera();
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
         Viewport viewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
+                Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT,
                 camera);
         camera.setToOrtho(false, viewport.getScreenHeight(),
                 viewport.getScreenHeight());
@@ -126,9 +124,6 @@ public class CookScreen implements InputProcessor, Screen {
                         Texture.class));
         table.add(headerImage)
                 .colspan(2)
-                .prefSize(
-                        UiSize.getImageWidth(headerImage.getPrefWidth()),
-                        UiSize.getImageHeight(headerImage.getPrefHeight()))
                 .space(padding);
         table.row();
 

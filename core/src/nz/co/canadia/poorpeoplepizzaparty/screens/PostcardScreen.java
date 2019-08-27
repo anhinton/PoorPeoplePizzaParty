@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
@@ -31,14 +30,12 @@ public class PostcardScreen implements InputProcessor, Screen {
     private final Pizza pizza;
     private final Postcard postcard;
     private final OrthographicCamera gameCamera;
-    private final FitViewport gameViewport;
-    private final Stage uiStage;
+    private final FitViewport viewport;
+    private final Stage stage;
 
     PostcardScreen(final PoorPeoplePizzaParty game, final Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
-        int screenWidth = Gdx.graphics.getBackBufferWidth();
-        int screenHeight = Gdx.graphics.getBackBufferHeight();
         int padding = UiSize.getPadding();
         int buttonWidth = UiSize.getButtonWidthHalf();
         int buttonHeight = UiSize.getButtonHeight();
@@ -46,23 +43,18 @@ public class PostcardScreen implements InputProcessor, Screen {
         game.assets.loadPostcardAssets();
 
         gameCamera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-
-        OrthographicCamera uiCamera = new OrthographicCamera();
-        Viewport uiViewport = new FitViewport(
-                UiSize.getViewportWidth(screenWidth, screenHeight),
-                UiSize.getViewportHeight(screenWidth, screenHeight),
-                uiCamera);
-        uiStage = new Stage(uiViewport, game.batch);
-        Table uiTable = new Table();
-        uiTable.setFillParent(true);
-        uiTable.bottom().right().pad(padding);
-        uiStage.addActor(uiTable);
+        
+        stage = new Stage(viewport, game.batch);
+        Table table = new Table();
+        table.setFillParent(true);
+        table.bottom().right().pad(padding);
+        stage.addActor(table);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(uiStage);
+        multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -86,7 +78,7 @@ public class PostcardScreen implements InputProcessor, Screen {
                     game.captureIO.savePostcardImage(postcard);
                 }
             });
-            uiTable.add(shareButton)
+            table.add(shareButton)
                     .space(padding)
                     .prefSize(buttonWidth, buttonHeight);
         }
@@ -109,7 +101,7 @@ public class PostcardScreen implements InputProcessor, Screen {
                     game.captureIO.savePostcardImage(postcard);
                 }
             });
-            uiTable.add(saveButton)
+            table.add(saveButton)
                     .space(padding)
                     .prefSize(buttonWidth, buttonHeight);
         }
@@ -131,7 +123,7 @@ public class PostcardScreen implements InputProcessor, Screen {
                 goBack();
             }
         });
-        uiTable.add(backButton)
+        table.add(backButton)
                 .space(padding)
                 .prefSize(buttonWidth, buttonHeight);
     }
@@ -197,7 +189,7 @@ public class PostcardScreen implements InputProcessor, Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        gameViewport.apply();
+        viewport.apply();
         gameCamera.update();
         game.batch.setProjectionMatrix(gameCamera.combined);
 
@@ -205,17 +197,16 @@ public class PostcardScreen implements InputProcessor, Screen {
         postcard.draw(game.batch);
         game.batch.end();
 
-        uiStage.getViewport().apply();
-        uiStage.getCamera().update();
-        uiStage.getBatch().setProjectionMatrix(uiStage.getCamera().combined);
-        uiStage.act(delta);
-        uiStage.draw();
+        stage.getViewport().apply();
+        stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height);
-        uiStage.getViewport().update(width, height, true);
+        viewport.update(width, height);
     }
 
     @Override

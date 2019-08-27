@@ -78,10 +78,8 @@ public class ServeBossUi extends Table {
         leftColumn.add(pizzaImage)
                 .prefSize( // this Image is a full Base image, needs to be
                            // scaled
-                        UiSize.getImageWidth(pizzaImage.getPrefWidth())
-                                * Constants.BASE_SERVE_SCALE,
-                        UiSize.getImageHeight(pizzaImage.getPrefHeight())
-                                * Constants.BASE_SERVE_SCALE)
+                        pizzaImage.getPrefWidth() * Constants.BASE_SERVE_SCALE,
+                        pizzaImage.getPrefHeight() * Constants.BASE_SERVE_SCALE)
                 .space(padding);
         leftColumn.row();
 
@@ -109,10 +107,6 @@ public class ServeBossUi extends Table {
                 .space(padding);
 
         super.add(bossImage)
-                .prefSize(
-                        UiSize.getImageWidth(bossImage.getPrefWidth()),
-                        UiSize.getImageHeight(bossImage.getPrefHeight()))
-//                .expand()
                 .space(padding);
     }
 

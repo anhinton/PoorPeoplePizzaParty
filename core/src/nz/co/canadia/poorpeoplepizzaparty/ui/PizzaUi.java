@@ -229,9 +229,6 @@ public class PizzaUi extends Table {
         Table uiColumn = new Table();
         uiColumn.add(headerImage)
                 .space(padding)
-                .prefSize(
-                        UiSize.getImageWidth(headerImage.getPrefWidth()),
-                        UiSize.getImageHeight(headerImage.getPrefHeight()))
                 .colspan(2).center();
         uiColumn.row();
         uiColumn.add(toppingSelectButton).space(padding)

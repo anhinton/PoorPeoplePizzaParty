@@ -42,44 +42,4 @@ public class UiSize {
         return getPadding() * 4;
     }
 
-    public static float getImageHeight(float imageHeight) {
-        return imageHeight;
-    }
-
-    public static float getImageWidth(float imageWidth) {
-        return imageWidth;
-    }
-
-    /**
-     * Clamp viewportHeight to one of the pre-determined screen sizes: 1080, 720, 600.
-     * @param viewportHeight
-     * @return
-     */
-    private static int clampViewportHeight(int viewportHeight) {
-        int clampedHeight = viewportHeight;
-        if (clampedHeight >= 1080) {
-            clampedHeight = 1080;
-        } else if (clampedHeight >= 720) {
-            clampedHeight = 720;
-        } else {
-            clampedHeight = Constants.GAME_HEIGHT;
-        }
-        return clampedHeight;
-    }
-
-    public static int getViewportHeight(int screenWidth, int screenHeight) {
-//        int viewportHeight = screenHeight;
-//        if (screenWidth / screenHeight <= Constants.GAME_ASPECT_RATIO) {
-//            viewportHeight = Math.round(screenWidth / Constants.GAME_ASPECT_RATIO);
-//        }
-//        return clampViewportHeight(viewportHeight);
-        return Constants.GAME_HEIGHT;
-    }
-
-    public static int getViewportWidth(int screenWidth, int screenHeight) {
-//        int viewportHeight = getViewportHeight(screenWidth, screenHeight);
-//        return Math.round(viewportHeight * Constants.GAME_ASPECT_RATIO);
-        return Constants.GAME_WIDTH;
-    }
-
 }
