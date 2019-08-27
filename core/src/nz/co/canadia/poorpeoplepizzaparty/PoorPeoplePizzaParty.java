@@ -7,16 +7,14 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.CookScreen;
-import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
 
 /**
  * The PoorPeoplePizzaParty class is the main class for the game Poor People Pizza Party.
@@ -27,7 +25,7 @@ public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public UiSkin uiSkin;
+    public Skin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
     private float soundVolume;
@@ -64,7 +62,7 @@ public class PoorPeoplePizzaParty extends Game {
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        uiSkin = new UiSkin(Gdx.graphics.getBackBufferHeight());
+        uiSkin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
@@ -76,7 +74,6 @@ public class PoorPeoplePizzaParty extends Game {
         musicVolume = 1;
 
         this.setScreen(new TitleScreen(this));
-//        this.setScreen(new PizzaScreen(this, true));
     }
 
     @Override
