@@ -103,7 +103,7 @@ public class ServeBossUi extends Table {
         });
         leftColumn.add(firedButton)
                 .prefSize(Constants.GAME_WIDTH / 2f,
-                        UiSize.getButtonHeight())
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
 
         super.add(bossImage)

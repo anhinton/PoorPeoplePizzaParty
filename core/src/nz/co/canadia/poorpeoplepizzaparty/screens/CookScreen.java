@@ -141,8 +141,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(bossButton)
-                .prefSize(UiSize.getButtonWidthFull(),
-                        UiSize.getButtonHeight())
+                .prefSize(Constants.BUTTON_WIDTH_FULL,
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
 
         TextButton workersButton = new TextButton(game.bundle.get("serveworkersButton"),
@@ -154,8 +154,8 @@ public class CookScreen implements InputProcessor, Screen {
             }
         });
         table.add(workersButton)
-                .prefSize(UiSize.getButtonWidthFull(),
-                        UiSize.getButtonHeight())
+                .prefSize(Constants.BUTTON_WIDTH_FULL,
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
     }
 

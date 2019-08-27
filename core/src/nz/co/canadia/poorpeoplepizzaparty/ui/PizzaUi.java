@@ -54,9 +54,9 @@ public class PizzaUi extends Table {
         this.skin = skin;
         this.bundle = bundle;
 
-        buttonWidthHalf = UiSize.getButtonWidthHalf();
-        buttonWidthFull = UiSize.getButtonWidthFull();
-        buttonHeight = UiSize.getButtonHeight();
+        buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
+        buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
+        buttonHeight = Constants.BUTTON_HEIGHT;
         padding = UiSize.getPadding();
 
         ImageButton.ImageButtonStyle closeButtonStyle =
@@ -273,7 +273,7 @@ public class PizzaUi extends Table {
             if (counter > 0 & counter % 2 == 0)
                 super.row();
             super.add(b).space(padding)
-                    .prefSize(UiSize.getButtonWidthFull(),
+                    .prefSize(Constants.BUTTON_WIDTH_FULL,
                             buttonHeight);
             counter++;
         }

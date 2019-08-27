@@ -37,8 +37,8 @@ public class PostcardScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
         int padding = UiSize.getPadding();
-        int buttonWidth = UiSize.getButtonWidthHalf();
-        int buttonHeight = UiSize.getButtonHeight();
+        int buttonWidth = Constants.BUTTON_WIDTH_HALF;
+        int buttonHeight = Constants.BUTTON_HEIGHT;
 
         game.assets.loadPostcardAssets();
 

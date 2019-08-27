@@ -84,8 +84,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         pizzaUi = new PizzaUi(this, game.uiSkin,
                 game.bundle, game.assets);
         stage.addActor(pizzaUi);
-        pizzaMessage = new PizzaMessage(viewport.getScreenWidth(),
-                viewport.getScreenHeight(), game.uiSkin);
+        pizzaMessage = new PizzaMessage(game.uiSkin);
         stage.addActor(pizzaMessage);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);

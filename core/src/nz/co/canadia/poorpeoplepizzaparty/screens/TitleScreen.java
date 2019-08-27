@@ -89,9 +89,9 @@ public class TitleScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        buttonWidthFull = UiSize.getButtonWidthFull();
-        buttonWidthHalf = UiSize.getButtonWidthHalf();
-        buttonSize = UiSize.getButtonHeight();
+        buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
+        buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
+        buttonSize = Constants.BUTTON_HEIGHT;
         padding = UiSize.getPadding();
 
         // Title menu assets

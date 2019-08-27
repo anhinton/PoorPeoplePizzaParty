@@ -29,17 +29,4 @@ public class UiSize {
         return Constants.BASE_HEIGHT;
     }
 
-    public static int getButtonWidthFull() {
-        return Math.round(Constants.GAME_WIDTH - getBaseWidth()
-                - getPadding() * 3);
-    }
-
-    public static int getButtonWidthHalf() {
-        return (getButtonWidthFull() - getPadding()) / 2;
-    }
-
-    public static int getButtonHeight() {
-        return getPadding() * 4;
-    }
-
 }

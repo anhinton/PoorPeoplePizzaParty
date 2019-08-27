@@ -2,6 +2,7 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Game constants
@@ -27,9 +28,6 @@ public class Constants {
     public static final int GAME_WIDTH = 960;
     public static final int GAME_HEIGHT = 600;
 
-    static final float GAME_ASPECT_RATIO =
-            (float)GAME_WIDTH / GAME_HEIGHT;
-
     public static final int DESKTOP_WIDTH = 960;
     public static final int DESKTOP_HEIGHT = 600;
 
@@ -52,9 +50,6 @@ public class Constants {
 
     // everything is blocked out in terms of this unit
     static final int UNIT = 20;
-
-    // UI button icons are 50px
-    static final int UI_ICON_SIZE = 50;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;
@@ -79,6 +74,15 @@ public class Constants {
 
     // Base serve scale
     public static final float BASE_SERVE_SCALE = 2 / 5f;
+
+    // UI button icons are 2.5 UNITs
+    public static final int UI_ICON_SIZE = MathUtils.round(UNIT * 2.5f);
+
+    // UI buttons sizes
+    public static final int BUTTON_WIDTH_FULL = MathUtils.round(
+            Constants.GAME_WIDTH - BASE_WIDTH - UNIT * 3f);
+    public static final int BUTTON_WIDTH_HALF = MathUtils.round(BUTTON_WIDTH_FULL - UNIT / 2f);
+    public static final int BUTTON_HEIGHT = UNIT * 4;
 
     // Sauce topping sprite alpha
     public static final Color SAUCE_COLOR =
