@@ -1,7 +1,5 @@
 # TODO
   
-  + consider a thicker font for credits to make more legible on mobile
-  
   + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
   + move viewport boilerplate to a utils Class
@@ -27,6 +25,8 @@
         sizes
         
   + revise credits
+  
+  + consider a thicker font for credits to make more legible on mobile
   
 ## Done
   
