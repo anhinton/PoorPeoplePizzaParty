@@ -23,7 +23,6 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.Postcard;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class PostcardScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
@@ -36,7 +35,7 @@ public class PostcardScreen implements InputProcessor, Screen {
     PostcardScreen(final PoorPeoplePizzaParty game, final Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
-        int padding = UiSize.getPadding();
+        int padding = Constants.UNIT;
         int buttonWidth = Constants.BUTTON_WIDTH_HALF;
         int buttonHeight = Constants.BUTTON_HEIGHT;
 
@@ -68,8 +67,8 @@ public class PostcardScreen implements InputProcessor, Screen {
             Sprite shareSprite = new Sprite(
                     game.assets.get("graphics/icons/share.png",
                             Texture.class));
-            shareSprite.setSize(UiSize.getIconSize(),
-                    UiSize.getIconSize());
+            shareSprite.setSize(Constants.UI_ICON_SIZE,
+                    Constants.UI_ICON_SIZE);
             shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
             ImageButton shareButton = new ImageButton(shareButtonStyle);
             shareButton.addListener(new ChangeListener() {
@@ -91,8 +90,8 @@ public class PostcardScreen implements InputProcessor, Screen {
             Sprite saveSprite = new Sprite(
                     game.assets.get("graphics/icons/save.png",
                             Texture.class));
-            saveSprite.setSize(UiSize.getIconSize(),
-                    UiSize.getIconSize());
+            saveSprite.setSize(Constants.UI_ICON_SIZE,
+                    Constants.UI_ICON_SIZE);
             saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
             ImageButton saveButton = new ImageButton(saveButtonStyle);
             saveButton.addListener(new ChangeListener() {
@@ -113,8 +112,8 @@ public class PostcardScreen implements InputProcessor, Screen {
         Sprite backSprite = new Sprite(
                 game.assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        backSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         ImageButton backButton = new ImageButton(backButtonStyle);
         backButton.addListener(new ChangeListener() {

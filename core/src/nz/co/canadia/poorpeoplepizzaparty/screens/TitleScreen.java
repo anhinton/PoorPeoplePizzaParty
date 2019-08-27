@@ -31,7 +31,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class TitleScreen implements InputProcessor, Screen {
 
@@ -92,7 +91,7 @@ public class TitleScreen implements InputProcessor, Screen {
         buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
         buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
         buttonSize = Constants.BUTTON_HEIGHT;
-        padding = UiSize.getPadding();
+        padding = Constants.UNIT;
 
         // Title menu assets
 
@@ -116,8 +115,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite settingsSprite = new Sprite(
                 game.assets.get("graphics/icons/settings.png",
                         Texture.class));
-        settingsSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        settingsSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         settingsButtonStyle.imageUp = new SpriteDrawable(settingsSprite);
         settingsButton = new ImageButton(settingsButtonStyle);
         settingsButton.addListener(new ChangeListener() {
@@ -134,8 +133,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite quitSprite = new Sprite(
                 game.assets.get("graphics/icons/close.png",
                         Texture.class));
-        quitSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        quitSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         quitButtonStyle.imageUp = new SpriteDrawable(quitSprite);
         quitButton = new ImageButton(quitButtonStyle);
         quitButton.addListener(new ChangeListener() {
@@ -246,8 +245,8 @@ public class TitleScreen implements InputProcessor, Screen {
         Sprite backSprite = new Sprite(
                 game.assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        backSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         settingsBackButton = new ImageButton(backButtonStyle);
         settingsBackButton.addListener(new ChangeListener() {
@@ -325,14 +324,14 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(soundVolumeLabel)
                 .space(padding);
         volumesTable.add(soundVolumeDownImage)
-                .size(UiSize.getIconSize())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(soundVolumeSlider)
                 .prefWidth(viewport.getScreenWidth())
                 .fillX()
                 .space(padding);
         volumesTable.add(soundVolumeUpImage)
-                .size(UiSize.getIconSize())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(soundVolumeValueLabel)
                 .width(buttonSize)
@@ -341,13 +340,13 @@ public class TitleScreen implements InputProcessor, Screen {
         volumesTable.add(musicVolumeLabel)
                 .space(padding);
         volumesTable.add(musicVolumeDownImage)
-                .size(UiSize.getIconSize())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(musicVolumeSlider)
                 .fillX()
                 .space(padding);
         volumesTable.add(musicVolumeUpImage)
-                .size(UiSize.getIconSize())
+                .size(Constants.UI_ICON_SIZE)
                 .space(padding);
         volumesTable.add(musicVolumeValueLabel)
                 .width(buttonSize)

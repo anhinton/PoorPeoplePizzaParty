@@ -49,7 +49,7 @@ public class Constants {
     }
 
     // everything is blocked out in terms of this unit
-    static final int UNIT = 20;
+    public static final int UNIT = 20;
 
     // Pizza base x, y
     public static final int BASE_X = UNIT;

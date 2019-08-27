@@ -23,7 +23,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class CookScreen implements InputProcessor, Screen {
 
@@ -57,7 +56,7 @@ public class CookScreen implements InputProcessor, Screen {
         stage.addActor(table);
         table.setFillParent(true);
 
-        padding = UiSize.getPadding();
+        padding = Constants.UNIT;
 
         if (countdown) {
             showTimer();

@@ -29,7 +29,6 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PizzaPartyAnimation;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * The ServerWorksersScreen is displayed after choosing WORKERS on CookPizzaScreen. Plays
@@ -59,7 +58,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        padding = UiSize.getPadding();
+        padding = Constants.UNIT;
 
         game.assets.loadServeWorkersScreenAssets();
 

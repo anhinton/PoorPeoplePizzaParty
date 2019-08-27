@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
@@ -57,7 +56,7 @@ public class PizzaUi extends Table {
         buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
         buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
         buttonHeight = Constants.BUTTON_HEIGHT;
-        padding = UiSize.getPadding();
+        padding = Constants.UNIT;
 
         ImageButton.ImageButtonStyle closeButtonStyle =
                 new ImageButton.ImageButtonStyle(
@@ -65,8 +64,8 @@ public class PizzaUi extends Table {
         Sprite closeSprite = new Sprite(
                 assets.get("graphics/icons/close.png",
                         Texture.class));
-        closeSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        closeSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         closeButtonStyle.imageUp = new SpriteDrawable(closeSprite);
         closeButton = new ImageButton(closeButtonStyle);
         closeButton.addListener(new ChangeListener() {
@@ -96,8 +95,8 @@ public class PizzaUi extends Table {
         Sprite cameraSprite = new Sprite(
                 assets.get("graphics/icons/camera.png",
                         Texture.class));
-        cameraSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        cameraSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         cameraButtonStyle.imageUp = new SpriteDrawable(cameraSprite);
         cameraButton = new ImageButton(cameraButtonStyle);
         cameraButton.addListener(new ChangeListener() {
@@ -113,8 +112,8 @@ public class PizzaUi extends Table {
         Sprite undoSprite = new Sprite(
                 assets.get("graphics/icons/undo.png",
                         Texture.class));
-        undoSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        undoSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
         undoButton = new ImageButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
@@ -140,8 +139,8 @@ public class PizzaUi extends Table {
         Sprite backSprite = new Sprite(
                 assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(UiSize.getIconSize(),
-                UiSize.getIconSize());
+        backSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         backButton = new ImageButton(backButtonStyle);
         backButton.addListener(new ChangeListener() {

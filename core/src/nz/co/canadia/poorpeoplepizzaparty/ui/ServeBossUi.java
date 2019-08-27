@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.screens.ServeBossScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * This class implements the UI layout for the ServeBossScreen.class
@@ -43,7 +42,7 @@ public class ServeBossUi extends Table {
         this.assets = assets;
         this.bundle = bundle;
         this.pizza = pizza;
-        padding = UiSize.getPadding();
+        padding = Constants.UNIT;
 
         super.setFillParent(true);
 
