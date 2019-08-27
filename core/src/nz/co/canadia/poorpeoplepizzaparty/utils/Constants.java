@@ -81,7 +81,7 @@ public class Constants {
     // UI buttons sizes
     public static final int BUTTON_WIDTH_FULL = MathUtils.round(
             Constants.GAME_WIDTH - BASE_WIDTH - UNIT * 3f);
-    public static final int BUTTON_WIDTH_HALF = MathUtils.round(BUTTON_WIDTH_FULL - UNIT / 2f);
+    public static final int BUTTON_WIDTH_HALF = MathUtils.round((BUTTON_WIDTH_FULL - UNIT) / 2f);
     public static final int BUTTON_HEIGHT = UNIT * 4;
 
     // Sauce topping sprite alpha

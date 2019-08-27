@@ -13,20 +13,4 @@ public class UiSize {
         return Constants.UI_ICON_SIZE;
     }
 
-    public static int getBaseX() {
-        return getPadding();
-    }
-
-    public static int getBaseY() {
-        return getBaseX();
-    }
-
-    public static int getBaseWidth() {
-        return Constants.BASE_WIDTH;
-    }
-
-    public static int getBaseHeight() {
-        return Constants.BASE_HEIGHT;
-    }
-
 }

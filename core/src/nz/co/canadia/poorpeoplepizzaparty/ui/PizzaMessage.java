@@ -18,10 +18,10 @@ public class PizzaMessage extends Container {
 
         this.skin = skin;
 
-        super.setPosition(UiSize.getBaseX(),
-                UiSize.getBaseY());
-        super.setSize(UiSize.getBaseWidth(),
-                UiSize.getBaseHeight());
+        super.setPosition(Constants.BASE_X,
+                Constants.BASE_Y);
+        super.setSize(Constants.BASE_WIDTH,
+                Constants.BASE_HEIGHT);
 
         messageLabel = new TextButton("", skin, "default");
     }
@@ -33,7 +33,7 @@ public class PizzaMessage extends Container {
     public void showMessage(String s) {
         clearMessage();
         messageLabel = new TextButton(s, skin, "default");
-        messageLabel.setSize(UiSize.getBaseWidth(),
+        messageLabel.setSize(Constants.BASE_WIDTH,
                 Constants.BUTTON_HEIGHT);
         messageLabel.addListener(new ChangeListener() {
             @Override
