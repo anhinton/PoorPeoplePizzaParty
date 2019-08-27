@@ -1,7 +1,7 @@
 {
-  BitmapFont: { button-font: { file: fonts/Inconsolata/Inconsolata-Regular-36.fnt } },
-  BitmapFont: { label-font: { file: fonts/Podkova/Podkova-Regular-36.fnt } },
-  BitmapFont: { credits-font: { file: fonts/Inconsolata/Inconsolata-Regular-credits.fnt } },
+  BitmapFont: { button-font: { file: fonts/button.fnt } },
+  BitmapFont: { label-font: { file: fonts/label.fnt } },
+  BitmapFont: { credits-font: { file: fonts/credits.fnt } },
   Color: {
     green: {
       a: 1,
