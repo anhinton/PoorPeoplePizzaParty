@@ -1,8 +1,4 @@
 # TODO
-	  
-  + move viewport boilerplate to a utils Class
-      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
-      - button width problems when viewport is taller than expected
 		
   + implement audio
       - topping sound effects
@@ -27,6 +23,12 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	  
+  + ~~move viewport boilerplate to a utils Class~~
+      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
+      - ~~**SOLVED**: button width problems when viewport is taller than expected:
+        no longer a problem as button sizes are now fixed in Constants instead of calculated 
+        in UiSize~~
   
   + ~~add "do you want to quit?" dialog to TitleScreen~~
       - ~~new CurrentTitleMenu value QUIT~~
