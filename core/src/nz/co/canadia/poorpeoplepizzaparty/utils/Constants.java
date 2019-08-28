@@ -37,7 +37,7 @@ public class Constants {
     public static float VOLUME_STEP = 0.05f;
 
     // Available menus in TitleScreen.class
-    public enum CurrentTitleMenu { TITLE, SETTINGS, CREDITS }
+    public enum CurrentTitleMenu { TITLE, SETTINGS, QUIT, CREDITS }
 
     // Available menus in PizzaUi.class
     public enum CurrentPizzaMenu { MAIN, TOPPING }

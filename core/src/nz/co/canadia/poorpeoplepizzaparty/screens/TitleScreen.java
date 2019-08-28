@@ -70,6 +70,11 @@ public class TitleScreen implements InputProcessor, Screen {
     private final ScrollPane creditsPane;
     private final ImageButton creditsBackButton;
 
+    // Quit screen assets
+    private final Label quitLabel;
+    private final TextButton quitYesButton;
+    private final TextButton quitNoButton;
+
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
@@ -93,7 +98,7 @@ public class TitleScreen implements InputProcessor, Screen {
         buttonSize = Constants.BUTTON_HEIGHT;
         padding = Constants.UNIT;
 
-        // Title menu assets
+        /* Title menu assets */
 
         // create header Image
         header = new Image(game.assets.get("graphics/headers/titleScreen.png",
@@ -140,11 +145,11 @@ public class TitleScreen implements InputProcessor, Screen {
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                quit();
+                setCurrentMenu(Constants.CurrentTitleMenu.QUIT);
             }
         });
 
-        // Settings menu assets
+        /* Settings menu assets */
 
         // Settings title Label
         settingsTitleLabel = new Label(game.bundle.get("settingsTitleLabel"),
@@ -155,7 +160,7 @@ public class TitleScreen implements InputProcessor, Screen {
                 game.uiSkin.get("default-horizontal",
                         Slider.SliderStyle.class);
 
-        // Sound Volume widgets
+        /* Sound Volume widgets */
         // Label
         soundVolumeLabel = new Label(game.bundle.get("soundVolumeLabel") + ":",
                 game.uiSkin, "default");
@@ -192,7 +197,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
 
-        // Music Volume widgets
+        /* Music Volume widgets */
         // Label
         musicVolumeLabel = new Label(game.bundle.get("musicVolumeLabel") + ":",
                 game.uiSkin,"default");
@@ -256,7 +261,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
 
-        // Credits assets
+        /* Credits assets */
 
         // Credits title Label
         creditsTitleLabel = new Label(game.bundle.get("creditsTitleLabel"), game.uiSkin,
@@ -279,6 +284,32 @@ public class TitleScreen implements InputProcessor, Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 goBack();
+            }
+        });
+
+        /* Quit screen assets */
+
+        // Quit Label
+        quitLabel = new Label(game.bundle.get("quitLabel"), game.uiSkin,
+                "default");
+
+        // Quit Yes button
+        quitYesButton = new TextButton(game.bundle.get("quitYes"), game.uiSkin,
+                "default");
+        quitYesButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                quit();
+            }
+        });
+
+        // Quit No button
+        quitNoButton = new TextButton(game.bundle.get("quitNo"), game.uiSkin,
+                "default");
+        quitNoButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
             }
         });
 
@@ -393,16 +424,37 @@ public class TitleScreen implements InputProcessor, Screen {
                 .space(padding);
     }
 
+    private void showQuit() {
+        table.clear();
+        table.center();
+        table.pad(padding);
+        table.add(quitLabel)
+                .colspan(2)
+                .space(padding);
+        table.row();
+        table.add(quitYesButton)
+                .prefSize(buttonWidthHalf, buttonSize)
+                .space(padding);
+        table.add(quitNoButton)
+                .prefSize(buttonWidthHalf, buttonSize)
+                .space(padding);
+    }
+
     private void goBack() {
         switch (currentMenu) {
             case TITLE:
-                quit();
+                if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
+                    setCurrentMenu(Constants.CurrentTitleMenu.QUIT);
+                }
                 break;
             case SETTINGS:
                 setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
                 break;
             case CREDITS:
                 setCurrentMenu(Constants.CurrentTitleMenu.SETTINGS);
+                break;
+            case QUIT:
+                quit();
                 break;
         }
     }
@@ -418,6 +470,9 @@ public class TitleScreen implements InputProcessor, Screen {
                 break;
             case CREDITS:
                 showCredits();
+                break;
+            case QUIT:
+                showQuit();
                 break;
         }
     }

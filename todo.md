@@ -1,6 +1,4 @@
 # TODO
-  
-  + add "do you want to quit?" dialog to TitleScreen.quit()
 	  
   + move viewport boilerplate to a utils Class
       - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
@@ -29,6 +27,13 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+  
+  + ~~add "do you want to quit?" dialog to TitleScreen~~
+      - ~~new CurrentTitleMenu value QUIT~~
+          - ~~goBack() from TITLE -> QUIT (unless on WebGl version)~~
+          - ~~goBack() from QUIT -> quit()~~ 
+      - ~~"Yes" button calls quit()~~
+      - ~~"No" button sets menu back to TITLE~~
   
   + ~~give fonts meaningful names~~
       
