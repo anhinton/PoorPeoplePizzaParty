@@ -1,5 +1,7 @@
 # TODO
-		
+
+  + drop freetype font support
+   
   + implement audio
       - topping sound effects
 	  - add a mute audio in Settings (add a Settings)
