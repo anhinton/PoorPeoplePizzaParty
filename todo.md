@@ -1,5 +1,7 @@
 # TODO
 
+  + migrate assets to single load on launch with loading bar
+
   + drop freetype font support
    
   + implement audio
