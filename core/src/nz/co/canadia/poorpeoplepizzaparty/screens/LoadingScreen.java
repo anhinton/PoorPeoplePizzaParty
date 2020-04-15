@@ -44,12 +44,12 @@ public class LoadingScreen implements Screen {
         padding = Constants.UNIT;
 
         // create SliderStlye
-        ProgressBar.ProgressBarStyle sliderStyle =
+        ProgressBar.ProgressBarStyle progressBarStyle =
                 game.uiSkin.get("default-horizontal",
                         ProgressBar.ProgressBarStyle.class);
         // Slider
         progressBar = new ProgressBar(0, 1, .01f,
-                false, sliderStyle);
+                false, progressBarStyle);
         progressBar.setValue(progress);
 
         Label timerLabel = new Label(game.bundle.get("loadingLabel"), game.uiSkin,
