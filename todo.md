@@ -1,5 +1,8 @@
 # TODO
 
+  + go to loading screen when resuming from pause on Android
+    <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
+
   + drop freetype font support
    
   + implement audio
@@ -9,10 +12,12 @@
 	      - hold icons to increase/decrease
 	      - double tap icons to mute/full
 	  - Music:
-	      - folk Funiculi/Club Penguin pizza on starty
+	      - folk Funiculi/Club Penguin pizza on start
 	      - metal Funiculi on boss firing
 	  - don't mute system audio? or when you mute game audio it enables
 	    system audio?
+		
+  + texture packing
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
@@ -37,7 +42,8 @@
       - ~~create TitleScreen.class~~
           - ~~display "Loading" and a slider showing progress~~
           - ~~call Assets.loadGameAssets() in constructor~~
-          - ~~follow pattern on [Managing your assets](https://github.com/libgdx/libgdx/wiki/Managing-your-assets)
+          - ~~follow pattern on 
+            [Managing your assets](https://github.com/libgdx/libgdx/wiki/Managing-your-assets)
             in section starting "So far we only queued assets to be loaded [...]" which 
             demonstrates how to show progress while loading asynchronously~~
       - ~~set first screen in PoorPeoplePizzaParty to TitleScreen~~
