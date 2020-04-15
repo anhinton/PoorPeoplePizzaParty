@@ -1,7 +1,5 @@
 # TODO
 
-  + migrate assets to single load on launch with loading bar
-
   + drop freetype font support
    
   + implement audio
@@ -27,6 +25,16 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+
+  ~~+ migrate assets to single load on launch with loading bar~~
+      - ~~create Assets.loadGameAssets() which loads all graphics assets but does not block~~
+      - ~~create TitleScreen.class~~
+          - ~~display "Loading" and a slider showing progress~~
+          - ~~call Assets.loadGameAssets() in constructor~~
+          - ~~follow pattern on [Managing your assets](https://github.com/libgdx/libgdx/wiki/Managing-your-assets)
+            in section starting "So far we only queued assets to be loaded [...]" which 
+            demonstrates how to show progress while loading asynchronously~~
+      - ~~set first screen in PoorPeoplePizzaParty to TitleScreen~~
 	  
   + ~~move viewport boilerplate to a utils Class~~
       - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~

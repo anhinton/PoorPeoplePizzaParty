@@ -72,8 +72,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         pointsArray = new Array<Points>();
         pointsCount = 0;
 
-        game.assets.loadPizzaScreenAssets();
-
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);

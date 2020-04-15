@@ -60,8 +60,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
         padding = Constants.UNIT;
 
-        game.assets.loadServeWorkersScreenAssets();
-
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 camera);

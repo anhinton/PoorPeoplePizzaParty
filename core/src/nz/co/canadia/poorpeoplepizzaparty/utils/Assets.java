@@ -42,83 +42,10 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Load assets for Postcard screen
+     * Loads assets for game art assets.
      */
-    public void loadPostcardAssets() {
-        super.load("graphics/icons/back.png", Texture.class,
-                param);
-        super.load("graphics/icons/save.png", Texture.class,
-                param);
-        super.load("graphics/icons/share.png", Texture.class,
-                param);
-        super.load("graphics/postcards/postcard01.png", Pixmap.class);
-        super.load("graphics/postcards/postcard02.png", Pixmap.class);
-        super.load("graphics/postcards/postcard03.png", Pixmap.class);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for Cook Screen. Blocks until all assets are loaded.
-     */
-    public void loadCookScreenAssets() {
-        super.load("graphics/headers/cookScreenPizza.png",
-                Texture.class, param);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for Pizza Screen. Blocks until all assets are loaded.
-     */
-    public void loadPizzaScreenAssets() {
-        for(String s: toppingPaths.values()) {
-            super.load(s, Texture.class, param);
-        }
-
-        super.load("graphics/headers/pizzaScreen.png", Texture.class,
-                param);
-        super.load("graphics/icons/back.png", Texture.class,
-                param);
-        super.load("graphics/icons/camera.png", Texture.class,
-                param);
-        super.load("graphics/icons/close.png", Texture.class,
-                param);
-        super.load("graphics/icons/undo.png", Texture.class,
-                param);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for ServeBossScreen. Blocks until all assets are loaded.
-     */
-    public void loadServeBossScreenAssets() {
-        super.load("graphics/boss.png",
-                Texture.class, param);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for ServeWorkersScreen. Blocks until all assets are loaded.
-     */
-    public void loadServeWorkersScreenAssets() {
-        super.load("graphics/boss.png",
-                Texture.class, param);
-        super.load("graphics/doomdrips.png",
-                Texture.class, param);
-        super.load("graphics/lunch_1.png",
-                Texture.class, param);
-        super.load("graphics/lunch_2.png",
-                Texture.class, param);
-        super.load("graphics/pizzaparty_0.png",
-                Texture.class, param);
-        super.load("graphics/pizzaparty_1.png",
-                Texture.class, param);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for TitleScreen. Blocks until all assets are loaded.
-     */
-    public void loadTitleScreenAssets() {
+    public void loadGameAssets() {
+        // TitleScreen
         super.load("graphics/headers/titleScreen.png",
                 Texture.class, param);
         super.load("graphics/icons/back.png",
@@ -131,6 +58,53 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/icons/volume_up.png",
                 Texture.class, param);
-        super.finishLoading();
+
+        // PizzaScreen
+        for(String s: toppingPaths.values()) {
+            super.load(s, Texture.class, param);
+        }
+        super.load("graphics/headers/pizzaScreen.png", Texture.class,
+                param);
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
+        super.load("graphics/icons/camera.png", Texture.class,
+                param);
+        super.load("graphics/icons/close.png", Texture.class,
+                param);
+        super.load("graphics/icons/undo.png", Texture.class,
+                param);
+
+        // PostcardScreen
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
+        super.load("graphics/icons/save.png", Texture.class,
+                param);
+        super.load("graphics/icons/share.png", Texture.class,
+                param);
+        super.load("graphics/postcards/postcard01.png", Pixmap.class);
+        super.load("graphics/postcards/postcard02.png", Pixmap.class);
+        super.load("graphics/postcards/postcard03.png", Pixmap.class);
+
+        // CookScreen
+        super.load("graphics/headers/cookScreenPizza.png",
+                Texture.class, param);
+
+        // ServeBossScreen
+        super.load("graphics/boss.png",
+                Texture.class, param);
+
+        // ServeWorkersScreen
+        super.load("graphics/boss.png",
+                Texture.class, param);
+        super.load("graphics/doomdrips.png",
+                Texture.class, param);
+        super.load("graphics/lunch_1.png",
+                Texture.class, param);
+        super.load("graphics/lunch_2.png",
+                Texture.class, param);
+        super.load("graphics/pizzaparty_0.png",
+                Texture.class, param);
+        super.load("graphics/pizzaparty_1.png",
+                Texture.class, param);
     }
 }

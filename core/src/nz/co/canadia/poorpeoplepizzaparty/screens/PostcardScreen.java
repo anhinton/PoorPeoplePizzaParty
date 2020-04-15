@@ -39,8 +39,6 @@ public class PostcardScreen implements InputProcessor, Screen {
         int buttonWidth = Constants.BUTTON_WIDTH_HALF;
         int buttonHeight = Constants.BUTTON_HEIGHT;
 
-        game.assets.loadPostcardAssets();
-
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);

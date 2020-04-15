@@ -42,8 +42,6 @@ public class CookScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        game.assets.loadCookScreenAssets();
-
         OrthographicCamera camera = new OrthographicCamera();
         Viewport viewport = new FitViewport(
                 Constants.GAME_WIDTH,

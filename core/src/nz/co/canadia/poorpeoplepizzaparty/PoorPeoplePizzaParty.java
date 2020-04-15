@@ -3,6 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,8 +11,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import java.security.Key;
 import java.util.Locale;
 
+import nz.co.canadia.poorpeoplepizzaparty.screens.LoadingScreen;
 import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -57,7 +60,7 @@ public class PoorPeoplePizzaParty extends Game {
         // TODO: stop debugging for release
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
-        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
 
         assets = new Assets();
         batch = new SpriteBatch();
@@ -73,7 +76,7 @@ public class PoorPeoplePizzaParty extends Game {
         soundVolume = 1;
         musicVolume = 1;
 
-        this.setScreen(new TitleScreen(this));
+        this.setScreen(new LoadingScreen(this));
     }
 
     @Override

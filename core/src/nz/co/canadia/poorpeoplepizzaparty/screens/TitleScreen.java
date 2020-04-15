@@ -78,8 +78,6 @@ public class TitleScreen implements InputProcessor, Screen {
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        game.assets.loadTitleScreenAssets();
-
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(
                 Constants.GAME_WIDTH,

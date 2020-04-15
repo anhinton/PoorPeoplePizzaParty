@@ -32,8 +32,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        game.assets.loadServeBossScreenAssets();
-
         OrthographicCamera camera = new OrthographicCamera();
         Viewport uiViewport = new FitViewport(
                 Constants.GAME_WIDTH,
