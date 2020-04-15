@@ -69,11 +69,13 @@
     }
   },
   ProgressBarStyle: {
-    default-horizontal: { background: default-slider, knob: default-round-large },
-    default-vertical: { background: default-slider, knob: default-round-large }
+    default-horizontal: {
+      background: default-progress-bar,
+      knob: default-round-large,
+      knobBefore: default-knob-before
+    }
   },
   SliderStyle: {
-    default-horizontal: { background: default-slider, knob: default-round-large },
-    default-vertical: { background: default-slider, knob: default-round-large }
+    default-horizontal: { background: default-slider, knob: default-round-large }
   }
 }
