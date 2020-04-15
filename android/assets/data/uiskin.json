@@ -69,11 +69,11 @@
     }
   },
   ProgressBarStyle: {
-    default-horizontal: { background: default-slider, knob: default-slider-knob },
+    default-horizontal: { background: default-slider, knob: default-round-large },
     default-vertical: { background: default-slider, knob: default-round-large }
   },
   SliderStyle: {
-    default-horizontal: { background: default-slider, knob: default-slider-knob },
+    default-horizontal: { background: default-slider, knob: default-round-large },
     default-vertical: { background: default-slider, knob: default-round-large }
   }
 }
