@@ -4,7 +4,13 @@
    
   + implement audio
       - topping sound effects
-	  - add a mute audio in Settings (add a Settings)
+      - guitar pick scrape for boss entrance
+	  - add a Music and Sound volume controls in Settings
+	      - hold icons to increase/decrease
+	      - double tap icons to mute/full
+	  - Music:
+	      - folk Funiculi/Club Penguin pizza on starty
+	      - metal Funiculi on boss firing
 	  - don't mute system audio? or when you mute game audio it enables
 	    system audio?
       
