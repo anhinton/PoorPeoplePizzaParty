@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -19,7 +19,7 @@ public class LoadingScreen implements Screen {
     private final FitViewport viewport;
     private final Stage stage;
     private final Table table;
-    private final Slider loadingSlider;
+    private final ProgressBar progressBar;
     private final int padding;
     private float progress;
 
@@ -44,19 +44,19 @@ public class LoadingScreen implements Screen {
         padding = Constants.UNIT;
 
         // create SliderStlye
-        Slider.SliderStyle sliderStyle =
+        ProgressBar.ProgressBarStyle sliderStyle =
                 game.uiSkin.get("default-horizontal",
-                        Slider.SliderStyle.class);
+                        ProgressBar.ProgressBarStyle.class);
         // Slider
-        loadingSlider = new Slider(0, 1, .01f,
+        progressBar = new ProgressBar(0, 1, .01f,
                 false, sliderStyle);
-        loadingSlider.setValue(progress);
+        progressBar.setValue(progress);
 
         Label timerLabel = new Label(game.bundle.get("loadingLabel"), game.uiSkin,
                 "default");
         table.add(timerLabel).space(padding);
         table.row();
-        table.add(loadingSlider).prefWidth(Constants.BASE_WIDTH);
+        table.add(progressBar).prefWidth(Constants.BASE_WIDTH);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class LoadingScreen implements Screen {
         }
 
         progress = game.assets.getProgress();
-        loadingSlider.setValue(progress);
+        progressBar.setValue(progress);
 
         // draw UI
         stage.draw();
