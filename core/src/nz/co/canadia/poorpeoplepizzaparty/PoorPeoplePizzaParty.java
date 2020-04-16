@@ -25,12 +25,12 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
 public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
-    public Music music;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
     public Skin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
+    private Music music;
     private float soundVolume;
 
     public PoorPeoplePizzaParty(CaptureIO captureIO) {
@@ -49,8 +49,16 @@ public class PoorPeoplePizzaParty extends Game {
         return music.getVolume();
     }
 
+    public void setMusic(String fileHandle) {
+        music = assets.get(fileHandle, Music.class);
+    }
+
     public void playMusic() {
         music.play();
+    }
+
+    public void setMusicLooping(boolean isLooping) {
+        music.setLooping(isLooping);
     }
 
     public void setMusicVolume(float musicVolume) {

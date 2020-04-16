@@ -6,7 +6,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -79,10 +78,10 @@ public class TitleScreen implements InputProcessor, Screen {
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        game.music = game.assets.get("music/Theme01.mp3", Music.class);
-        game.music.setVolume(1);
-        game.music.setLooping(true);
-        game.music.play();
+        game.setMusic("music/Theme01.mp3");
+        game.setMusicVolume(1);
+        game.setMusicLooping(true);
+        game.playMusic();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(
