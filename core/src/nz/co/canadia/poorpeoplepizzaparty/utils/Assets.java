@@ -2,6 +2,7 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -58,6 +59,7 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/icons/volume_up.png",
                 Texture.class, param);
+        super.load("music/Theme01.mp3", Music.class);
 
         // PizzaScreen
         for(String s: toppingPaths.values()) {
