@@ -60,7 +60,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
         game.assets.loadPartyMusic();
         game.setMusic("music/PartyTheme.mp3");
-        game.playMusicLooping();
+        game.playMusic();
 
         game.assets.loadBossMusic();
 
@@ -120,6 +120,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void newPizzaScreen() {
+        game.stopMusic();
         game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
@@ -143,7 +144,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private void stopBoss() {
         game.setMusic("music/BossTheme.mp3");
-        game.playMusic();
+        game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
         partyScene.switchState();
@@ -165,6 +166,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void goBack() {
+        game.stopMusic();
         game.setScreen(new CookScreen(game, pizza, false));
         dispose();
     }
@@ -352,5 +354,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.dispose();
         }
+        game.assets.unloadBossMusic();
+        game.assets.unloadPartyMusic();
     }
 }
