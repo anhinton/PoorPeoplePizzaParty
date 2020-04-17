@@ -79,9 +79,11 @@ public class TitleScreen implements InputProcessor, Screen {
         this.game = game;
 
         game.setMusic("music/Theme01.mp3");
-        game.setMusicVolume(1);
+        game.setMusicVolume(Constants.MUSIC_VOLUME_DEFAULT);
         game.setMusicLooping(true);
         game.playMusic();
+
+        game.setSoundVolume(Constants.SOUND_VOLUME_DEFAULT);
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(
