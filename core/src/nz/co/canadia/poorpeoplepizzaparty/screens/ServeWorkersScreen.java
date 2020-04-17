@@ -124,8 +124,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         dispose();
     }
 
-    public void showFiredButton() {
-        partyScene.switchState();
+    private void showFiredButton() {
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
         firedButton.setSize(Constants.GAME_WIDTH * 2 / 3f,
@@ -144,10 +143,17 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private void stopBoss() {
         game.setMusic("music/BossTheme.mp3");
-        game.playMusicLooping();
+        game.playMusic();
         partyBoss.stop();
         doomDrips.stop();
-        state = Constants.ServerWorkersState.FINISHED;
+        partyScene.switchState();
+        timeElapsed = 0;
+        state = Constants.ServerWorkersState.RUBBISH;
+    }
+
+    private void stopRubbish() {
+        showFiredButton();
+        state = Constants.ServerWorkersState.FIRED;
     }
 
     private void stopParty() {
@@ -192,6 +198,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 return true;
             case BOSS:
                 stopBoss();
+                return true;
+            case RUBBISH:
+                stopRubbish();
+                return true;
+            case FIRED:
                 return true;
             case FINISHED:
                 break;
@@ -261,6 +272,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 partyBoss.update(delta);
                 if (!doomDrips.isActive() & !partyBoss.isActive()) {
                     stopBoss();
+                }
+                break;
+            case RUBBISH:
+                timeElapsed += delta;
+                if (timeElapsed > Constants.FIRED_TIME) {
+                    stopRubbish();
                 }
                 break;
         }

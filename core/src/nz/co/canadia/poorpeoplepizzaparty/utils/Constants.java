@@ -107,11 +107,14 @@ public class Constants {
     public enum ServeOption { BOSS, WORKERS }
 
     // states for ServeWorkersScreen
-    public enum ServerWorkersState { PARTY, BOSS, FINISHED }
+    public enum ServerWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
 
     // length of party in ServerWorkersScreen in seconds
     // TODO: set length to Pizza Party song clip time
-    public static final float PARTY_TIME = 5;
+    public static final float PARTY_TIME = 15;
+
+    // length of time that boss hangs on screen before fired message
+    public static final float FIRED_TIME = 5;
 
     // Options for party background texture
     public enum PartySprite { NORMAL, INVERSE }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -75,8 +76,8 @@ public class LoadingScreen implements Screen {
         stage.act(delta);
 
         if (game.assets.update()) {
-            game.setScreen(new TitleScreen(game));
-//            game.setScreen(new ServeWorkersScreen(game, new Pizza(game.assets)));
+//            game.setScreen(new TitleScreen(game));
+            game.setScreen(new ServeWorkersScreen(game, new Pizza(game.assets)));
         }
 
 

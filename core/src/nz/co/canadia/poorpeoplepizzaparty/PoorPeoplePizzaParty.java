@@ -57,6 +57,12 @@ public class PoorPeoplePizzaParty extends Game {
         music = assets.get(fileHandle, Music.class);
     }
 
+    public void playMusic() {
+        setMusicVolume(musicVolume);
+        music.setLooping(false);
+        music.play();
+    }
+
     public void playMusicLooping() {
         setMusicVolume(musicVolume);
         music.setLooping(true);
