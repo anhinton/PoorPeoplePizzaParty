@@ -58,6 +58,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
+        game.assets.loadPartyMusic();
+        game.setMusic("music/PartyTheme.mp3");
+        game.playMusicLooping();
+
+        game.assets.loadBossMusic();
+
         padding = Constants.UNIT;
 
         camera = new OrthographicCamera();
@@ -137,12 +143,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void stopBoss() {
+        game.setMusic("music/BossTheme.mp3");
+        game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
         state = Constants.ServerWorkersState.FINISHED;
     }
 
     private void stopParty() {
+        game.stopMusic();
         pizzaPartyAnimation.stop();
         doomDrips.start();
         partyBoss.start();

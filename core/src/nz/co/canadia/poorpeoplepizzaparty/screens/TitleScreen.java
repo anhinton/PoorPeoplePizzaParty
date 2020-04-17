@@ -78,12 +78,9 @@ public class TitleScreen implements InputProcessor, Screen {
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        game.setMusic("music/Theme01.mp3");
-        game.setMusicVolume(Constants.MUSIC_VOLUME_DEFAULT);
-        game.setMusicLooping(true);
-        game.playMusic();
-
-        game.setSoundVolume(Constants.SOUND_VOLUME_DEFAULT);
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.playMusicLooping();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(

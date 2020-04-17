@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -32,6 +33,10 @@ public class ServeBossScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
+        game.assets.loadBossMusic();
+        game.setMusic("music/BossTheme.mp3");
+        game.playMusicLooping();
+
         OrthographicCamera camera = new OrthographicCamera();
         Viewport uiViewport = new FitViewport(
                 Constants.GAME_WIDTH,
@@ -52,11 +57,13 @@ public class ServeBossScreen implements InputProcessor, Screen {
     }
 
     public void getFired() {
+        game.stopMusic();
         game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 
     private void goBack() {
+        game.stopMusic();
         game.setScreen(new CookScreen(game, pizza, false));
         dispose();
     }
@@ -147,5 +154,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
     public void dispose() {
         stage.dispose();
         serveBossUi.dispose();
+        game.assets.unloadBossMusic();
     }
 }

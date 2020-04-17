@@ -59,7 +59,6 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/icons/volume_up.png",
                 Texture.class, param);
-        super.load("music/Theme01.mp3", Music.class);
 
         // PizzaScreen
         for(String s: toppingPaths.values()) {
@@ -108,5 +107,32 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/pizzaparty_1.png",
                 Texture.class, param);
+    }
+
+    public void loadThemeMusic() {
+        super.load("music/ThemeMusic.mp3", Music.class);
+        super.finishLoadingAsset("music/ThemeMusic.mp3");
+    }
+    
+    public void unloadThemeMusic() {
+        super.unload("music/ThemeMusic.mp3");
+    }
+
+    public void loadBossMusic() {
+        super.load("music/BossTheme.mp3", Music.class);
+        super.finishLoadingAsset("music/BossTheme.mp3");
+    }
+
+    public void unloadBossMusic() {
+        super.unload("music/BossTheme.mp3");
+    }
+
+    public void loadPartyMusic() {
+        super.load("music/PartyTheme.mp3", Music.class);
+        super.finishLoadingAsset("music/PartyTheme.mp3");
+    }
+
+    public void unloadPartyMusic() {
+        super.unload("music/PartyTheme.mp3");
     }
 }

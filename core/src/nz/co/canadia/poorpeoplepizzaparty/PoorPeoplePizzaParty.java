@@ -17,6 +17,7 @@ import java.util.Locale;
 import nz.co.canadia.poorpeoplepizzaparty.screens.LoadingScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
  * The PoorPeoplePizzaParty class is the main class for the game Poor People Pizza Party.
@@ -31,10 +32,13 @@ public class PoorPeoplePizzaParty extends Game {
     public I18NBundle bundle;
     public CaptureIO captureIO;
     private Music music;
+    private float musicVolume;
     private float soundVolume;
 
     public PoorPeoplePizzaParty(CaptureIO captureIO) {
         this.captureIO = captureIO;
+        musicVolume = Constants.MUSIC_VOLUME_DEFAULT;
+        soundVolume = Constants.SOUND_VOLUME_DEFAULT;
     }
 
     public float getSoundVolume() {
@@ -46,24 +50,25 @@ public class PoorPeoplePizzaParty extends Game {
     }
 
     public float getMusicVolume() {
-        return music.getVolume();
+        return musicVolume;
     }
 
     public void setMusic(String fileHandle) {
         music = assets.get(fileHandle, Music.class);
     }
 
-    public void playMusic() {
+    public void playMusicLooping() {
+        setMusicVolume(musicVolume);
+        music.setLooping(true);
         music.play();
     }
 
-    public void setMusicLooping(boolean isLooping) {
-        music.setLooping(isLooping);
-    }
-
     public void setMusicVolume(float musicVolume) {
+        this.musicVolume = MathUtils.clamp(musicVolume, 0, 1);
         music.setVolume(MathUtils.clamp(musicVolume, 0, 1));
     }
+
+    public void stopMusic() { music.stop(); }
 
     @Override
     public void create() {

@@ -16,11 +16,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class LoadingScreen implements Screen {
 
     private final PoorPeoplePizzaParty game;
-    private final FitViewport viewport;
     private final Stage stage;
-    private final Table table;
     private final ProgressBar progressBar;
-    private final int padding;
     private float progress;
 
     public LoadingScreen(final PoorPeoplePizzaParty game) {
@@ -29,7 +26,7 @@ public class LoadingScreen implements Screen {
         game.assets.loadGameAssets();
 
         OrthographicCamera camera = new OrthographicCamera();
-        viewport = new FitViewport(
+        FitViewport viewport = new FitViewport(
                 Constants.GAME_WIDTH,
                 Constants.GAME_HEIGHT,
                 camera);
@@ -37,11 +34,11 @@ public class LoadingScreen implements Screen {
                 viewport.getScreenHeight());
 
         stage = new Stage(viewport, game.batch);
-        table = new Table();
+        Table table = new Table();
         stage.addActor(table);
         table.setFillParent(true);
 
-        padding = Constants.UNIT;
+        int padding = Constants.UNIT;
 
         // create ProgressBarStyle
         ProgressBar.ProgressBarStyle progressBarStyle =
@@ -79,7 +76,9 @@ public class LoadingScreen implements Screen {
 
         if (game.assets.update()) {
             game.setScreen(new TitleScreen(game));
+//            game.setScreen(new ServeWorkersScreen(game, new Pizza(game.assets)));
         }
+
 
         progress = game.assets.getProgress();
         progressBar.setValue(progress);

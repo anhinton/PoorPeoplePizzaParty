@@ -68,6 +68,11 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void initialise() {
+
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.playMusicLooping();
+
         selectedTopping = null;
         pointsArray = new Array<Points>();
         pointsCount = 0;
