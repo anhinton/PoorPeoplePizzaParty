@@ -3,6 +3,7 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -118,21 +119,24 @@ public class Assets extends AssetManager {
         super.unload("music/ThemeMusic.mp3");
     }
 
-    public void loadBossMusic() {
+    public void loadServeBossSounds() {
         super.load("music/BossTheme.mp3", Music.class);
         super.finishLoadingAsset("music/BossTheme.mp3");
     }
 
-    public void unloadBossMusic() {
+    public void unloadServeBossSounds() {
         super.unload("music/BossTheme.mp3");
     }
 
-    public void loadPartyMusic() {
+    public void loadServeWorkersSounds() {
         super.load("music/PartyTheme.mp3", Music.class);
+        super.load("sounds/PickScrape.mp3", Sound.class);
         super.finishLoadingAsset("music/PartyTheme.mp3");
+        super.finishLoadingAsset("sounds/PickScrape.mp3");
     }
 
-    public void unloadPartyMusic() {
+    public void unloadServeWorkersSounds() {
         super.unload("music/PartyTheme.mp3");
+        super.unload("sounds/PickScrape.mp3");
     }
 }

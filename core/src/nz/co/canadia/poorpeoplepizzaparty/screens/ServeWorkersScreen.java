@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -44,6 +45,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final Stage stage;
     private final int padding;
     private final PizzaPartyAnimation pizzaPartyAnimation;
+    private final Sound pickScrape;
     private float timeElapsed;
     private float nextSpawn;
     private PartyScene partyScene;
@@ -58,11 +60,13 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
-        game.assets.loadPartyMusic();
+        // load Music and Sounds
+        game.assets.loadServeWorkersSounds();
         game.setMusic("music/PartyTheme.mp3");
+        game.assets.loadServeBossSounds();
+        pickScrape = game.assets.get("sounds/PickScrape.mp3", Sound.class);
+        // start music
         game.playMusic();
-
-        game.assets.loadBossMusic();
 
         padding = Constants.UNIT;
 
@@ -147,6 +151,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
+        pickScrape.stop();
         partyScene.switchState();
         timeElapsed = 0;
         state = Constants.ServerWorkersState.RUBBISH;
@@ -162,6 +167,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         pizzaPartyAnimation.stop();
         doomDrips.start();
         partyBoss.start();
+        pickScrape.play(game.getMusicVolume());
         state = Constants.ServerWorkersState.BOSS;
     }
 
@@ -354,7 +360,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.dispose();
         }
-        game.assets.unloadBossMusic();
-        game.assets.unloadPartyMusic();
+        game.assets.unloadServeBossSounds();
+        game.assets.unloadServeWorkersSounds();
     }
 }
