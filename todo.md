@@ -10,6 +10,7 @@
 	      - ~~metal Funiculi on boss firing~~
 	  - ~~don't mute system audio? or when you mute game audio it enables
 	    system audio? **UPDATE**: this seems to be enabled without me doing anything~~
+	  - save audio volumes in Preferences
 	    
   + delay "fired" button on ServeBossScreen
 
