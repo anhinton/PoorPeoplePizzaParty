@@ -1,21 +1,21 @@
 # TODO
+   
+  + implement audio
+      - topping sound effects
+      - ~~guitar pick scrape for boss entrance~~
+	  - add a Music and Sound volume controls in Settings
+	      - hold icons to increase/decrease
+	      - double tap icons to mute/full
+	  - Music:
+	      - ~~folk Funiculi/Club Penguin pizza on start~~
+	      - ~~metal Funiculi on boss firing~~
+	  - don't mute system audio? or when you mute game audio it enables
+	    system audio?
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
 
   + drop freetype font support
-   
-  + implement audio
-      - topping sound effects
-      - guitar pick scrape for boss entrance
-	  - add a Music and Sound volume controls in Settings
-	      - hold icons to increase/decrease
-	      - double tap icons to mute/full
-	  - Music:
-	      - folk Funiculi/Club Penguin pizza on start
-	      - metal Funiculi on boss firing
-	  - don't mute system audio? or when you mute game audio it enables
-	    system audio?
 		
   + texture packing
       

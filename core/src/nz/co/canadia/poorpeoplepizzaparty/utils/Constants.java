@@ -106,19 +106,6 @@ public class Constants {
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
 
-    // states for ServeWorkersScreen
-    public enum ServerWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
-
-    // length of party in ServerWorkersScreen in seconds
-    // TODO: set length to Pizza Party song clip time
-    public static final float PARTY_TIME = 15;
-
-    // length of time that boss hangs on screen before fired message
-    public static final float FIRED_TIME = 5;
-
-    // Options for party background texture
-    public enum PartySprite { NORMAL, INVERSE }
-
     // number of Flying Pizzas to spawn initially
     public static final int FLYING_PIZZA_INITIAL_SPAWN_COUNT = 20;
 
@@ -137,10 +124,23 @@ public class Constants {
     public static final float FLYING_PIZZA_SPEED_MIN = 600;
     public static final float FLYING_PIZZA_SPEED_MAX = 1600;
 
+    // states for ServeWorkersScreen
+    public enum ServerWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
+
+    // length of party in ServerWorkersScreen in seconds
+    // TODO: set length to Pizza Party song clip time
+    public static final float PARTY_TIME = 15;
+
+    // length of time that boss hangs on screen before fired message
+    public static final float FIRED_TIME = 8.1f;
+
+    // Options for party background texture
+    public enum PartySprite { NORMAL, INVERSE }
+
     // time taken by PartyBoss in seconds
-    public static final float PARTY_BOSS_TIME = 1;
+    public static final float PARTY_BOSS_TIME = 2.4f;
     // time taken by DoomDrips in seconds
-    public static final float DOOM_DRIPS_TIME = 2;
+    public static final float DOOM_DRIPS_TIME = 2.4f;
 
     public static final float PIZZA_PARTY_FRAME_DURATION = 0.9f;
 }
