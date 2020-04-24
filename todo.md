@@ -11,6 +11,8 @@
 	      - ~~metal Funiculi on boss firing~~
 	  - ~~don't mute system audio? or when you mute game audio it enables
 	    system audio? **UPDATE**: this seems to be enabled without me doing anything~~
+	    
+  + delay "fired" button on ServeBossScreen
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
