@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
@@ -44,6 +45,7 @@ public class TitleScreen implements InputProcessor, Screen {
     private final int buttonSize;
     private final int padding;
     private Constants.CurrentTitleMenu currentMenu;
+    private Preferences settings;
 
     // Title menu assets
     private final Image header;
@@ -100,6 +102,8 @@ public class TitleScreen implements InputProcessor, Screen {
         buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
         buttonSize = Constants.BUTTON_HEIGHT;
         padding = Constants.UNIT;
+
+        settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
 
         /* Title menu assets */
 
@@ -284,6 +288,7 @@ public class TitleScreen implements InputProcessor, Screen {
         settingsBackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                settings.flush();
                 setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
             }
         });
@@ -541,6 +546,7 @@ public class TitleScreen implements InputProcessor, Screen {
         game.setSoundVolume(soundVolume);
         soundVolumeValueLabel.setText(printVolume(getSoundVolume()));
         soundVolumeSlider.setValue(getSoundVolume());
+        settings.putFloat("soundVolume", getSoundVolume());
     }
 
     private void fullSoundVolume() {
@@ -559,6 +565,7 @@ public class TitleScreen implements InputProcessor, Screen {
         game.setMusicVolume(musicVolume);
         musicVolumeValueLabel.setText(printVolume(getMusicVolume()));
         musicVolumeSlider.setValue(getMusicVolume());
+        settings.putFloat("musicVolume", getMusicVolume());
     }
 
     private void fullMusicVolume() {

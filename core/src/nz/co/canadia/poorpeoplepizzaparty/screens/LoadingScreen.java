@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -24,6 +25,10 @@ public class LoadingScreen implements Screen {
         this.game = game;
 
         game.assets.loadGameAssets();
+
+        Preferences settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
+        game.setMusicVolume(settings.getFloat("musicVolume", Constants.MUSIC_VOLUME_DEFAULT));
+        game.setSoundVolume(settings.getFloat("soundVolume", Constants.SOUND_VOLUME_DEFAULT));
 
         OrthographicCamera camera = new OrthographicCamera();
         FitViewport viewport = new FitViewport(
