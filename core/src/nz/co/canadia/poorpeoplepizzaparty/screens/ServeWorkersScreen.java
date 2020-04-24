@@ -147,12 +147,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void stopBoss() {
+        partyScene.switchState();
         game.setMusic("music/BossTheme.mp3");
         game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
         pickScrape.stop();
-        partyScene.switchState();
         timeElapsed = 0;
         state = Constants.ServerWorkersState.RUBBISH;
     }

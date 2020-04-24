@@ -81,8 +81,12 @@ public class TitleScreen implements InputProcessor, Screen {
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
+        settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
+        game.setSoundVolume(settings.getFloat("soundVolume", Constants.SOUND_VOLUME_DEFAULT));
+
         game.assets.loadThemeMusic();
         game.setMusic("music/ThemeMusic.mp3");
+        game.setMusicVolume(settings.getFloat("musicVolume", Constants.MUSIC_VOLUME_DEFAULT));
         game.playMusicLooping();
 
         OrthographicCamera camera = new OrthographicCamera();
@@ -102,8 +106,6 @@ public class TitleScreen implements InputProcessor, Screen {
         buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
         buttonSize = Constants.BUTTON_HEIGHT;
         padding = Constants.UNIT;
-
-        settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
 
         /* Title menu assets */
 
