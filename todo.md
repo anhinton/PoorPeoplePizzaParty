@@ -3,9 +3,8 @@
   + implement audio
       - topping sound effects
       - ~~guitar pick scrape for boss entrance~~
-	  - add a Music and Sound volume controls in Settings
-	      - hold icons to increase/decrease
-	      - double tap icons to mute/full
+	  - ~~add a Music and Sound volume controls in Settings~~
+	      - ~~hold icons to mute/full~~
 	  - Music:
 	      - ~~folk Funiculi/Club Penguin pizza on start~~
 	      - ~~metal Funiculi on boss firing~~
