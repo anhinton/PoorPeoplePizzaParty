@@ -2,6 +2,7 @@
    
   + implement audio
       - topping sound effects
+      - camera sound on PostcardScreen
       - ~~guitar pick scrape for boss entrance~~
 	  - ~~add a Music and Sound volume controls in Settings~~
 	      - ~~hold icons to mute/full~~
@@ -13,6 +14,8 @@
 	  - ~~save audio volumes using Preferences~~
 	    
   + delay "fired" button on ServeBossScreen
+  
+  + camera flash effect on PostcardScreen
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
