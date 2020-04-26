@@ -224,10 +224,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            if (!pizzaUi.goBack()) {
-                goBack();
-            }
-            return true;
+            return pizzaUi.goBack();
         }
         return false;
     }

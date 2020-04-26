@@ -188,15 +188,12 @@ public class PizzaUi extends Table {
      * @return boolean true if handled
      */
     public boolean goBack() {
-        boolean result;
         if (currentMenu == Constants.CurrentPizzaMenu.TOPPING) {
             setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-            result = true;
         } else {
             pizzaScreen.goBack();
-            result = false;
         }
-        return result;
+        return true;
     }
 
     public Constants.CurrentPizzaMenu getCurrentMenu() {
