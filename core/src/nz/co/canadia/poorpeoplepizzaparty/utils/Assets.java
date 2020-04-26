@@ -111,12 +111,14 @@ public class Assets extends AssetManager {
     }
 
     public void loadToppingsSounds() {
+        super.load("sounds/toppings/apricot.mp3", Sound.class);
         super.load("sounds/toppings/chicken.mp3", Sound.class);
         super.load("sounds/toppings/salami.mp3", Sound.class);
         super.finishLoading();
     }
 
     public void unloadToppingsSounds() {
+        super.unload("sounds/toppings/apricot.mp3");
         super.unload("sounds/toppings/chicken.mp3");
         super.unload("sounds/toppings/salami.mp3");
     }

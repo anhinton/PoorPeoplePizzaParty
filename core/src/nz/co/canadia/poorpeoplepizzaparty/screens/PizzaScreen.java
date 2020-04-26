@@ -79,6 +79,8 @@ public class PizzaScreen implements InputProcessor, Screen {
         game.assets.loadToppingsSounds();
 
         toppingSoundMap = new ObjectMap<Constants.ToppingName, Sound>();
+        toppingSoundMap.put(Constants.ToppingName.APRICOT,
+                game.assets.get("sounds/toppings/apricot.mp3", Sound.class));
         toppingSoundMap.put(Constants.ToppingName.CHICKEN,
                 game.assets.get("sounds/toppings/chicken.mp3", Sound.class));
         toppingSoundMap.put(Constants.ToppingName.SALAMI,
@@ -130,7 +132,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void playToppingSound(Constants.ToppingName toppingName) {
         switch(toppingName) {
-//            case APRICOT:
+            case APRICOT:
 //            case BACON:
 //            case BARBECUE:
 //            case CHEESE:
