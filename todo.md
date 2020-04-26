@@ -16,6 +16,8 @@
   + delay "fired" button on ServeBossScreen
   
   + camera flash effect on PostcardScreen
+  
+  + add Coco Wiggler 4 music which plays after first "loss"
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
