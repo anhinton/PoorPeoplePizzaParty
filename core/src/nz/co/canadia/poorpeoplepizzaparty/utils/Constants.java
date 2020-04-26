@@ -124,8 +124,11 @@ public class Constants {
     public static final float FLYING_PIZZA_SPEED_MIN = 600;
     public static final float FLYING_PIZZA_SPEED_MAX = 1600;
 
+    // states for ServeBossScreen
+    public enum ServeBossState { SERVE, FIRED }
+
     // states for ServeWorkersScreen
-    public enum ServerWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
+    public enum ServeWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
 
     // length of party in ServerWorkersScreen in seconds
     // TODO: set length to Pizza Party song clip time

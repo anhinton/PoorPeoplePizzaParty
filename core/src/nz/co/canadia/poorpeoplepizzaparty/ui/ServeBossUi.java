@@ -32,6 +32,7 @@ public class ServeBossUi extends Table {
     private final Pizza pizza;
     private Texture pizzaTexture;
     private Pixmap pizzaPixmap;
+    private TextButton firedButton;
 
     public ServeBossUi(ServeBossScreen serveBossScreen,
                        Skin uiSkin, AssetManager assets, I18NBundle bundle,
@@ -87,10 +88,9 @@ public class ServeBossUi extends Table {
                 "default");
         bossDialog.setAlignment(Align.center);
         leftColumn.add(bossDialog)
+                .prefWidth(Constants.GAME_WIDTH / 2f)
                 .space(padding);
-        leftColumn.row();
-
-        TextButton firedButton = new TextButton(bundle.get("servebossFiredButton"), uiSkin,
+        firedButton = new TextButton(bundle.get("servebossFiredButton"), uiSkin,
                 "default");
 //        firedButton.getLabel().setWrap(true);
         firedButton.getLabel().setText(firedButton.getText());
@@ -100,6 +100,9 @@ public class ServeBossUi extends Table {
                 serveBossScreen.getFired();
             }
         });
+        firedButton.setVisible(false);
+        leftColumn.row();
+        // add button but it's invisible
         leftColumn.add(firedButton)
                 .prefSize(Constants.GAME_WIDTH / 2f,
                         Constants.BUTTON_HEIGHT)
@@ -107,6 +110,10 @@ public class ServeBossUi extends Table {
 
         super.add(bossImage)
                 .space(padding);
+    }
+
+    public void showFiredButton() {
+        firedButton.setVisible(true);
     }
 
     public void dispose() {

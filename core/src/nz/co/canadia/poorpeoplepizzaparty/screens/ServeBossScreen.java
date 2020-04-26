@@ -26,6 +26,8 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
     private final ServeBossUi serveBossUi;
+    private float timeElapsed;
+    private Constants.ServeBossState state;
 
     ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
@@ -53,12 +55,21 @@ public class ServeBossScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+
+        state = Constants.ServeBossState.SERVE;
+        timeElapsed = 0f;
     }
 
     public void getFired() {
         game.stopMusic();
         game.setScreen(new PizzaScreen(game, false));
         dispose();
+    }
+
+    private void showFiredButton() {
+        state = Constants.ServeBossState.FIRED;
+        Gdx.app.log("ServeBossScreen", "show fired button");
+        serveBossUi.showFiredButton();
     }
 
     private void goBack() {
@@ -127,6 +138,17 @@ public class ServeBossScreen implements InputProcessor, Screen {
         stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
         stage.act(delta);
         stage.draw();
+
+        switch(state) {
+            case SERVE:
+                timeElapsed += delta;
+                if (timeElapsed > Constants.FIRED_TIME) {
+                    showFiredButton();
+                }
+                break;
+            case FIRED:
+                break;
+        }
     }
 
     @Override
