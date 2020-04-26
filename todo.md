@@ -2,13 +2,14 @@
    
   + implement audio
       - ~~topping sound effects~~
-      - camera sound on PostcardScreen
+      - ~~camera sound on PostcardScreen~~
       - ~~guitar pick scrape for boss entrance~~
 	  - ~~add a Music and Sound volume controls in Settings~~
 	      - ~~hold icons to mute/full~~
 	  - Music:
 	      - ~~folk Funiculi/Club Penguin pizza on start~~
 	      - ~~metal Funiculi on boss firing~~
+	      - add Coco Wiggler 4 music which plays after first "loss"
 	  - ~~don't mute system audio? or when you mute game audio it enables
 	    system audio? **UPDATE**: this seems to be enabled without me doing anything~~
 	  - ~~save audio volumes using Preferences~~
@@ -16,8 +17,6 @@
   + delay "fired" button on ServeBossScreen
   
   + camera flash effect on PostcardScreen
-  
-  + add Coco Wiggler 4 music which plays after first "loss"
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>

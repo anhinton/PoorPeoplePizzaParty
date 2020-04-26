@@ -162,4 +162,13 @@ public class Assets extends AssetManager {
         super.unload("music/PartyTheme.mp3");
         super.unload("sounds/PickScrape.mp3");
     }
+
+    public void loadPostcardSounds() {
+        super.load("sounds/camera.mp3", Sound.class);
+        super.finishLoadingAsset("sounds/camera.mp3");
+    }
+
+    public void unloadPostcardSounds() {
+        super.unload("sounds/camera.mp3");
+    }
 }

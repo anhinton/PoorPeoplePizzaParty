@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -31,6 +32,7 @@ public class PostcardScreen implements InputProcessor, Screen {
     private final OrthographicCamera gameCamera;
     private final FitViewport viewport;
     private final Stage stage;
+    private final Sound cameraSound;
 
     PostcardScreen(final PoorPeoplePizzaParty game, final Pizza pizza) {
         this.game = game;
@@ -38,6 +40,10 @@ public class PostcardScreen implements InputProcessor, Screen {
         int padding = Constants.UNIT;
         int buttonWidth = Constants.BUTTON_WIDTH_HALF;
         int buttonHeight = Constants.BUTTON_HEIGHT;
+
+        game.assets.loadPostcardSounds();
+        cameraSound = game.assets.get("sounds/camera.mp3", Sound.class);
+        cameraSound.play(game.getSoundVolume());
 
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
@@ -224,5 +230,6 @@ public class PostcardScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         postcard.dispose();
+        game.assets.unloadPostcardSounds();
     }
 }
