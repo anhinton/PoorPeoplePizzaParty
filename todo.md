@@ -1,7 +1,7 @@
 # TODO
    
   + implement audio
-      - topping sound effects
+      - ~~topping sound effects~~
       - camera sound on PostcardScreen
       - ~~guitar pick scrape for boss entrance~~
 	  - ~~add a Music and Sound volume controls in Settings~~

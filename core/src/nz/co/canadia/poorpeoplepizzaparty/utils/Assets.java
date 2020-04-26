@@ -113,16 +113,24 @@ public class Assets extends AssetManager {
     public void loadToppingsSounds() {
         super.load("sounds/toppings/apricot.mp3", Sound.class);
         super.load("sounds/toppings/bacon.mp3", Sound.class);
+        super.load("sounds/toppings/barbecue.mp3", Sound.class);
+        super.load("sounds/toppings/cheese.mp3", Sound.class);
         super.load("sounds/toppings/chicken.mp3", Sound.class);
         super.load("sounds/toppings/salami.mp3", Sound.class);
+        super.load("sounds/toppings/sauce.mp3", Sound.class);
+        super.load("sounds/toppings/sausage.mp3", Sound.class);
         super.finishLoading();
     }
 
     public void unloadToppingsSounds() {
         super.unload("sounds/toppings/apricot.mp3");
         super.unload("sounds/toppings/bacon.mp3");
+        super.unload("sounds/toppings/barbecue.mp3");
+        super.unload("sounds/toppings/cheese.mp3");
         super.unload("sounds/toppings/chicken.mp3");
         super.unload("sounds/toppings/salami.mp3");
+        super.unload("sounds/toppings/sauce.mp3");
+        super.unload("sounds/toppings/sausage.mp3");
     }
 
     public void loadThemeMusic() {

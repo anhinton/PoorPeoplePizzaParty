@@ -83,10 +83,18 @@ public class PizzaScreen implements InputProcessor, Screen {
                 game.assets.get("sounds/toppings/apricot.mp3", Sound.class));
         toppingSoundMap.put(Constants.ToppingName.BACON,
                 game.assets.get("sounds/toppings/bacon.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.BARBECUE,
+                game.assets.get("sounds/toppings/barbecue.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.CHEESE,
+                game.assets.get("sounds/toppings/cheese.mp3", Sound.class));
         toppingSoundMap.put(Constants.ToppingName.CHICKEN,
                 game.assets.get("sounds/toppings/chicken.mp3", Sound.class));
         toppingSoundMap.put(Constants.ToppingName.SALAMI,
                 game.assets.get("sounds/toppings/salami.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUCE,
+                game.assets.get("sounds/toppings/sauce.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUSAGE,
+                game.assets.get("sounds/toppings/sausage.mp3", Sound.class));
 
         selectedTopping = null;
         pointsArray = new Array<Points>();
@@ -136,12 +144,12 @@ public class PizzaScreen implements InputProcessor, Screen {
         switch(toppingName) {
             case APRICOT:
             case BACON:
-//            case BARBECUE:
-//            case CHEESE:
+            case BARBECUE:
+            case CHEESE:
             case CHICKEN:
             case SALAMI:
-//            case SAUCE:
-//            case SAUSAGE:
+            case SAUCE:
+            case SAUSAGE:
                 toppingSoundMap.get(toppingName).play(game.getSoundVolume());
                 break;
         }
