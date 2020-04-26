@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * Creates the toppings menu UI for selecting a topping on the PizzaScreen
@@ -38,30 +37,43 @@ public class PizzaUi extends Table {
     private final ImageButton undoButton;
     private final TextButton cookButton;
     private final ImageButton backButton;
+    private final ImageButton closeButton;
     private float buttonWidthFull;
     private float buttonWidthHalf;
     private float buttonHeight;
     private float padding;
-    private int screenWidth;
-    private int screenHeight;
     private Constants.CurrentPizzaMenu currentMenu;
 
-    public PizzaUi(int screenWidth, int screenHeight,
-                   final PizzaScreen pizzaScreen, final Skin skin,
+    public PizzaUi(final PizzaScreen pizzaScreen, final Skin skin,
                    final I18NBundle bundle,
                    final AssetManager assets) {
 
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
         this.pizzaScreen = pizzaScreen;
         super.setFillParent(true);
         this.skin = skin;
         this.bundle = bundle;
 
-        buttonWidthHalf = UiSize.getButtonWidthHalf(screenWidth, screenHeight);
-        buttonWidthFull = UiSize.getButtonWidthFull(screenWidth, screenHeight);
-        buttonHeight = UiSize.getButtonHeight(screenHeight);
-        padding = UiSize.getPadding(screenHeight);
+        buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
+        buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
+        buttonHeight = Constants.BUTTON_HEIGHT;
+        padding = Constants.UNIT;
+
+        ImageButton.ImageButtonStyle closeButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        Sprite closeSprite = new Sprite(
+                assets.get("graphics/icons/close.png",
+                        Texture.class));
+        closeSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
+        closeButtonStyle.imageUp = new SpriteDrawable(closeSprite);
+        closeButton = new ImageButton(closeButtonStyle);
+        closeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                goBack();
+            }
+        });
 
         headerImage = new Image(
                 assets.get("graphics/headers/pizzaScreen.png",
@@ -83,8 +95,8 @@ public class PizzaUi extends Table {
         Sprite cameraSprite = new Sprite(
                 assets.get("graphics/icons/camera.png",
                         Texture.class));
-        cameraSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
+        cameraSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         cameraButtonStyle.imageUp = new SpriteDrawable(cameraSprite);
         cameraButton = new ImageButton(cameraButtonStyle);
         cameraButton.addListener(new ChangeListener() {
@@ -100,8 +112,8 @@ public class PizzaUi extends Table {
         Sprite undoSprite = new Sprite(
                 assets.get("graphics/icons/undo.png",
                         Texture.class));
-        undoSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
+        undoSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
         undoButton = new ImageButton(undoButtonStyle);
         undoButton.addListener(new ChangeListener() {
@@ -127,15 +139,15 @@ public class PizzaUi extends Table {
         Sprite backSprite = new Sprite(
                 assets.get("graphics/icons/back.png",
                         Texture.class));
-        backSprite.setSize(Constants.UI_ICON_RATIO * screenHeight,
-                Constants.UI_ICON_RATIO * screenHeight);
+        backSprite.setSize(Constants.UI_ICON_SIZE,
+                Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
         backButton = new ImageButton(backButtonStyle);
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
                 goBack();
+                setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
             }
         });
 
@@ -176,23 +188,21 @@ public class PizzaUi extends Table {
      * @return boolean true if handled
      */
     public boolean goBack() {
-        boolean result;
         if (currentMenu == Constants.CurrentPizzaMenu.TOPPING) {
             setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-            result = true;
         } else {
-            result = false;
+            pizzaScreen.goBack();
         }
-        return result;
+        return true;
     }
 
     public Constants.CurrentPizzaMenu getCurrentMenu() {
         return currentMenu;
     }
 
-    private void setCurrentMenu(Constants.CurrentPizzaMenu currentMenu) {
-        this.currentMenu = currentMenu;
-        switch(currentMenu) {
+    private void setCurrentMenu(Constants.CurrentPizzaMenu menu) {
+        currentMenu = menu;
+        switch(menu) {
             case MAIN:
                 showMainMenu();
                 break;
@@ -203,38 +213,48 @@ public class PizzaUi extends Table {
     }
 
     private void showMainMenu() {
-        super.clear();
-        super.center().right()
-                .pad(padding);
-        super.add(headerImage)
+        // close button column (appears above pizza)
+        Table closeColumn = new Table();
+        closeColumn.left()
+                .top();
+        closeColumn.add(closeButton)
+                .prefSize(buttonHeight)
+                .space(padding);
+
+        // UI column: the main UI for pizza creation
+        Table uiColumn = new Table();
+        uiColumn.add(headerImage)
                 .space(padding)
-                .prefSize(
-                        UiSize.getImageWidth(headerImage.getPrefWidth(),
-                                screenWidth),
-                        UiSize.getImageHeight(headerImage.getPrefHeight(),
-                                screenHeight))
                 .colspan(2).center();
-        super.row();
-        super.add(toppingSelectButton).space(padding)
+        uiColumn.row();
+        uiColumn.add(toppingSelectButton).space(padding)
                 .prefSize(buttonWidthFull,
                         buttonHeight)
                 .colspan(2)
                 .right();
-        super.row();
-        super.add(cameraButton)
+        uiColumn.row();
+        uiColumn.add(cameraButton)
                 .prefSize(buttonWidthHalf,
                         buttonHeight)
                 .space(padding);
-        super.add(undoButton)
+        uiColumn.add(undoButton)
                 .prefSize(buttonWidthHalf,
                         buttonHeight)
                 .space(padding);
-        super.row();
-        super.add(cookButton)
+        uiColumn.row();
+        uiColumn.add(cookButton)
                 .prefSize(buttonWidthFull,
                         buttonHeight)
                 .space(padding)
                 .colspan(2);
+
+        super.clear();
+        super.pad(padding);
+        super.add(closeColumn)
+                .prefSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT)
+                .space(padding);
+        super.add(uiColumn)
+                .space(padding);
     }
 
     private void showToppingMenu() {
@@ -249,8 +269,7 @@ public class PizzaUi extends Table {
             if (counter > 0 & counter % 2 == 0)
                 super.row();
             super.add(b).space(padding)
-                    .prefSize(UiSize.getButtonWidthFull(screenWidth,
-                            screenHeight),
+                    .prefSize(Constants.BUTTON_WIDTH_FULL,
                             buttonHeight);
             counter++;
         }

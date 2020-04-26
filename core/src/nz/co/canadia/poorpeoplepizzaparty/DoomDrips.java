@@ -38,10 +38,6 @@ public class DoomDrips {
     public void stop() {
         sprite.setY(Constants.GAME_HEIGHT - sprite.getHeight());
         isActive = false;
-        if (!hasFired) {
-            serveWorkersScreen.showFiredButton();
-            hasFired = true;
-        }
     }
 
     public void draw(SpriteBatch batch) {

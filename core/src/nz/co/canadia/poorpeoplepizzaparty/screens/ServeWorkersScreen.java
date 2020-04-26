@@ -5,13 +5,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -30,7 +30,6 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PizzaPartyAnimation;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * The ServerWorksersScreen is displayed after choosing WORKERS on CookPizzaScreen. Plays
@@ -41,13 +40,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
-    private final OrthographicCamera gameCamera;
-    private final FitViewport gameViewport;
-    private final Stage uiStage;
-    private final int screenWidth;
-    private final int screenHeight;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Stage stage;
     private final int padding;
     private final PizzaPartyAnimation pizzaPartyAnimation;
+    private final Sound pickScrape;
     private float timeElapsed;
     private float nextSpawn;
     private PartyScene partyScene;
@@ -56,45 +54,35 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private Array<FlyingPizza> flyingPizzaArray;
     private Pixmap pizzaPixmap;
     private Texture pizzaTexture;
-    private Constants.ServerWorkersState state;
+    private Constants.ServeWorkersState state;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
 
-        screenWidth = Gdx.graphics.getBackBufferWidth();
-        screenHeight = Gdx.graphics.getBackBufferHeight();
-        padding = UiSize.getPadding(screenHeight);
+        // load Music and Sounds
+        game.assets.loadServeWorkersSounds();
+        game.setMusic("music/PartyTheme.mp3");
+        game.assets.loadServeBossSounds();
+        pickScrape = game.assets.get("sounds/PickScrape.mp3", Sound.class);
+        // start music
+        game.playMusic();
 
-        game.assets.loadServeWorkersScreenAssets();
+        padding = Constants.UNIT;
 
-        gameCamera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
-                gameCamera);
-        gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-
-        OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
-        uiStage = new Stage(uiViewport);
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+                camera);
+        camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        
+        stage = new Stage(viewport, game.batch);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(uiStage);
+        multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        state = Constants.ServerWorkersState.PARTY;
+        state = Constants.ServeWorkersState.PARTY;
         timeElapsed = 0;
 
         // set time to spawn new pizzas
@@ -130,24 +118,24 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 "default");
         label.setAlignment(Align.topLeft);
         label.setPosition(padding,
-                screenHeight - padding - label.getHeight());
+                Constants.GAME_HEIGHT - padding - label.getHeight());
         label.setWidth(Constants.GAME_WIDTH * 2 / 3f);
-        uiStage.addActor(label);
+        stage.addActor(label);
     }
 
     private void newPizzaScreen() {
-        game.setScreen(new PizzaScreen(game));
+        game.stopMusic();
+        game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 
-    public void showFiredButton() {
-        partyScene.switchState();
+    private void showFiredButton() {
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
-        firedButton.setSize(screenWidth * 2 / 3f,
-                UiSize.getButtonHeight(screenHeight) * 2);
-        firedButton.setPosition(screenWidth / 2f - firedButton.getWidth() / 2,
-                screenHeight / 2f - firedButton.getHeight() / 2);
+        firedButton.setSize(Constants.GAME_WIDTH * 2 / 3f,
+                Constants.BUTTON_HEIGHT * 2);
+        firedButton.setPosition(Constants.GAME_WIDTH/ 2f - firedButton.getWidth() / 2,
+                Constants.GAME_HEIGHT / 2f - firedButton.getHeight() / 2);
         firedButton.pad(padding);
         firedButton.addListener(new ChangeListener() {
             @Override
@@ -155,23 +143,36 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 newPizzaScreen();
             }
         });
-        uiStage.addActor(firedButton);
+        stage.addActor(firedButton);
     }
 
     private void stopBoss() {
+        partyScene.switchState();
+        game.setMusic("music/BossTheme.mp3");
+        game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
-        state = Constants.ServerWorkersState.FINISHED;
+        pickScrape.stop();
+        timeElapsed = 0;
+        state = Constants.ServeWorkersState.RUBBISH;
+    }
+
+    private void stopRubbish() {
+        showFiredButton();
+        state = Constants.ServeWorkersState.FIRED;
     }
 
     private void stopParty() {
+        game.stopMusic();
         pizzaPartyAnimation.stop();
         doomDrips.start();
         partyBoss.start();
-        state = Constants.ServerWorkersState.BOSS;
+        pickScrape.play(game.getMusicVolume());
+        state = Constants.ServeWorkersState.BOSS;
     }
 
     private void goBack() {
+        game.stopMusic();
         game.setScreen(new CookScreen(game, pizza, false));
         dispose();
     }
@@ -205,6 +206,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 return true;
             case BOSS:
                 stopBoss();
+                return true;
+            case RUBBISH:
+                stopRubbish();
+                return true;
+            case FIRED:
                 return true;
             case FINISHED:
                 break;
@@ -242,7 +248,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 Constants.WORKERS_BG_COLOUR.b, Constants.WORKERS_BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        uiStage.act();
+        stage.act();
 
         switch (state) {
             case PARTY:
@@ -276,6 +282,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                     stopBoss();
                 }
                 break;
+            case RUBBISH:
+                timeElapsed += delta;
+                if (timeElapsed > Constants.FIRED_TIME) {
+                    stopRubbish();
+                }
+                break;
         }
 
         // update flying pizzas
@@ -289,8 +301,8 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
             }
         }
 
-        gameCamera.update();
-        game.batch.setProjectionMatrix(gameViewport.getCamera().combined);
+        camera.update();
+        game.batch.setProjectionMatrix(viewport.getCamera().combined);
         game.batch.begin();
         partyScene.draw(game.batch);
         for (FlyingPizza fp: flyingPizzaArray) {
@@ -314,16 +326,16 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        uiStage.getViewport().apply();
-        uiStage.getCamera().update();
-        uiStage.act(delta);
-        uiStage.draw();
+        stage.getViewport().apply();
+        stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height, true);
-        uiStage.getViewport().update(width, height, true);
+        viewport.update(width, height, true);
     }
 
     @Override
@@ -348,5 +360,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.dispose();
         }
+        game.assets.unloadServeBossSounds();
+        game.assets.unloadServeWorkersSounds();
     }
 }

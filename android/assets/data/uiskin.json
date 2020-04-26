@@ -1,5 +1,8 @@
 {
-  com.badlogic.gdx.graphics.Color: {
+  BitmapFont: { button-font: { file: fonts/button.fnt } },
+  BitmapFont: { label-font: { file: fonts/label.fnt } },
+  BitmapFont: { credits-font: { file: fonts/credits.fnt } },
+  Color: {
     green: {
       a: 1,
       b: 0,
@@ -25,7 +28,7 @@
       r: 0
     }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+  ButtonStyle: {
     default: {
       down: default-round-down,
       up: default-round
@@ -36,7 +39,10 @@
       up: default-round
     }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+  ScrollPaneStyle: {
+    credits: { vScroll: default-scroll, hScrollKnob: default-round-large, hScroll: default-scroll, vScrollKnob: default-round-large }
+  },
+  TextButtonStyle: {
     default: {
       down: default-round-down,
       up: default-round,
@@ -52,14 +58,24 @@
       downFontColor: red
     }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+  LabelStyle: {
     default: {
       font: label-font,
       fontColor: white
+    },
+    "credits": {
+      "font": credits-font,
+      "fontColor": black
     }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
-    default-horizontal: { background: default-slider, knob: default-slider-knob },
-    default-vertical: { background: default-slider, knob: default-round-large }
+  ProgressBarStyle: {
+    default-horizontal: {
+      background: default-progress-bar,
+      knob: default-round-large,
+      knobBefore: default-knob-before
+    }
+  },
+  SliderStyle: {
+    default-horizontal: { background: default-slider, knob: default-round-large }
   }
 }

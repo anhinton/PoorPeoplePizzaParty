@@ -2,6 +2,8 @@ package nz.co.canadia.poorpeoplepizzaparty.utils;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -42,9 +44,39 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Load assets for Postcard screen
+     * Loads assets for game art assets.
      */
-    public void loadPostcardAssets() {
+    public void loadGameAssets() {
+        // TitleScreen
+        super.load("graphics/headers/titleScreen.png",
+                Texture.class, param);
+        super.load("graphics/icons/back.png",
+                Texture.class, param);
+        super.load("graphics/icons/close.png",
+                Texture.class, param);
+        super.load("graphics/icons/settings.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_mute.png",
+                Texture.class, param);
+        super.load("graphics/icons/volume_up.png",
+                Texture.class, param);
+
+        // PizzaScreen
+        for(String s: toppingPaths.values()) {
+            super.load(s, Texture.class, param);
+        }
+        super.load("graphics/headers/pizzaScreen.png", Texture.class,
+                param);
+        super.load("graphics/icons/back.png", Texture.class,
+                param);
+        super.load("graphics/icons/camera.png", Texture.class,
+                param);
+        super.load("graphics/icons/close.png", Texture.class,
+                param);
+        super.load("graphics/icons/undo.png", Texture.class,
+                param);
+
+        // PostcardScreen
         super.load("graphics/icons/back.png", Texture.class,
                 param);
         super.load("graphics/icons/save.png", Texture.class,
@@ -54,50 +86,16 @@ public class Assets extends AssetManager {
         super.load("graphics/postcards/postcard01.png", Pixmap.class);
         super.load("graphics/postcards/postcard02.png", Pixmap.class);
         super.load("graphics/postcards/postcard03.png", Pixmap.class);
-        super.finishLoading();
-    }
 
-    /**
-     * Loads assets for Cook Screen. Blocks until all assets are loaded.
-     */
-    public void loadCookScreenAssets() {
+        // CookScreen
         super.load("graphics/headers/cookScreenPizza.png",
                 Texture.class, param);
-        super.finishLoading();
-    }
 
-    /**
-     * Loads assets for Pizza Screen. Blocks until all assets are loaded.
-     */
-    public void loadPizzaScreenAssets() {
-        for(String s: toppingPaths.values()) {
-            super.load(s, Texture.class, param);
-        }
-
-        super.load("graphics/headers/pizzaScreen.png", Texture.class,
-                param);
-        super.load("graphics/icons/back.png", Texture.class,
-                param);
-        super.load("graphics/icons/camera.png", Texture.class,
-                param);
-        super.load("graphics/icons/undo.png", Texture.class,
-                param);
-        super.finishLoading();
-    }
-
-    /**
-     * Loads assets for ServeBossScreen. Blocks until all assets are loaded.
-     */
-    public void loadServeBossScreenAssets() {
+        // ServeBossScreen
         super.load("graphics/boss.png",
                 Texture.class, param);
-        super.finishLoading();
-    }
 
-    /**
-     * Loads assets for ServeWorkersScreen. Blocks until all assets are loaded.
-     */
-    public void loadServeWorkersScreenAssets() {
+        // ServeWorkersScreen
         super.load("graphics/boss.png",
                 Texture.class, param);
         super.load("graphics/doomdrips.png",
@@ -110,6 +108,67 @@ public class Assets extends AssetManager {
                 Texture.class, param);
         super.load("graphics/pizzaparty_1.png",
                 Texture.class, param);
+    }
+
+    public void loadToppingsSounds() {
+        super.load("sounds/toppings/apricot.mp3", Sound.class);
+        super.load("sounds/toppings/bacon.mp3", Sound.class);
+        super.load("sounds/toppings/barbecue.mp3", Sound.class);
+        super.load("sounds/toppings/cheese.mp3", Sound.class);
+        super.load("sounds/toppings/chicken.mp3", Sound.class);
+        super.load("sounds/toppings/salami.mp3", Sound.class);
+        super.load("sounds/toppings/sauce.mp3", Sound.class);
+        super.load("sounds/toppings/sausage.mp3", Sound.class);
         super.finishLoading();
+    }
+
+    public void unloadToppingsSounds() {
+        super.unload("sounds/toppings/apricot.mp3");
+        super.unload("sounds/toppings/bacon.mp3");
+        super.unload("sounds/toppings/barbecue.mp3");
+        super.unload("sounds/toppings/cheese.mp3");
+        super.unload("sounds/toppings/chicken.mp3");
+        super.unload("sounds/toppings/salami.mp3");
+        super.unload("sounds/toppings/sauce.mp3");
+        super.unload("sounds/toppings/sausage.mp3");
+    }
+
+    public void loadThemeMusic() {
+        super.load("music/ThemeMusic.mp3", Music.class);
+        super.finishLoadingAsset("music/ThemeMusic.mp3");
+    }
+    
+    public void unloadThemeMusic() {
+        super.unload("music/ThemeMusic.mp3");
+    }
+
+    public void loadServeBossSounds() {
+        super.load("music/BossTheme.mp3", Music.class);
+        super.finishLoadingAsset("music/BossTheme.mp3");
+    }
+
+    public void unloadServeBossSounds() {
+        super.unload("music/BossTheme.mp3");
+    }
+
+    public void loadServeWorkersSounds() {
+        super.load("music/PartyTheme.mp3", Music.class);
+        super.load("sounds/PickScrape.mp3", Sound.class);
+        super.finishLoadingAsset("music/PartyTheme.mp3");
+        super.finishLoadingAsset("sounds/PickScrape.mp3");
+    }
+
+    public void unloadServeWorkersSounds() {
+        super.unload("music/PartyTheme.mp3");
+        super.unload("sounds/PickScrape.mp3");
+    }
+
+    public void loadPostcardSounds() {
+        super.load("sounds/camera.mp3", Sound.class);
+        super.finishLoadingAsset("sounds/camera.mp3");
+    }
+
+    public void unloadPostcardSounds() {
+        super.unload("sounds/camera.mp3");
     }
 }

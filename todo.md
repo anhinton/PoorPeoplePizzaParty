@@ -1,21 +1,15 @@
 # TODO
+  
+  + camera flash effect on PostcardScreen
 
-  + save Pizza to local storage on exit, reload on start
-	  
-  + move viewport boilerplate to a utils Class
-        
-  + create TitleScreen class
-      - pizza party, a party for pizza
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - change "you have been fired" button behaviour in ServeBossScreen and 
-        ServerWorkersScreen to go back to here
+  + go to loading screen when resuming from pause on Android
+    <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
+    
+  + add Coco Wiggler 4 music which plays after first "loss"
+
+  + drop freetype font support
 		
-  + implement audio
-      - topping sound effects
-	  - add a mute audio in Settings (add a Settings)
-	  - don't mute system audio? or when you mute game audio it enables
-	    system audio?
+  + texture packing
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
@@ -23,10 +17,135 @@
   + do a Vector Android app icon
   
   + stop debugging for release
+      - remove debugging statements Gdx.app.log
   
   + investigate desktop full screen and window resizing
+      - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
+        sizes
+        
+  + revise credits
+  
+  + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	    
+  + ~~delay "fired" button on ServeBossScreen~~
+   
+  + ~~implement audio~~
+      - ~~topping sound effects~~
+      - ~~camera sound on PostcardScreen~~
+      - ~~guitar pick scrape for boss entrance~~
+	  - ~~add a Music and Sound volume controls in Settings~~
+	      - ~~hold icons to mute/full~~
+	  - ~~Music~~:
+	      - ~~folk Funiculi/Club Penguin pizza on start~~
+	      - ~~metal Funiculi on boss firing~~
+	  - ~~don't mute system audio? or when you mute game audio it enables
+	    system audio? **UPDATE**: this seems to be enabled without me doing anything~~
+	  - ~~save audio volumes using Preferences~~
+
+  ~~+ migrate assets to single load on launch with loading bar~~
+      - ~~create Assets.loadGameAssets() which loads all graphics assets but does not block~~
+      - ~~create TitleScreen.class~~
+          - ~~display "Loading" and a slider showing progress~~
+          - ~~call Assets.loadGameAssets() in constructor~~
+          - ~~follow pattern on 
+            [Managing your assets](https://github.com/libgdx/libgdx/wiki/Managing-your-assets)
+            in section starting "So far we only queued assets to be loaded [...]" which 
+            demonstrates how to show progress while loading asynchronously~~
+      - ~~set first screen in PoorPeoplePizzaParty to TitleScreen~~
+	  
+  + ~~move viewport boilerplate to a utils Class~~
+      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
+      - ~~**SOLVED**: button width problems when viewport is taller than expected:
+        no longer a problem as button sizes are now fixed in Constants instead of calculated 
+        in UiSize~~
+  
+  + ~~add "do you want to quit?" dialog to TitleScreen~~
+      - ~~new CurrentTitleMenu value QUIT~~
+          - ~~goBack() from TITLE -> QUIT (unless on WebGl version)~~
+          - ~~goBack() from QUIT -> quit()~~ 
+      - ~~"Yes" button calls quit()~~
+      - ~~"No" button sets menu back to TITLE~~
+  
+  + ~~give fonts meaningful names~~
+      
+  + ~~go back to a single viewport size for UI; do away with all these font sizes~~
+      - ~~it turns out maintaining all of this UI size logic is a reall pain in the butt that
+        I don't really need to bother about~~
+        
+  + ~~create TitleScreen class~~
+      - ~~Poor People Pizza Party~~
+      - ~~Play, Settings, Quit buttons~~
+      - ~~Settings has audio and music volume sliders~~
+      - ~~change Android back button behaviour in PizzaScreen.class to go back 
+        to here~~
+      - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
+      - ~~volume Image icons press to raise or lower volumes~~
+      - ~~volume level /100 displayed to right~~
+      - ~~no Quit button on Html/WebGL~~
+      - ~~Credits button in Settings menu displays Credits ui~~
+      - ~~implement goBack() to catch ESC presses~~
+  
+  + ~~make Title header somewhat cooler~~
+      
+  + ~~add "close" button to PizzaScreen which goes back to TitleScreen~~
+          
+  + ~~pop up a fake "score" when a topping is placed~~
+      - ~~"+6" 2x then "+666"~~
+      - ~~drifts upwards and fades~~
+      - ~~centred on topping x, y~~
+      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
+        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
+        coordinates~~
+
+  + ~~switch to fixed font sizes for screen heights >= 1080, >= 720, < 720~~
+      - ~~delete DesktopUiFont, AndroidUiFont, HtmlUiFont, UiFont~~
+      - ~~UiSkin() takes height argument: screen height~~
+      - ~~UiFont loads 64pt, 43pt, or 36pt button and label fonts for above screen sizes~~
+  
+  + ~~change title desktop on save postcard to... dialog (currently says "serialize" =P)~~ 
+          
+  + ~~remove postcard debugging code~~
+
+  + ~~save Pizza to local storage on exit, reload on start~~
+      - ~~DO IT AGAIN BUT USE XML~~
+      - ~~decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume:~~
+          - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
+            gets escaped out~~
+      - ~~Pizza.serialize() returns XML of toppings list~~
+      - ~~PizzaScreen.save() saves XML of toppings to storage~~
+          - ~~calls Pizza.serialize() to get XML~~
+          - ~~calls Pizza.saveFile() to get FileHandle~~
+          - ~~Desktop saves to External storage~~
+          - ~~Android saves to Local storage~~
+          - ~~no save support for WebGl/html~~
+      - ~~save() on exiting PizzaScreen~~
+          - ~~PizzaScreen.pause()~~
+          - ~~don't save on cook() or createPostcard(): the current way of passing Pizza
+            objects can handle this~~
+      - ~~create Pizza.load() to deserialize Pizza~~
+          - ~~create Pizza.addTopping() case for BASE: setBaseTopping() but nothing else,
+            otherwise BASE stacks as you save and load~~
+      - ~~load() on init~~
+          - ~~add loadAutosave argument to new Pizza() constructor. true when called from
+            PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
+      - ~~implement for Desktop, then go back and do Android~~
+      - ~~WebGl/html now failing to compile: I need to re-implement this using
+        platform-specific code~~
+          - ~~CaptureIO.savePizzaXml(String pizzaXml) called by PizzaScreen.save()~~
+          - ~~String CaptureIO.loadPizzaXml() called by PizzaScreen.load()~~
+              - ~~returns an empty String when load file doesn't exist~~
+              - ~~Pizza.deserialize() does not attempt to read XML if rootElement is null,
+                i.e. if empty string is passed in~~
+          - ~~implement methods in DesktopCaptureIO~~
+          - ~~implement methods in AndroidCaptureIO~~
+          - ~~empty methods in HtmlCaptureIO~~
+      - `~~test test test!~~
+      - ~~remove save() debugging code~~
+          - ~~hotkey~~
+          - ~~print XML~~
 
   + ~~hold Undo button on PizzaScreen to remove all toppings~~
       - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
@@ -177,16 +296,6 @@
   + ~~get WebGL working~~
       - ~~it didn't seem to like the async loading in 
         Assets.loadCookScreenAssets() yesterday but now today it's fine?~~
-
-  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
-    FreetypeFont for desktop and android~~
-    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~create UiFont interface~~
-      - ~~create UiSkin() constructor which takes a UiFont argument~~
-      - ~~UiSkin calls uiFont.getUiFont()~~
-      - ~~implement DesktopUiFont~~
-      - ~~implement AndroidUiFont~~
-      - ~~implement HtmlUiFont~~
   
   + ~~get WebGL working~~
       - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
