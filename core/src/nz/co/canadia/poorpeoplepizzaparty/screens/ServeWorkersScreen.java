@@ -54,7 +54,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private Array<FlyingPizza> flyingPizzaArray;
     private Pixmap pizzaPixmap;
     private Texture pizzaTexture;
-    private Constants.ServerWorkersState state;
+    private Constants.ServeWorkersState state;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
@@ -82,7 +82,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        state = Constants.ServerWorkersState.PARTY;
+        state = Constants.ServeWorkersState.PARTY;
         timeElapsed = 0;
 
         // set time to spawn new pizzas
@@ -154,12 +154,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         doomDrips.stop();
         pickScrape.stop();
         timeElapsed = 0;
-        state = Constants.ServerWorkersState.RUBBISH;
+        state = Constants.ServeWorkersState.RUBBISH;
     }
 
     private void stopRubbish() {
         showFiredButton();
-        state = Constants.ServerWorkersState.FIRED;
+        state = Constants.ServeWorkersState.FIRED;
     }
 
     private void stopParty() {
@@ -168,7 +168,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         doomDrips.start();
         partyBoss.start();
         pickScrape.play(game.getMusicVolume());
-        state = Constants.ServerWorkersState.BOSS;
+        state = Constants.ServeWorkersState.BOSS;
     }
 
     private void goBack() {

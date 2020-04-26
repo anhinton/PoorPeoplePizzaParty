@@ -1,6 +1,4 @@
 # TODO
-	    
-  + delay "fired" button on ServeBossScreen
   
   + camera flash effect on PostcardScreen
 
@@ -30,6 +28,8 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	    
+  + ~~delay "fired" button on ServeBossScreen~~
    
   + ~~implement audio~~
       - ~~topping sound effects~~
