@@ -11,30 +11,42 @@ import com.badlogic.gdx.graphics.PixmapIO;
 
 import java.io.File;
 
-import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class AndroidCaptureIO implements CaptureIO {
 
     private AndroidLauncher activity;
-    private Pixmap postcardPixmap;
     private FileHandle postcardFilePath;
 
     AndroidCaptureIO(AndroidLauncher activity) {
         this.activity = activity;
-        this.postcardPixmap = new Pixmap(0, 0, Pixmap.Format.RGBA8888);
     }
 
     @Override
-    public void savePizza(Pizza pizza, Assets assets) {
-        postcardPixmap = Capture.postcardPixmap(pizza, assets);
+    public void savePostcardImage(Postcard postcard) {
+        Pixmap postcardPixmap = postcard.getPixmap();
 
-        postcardFilePath = Gdx.files.local("postcards/" + Capture.fileName());
+        postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
 
-        writePostcardPNG();
+        writePostcardPNG(postcardPixmap);
 
         sharePostcardPNG();
+    }
+
+    @Override
+    public void savePizzaXml(String pizzaXml) {
+        FileHandle autosaveFile = Gdx.files.local(Constants.autosaveFile);
+        autosaveFile.writeString(pizzaXml, false);
+    }
+
+    @Override
+    public String loadPizzaXml() {
+        if (Gdx.files.local(Constants.autosaveFile).exists()) {
+            return Gdx.files.local(Constants.autosaveFile).readString();
+        } else {
+            return "";
+        }
     }
 
     private void sharePostcardPNG() {
@@ -60,14 +72,8 @@ public class AndroidCaptureIO implements CaptureIO {
                 activity.getResources().getText(R.string.share_header)));
     }
 
-    private void writePostcardPNG() {
-        Gdx.app.log("AndroidCaptureIO",
-                "writing postcard PNG to " + postcardFilePath.toString());
+    private void writePostcardPNG(Pixmap postcardPixmap) {
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
-    }
-
-    public void dispose() {
-        postcardPixmap.dispose();
     }
 
 }

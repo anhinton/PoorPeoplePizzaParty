@@ -1,11 +1,11 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-import java.util.Locale;
-
-import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 
 public interface CaptureIO {
-    void savePizza(Pizza pizza, Assets assets);
+    void savePostcardImage(Postcard postcard);
 
-    void dispose();
+    void savePizzaXml(String pizzaXml);
+
+    String loadPizzaXml();
 }

@@ -8,7 +8,7 @@ at <https://github.com/libgdx/libgdx/wiki/Gradle-and-Intellij-IDEA>.
 
 ### License
 
-Poor People Pizza Party copyright 2018 Ashley Noel Hinton.
+Poor People Pizza Party copyright 2019 Ashley Noel Hinton.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,11 +31,17 @@ Unless declared otherwise below the assets in `android/assets` are licensed
 under a [Creative Commons Attribution-ShareAlike 4.0 International 
 License](http://creativecommons.org/licenses/by-sa/4.0/).
 
-`fonts/Cagliostro-Regular/` "Cagliostro" Copyright (c) 2011, Matthew Desmond
+`fonts/button`, `fonts/credits` "Inconsolata" Copyright 2006 The Inconsolata Project Authors
 is licensed under the SIL Open Font License, Version 1.1.
 
-`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/undo.png`
-"arrow_back", "camera_alt" and "undo" by 
+`fonts/label` "Podkova" Copyright 2011 The Podkova Project Authors 
+(contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
+
+`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/close.png` 
+`graphics/icons/save.png` `graphics/icons/settings.png` `graphics/icons/share.png` 
+`graphics/icons/undo.png` `graphics/icons/volume_mute.png` `graphics/icons/volume_up.png`
+"arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", 
+"volume_mute", and "volume_up" by 
 [Google](https://material.io/tools/icons/) are licensed under 
 [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
 
@@ -59,7 +65,22 @@ by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
 by Mariuszjbie is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
 
-`graphics/postcard.png`
+`graphics/lunch.png`
+"[Lunch](https://www.flickr.com/photos/thomasbonte/4956496553/in/photostream/)"
+by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
+[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+`graphics/postcards/postcard01.png`
 "[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
 by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
 under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
+
+`graphics/postcards/postcard02.png`
+"[Waipori River](https://www.flickr.com/photos/itravelnz/28166819765/)"
+by [itravelNZ® - New Zealand in your pocket™](https://www.flickr.com/photos/itravelnz/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+`graphics/postcards/postcard03.png`
+"[018](https://www.flickr.com/photos/93842075@N04/8596242513/)" 
+by [Phillip Cossar](https://www.flickr.com/photos/93842075@N04/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).

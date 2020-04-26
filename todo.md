@@ -1,6 +1,224 @@
 # TODO
+	    
+  + delay "fired" button on ServeBossScreen
   
-  + implement Cook screen
+  + camera flash effect on PostcardScreen
+
+  + go to loading screen when resuming from pause on Android
+    <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
+    
+  + add Coco Wiggler 4 music which plays after first "loss"
+
+  + drop freetype font support
+		
+  + texture packing
+      
+  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed
+      
+  + do a Vector Android app icon
+  
+  + stop debugging for release
+      - remove debugging statements Gdx.app.log
+  
+  + investigate desktop full screen and window resizing
+      - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
+        sizes
+        
+  + revise credits
+  
+  + consider a thicker font for credits to make more legible on mobile
+  
+## Done
+   
+  + ~~implement audio~~
+      - ~~topping sound effects~~
+      - ~~camera sound on PostcardScreen~~
+      - ~~guitar pick scrape for boss entrance~~
+	  - ~~add a Music and Sound volume controls in Settings~~
+	      - ~~hold icons to mute/full~~
+	  - ~~Music~~:
+	      - ~~folk Funiculi/Club Penguin pizza on start~~
+	      - ~~metal Funiculi on boss firing~~
+	  - ~~don't mute system audio? or when you mute game audio it enables
+	    system audio? **UPDATE**: this seems to be enabled without me doing anything~~
+	  - ~~save audio volumes using Preferences~~
+
+  ~~+ migrate assets to single load on launch with loading bar~~
+      - ~~create Assets.loadGameAssets() which loads all graphics assets but does not block~~
+      - ~~create TitleScreen.class~~
+          - ~~display "Loading" and a slider showing progress~~
+          - ~~call Assets.loadGameAssets() in constructor~~
+          - ~~follow pattern on 
+            [Managing your assets](https://github.com/libgdx/libgdx/wiki/Managing-your-assets)
+            in section starting "So far we only queued assets to be loaded [...]" which 
+            demonstrates how to show progress while loading asynchronously~~
+      - ~~set first screen in PoorPeoplePizzaParty to TitleScreen~~
+	  
+  + ~~move viewport boilerplate to a utils Class~~
+      - ~~created static methods UiSize.getViewportHeight() and UiSize.getViewportHeight()~~
+      - ~~**SOLVED**: button width problems when viewport is taller than expected:
+        no longer a problem as button sizes are now fixed in Constants instead of calculated 
+        in UiSize~~
+  
+  + ~~add "do you want to quit?" dialog to TitleScreen~~
+      - ~~new CurrentTitleMenu value QUIT~~
+          - ~~goBack() from TITLE -> QUIT (unless on WebGl version)~~
+          - ~~goBack() from QUIT -> quit()~~ 
+      - ~~"Yes" button calls quit()~~
+      - ~~"No" button sets menu back to TITLE~~
+  
+  + ~~give fonts meaningful names~~
+      
+  + ~~go back to a single viewport size for UI; do away with all these font sizes~~
+      - ~~it turns out maintaining all of this UI size logic is a reall pain in the butt that
+        I don't really need to bother about~~
+        
+  + ~~create TitleScreen class~~
+      - ~~Poor People Pizza Party~~
+      - ~~Play, Settings, Quit buttons~~
+      - ~~Settings has audio and music volume sliders~~
+      - ~~change Android back button behaviour in PizzaScreen.class to go back 
+        to here~~
+      - ~~touch Labels on either end of volume settings sliders to mute/full volume~~
+      - ~~volume Image icons press to raise or lower volumes~~
+      - ~~volume level /100 displayed to right~~
+      - ~~no Quit button on Html/WebGL~~
+      - ~~Credits button in Settings menu displays Credits ui~~
+      - ~~implement goBack() to catch ESC presses~~
+  
+  + ~~make Title header somewhat cooler~~
+      
+  + ~~add "close" button to PizzaScreen which goes back to TitleScreen~~
+          
+  + ~~pop up a fake "score" when a topping is placed~~
+      - ~~"+6" 2x then "+666"~~
+      - ~~drifts upwards and fades~~
+      - ~~centred on topping x, y~~
+      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
+        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
+        coordinates~~
+
+  + ~~switch to fixed font sizes for screen heights >= 1080, >= 720, < 720~~
+      - ~~delete DesktopUiFont, AndroidUiFont, HtmlUiFont, UiFont~~
+      - ~~UiSkin() takes height argument: screen height~~
+      - ~~UiFont loads 64pt, 43pt, or 36pt button and label fonts for above screen sizes~~
+  
+  + ~~change title desktop on save postcard to... dialog (currently says "serialize" =P)~~ 
+          
+  + ~~remove postcard debugging code~~
+
+  + ~~save Pizza to local storage on exit, reload on start~~
+      - ~~DO IT AGAIN BUT USE XML~~
+      - ~~decide whether Preferences or a Local file is better for this, remembering
+        that Preferences will be used for Music/Audio volume:~~
+          - ~~DO NOT use Preferences as I am saving as XML and and XML string inside Preferences
+            gets escaped out~~
+      - ~~Pizza.serialize() returns XML of toppings list~~
+      - ~~PizzaScreen.save() saves XML of toppings to storage~~
+          - ~~calls Pizza.serialize() to get XML~~
+          - ~~calls Pizza.saveFile() to get FileHandle~~
+          - ~~Desktop saves to External storage~~
+          - ~~Android saves to Local storage~~
+          - ~~no save support for WebGl/html~~
+      - ~~save() on exiting PizzaScreen~~
+          - ~~PizzaScreen.pause()~~
+          - ~~don't save on cook() or createPostcard(): the current way of passing Pizza
+            objects can handle this~~
+      - ~~create Pizza.load() to deserialize Pizza~~
+          - ~~create Pizza.addTopping() case for BASE: setBaseTopping() but nothing else,
+            otherwise BASE stacks as you save and load~~
+      - ~~load() on init~~
+          - ~~add loadAutosave argument to new Pizza() constructor. true when called from
+            PoorPeoplePizzaParty, false from ServeBossScreen and ServerWorkersScreen~~
+      - ~~implement for Desktop, then go back and do Android~~
+      - ~~WebGl/html now failing to compile: I need to re-implement this using
+        platform-specific code~~
+          - ~~CaptureIO.savePizzaXml(String pizzaXml) called by PizzaScreen.save()~~
+          - ~~String CaptureIO.loadPizzaXml() called by PizzaScreen.load()~~
+              - ~~returns an empty String when load file doesn't exist~~
+              - ~~Pizza.deserialize() does not attempt to read XML if rootElement is null,
+                i.e. if empty string is passed in~~
+          - ~~implement methods in DesktopCaptureIO~~
+          - ~~implement methods in AndroidCaptureIO~~
+          - ~~empty methods in HtmlCaptureIO~~
+      - `~~test test test!~~
+      - ~~remove save() debugging code~~
+          - ~~hotkey~~
+          - ~~print XML~~
+
+  + ~~hold Undo button on PizzaScreen to remove all toppings~~
+      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
+      - ~~handle long press logic in PizzaScreen.render()~~
+      - ~~implement Pizza.removeAllToppings()~~
+      - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
+  
+  + ~~create PostcardScreen class~~
+      - ~~photo button takes you to this screen so you can see the postcard
+	    before saving/sharing~~
+	  - ~~back button/Esc goes back to PizzaScreen~~
+	  - ~~Desktop: save and back UI buttons~~
+	  - ~~Android: share and back UI buttons~~
+	  - ~~create some more postcards for variety~~
+	  - ~~work out why screen is resizing on Android~~
+	  - ~~render pizza y-up~~
+	  - ~~Html: back button~~
+	  - ~~**IT'S FINE WHERE IT IS**: move Postcard.fileName() somewhere sensible~~
+		
+  + ~~bring back web version~~
+      - ~~get web version to run~~
+      - test web version actually works
+          - ~~currently failing in Pizza.getPixmap() when doing BufferUtils.copy()~~
+          - ~~CookScreen~~
+          - ~~PizzaScreen~~
+          - ~~PostcardScreen~~
+          - ~~ServeBossScreen~~
+          - ~~ServeWorkersScreen~~
+      - ~~only the back button shows on the HTML postcard screen. use snipping tool, gamers!~~
+    
+  + ~~**BUG** work out why background from old postcard shows behind pizza when quickly going
+  	back and forth from PostcardScreen~~
+	  - ~~this seems to only happen when quickly creating a new Pizza pixmap after 
+	    disposing of one. It's possible to recreate this when going back and forth
+        from ServeBossScreen. Currently only happening on Linux laptop Desktop and
+        Android emulator build. Not happening in WebGl build on laptop, or on desktop PC.
+        I need to test on some other computers, maybe do a proper build.~~
+  
+  + ~~pick a better font~~
+      - ~~Inconsolata for buttons and Podkova for labels~~
+        
+  + ~~create ServeWorkersScreen.class~~
+      - ~~make image assets~~
+          - ~~pizza party/worker party~~
+      - ~~send here from CookScreen choice~~
+      - ~~it's a pizza party celebrate!~~
+	  - ~~FlyingPizza class~~
+	      - ~~spawn at random location off-screen~~
+		  - ~~fly across screen~~
+		  - ~~dispose once off-screen~~
+		  - ~~randomise sprite rotation: will require re-calculating 
+		    when sprite leaves screen~~
+	  - ~~spawn FlyingPizzas at random intervals~~
+	  - ~~LunchPhoto class~~
+	      - ~~show colour Sprite by default~~
+		  - ~~function to switch to grey~~
+	  - ~~party picture turns grey~~
+	  - ~~blood drip effect scrolls down from top~~
+	  - ~~Boss class~~
+          - ~~boss pops up~~
+		  - ~~says "I can't believe you people eat this mass-produced
+		    rubbish"~~
+      - ~~everyone fired~~
+      - ~~implement Android back button logic~~
+      - ~~fix UI scale for Android~~
+	  - ~~make "everyone has been fired" bigger and in middle of screen~~
+	  - ~~make grayscale version of LunchPhoto have inverted colours~~
+	  - ~~PizzaPartyAnimation.class~~
+	      - ~~flash "PIZZA" and "PARTY" handwritten text on screen while 
+		    partying~~
+	  - ~~click/touch to advance~~
+	  
+  + ~~implement Cook screen~~
       - ~~countdown timer~~
       - ~~then show a cooked pizza and give option to serve to Bosses or 
         Workers~~
@@ -9,45 +227,8 @@
           - ~~go back to PizzaScreen with existing Pizza~~
       - implement CookScreen.serve()
           - ~~send to ServeBossScreen for BOSS~~
-          - send to ServerWorkersScreen.class for WORKERS
+          - ~~send to ServerWorkersScreen.class for WORKERS~~
 
-  + move viewport boilerplate to a utils Class
-        
-  + create ServeWorkersScreen.class
-      - make image assets
-          - pizza party/worker party
-          - streamers
-      - send here from CookScreen choice
-      - it's a pizza party celebrate!
-      - boss pops up and says "I can't believe you people eat this 
-        mass-produced rubbish"
-      - everyone fired
-      - implement Android back button logic
-      
-  + create TitleScreen class
-      - pizza party, a party for pizza
-      - change Android back button behaviour in PizzaScreen.class to go back 
-        to here
-      - change "you have been fired" button behaviour in ServeBossScreen and 
-        ServerWorkersScreen to go back to here
-        
-  + implement audio
-      - topping sound effects
-      
-  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
-    is last placed
-      
-  + do a Vector Android app icon
-  
-  + stop debugging for release
-  
-  + investigate desktop full screen and window resizing
-  
-  + investigate html build
-      - screenshot button just displays the postcard
-  
-## Done
-  
   + ~~create ServeBossScreen class~~
       - ~~make Boss sprite~~
       - ~~send here from CookScreen choice~~
@@ -115,16 +296,6 @@
   + ~~get WebGL working~~
       - ~~it didn't seem to like the async loading in 
         Assets.loadCookScreenAssets() yesterday but now today it's fine?~~
-
-  + ~~create platform-specific UiFont to provide BitmapFont for webgl, 
-    FreetypeFont for desktop and android~~
-    <https://github.com/libgdx/libgdx/wiki/Interfacing-with-platform-specific-code>
-      - ~~create UiFont interface~~
-      - ~~create UiSkin() constructor which takes a UiFont argument~~
-      - ~~UiSkin calls uiFont.getUiFont()~~
-      - ~~implement DesktopUiFont~~
-      - ~~implement AndroidUiFont~~
-      - ~~implement HtmlUiFont~~
   
   + ~~get WebGL working~~
       - ~~does WebGL work now: **YES** thanks to loading UI font via UiFont~~
@@ -306,7 +477,7 @@
   
 ## creating Topping and ToppingMenuButton objects
 
-The plan is to have eight toppings available from a UI menu which can
+~~The plan is to have eight toppings available from a UI menu which can
 be placed on the pizza:
   - sauce
   - cheese
@@ -336,4 +507,4 @@ There should be eight ToppingMenuButton objects, one for each topping in the
 list above. When a ToppingMenuButton is selected this should set the 
 toppingSelected field in PizzaScreen to topping name. While a 
 ToppingMenuItem is selected, clicking on the Pizza will add a Topping 
-object to the array of Topping objects held in Pizza.
+object to the array of Topping objects held in Pizza.~~

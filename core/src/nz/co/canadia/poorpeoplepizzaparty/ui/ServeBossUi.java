@@ -1,6 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -15,9 +16,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.screens.ServeBossScreen;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Capture;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 /**
  * This class implements the UI layout for the ServeBossScreen.class
@@ -25,28 +24,25 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.UiSize;
 
 public class ServeBossUi extends Table {
 
-    private final int screenWidth;
-    private final int screenHeight;
     private final ServeBossScreen serveBossScreen;
     private final Skin uiSkin;
     private final AssetManager assets;
     private final I18NBundle bundle;
     private final int padding;
     private final Pizza pizza;
+    private Texture pizzaTexture;
+    private Pixmap pizzaPixmap;
 
-    public ServeBossUi(int screenWidth, int screenHeight,
-                       ServeBossScreen serveBossScreen,
+    public ServeBossUi(ServeBossScreen serveBossScreen,
                        Skin uiSkin, AssetManager assets, I18NBundle bundle,
                        Pizza pizza) {
 
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
         this.serveBossScreen = serveBossScreen;
         this.uiSkin = uiSkin;
         this.assets = assets;
         this.bundle = bundle;
         this.pizza = pizza;
-        padding = UiSize.getPadding(screenHeight);
+        padding = Constants.UNIT;
 
         super.setFillParent(true);
 
@@ -59,8 +55,7 @@ public class ServeBossUi extends Table {
         super.pad(padding);
 
         Table leftColumn = new Table(uiSkin);
-        super.add(leftColumn)
-        ;
+        super.add(leftColumn);
 
         String firedString = "";
         switch(MathUtils.random(1, 2)) {
@@ -72,17 +67,18 @@ public class ServeBossUi extends Table {
                 break;
         }
 
-        Texture pizzaTexture = new Texture(Capture.capturePizza(pizza));
+        Image bossImage = new Image(assets.get("graphics/boss.png", Texture.class));
+
+        pizzaPixmap = pizza.getPixmap();
+        pizzaTexture = new Texture(pizzaPixmap);
         pizzaTexture.setFilter(Texture.TextureFilter.Linear,
                 Texture.TextureFilter.Linear);
         Image pizzaImage = new Image(pizzaTexture);
         leftColumn.add(pizzaImage)
                 .prefSize( // this Image is a full Base image, needs to be
                            // scaled
-                        UiSize.getImageWidth(pizzaImage.getPrefWidth(),
-                                screenWidth) * Constants.BASE_SERVE_SCALE,
-                        UiSize.getImageHeight(pizzaImage.getPrefHeight(),
-                                screenHeight) * Constants.BASE_SERVE_SCALE)
+                        pizzaImage.getPrefWidth() * Constants.BASE_SERVE_SCALE,
+                        pizzaImage.getPrefHeight() * Constants.BASE_SERVE_SCALE)
                 .space(padding);
         leftColumn.row();
 
@@ -96,7 +92,7 @@ public class ServeBossUi extends Table {
 
         TextButton firedButton = new TextButton(bundle.get("servebossFiredButton"), uiSkin,
                 "default");
-        firedButton.getLabel().setWrap(true);
+//        firedButton.getLabel().setWrap(true);
         firedButton.getLabel().setText(firedButton.getText());
         firedButton.addListener(new ChangeListener() {
             @Override
@@ -105,19 +101,17 @@ public class ServeBossUi extends Table {
             }
         });
         leftColumn.add(firedButton)
-                .prefSize(UiSize.getButtonWidthFull(screenWidth, screenHeight),
-                UiSize.getButtonHeight(screenHeight))
+                .prefSize(Constants.GAME_WIDTH / 2f,
+                        Constants.BUTTON_HEIGHT)
                 .space(padding);
 
-        Image bossImage = new Image(assets.get("graphics/boss.png", Texture.class));
         super.add(bossImage)
-                .prefSize(
-                        UiSize.getImageWidth(bossImage.getPrefWidth(),
-                                screenWidth),
-                        UiSize.getImageHeight(bossImage.getPrefHeight(),
-                                screenHeight))
-//                .expand()
                 .space(padding);
+    }
+
+    public void dispose() {
+        pizzaPixmap.dispose();
+        pizzaTexture.dispose();
     }
 
 }

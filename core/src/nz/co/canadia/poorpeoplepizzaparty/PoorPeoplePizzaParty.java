@@ -3,32 +3,76 @@ package nz.co.canadia.poorpeoplepizzaparty;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.PizzaScreen;
+import nz.co.canadia.poorpeoplepizzaparty.screens.LoadingScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiFont;
-import nz.co.canadia.poorpeoplepizzaparty.utils.UiSkin;
+
+/**
+ * The PoorPeoplePizzaParty class is the main class for the game Poor People Pizza Party.
+ * It initiates a PizzaScreen and let's the party begin.
+ */
 
 public class PoorPeoplePizzaParty extends Game {
     public Assets assets;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public UiSkin uiSkin;
+    public Skin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
-    private UiFont uiFont;
+    private Music music;
+    private float musicVolume;
+    private float soundVolume;
 
-    public PoorPeoplePizzaParty(CaptureIO captureIO, UiFont uiFont) {
+    public PoorPeoplePizzaParty(CaptureIO captureIO) {
         this.captureIO = captureIO;
-        this.uiFont = uiFont;
+        musicVolume = 0;
+        soundVolume = 0;
     }
+
+    public float getSoundVolume() {
+        return soundVolume;
+    }
+
+    public void setSoundVolume(float soundVolume) {
+        this.soundVolume = MathUtils.clamp(soundVolume, 0, 1);
+    }
+
+    public float getMusicVolume() {
+        return musicVolume;
+    }
+
+    public void setMusic(String fileHandle) {
+        music = assets.get(fileHandle, Music.class);
+        music.setVolume(musicVolume);
+    }
+
+    public void playMusic() {
+        music.setLooping(false);
+        music.play();
+    }
+
+    public void playMusicLooping() {
+        music.setLooping(true);
+        music.play();
+    }
+
+    public void setMusicVolume(float musicVolume) {
+        this.musicVolume = MathUtils.clamp(musicVolume, 0, 1);
+        music.setVolume(musicVolume);
+    }
+
+    public void stopMusic() { music.stop(); }
 
     @Override
     public void create() {
@@ -36,12 +80,12 @@ public class PoorPeoplePizzaParty extends Game {
         // TODO: stop debugging for release
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
-        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
 
         assets = new Assets();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        uiSkin = new UiSkin(uiFont);
+        uiSkin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
         I18NBundle.setSimpleFormatter(true);
         FileHandle bundleFileHandle =
@@ -49,12 +93,7 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        // TODO: stop loading assets once finished debugging ServeBossScreen
-        assets.loadPizzaScreenAssets();
-        // TODO: change back to PizzaScreen
-//        this.setScreen(new CookScreen(this, new Pizza(assets),true));
-//        this.setScreen(new ServeBossScreen(this, new Pizza(assets)));
-        this.setScreen(new PizzaScreen(this));
+        this.setScreen(new LoadingScreen(this));
     }
 
     @Override
@@ -66,22 +105,18 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         assets.dispose();
         batch.dispose();
-        captureIO.dispose();
+        music.dispose();
         shapeRenderer.dispose();
         uiSkin.dispose();
 
         // clean up shared postcard files, if they exist
-        switch (Gdx.app.getType()) {
-            case Android:
-                if (Gdx.files.local("postcards/").exists()) {
-                    Gdx.app.log("PoorPeoplePizzaParty", "deleting postcards");
-                    FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
-                    for (FileHandle file: postcardFiles) {
-                        file.delete();
-                        Gdx.app.log("PoorPeoplePizzaParty",
-                                file.toString() + " deleted");
-                    }
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            if (Gdx.files.local("postcards/").exists()) {
+                FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
+                for (FileHandle file : postcardFiles) {
+                    file.delete();
                 }
+            }
         }
     }
 }

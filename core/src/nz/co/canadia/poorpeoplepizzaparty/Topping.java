@@ -47,6 +47,10 @@ public class Topping {
         }
     }
 
+    float getRotation() {
+        return selectedSprite.getRotation();
+    }
+
     public float getX() {
         return selectedSprite.getX();
     }
@@ -63,7 +67,7 @@ public class Topping {
         return toppingName;
     }
 
-    public boolean getVisible() {
+    boolean getVisible() {
         return visible;
     }
 

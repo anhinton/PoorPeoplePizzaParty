@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,10 +14,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
+import nz.co.canadia.poorpeoplepizzaparty.Points;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Topping;
 import nz.co.canadia.poorpeoplepizzaparty.ui.PizzaMessage;
@@ -32,19 +36,31 @@ public class PizzaScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private Pizza pizza;
     private OrthographicCamera gameCamera;
-    private Viewport gameViewport;
-    private Stage uiStage;
+    private Viewport viewport;
+    private Stage stage;
     private PizzaUi pizzaUi;
     private PizzaMessage pizzaMessage;
     private Topping selectedTopping;
     private boolean showedToppingTutorial;
+    private float undoPressedTime;
+    private boolean removeAllFired;
+    private Array<Points> pointsArray;
+    private int pointsCount;
+    private ObjectMap<Constants.ToppingName, Sound> toppingSoundMap;
 
-    public PizzaScreen(final PoorPeoplePizzaParty game) {
+    public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
         showedToppingTutorial = false;
+        undoPressedTime = 0;
+        removeAllFired = false;
 
         initialise();
-        pizza = new Pizza(game.assets);
+        if (loadAutosave) {
+            pizza = new Pizza(game.assets);
+            load();
+        } else {
+            pizza = new Pizza(game.assets);
+        }
     }
 
     PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
@@ -55,53 +71,103 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void initialise() {
-        selectedTopping = null;
 
-        game.assets.loadPizzaScreenAssets();
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.playMusicLooping();
+
+        game.assets.loadToppingsSounds();
+
+        toppingSoundMap = new ObjectMap<Constants.ToppingName, Sound>();
+        toppingSoundMap.put(Constants.ToppingName.APRICOT,
+                game.assets.get("sounds/toppings/apricot.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.BACON,
+                game.assets.get("sounds/toppings/bacon.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.BARBECUE,
+                game.assets.get("sounds/toppings/barbecue.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.CHEESE,
+                game.assets.get("sounds/toppings/cheese.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.CHICKEN,
+                game.assets.get("sounds/toppings/chicken.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SALAMI,
+                game.assets.get("sounds/toppings/salami.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUCE,
+                game.assets.get("sounds/toppings/sauce.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUSAGE,
+                game.assets.get("sounds/toppings/sausage.mp3", Sound.class));
+
+        selectedTopping = null;
+        pointsArray = new Array<Points>();
+        pointsCount = 0;
 
         gameCamera = new OrthographicCamera();
-        gameViewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+        viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
                 Constants.GAME_HEIGHT);
 
-        OrthographicCamera uiCamera = new OrthographicCamera();
-        float screenWidth = Gdx.graphics.getBackBufferWidth();
-        float screenHeight = Gdx.graphics.getBackBufferHeight();
-        Viewport uiViewport;
-        if (screenWidth / screenHeight >= Constants.GAME_ASPECT_RATIO) {
-            uiViewport = new FitViewport(
-                    Math.round(screenHeight * Constants.GAME_ASPECT_RATIO),
-                    screenHeight,
-                    uiCamera);
-        } else {
-            uiViewport = new FitViewport(screenWidth,
-                    screenWidth / Constants.GAME_ASPECT_RATIO,
-                    uiCamera);
-        }
-
-        uiStage = new Stage(uiViewport);
-        pizzaUi = new PizzaUi(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), this, game.uiSkin,
-                game.bundle, game.captureIO, game.assets);
-        uiStage.addActor(pizzaUi);
-        pizzaMessage = new PizzaMessage(uiViewport.getScreenWidth(),
-                uiViewport.getScreenHeight(), game.uiSkin);
-        uiStage.addActor(pizzaMessage);
+        stage = new Stage(viewport, game.batch);
+        pizzaUi = new PizzaUi(this, game.uiSkin,
+                game.bundle, game.assets);
+        stage.addActor(pizzaUi);
+        pizzaMessage = new PizzaMessage(game.uiSkin);
+        stage.addActor(pizzaMessage);
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(uiStage);
+        multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
-    public void capturePizza() {
-        game.assets.loadPostcardAssets();
-        game.captureIO.savePizza(pizza, game.assets);
+    public void createPostcard(){
+        game.setScreen(new PostcardScreen(game, pizza));
+        dispose();
     }
 
     public void cook() {
         game.setScreen(new CookScreen(game, pizza, true));
         dispose();
+    }
+
+    public void goBack() {
+        save();
+        game.setScreen(new TitleScreen(game));
+        dispose();
+    }
+
+    private void addTopping(Topping topping, float x, float y) {
+        pizza.addTopping(topping);
+        playToppingSound(topping.getToppingName());
+        scorePoints(x, y);
+    }
+
+    private void playToppingSound(Constants.ToppingName toppingName) {
+        switch(toppingName) {
+            case APRICOT:
+            case BACON:
+            case BARBECUE:
+            case CHEESE:
+            case CHICKEN:
+            case SALAMI:
+            case SAUCE:
+            case SAUSAGE:
+                toppingSoundMap.get(toppingName).play(game.getSoundVolume());
+                break;
+        }
+    }
+
+    private void removeAllToppings() {
+        pizza.removeAllToppings();
+        pointsCount = 0;
+    }
+
+    private void save() {
+        String pizzaXml = pizza.serialize();
+        game.captureIO.savePizzaXml(pizzaXml);
+    }
+
+    private void load() {
+        String pizzaXml = game.captureIO.loadPizzaXml();
+        pizza.deserialize(pizzaXml);
     }
 
     public void undoLastTopping() {
@@ -110,6 +176,21 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public void clearMessage() {
         pizzaMessage.clearMessage();
+    }
+
+    private void scorePoints(float x, float y) {
+        pointsCount++;
+        String text;
+        if (MathUtils.random(1, 420) == 420) {
+            text = game.bundle.get("scorePointsRandom");
+        } else if (pointsCount % 69 == 0) {
+            text = game.bundle.get("scorePointsSixtyNine");
+        } else if (pointsCount % 3 == 0) {
+            text = game.bundle.get("scorePointsThree");
+        } else {
+            text = game.bundle.get("scorePointsBasic");
+        }
+        pointsArray.add(new Points(x, y, game.uiSkin.getFont("label-font"), text));
     }
 
     private void showMessage(String s) {
@@ -127,8 +208,8 @@ public class PizzaScreen implements InputProcessor, Screen {
             x = selectedTopping.getX();
             y = selectedTopping.getY();
         } else {
-            x = Constants.GAME_WIDTH / 2;
-            y = Constants.GAME_HEIGHT / 2;
+            x = Constants.GAME_WIDTH / 2f;
+            y = Constants.GAME_HEIGHT / 2f;
         }
         selectedTopping = new Topping(
                 x,
@@ -143,10 +224,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            if (!pizzaUi.goBack()) {
-                Gdx.app.exit();
-            }
-            return true;
+            return pizzaUi.goBack();
         }
         return false;
     }
@@ -178,15 +256,17 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Vector3 touchCoords = gameCamera.unproject(
+        Vector3 pizzaCoords = gameCamera.unproject(
+                new Vector3(screenX, screenY, 0));
+        Vector3 uiCoords = stage.getCamera().unproject(
                 new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()
                 & pizzaUi.getCurrentMenu() == Constants.CurrentPizzaMenu.MAIN) {
-            if (touchCoords.x > Constants.PIZZA_LEFT &
-                    touchCoords.x < Constants.PIZZA_RIGHT &
-                    touchCoords.y > Constants.PIZZA_BOTTOM &
-                    touchCoords.y < Constants.PIZZA_TOP) {
-                pizza.addTopping(selectedTopping);
+            if (pizzaCoords.x > Constants.PIZZA_LEFT &
+                    pizzaCoords.x < Constants.PIZZA_RIGHT &
+                    pizzaCoords.y > Constants.PIZZA_BOTTOM &
+                    pizzaCoords.y < Constants.PIZZA_TOP) {
+                addTopping(selectedTopping, uiCoords.x, uiCoords.y);
             }
             selectedTopping = new Topping(selectedTopping.getX(),
                     selectedTopping.getY(),
@@ -244,15 +324,27 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void render(float delta) {
+        // clear screen
         Gdx.gl.glClearColor(Constants.BG_COLOUR.r, Constants.BG_COLOUR.g,
                 Constants.BG_COLOUR.b, Constants.BG_COLOUR.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        gameViewport.apply();
+        // update game camera
+        viewport.apply();
         gameCamera.update();
         game.batch.setProjectionMatrix(gameCamera.combined);
         game.shapeRenderer.setProjectionMatrix(gameCamera.combined);
 
+        // update Points array
+        for (int i = 0; i < pointsArray.size; i++) {
+            if (pointsArray.get(i).isVisible()) {
+                pointsArray.get(i).update(delta);
+            } else {
+                pointsArray.removeIndex(i);
+            }
+        }
+
+        // draw pizza sprites
         game.batch.begin();
         pizza.draw(game.batch);
         if (hasSelectedTopping()) {
@@ -260,6 +352,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
         game.batch.end();
 
+        // draw debugging bounds
         if (Constants.DEBUG_GRAPHICS) {
             game.shapeRenderer.setColor(1,1,1,1);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -277,10 +370,21 @@ public class PizzaScreen implements InputProcessor, Screen {
             game.shapeRenderer.end();
         }
 
-        uiStage.getViewport().apply();
-        uiStage.getCamera().update();
-        uiStage.act(delta);
-        uiStage.draw();
+        // update UI camera
+        stage.getViewport().apply();
+        stage.getCamera().update();
+        stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
+        stage.act(delta);
+
+        // draw Points in UI layer
+        stage.getBatch().begin();
+        for (Points p: pointsArray) {
+            p.draw(stage.getBatch());
+        }
+        stage.getBatch().end();
+
+        // draw UI
+        stage.draw();
 
         // show topping tutorial the first time a topping is selected
         if (!showedToppingTutorial) {
@@ -298,17 +402,32 @@ public class PizzaScreen implements InputProcessor, Screen {
                 showMessage(s);
             }
         }
+
+        // check for undoButton long presses
+        if (pizzaUi.undoButtonPressed()) {
+            if (!removeAllFired) {
+                if (undoPressedTime > 1.1f) { // TODO: move this float to Constants
+                    removeAllToppings();
+                    removeAllFired = true;
+                }
+            }
+            undoPressedTime += delta;
+        } else {
+            if (removeAllFired) {
+                removeAllFired = false;
+                undoPressedTime = 0;
+            }
+        }
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height);
-        uiStage.getViewport().update(width, height, true);
+        viewport.update(width, height);
     }
 
     @Override
     public void pause() {
-
+        save();
     }
 
     @Override
@@ -323,6 +442,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        uiStage.dispose();
+        stage.dispose();
+        game.assets.unloadToppingsSounds();
     }
 }
