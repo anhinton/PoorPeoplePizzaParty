@@ -100,6 +100,14 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+        switch(state) {
+            case SERVE:
+                showFiredButton();
+                return true;
+            case FIRED:
+                return true;
+        }
         return false;
     }
 
