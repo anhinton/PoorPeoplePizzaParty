@@ -68,7 +68,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     private void showFiredButton() {
         state = Constants.ServeBossState.FIRED;
-        Gdx.app.log("ServeBossScreen", "show fired button");
         serveBossUi.showFiredButton();
     }
 
