@@ -1,0 +1,278 @@
+
+graphics.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+doomdrips
+  rotate: false
+  xy: 2, 2
+  size: 960, 377
+  orig: 960, 377
+  offset: 0, 0
+  index: -1
+icons/back
+  rotate: false
+  xy: 964, 736
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/camera
+  rotate: false
+  xy: 964, 684
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/close
+  rotate: false
+  xy: 964, 632
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/save
+  rotate: false
+  xy: 964, 580
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/settings
+  rotate: false
+  xy: 964, 528
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/share
+  rotate: false
+  xy: 964, 476
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/undo
+  rotate: false
+  xy: 964, 424
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/volume_mute
+  rotate: false
+  xy: 964, 372
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/volume_up
+  rotate: false
+  xy: 964, 320
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+lunch
+  rotate: false
+  xy: 2, 381
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: 1
+toppings/lunch
+  rotate: false
+  xy: 2, 381
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: 1
+toppings/chicken-topping
+  rotate: false
+  xy: 964, 902
+  size: 58, 79
+  orig: 58, 79
+  offset: 0, 0
+  index: -1
+toppings/salami-topping
+  rotate: false
+  xy: 964, 844
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+toppings/sausage-topping
+  rotate: false
+  xy: 964, 788
+  size: 57, 54
+  orig: 57, 54
+  offset: 0, 0
+  index: -1
+
+graphics2.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+headers/cookScreenPizza
+  rotate: false
+  xy: 604, 80
+  size: 303, 280
+  orig: 303, 280
+  offset: 0, 0
+  index: -1
+lunch
+  rotate: false
+  xy: 2, 362
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: 2
+toppings/lunch
+  rotate: false
+  xy: 2, 362
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: 2
+pizzaparty
+  rotate: false
+  xy: 2, 60
+  size: 600, 300
+  orig: 600, 300
+  offset: 0, 0
+  index: 0
+toppings/bacon-topping
+  rotate: false
+  xy: 2, 2
+  size: 222, 56
+  orig: 222, 56
+  offset: 0, 0
+  index: -1
+
+graphics3.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+headers/pizzaScreen
+  rotate: false
+  xy: 604, 42
+  size: 300, 260
+  orig: 300, 260
+  offset: 0, 0
+  index: -1
+pizzaparty
+  rotate: false
+  xy: 2, 2
+  size: 600, 300
+  orig: 600, 300
+  offset: 0, 0
+  index: 1
+postcards/postcard01
+  rotate: false
+  xy: 2, 304
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: -1
+
+graphics4.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+headers/titleScreen
+  rotate: false
+  xy: 2, 2
+  size: 920, 480
+  orig: 920, 480
+  offset: 0, 0
+  index: -1
+toppings/apricot-topping
+  rotate: false
+  xy: 2, 491
+  size: 453, 433
+  orig: 453, 433
+  offset: 0, 0
+  index: -1
+toppings/barbecue-topping
+  rotate: false
+  xy: 457, 484
+  size: 455, 440
+  orig: 455, 440
+  offset: 0, 0
+  index: -1
+
+graphics5.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+postcards/postcard02
+  rotate: false
+  xy: 2, 2
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: -1
+
+graphics6.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+postcards/postcard03
+  rotate: false
+  xy: 2, 2
+  size: 960, 600
+  orig: 960, 600
+  offset: 0, 0
+  index: -1
+
+graphics7.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+boss
+  rotate: false
+  xy: 564, 16
+  size: 290, 546
+  orig: 290, 546
+  offset: 0, 0
+  index: -1
+toppings/base-topping
+  rotate: false
+  xy: 2, 2
+  size: 560, 560
+  orig: 560, 560
+  offset: 0, 0
+  index: -1
+
+graphics8.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+toppings/cheese-topping
+  rotate: false
+  xy: 2, 2
+  size: 560, 560
+  orig: 560, 560
+  offset: 0, 0
+  index: -1
+
+graphics9.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+toppings/sauce-topping
+  rotate: false
+  xy: 2, 2
+  size: 560, 560
+  orig: 560, 560
+  offset: 0, 0
+  index: -1

@@ -11,33 +11,33 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 public class Assets extends AssetManager {
 
-    private final TextureLoader.TextureParameter param;
+//    private final TextureLoader.TextureParameter param;
     private ObjectMap<Constants.ToppingName, String> toppingPaths;
     
     public Assets() {
         toppingPaths = new ObjectMap<Constants.ToppingName, String>();
         toppingPaths.put(Constants.ToppingName.APRICOT,
-                "graphics/toppings/apricot-topping.png");
+                "toppings/apricot-topping");
         toppingPaths.put(Constants.ToppingName.BACON,
-                "graphics/toppings/bacon-topping.png");
+                "toppings/bacon-topping");
         toppingPaths.put(Constants.ToppingName.BARBECUE,
-                "graphics/toppings/barbecue-topping.png");
+                "toppings/barbecue-topping");
         toppingPaths.put(Constants.ToppingName.BASE,
-                "graphics/toppings/base-topping.png");
+                "toppings/base-topping");
         toppingPaths.put(Constants.ToppingName.CHEESE,
-                "graphics/toppings/cheese-topping.png");
+                "toppings/cheese-topping");
         toppingPaths.put(Constants.ToppingName.CHICKEN,
-                "graphics/toppings/chicken-topping.png");
+                "toppings/chicken-topping");
         toppingPaths.put(Constants.ToppingName.SALAMI,
-                "graphics/toppings/salami-topping.png");
+                "toppings/salami-topping");
         toppingPaths.put(Constants.ToppingName.SAUCE,
-                "graphics/toppings/sauce-topping.png");
+                "toppings/sauce-topping");
         toppingPaths.put(Constants.ToppingName.SAUSAGE,
-                "graphics/toppings/sausage-topping.png");
+                "toppings/sausage-topping");
 
-        param = new TextureLoader.TextureParameter();
-        param.minFilter = Texture.TextureFilter.Linear;
-        param.magFilter = Texture.TextureFilter.Linear;
+//        param = new TextureLoader.TextureParameter();
+//        param.minFilter = Texture.TextureFilter.Linear;
+//        param.magFilter = Texture.TextureFilter.Linear;
     }
 
     public String toppingPath(Constants.ToppingName toppingName) {

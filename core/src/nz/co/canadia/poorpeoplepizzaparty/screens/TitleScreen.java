@@ -47,7 +47,6 @@ public class TitleScreen implements InputProcessor, Screen {
     private final int buttonSize;
     private final int padding;
     private final Sound soundVolumeSound;
-    private final TextureAtlas atlas;
     private float oldSoundVolume;
     private Constants.CurrentTitleMenu currentMenu;
     private Preferences settings;
@@ -121,7 +120,7 @@ public class TitleScreen implements InputProcessor, Screen {
         /* Title menu assets */
 
         // load TextureAtlas
-        atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+        TextureAtlas atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
 
         // create header Image
         header = new Image(atlas.findRegion("headers/titleScreen"));
