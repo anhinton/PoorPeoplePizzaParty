@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -44,6 +45,8 @@ public class TitleScreen implements InputProcessor, Screen {
     private final int buttonWidthHalf;
     private final int buttonSize;
     private final int padding;
+    private final Sound soundVolumeSound;
+    private float oldSoundVolume;
     private Constants.CurrentTitleMenu currentMenu;
     private Preferences settings;
 
@@ -83,11 +86,15 @@ public class TitleScreen implements InputProcessor, Screen {
 
         settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
         game.setSoundVolume(settings.getFloat("soundVolume", Constants.SOUND_VOLUME_DEFAULT));
+        oldSoundVolume = getSoundVolume();
 
         game.assets.loadThemeMusic();
         game.setMusic("music/ThemeMusic.mp3");
         game.setMusicVolume(settings.getFloat("musicVolume", Constants.MUSIC_VOLUME_DEFAULT));
         game.playMusicLooping();
+
+        game.assets.loadTitleScreenSounds();
+        soundVolumeSound = game.assets.get("sounds/toppings/salami.mp3", Sound.class);
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(
@@ -184,6 +191,7 @@ public class TitleScreen implements InputProcessor, Screen {
         soundVolumeSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                oldSoundVolume = getSoundVolume();
                 setSoundVolume(soundVolumeSlider.getValue());
             }
         });
@@ -194,6 +202,7 @@ public class TitleScreen implements InputProcessor, Screen {
         soundVolumeDownImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 decreaseSoundVolume();
+                soundVolumeSound.play(getSoundVolume());
             }
         });
         soundVolumeDownImage.addListener(new ActorGestureListener() {
@@ -209,6 +218,7 @@ public class TitleScreen implements InputProcessor, Screen {
         soundVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseSoundVolume();
+                soundVolumeSound.play(getSoundVolume());
             }
         });
         soundVolumeUpImage.addListener(new ActorGestureListener() {
@@ -602,6 +612,11 @@ public class TitleScreen implements InputProcessor, Screen {
 
         // draw UI
         stage.draw();
+
+        if (oldSoundVolume != getSoundVolume()) {
+            oldSoundVolume = getSoundVolume();
+            soundVolumeSound.play(getSoundVolume());
+        }
     }
 
     @Override
@@ -626,6 +641,7 @@ public class TitleScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
+        soundVolumeSound.dispose();
         stage.dispose();
     }
 
