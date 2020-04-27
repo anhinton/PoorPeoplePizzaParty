@@ -47,10 +47,6 @@ public class PostcardScreen implements InputProcessor, Screen {
         int buttonWidth = Constants.BUTTON_WIDTH_HALF;
         int buttonHeight = Constants.BUTTON_HEIGHT;
 
-        game.assets.loadPostcardSounds();
-        Sound cameraSound = game.assets.get("sounds/camera.mp3", Sound.class);
-        cameraSound.play(game.getSoundVolume());
-
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);
@@ -145,6 +141,9 @@ public class PostcardScreen implements InputProcessor, Screen {
         table.add(backButton)
                 .space(padding)
                 .prefSize(buttonWidth, buttonHeight);
+
+        Sound cameraSound = game.assets.get("sounds/camera.mp3", Sound.class);
+        cameraSound.play(game.getSoundVolume());
     }
 
     private void goBack() {

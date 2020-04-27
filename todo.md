@@ -1,11 +1,4 @@
 # TODO
-
-  + go to loading screen when resuming from pause on Android
-    <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
-    
-  + add Coco Wiggler 4 music which plays after first "loss"
-
-  + drop freetype font support
 		
   + texture packing
       
@@ -26,6 +19,17 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+
+  + ~~drop freetype font support~~
+
+  + ~~add sound effect on changing sound volume in settings~~
+    
+  + ~~**WILL NOT IMPLEMENT** add Coco Wiggler 4 music which plays after first "loss"~~
+
+  + ~~**DO NOT IMPLEMENT:** there doesn't seem to be much point to doing this, and I can't 
+    work out how I would do it for any given Screen.~~
+    ~~go to loading screen when resuming from pause on Android~~
+    ~~<https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>~~
   
   + ~~camera flash effect on PostcardScreen~~
 	    

@@ -119,6 +119,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     public void createPostcard(){
+        game.assets.loadPostcardSounds();
         game.setScreen(new PostcardScreen(game, pizza));
         dispose();
     }

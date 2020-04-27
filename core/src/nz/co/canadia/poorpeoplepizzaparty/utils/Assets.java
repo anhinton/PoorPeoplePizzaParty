@@ -110,6 +110,11 @@ public class Assets extends AssetManager {
                 Texture.class, param);
     }
 
+    public void loadTitleScreenSounds() {
+        super.load("sounds/toppings/salami.mp3", Sound.class);
+        super.finishLoading();
+    }
+
     public void loadToppingsSounds() {
         super.load("sounds/toppings/apricot.mp3", Sound.class);
         super.load("sounds/toppings/bacon.mp3", Sound.class);
