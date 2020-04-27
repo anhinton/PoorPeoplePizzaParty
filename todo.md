@@ -1,5 +1,7 @@
 # TODO
 
+  + add sound effect on changing sound volume in settings
+
   + drop freetype font support
 		
   + texture packing
