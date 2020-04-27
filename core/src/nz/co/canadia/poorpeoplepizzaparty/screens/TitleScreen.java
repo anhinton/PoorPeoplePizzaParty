@@ -91,7 +91,9 @@ public class TitleScreen implements InputProcessor, Screen {
         game.assets.loadThemeMusic();
         game.setMusic("music/ThemeMusic.mp3");
         game.setMusicVolume(settings.getFloat("musicVolume", Constants.MUSIC_VOLUME_DEFAULT));
-        game.playMusicLooping();
+        if(Gdx.app.getType() != Application.ApplicationType.WebGL) {
+            game.playMusicLooping();
+        }
 
         game.assets.loadTitleScreenSounds();
         soundVolumeSound = game.assets.get("sounds/toppings/salami.mp3", Sound.class);
@@ -144,6 +146,7 @@ public class TitleScreen implements InputProcessor, Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 setCurrentMenu(Constants.CurrentTitleMenu.SETTINGS);
+                game.playMusicLooping();
             }
         });
 
