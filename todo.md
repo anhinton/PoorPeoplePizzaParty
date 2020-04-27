@@ -1,6 +1,4 @@
 # TODO
-  
-  + camera flash effect on PostcardScreen
 
   + go to loading screen when resuming from pause on Android
     <https://github.com/libgdx/libgdx/wiki/Managing-your-assets#resuming-with-a-loading-screen>
@@ -28,6 +26,8 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+  
+  + ~~camera flash effect on PostcardScreen~~
 	    
   + ~~delay "fired" button on ServeBossScreen~~
    
