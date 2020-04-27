@@ -1,8 +1,4 @@
 # TODO
-
-  + add sound effect on changing sound volume in settings
-
-  + drop freetype font support
 		
   + texture packing
       
@@ -23,6 +19,10 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+
+  + ~~drop freetype font support~~
+
+  + ~~add sound effect on changing sound volume in settings~~
     
   + ~~**WILL NOT IMPLEMENT** add Coco Wiggler 4 music which plays after first "loss"~~
 
