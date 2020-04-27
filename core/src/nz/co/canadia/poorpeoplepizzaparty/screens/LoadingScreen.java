@@ -23,7 +23,7 @@ public class LoadingScreen implements Screen {
     public LoadingScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
-        game.assets.loadGameAssets();
+        game.assets.loadTextures();
 
         OrthographicCamera camera = new OrthographicCamera();
         FitViewport viewport = new FitViewport(

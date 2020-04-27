@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public class Assets extends AssetManager {
@@ -46,68 +47,70 @@ public class Assets extends AssetManager {
     /**
      * Loads assets for game art assets.
      */
-    public void loadGameAssets() {
-        // TitleScreen
-        super.load("graphics/headers/titleScreen.png",
-                Texture.class, param);
-        super.load("graphics/icons/back.png",
-                Texture.class, param);
-        super.load("graphics/icons/close.png",
-                Texture.class, param);
-        super.load("graphics/icons/settings.png",
-                Texture.class, param);
-        super.load("graphics/icons/volume_mute.png",
-                Texture.class, param);
-        super.load("graphics/icons/volume_up.png",
-                Texture.class, param);
-
-        // PizzaScreen
-        for(String s: toppingPaths.values()) {
-            super.load(s, Texture.class, param);
-        }
-        super.load("graphics/headers/pizzaScreen.png", Texture.class,
-                param);
-        super.load("graphics/icons/back.png", Texture.class,
-                param);
-        super.load("graphics/icons/camera.png", Texture.class,
-                param);
-        super.load("graphics/icons/close.png", Texture.class,
-                param);
-        super.load("graphics/icons/undo.png", Texture.class,
-                param);
-
-        // PostcardScreen
-        super.load("graphics/icons/back.png", Texture.class,
-                param);
-        super.load("graphics/icons/save.png", Texture.class,
-                param);
-        super.load("graphics/icons/share.png", Texture.class,
-                param);
-        super.load("graphics/postcards/postcard01.png", Pixmap.class);
-        super.load("graphics/postcards/postcard02.png", Pixmap.class);
-        super.load("graphics/postcards/postcard03.png", Pixmap.class);
-
-        // CookScreen
-        super.load("graphics/headers/cookScreenPizza.png",
-                Texture.class, param);
-
-        // ServeBossScreen
-        super.load("graphics/boss.png",
-                Texture.class, param);
-
-        // ServeWorkersScreen
-        super.load("graphics/boss.png",
-                Texture.class, param);
-        super.load("graphics/doomdrips.png",
-                Texture.class, param);
-        super.load("graphics/lunch_1.png",
-                Texture.class, param);
-        super.load("graphics/lunch_2.png",
-                Texture.class, param);
-        super.load("graphics/pizzaparty_0.png",
-                Texture.class, param);
-        super.load("graphics/pizzaparty_1.png",
-                Texture.class, param);
+    public void loadTextures() {
+        super.load("graphics/graphics.atlas", TextureAtlas.class);
+//
+//        // TitleScreen
+//        super.load("graphics/headers/titleScreen.png",
+//                Texture.class, param);
+//        super.load("graphics/icons/back.png",
+//                Texture.class, param);
+//        super.load("graphics/icons/close.png",
+//                Texture.class, param);
+//        super.load("graphics/icons/settings.png",
+//                Texture.class, param);
+//        super.load("graphics/icons/volume_mute.png",
+//                Texture.class, param);
+//        super.load("graphics/icons/volume_up.png",
+//                Texture.class, param);
+//
+//        // PizzaScreen
+//        for(String s: toppingPaths.values()) {
+//            super.load(s, Texture.class, param);
+//        }
+//        super.load("graphics/headers/pizzaScreen.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/back.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/camera.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/close.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/undo.png", Texture.class,
+//                param);
+//
+//        // PostcardScreen
+//        super.load("graphics/icons/back.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/save.png", Texture.class,
+//                param);
+//        super.load("graphics/icons/share.png", Texture.class,
+//                param);
+//        super.load("graphics/postcards/postcard01.png", Pixmap.class);
+//        super.load("graphics/postcards/postcard02.png", Pixmap.class);
+//        super.load("graphics/postcards/postcard03.png", Pixmap.class);
+//
+//        // CookScreen
+//        super.load("graphics/headers/cookScreenPizza.png",
+//                Texture.class, param);
+//
+//        // ServeBossScreen
+//        super.load("graphics/boss.png",
+//                Texture.class, param);
+//
+//        // ServeWorkersScreen
+//        super.load("graphics/boss.png",
+//                Texture.class, param);
+//        super.load("graphics/doomdrips.png",
+//                Texture.class, param);
+//        super.load("graphics/lunch_1.png",
+//                Texture.class, param);
+//        super.load("graphics/lunch_2.png",
+//                Texture.class, param);
+//        super.load("graphics/pizzaparty_0.png",
+//                Texture.class, param);
+//        super.load("graphics/pizzaparty_1.png",
+//                Texture.class, param);
     }
 
     public void loadTitleScreenSounds() {
