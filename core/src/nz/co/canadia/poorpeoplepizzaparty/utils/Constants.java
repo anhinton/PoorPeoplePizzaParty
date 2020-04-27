@@ -95,6 +95,9 @@ public class Constants {
     public static final float POINTS_MOVEMENT_SPEED = 100f;
     public static final float POINTS_FADE_RATE = 1.5f;
 
+    // How long does the PostcardSreen flash last
+    public static final float FLASH_SECONDS = 1f;
+
     // Cook timer
     public static final float COOK_TIME_TOTAL = 3f;
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
