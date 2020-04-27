@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -44,6 +46,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     private boolean removeAllFired;
     private Array<Points> pointsArray;
     private int pointsCount;
+    private ObjectMap<Constants.ToppingName, Sound> toppingSoundMap;
 
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
@@ -68,6 +71,31 @@ public class PizzaScreen implements InputProcessor, Screen {
     }
 
     private void initialise() {
+
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.playMusicLooping();
+
+        game.assets.loadToppingsSounds();
+
+        toppingSoundMap = new ObjectMap<Constants.ToppingName, Sound>();
+        toppingSoundMap.put(Constants.ToppingName.APRICOT,
+                game.assets.get("sounds/toppings/apricot.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.BACON,
+                game.assets.get("sounds/toppings/bacon.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.BARBECUE,
+                game.assets.get("sounds/toppings/barbecue.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.CHEESE,
+                game.assets.get("sounds/toppings/cheese.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.CHICKEN,
+                game.assets.get("sounds/toppings/chicken.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SALAMI,
+                game.assets.get("sounds/toppings/salami.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUCE,
+                game.assets.get("sounds/toppings/sauce.mp3", Sound.class));
+        toppingSoundMap.put(Constants.ToppingName.SAUSAGE,
+                game.assets.get("sounds/toppings/sausage.mp3", Sound.class));
+
         selectedTopping = null;
         pointsArray = new Array<Points>();
         pointsCount = 0;
@@ -108,7 +136,23 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private void addTopping(Topping topping, float x, float y) {
         pizza.addTopping(topping);
+        playToppingSound(topping.getToppingName());
         scorePoints(x, y);
+    }
+
+    private void playToppingSound(Constants.ToppingName toppingName) {
+        switch(toppingName) {
+            case APRICOT:
+            case BACON:
+            case BARBECUE:
+            case CHEESE:
+            case CHICKEN:
+            case SALAMI:
+            case SAUCE:
+            case SAUSAGE:
+                toppingSoundMap.get(toppingName).play(game.getSoundVolume());
+                break;
+        }
     }
 
     private void removeAllToppings() {
@@ -180,10 +224,7 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.BACK
                 | keycode == Input.Keys.ESCAPE) {
-            if (!pizzaUi.goBack()) {
-                goBack();
-            }
-            return true;
+            return pizzaUi.goBack();
         }
         return false;
     }
@@ -402,5 +443,6 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        game.assets.unloadToppingsSounds();
     }
 }

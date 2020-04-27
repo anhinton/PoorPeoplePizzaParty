@@ -6,10 +6,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -21,8 +24,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
-import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 import nz.co.canadia.poorpeoplepizzaparty.Postcard;
+import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class PostcardScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
@@ -31,6 +34,11 @@ public class PostcardScreen implements InputProcessor, Screen {
     private final OrthographicCamera gameCamera;
     private final FitViewport viewport;
     private final Stage stage;
+    private final Pixmap flashPixmap;
+    private final Texture flashTexture;
+    private final Sprite flashSprite;
+    private float timeElapsed;
+    private float flashAlpha;
 
     PostcardScreen(final PoorPeoplePizzaParty game, final Pizza pizza) {
         this.game = game;
@@ -39,10 +47,24 @@ public class PostcardScreen implements InputProcessor, Screen {
         int buttonWidth = Constants.BUTTON_WIDTH_HALF;
         int buttonHeight = Constants.BUTTON_HEIGHT;
 
+        game.assets.loadPostcardSounds();
+        Sound cameraSound = game.assets.get("sounds/camera.mp3", Sound.class);
+        cameraSound.play(game.getSoundVolume());
+
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);
         gameCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+
+        timeElapsed = 0f;
+        flashAlpha = 1f;
+
+        flashPixmap = new Pixmap(1,1, Pixmap.Format.RGBA8888);
+        flashPixmap.setColor(1, 1, 1, 1);
+        flashPixmap.fill();
+        flashTexture = new Texture(flashPixmap);
+        flashSprite = new Sprite(flashTexture);
+        flashSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         
         stage = new Stage(viewport, game.batch);
         Table table = new Table();
@@ -192,6 +214,13 @@ public class PostcardScreen implements InputProcessor, Screen {
 
         game.batch.begin();
         postcard.draw(game.batch);
+        if (flashAlpha > 0) {
+            flashSprite.draw(game.batch, flashAlpha);
+            timeElapsed += delta;
+            flashAlpha = MathUtils.clamp(
+                    (float) (1 - Math.pow(timeElapsed / Constants.FLASH_SECONDS, 3)),
+                    0, 1);
+        }
         game.batch.end();
 
         stage.getViewport().apply();
@@ -224,5 +253,8 @@ public class PostcardScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         postcard.dispose();
+        flashTexture.dispose();
+        flashPixmap.dispose();
+        game.assets.unloadPostcardSounds();
     }
 }

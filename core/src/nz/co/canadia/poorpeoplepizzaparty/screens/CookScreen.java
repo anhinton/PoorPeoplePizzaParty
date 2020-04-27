@@ -42,6 +42,10 @@ public class CookScreen implements InputProcessor, Screen {
         this.game = game;
         this.pizza = pizza;
 
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.playMusicLooping();
+
         OrthographicCamera camera = new OrthographicCamera();
         Viewport viewport = new FitViewport(
                 Constants.GAME_WIDTH,
@@ -162,6 +166,7 @@ public class CookScreen implements InputProcessor, Screen {
     }
 
     private void serve(Constants.ServeOption serveOption) {
+        game.stopMusic();
         switch (serveOption) {
             case BOSS:
                 game.setScreen(new ServeBossScreen(game, pizza));
@@ -263,5 +268,6 @@ public class CookScreen implements InputProcessor, Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        game.assets.unloadThemeMusic();
     }
 }

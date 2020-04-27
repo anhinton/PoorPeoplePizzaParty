@@ -26,11 +26,17 @@ public class ServeBossScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
     private final ServeBossUi serveBossUi;
+    private float timeElapsed;
+    private Constants.ServeBossState state;
 
     ServeBossScreen(final PoorPeoplePizzaParty game, Pizza pizza) {
 
         this.game = game;
         this.pizza = pizza;
+
+        game.assets.loadServeBossSounds();
+        game.setMusic("music/BossTheme.mp3");
+        game.playMusicLooping();
 
         OrthographicCamera camera = new OrthographicCamera();
         Viewport uiViewport = new FitViewport(
@@ -49,14 +55,24 @@ public class ServeBossScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+
+        state = Constants.ServeBossState.SERVE;
+        timeElapsed = 0f;
     }
 
     public void getFired() {
+        game.stopMusic();
         game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 
+    private void showFiredButton() {
+        state = Constants.ServeBossState.FIRED;
+        serveBossUi.showFiredButton();
+    }
+
     private void goBack() {
+        game.stopMusic();
         game.setScreen(new CookScreen(game, pizza, false));
         dispose();
     }
@@ -83,6 +99,14 @@ public class ServeBossScreen implements InputProcessor, Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+        switch(state) {
+            case SERVE:
+                showFiredButton();
+                return true;
+            case FIRED:
+                return true;
+        }
         return false;
     }
 
@@ -121,6 +145,17 @@ public class ServeBossScreen implements InputProcessor, Screen {
         stage.getBatch().setProjectionMatrix(stage.getCamera().combined);
         stage.act(delta);
         stage.draw();
+
+        switch(state) {
+            case SERVE:
+                timeElapsed += delta;
+                if (timeElapsed > Constants.FIRED_TIME) {
+                    showFiredButton();
+                }
+                break;
+            case FIRED:
+                break;
+        }
     }
 
     @Override
@@ -147,5 +182,6 @@ public class ServeBossScreen implements InputProcessor, Screen {
     public void dispose() {
         stage.dispose();
         serveBossUi.dispose();
+        game.assets.unloadServeBossSounds();
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,11 +12,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
-import java.security.Key;
 import java.util.Locale;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.LoadingScreen;
-import nz.co.canadia.poorpeoplepizzaparty.screens.TitleScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
@@ -31,11 +30,14 @@ public class PoorPeoplePizzaParty extends Game {
     public Skin uiSkin;
     public I18NBundle bundle;
     public CaptureIO captureIO;
-    private float soundVolume;
+    private Music music;
     private float musicVolume;
+    private float soundVolume;
 
     public PoorPeoplePizzaParty(CaptureIO captureIO) {
         this.captureIO = captureIO;
+        musicVolume = 0;
+        soundVolume = 0;
     }
 
     public float getSoundVolume() {
@@ -50,9 +52,27 @@ public class PoorPeoplePizzaParty extends Game {
         return musicVolume;
     }
 
+    public void setMusic(String fileHandle) {
+        music = assets.get(fileHandle, Music.class);
+        music.setVolume(musicVolume);
+    }
+
+    public void playMusic() {
+        music.setLooping(false);
+        music.play();
+    }
+
+    public void playMusicLooping() {
+        music.setLooping(true);
+        music.play();
+    }
+
     public void setMusicVolume(float musicVolume) {
         this.musicVolume = MathUtils.clamp(musicVolume, 0, 1);
+        music.setVolume(musicVolume);
     }
+
+    public void stopMusic() { music.stop(); }
 
     @Override
     public void create() {
@@ -73,9 +93,6 @@ public class PoorPeoplePizzaParty extends Game {
         Locale locale = new Locale("en", "GB");
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
-        soundVolume = 1;
-        musicVolume = 1;
-
         this.setScreen(new LoadingScreen(this));
     }
 
@@ -88,6 +105,7 @@ public class PoorPeoplePizzaParty extends Game {
     public void dispose () {
         assets.dispose();
         batch.dispose();
+        music.dispose();
         shapeRenderer.dispose();
         uiSkin.dispose();
 

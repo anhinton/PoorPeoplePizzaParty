@@ -34,6 +34,9 @@ public class Constants {
     public static final int HTML_WIDTH = 960;
     public static final int HTML_HEIGHT = 600;
 
+    public static final float MUSIC_VOLUME_DEFAULT = 0.5f;
+    public static final float SOUND_VOLUME_DEFAULT = 1f;
+
     public static float VOLUME_STEP = 0.05f;
 
     // Available menus in TitleScreen.class
@@ -92,6 +95,9 @@ public class Constants {
     public static final float POINTS_MOVEMENT_SPEED = 100f;
     public static final float POINTS_FADE_RATE = 1.5f;
 
+    // How long does the PostcardSreen flash last
+    public static final float FLASH_SECONDS = 1f;
+
     // Cook timer
     public static final float COOK_TIME_TOTAL = 3f;
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
@@ -102,16 +108,6 @@ public class Constants {
 
     // Options for serving cooked pizza
     public enum ServeOption { BOSS, WORKERS }
-
-    // states for ServeWorkersScreen
-    public enum ServerWorkersState { PARTY, BOSS, FINISHED }
-
-    // length of party in ServerWorkersScreen in seconds
-    // TODO: set length to Pizza Party song clip time
-    public static final float PARTY_TIME = 5;
-
-    // Options for party background texture
-    public enum PartySprite { NORMAL, INVERSE }
 
     // number of Flying Pizzas to spawn initially
     public static final int FLYING_PIZZA_INITIAL_SPAWN_COUNT = 20;
@@ -131,10 +127,26 @@ public class Constants {
     public static final float FLYING_PIZZA_SPEED_MIN = 600;
     public static final float FLYING_PIZZA_SPEED_MAX = 1600;
 
+    // states for ServeBossScreen
+    public enum ServeBossState { SERVE, FIRED }
+
+    // states for ServeWorkersScreen
+    public enum ServeWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
+
+    // length of party in ServerWorkersScreen in seconds
+    // TODO: set length to Pizza Party song clip time
+    public static final float PARTY_TIME = 15;
+
+    // length of time that boss hangs on screen before fired message
+    public static final float FIRED_TIME = 8.1f;
+
+    // Options for party background texture
+    public enum PartySprite { NORMAL, INVERSE }
+
     // time taken by PartyBoss in seconds
-    public static final float PARTY_BOSS_TIME = 1;
+    public static final float PARTY_BOSS_TIME = 2.4f;
     // time taken by DoomDrips in seconds
-    public static final float DOOM_DRIPS_TIME = 2;
+    public static final float DOOM_DRIPS_TIME = 2.4f;
 
     public static final float PIZZA_PARTY_FRAME_DURATION = 0.9f;
 }

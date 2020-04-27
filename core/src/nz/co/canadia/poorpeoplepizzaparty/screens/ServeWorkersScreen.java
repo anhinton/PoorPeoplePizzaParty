@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -44,6 +45,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final Stage stage;
     private final int padding;
     private final PizzaPartyAnimation pizzaPartyAnimation;
+    private final Sound pickScrape;
     private float timeElapsed;
     private float nextSpawn;
     private PartyScene partyScene;
@@ -52,11 +54,19 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private Array<FlyingPizza> flyingPizzaArray;
     private Pixmap pizzaPixmap;
     private Texture pizzaTexture;
-    private Constants.ServerWorkersState state;
+    private Constants.ServeWorkersState state;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
         this.pizza = pizza;
+
+        // load Music and Sounds
+        game.assets.loadServeWorkersSounds();
+        game.setMusic("music/PartyTheme.mp3");
+        game.assets.loadServeBossSounds();
+        pickScrape = game.assets.get("sounds/PickScrape.mp3", Sound.class);
+        // start music
+        game.playMusic();
 
         padding = Constants.UNIT;
 
@@ -72,7 +82,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        state = Constants.ServerWorkersState.PARTY;
+        state = Constants.ServeWorkersState.PARTY;
         timeElapsed = 0;
 
         // set time to spawn new pizzas
@@ -114,12 +124,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void newPizzaScreen() {
+        game.stopMusic();
         game.setScreen(new PizzaScreen(game, false));
         dispose();
     }
 
-    public void showFiredButton() {
-        partyScene.switchState();
+    private void showFiredButton() {
         TextButton firedButton = new TextButton(game.bundle.get("serveworkersFiredButton"),
                 game.uiSkin,"default");
         firedButton.setSize(Constants.GAME_WIDTH * 2 / 3f,
@@ -137,19 +147,32 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     }
 
     private void stopBoss() {
+        partyScene.switchState();
+        game.setMusic("music/BossTheme.mp3");
+        game.playMusicLooping();
         partyBoss.stop();
         doomDrips.stop();
-        state = Constants.ServerWorkersState.FINISHED;
+        pickScrape.stop();
+        timeElapsed = 0;
+        state = Constants.ServeWorkersState.RUBBISH;
+    }
+
+    private void stopRubbish() {
+        showFiredButton();
+        state = Constants.ServeWorkersState.FIRED;
     }
 
     private void stopParty() {
+        game.stopMusic();
         pizzaPartyAnimation.stop();
         doomDrips.start();
         partyBoss.start();
-        state = Constants.ServerWorkersState.BOSS;
+        pickScrape.play(game.getMusicVolume());
+        state = Constants.ServeWorkersState.BOSS;
     }
 
     private void goBack() {
+        game.stopMusic();
         game.setScreen(new CookScreen(game, pizza, false));
         dispose();
     }
@@ -183,6 +206,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 return true;
             case BOSS:
                 stopBoss();
+                return true;
+            case RUBBISH:
+                stopRubbish();
+                return true;
+            case FIRED:
                 return true;
             case FINISHED:
                 break;
@@ -252,6 +280,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
                 partyBoss.update(delta);
                 if (!doomDrips.isActive() & !partyBoss.isActive()) {
                     stopBoss();
+                }
+                break;
+            case RUBBISH:
+                timeElapsed += delta;
+                if (timeElapsed > Constants.FIRED_TIME) {
+                    stopRubbish();
                 }
                 break;
         }
@@ -326,5 +360,7 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         for (FlyingPizza fp: flyingPizzaArray) {
             fp.dispose();
         }
+        game.assets.unloadServeBossSounds();
+        game.assets.unloadServeWorkersSounds();
     }
 }

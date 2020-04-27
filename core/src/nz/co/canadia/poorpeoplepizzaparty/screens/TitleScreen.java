@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
@@ -23,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -43,6 +45,7 @@ public class TitleScreen implements InputProcessor, Screen {
     private final int buttonSize;
     private final int padding;
     private Constants.CurrentTitleMenu currentMenu;
+    private Preferences settings;
 
     // Title menu assets
     private final Image header;
@@ -77,6 +80,14 @@ public class TitleScreen implements InputProcessor, Screen {
 
     public TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
+
+        settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");
+        game.setSoundVolume(settings.getFloat("soundVolume", Constants.SOUND_VOLUME_DEFAULT));
+
+        game.assets.loadThemeMusic();
+        game.setMusic("music/ThemeMusic.mp3");
+        game.setMusicVolume(settings.getFloat("musicVolume", Constants.MUSIC_VOLUME_DEFAULT));
+        game.playMusicLooping();
 
         OrthographicCamera camera = new OrthographicCamera();
         viewport = new FitViewport(
@@ -185,6 +196,12 @@ public class TitleScreen implements InputProcessor, Screen {
                 decreaseSoundVolume();
             }
         });
+        soundVolumeDownImage.addListener(new ActorGestureListener() {
+            public boolean longPress(Actor actor, float x, float y) {
+                muteSoundVolume();
+                return true;
+            }
+        });
         // Full volume image
         soundVolumeUpImage = new Image(
                 game.assets.get("graphics/icons/volume_up.png",
@@ -193,6 +210,12 @@ public class TitleScreen implements InputProcessor, Screen {
             public void clicked (InputEvent event, float x, float y) {
                 increaseSoundVolume();
             }
+        });
+        soundVolumeUpImage.addListener(new ActorGestureListener() {
+           public boolean longPress(Actor actor, float x, float y) {
+               fullSoundVolume();
+               return true;
+           }
         });
 
         /* Music Volume widgets */
@@ -222,6 +245,12 @@ public class TitleScreen implements InputProcessor, Screen {
                 decreaseMusicVolume();
             }
         });
+        musicVolumeDownImage.addListener(new ActorGestureListener() {
+            public boolean longPress(Actor actor, float x, float y) {
+                muteMusicVolume();
+                return true;
+            }
+        });
         // Full volume image
         musicVolumeUpImage = new Image(
                 game.assets.get("graphics/icons/volume_up.png",
@@ -229,6 +258,12 @@ public class TitleScreen implements InputProcessor, Screen {
         musicVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseMusicVolume();
+            }
+        });
+        musicVolumeUpImage.addListener(new ActorGestureListener() {
+            public boolean longPress(Actor actor, float x, float y) {
+                fullMusicVolume();
+                return true;
             }
         });
 
@@ -255,6 +290,7 @@ public class TitleScreen implements InputProcessor, Screen {
         settingsBackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                settings.flush();
                 setCurrentMenu(Constants.CurrentTitleMenu.TITLE);
             }
         });
@@ -512,6 +548,15 @@ public class TitleScreen implements InputProcessor, Screen {
         game.setSoundVolume(soundVolume);
         soundVolumeValueLabel.setText(printVolume(getSoundVolume()));
         soundVolumeSlider.setValue(getSoundVolume());
+        settings.putFloat("soundVolume", getSoundVolume());
+    }
+
+    private void fullSoundVolume() {
+        setSoundVolume(1);
+    }
+
+    private void muteSoundVolume() {
+        setSoundVolume(0);
     }
 
     private float getMusicVolume() {
@@ -522,6 +567,15 @@ public class TitleScreen implements InputProcessor, Screen {
         game.setMusicVolume(musicVolume);
         musicVolumeValueLabel.setText(printVolume(getMusicVolume()));
         musicVolumeSlider.setValue(getMusicVolume());
+        settings.putFloat("musicVolume", getMusicVolume());
+    }
+
+    private void fullMusicVolume() {
+        setMusicVolume(1);
+    }
+
+    private void muteMusicVolume() {
+        setMusicVolume(0);
     }
 
     @Override
