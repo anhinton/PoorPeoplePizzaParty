@@ -1,6 +1,4 @@
 # TODO
-		
-  + texture packing
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
@@ -19,6 +17,8 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+		
+  + ~~texture packing~~
 
   + ~~drop freetype font support~~
 
