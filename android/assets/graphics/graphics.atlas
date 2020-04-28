@@ -74,20 +74,13 @@ icons/volume_up
   orig: 50, 50
   offset: 0, 0
   index: -1
-lunch
+lunch01
   rotate: false
   xy: 2, 381
   size: 960, 600
   orig: 960, 600
   offset: 0, 0
-  index: 1
-toppings/lunch
-  rotate: false
-  xy: 2, 381
-  size: 960, 600
-  orig: 960, 600
-  offset: 0, 0
-  index: 1
+  index: -1
 toppings/chicken-topping
   rotate: false
   xy: 964, 902
@@ -122,27 +115,20 @@ headers/cookScreenPizza
   orig: 303, 280
   offset: 0, 0
   index: -1
-lunch
+lunch02
   rotate: false
   xy: 2, 362
   size: 960, 600
   orig: 960, 600
   offset: 0, 0
-  index: 2
-toppings/lunch
-  rotate: false
-  xy: 2, 362
-  size: 960, 600
-  orig: 960, 600
-  offset: 0, 0
-  index: 2
-pizzaparty
+  index: -1
+pizzaparty00
   rotate: false
   xy: 2, 60
   size: 600, 300
   orig: 600, 300
   offset: 0, 0
-  index: 0
+  index: -1
 toppings/bacon-topping
   rotate: false
   xy: 2, 2
@@ -163,13 +149,13 @@ headers/pizzaScreen
   orig: 300, 260
   offset: 0, 0
   index: -1
-pizzaparty
+pizzaparty01
   rotate: false
   xy: 2, 2
   size: 600, 300
   orig: 600, 300
   offset: 0, 0
-  index: 1
+  index: -1
 postcards/postcard01
   rotate: false
   xy: 2, 304

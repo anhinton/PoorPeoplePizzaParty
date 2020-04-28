@@ -61,12 +61,6 @@ public class CookScreen implements InputProcessor, Screen {
 
         padding = Constants.UNIT;
 
-        if (countdown) {
-            showTimer();
-        } else {
-            showDecision();
-        }
-
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
@@ -74,6 +68,12 @@ public class CookScreen implements InputProcessor, Screen {
 
         // load TextureAtlas
         atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+
+        if (countdown) {
+            showTimer();
+        } else {
+            showDecision();
+        }
     }
 
     private void showTimer() {

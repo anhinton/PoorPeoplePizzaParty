@@ -1,26 +1,21 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import nz.co.canadia.poorpeoplepizzaparty.screens.ServeWorkersScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class DoomDrips {
     private final Sprite sprite;
-    private final ServeWorkersScreen serveWorkersScreen;
     private final float speed;
     private boolean isVisible;
     private boolean isActive;
-    private boolean hasFired;
 
-    public DoomDrips(Texture texture, ServeWorkersScreen serveWorkersScreen) {
-        this.serveWorkersScreen = serveWorkersScreen;
+    public DoomDrips(TextureRegion textureRegion) {
         isActive = false;
         isVisible = false;
-        hasFired = false;
-        sprite = new Sprite(texture);
+        sprite = new Sprite(textureRegion);
         sprite.setPosition(0, Constants.GAME_HEIGHT);
         sprite.setColor(1, 1, 1, .25f);
         speed = sprite.getHeight() / Constants.DOOM_DRIPS_TIME;

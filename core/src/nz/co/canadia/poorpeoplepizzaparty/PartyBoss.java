@@ -1,8 +1,8 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import nz.co.canadia.poorpeoplepizzaparty.screens.ServeWorkersScreen;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -16,12 +16,12 @@ public class PartyBoss {
     private boolean isVisible;
     private boolean hasSpoken;
 
-    public PartyBoss(Texture texture, ServeWorkersScreen serveWorkersScreen) {
+    public PartyBoss(TextureRegion textureRegion, ServeWorkersScreen serveWorkersScreen) {
         this.serveWorkersScreen = serveWorkersScreen;
         isActive = false;
         isVisible = false;
         hasSpoken = false;
-        sprite = new Sprite(texture);
+        sprite = new Sprite(textureRegion);
         sprite.setCenterX(Constants.GAME_WIDTH * 3f / 4);
         sprite.setY(0 - sprite.getHeight());
         speed = sprite.getHeight() / Constants.PARTY_BOSS_TIME;

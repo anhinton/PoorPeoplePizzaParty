@@ -1,8 +1,8 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -17,7 +17,7 @@ public class PartyScene {
     private Sprite inverseSprite;
     private Constants.PartySprite currentState;
 
-    public PartyScene(Texture normalTexture, Texture inverseTexture) {
+    public PartyScene(TextureRegion normalTexture, TextureRegion inverseTexture) {
         normalSprite = new Sprite(normalTexture);
         normalSprite.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         normalSprite.setPosition(0, 0);
