@@ -1,6 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -27,30 +26,26 @@ public class ServeBossUi extends Table {
 
     private final ServeBossScreen serveBossScreen;
     private final Skin uiSkin;
-    private final AssetManager assets;
+    private final TextureAtlas atlas;
     private final I18NBundle bundle;
     private final int padding;
     private final Pizza pizza;
-    private final TextureAtlas atlas;
     private Texture pizzaTexture;
     private Pixmap pizzaPixmap;
     private TextButton firedButton;
 
     public ServeBossUi(ServeBossScreen serveBossScreen,
-                       Skin uiSkin, AssetManager assets, I18NBundle bundle,
+                       Skin uiSkin, TextureAtlas atlas, I18NBundle bundle,
                        Pizza pizza) {
 
         this.serveBossScreen = serveBossScreen;
         this.uiSkin = uiSkin;
-        this.assets = assets;
+        this.atlas = atlas;
         this.bundle = bundle;
         this.pizza = pizza;
         padding = Constants.UNIT;
 
         super.setFillParent(true);
-
-        // load TextureAtlas
-        atlas = assets.get("graphics/graphics.atlas", TextureAtlas.class);
 
         showBoss();
     }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -46,9 +47,12 @@ public class ServeBossScreen implements InputProcessor, Screen {
         camera.setToOrtho(false, uiViewport.getScreenHeight(),
                 uiViewport.getScreenHeight());
 
+        // load TextureAtlas
+        TextureAtlas atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+
         stage = new Stage(uiViewport, game.batch);
         serveBossUi = new ServeBossUi(this, game.uiSkin,
-                game.assets, game.bundle, pizza);
+                atlas, game.bundle, pizza);
         stage.addActor(serveBossUi);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
