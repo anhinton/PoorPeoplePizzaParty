@@ -632,7 +632,6 @@ public class TitleScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        soundVolumeSound.dispose();
         stage.dispose();
     }
 

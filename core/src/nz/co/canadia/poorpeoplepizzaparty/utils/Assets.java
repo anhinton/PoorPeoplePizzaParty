@@ -111,8 +111,8 @@ public class Assets extends AssetManager {
     }
 
     public void loadTitleScreenSounds() {
-        super.load("sounds/toppings/salami.mp3", Sound.class);
-        super.finishLoading();
+            super.load("sounds/toppings/salami.mp3", Sound.class);
+            super.finishLoading();
     }
 
     public void loadToppingsSounds() {
