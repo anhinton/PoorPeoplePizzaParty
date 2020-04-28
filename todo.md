@@ -1,4 +1,10 @@
 # TODO
+
+  + can I do away with Assets.toppingPath() ?
+      - maybe I can move it into PizzaScreen? it only seems to be required by PizzaScreen
+        and Pizza, and is the only reason Pizza requires an Assets argument
+  
+  + clean up commented code in Assets
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
