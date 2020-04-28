@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,6 +32,7 @@ public class CookScreen implements InputProcessor, Screen {
     private final Pizza pizza;
     private final Table table;
     private final int padding;
+    private final TextureAtlas atlas;
     private boolean cooking;
     private float timeElapsed;
     private ProgressBar progressBar;
@@ -70,6 +72,9 @@ public class CookScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+
+        // load TextureAtlas
+        atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
     }
 
     private void showTimer() {
@@ -121,8 +126,7 @@ public class CookScreen implements InputProcessor, Screen {
         table.pad(padding);
 
         Image headerImage =
-                new Image(game.assets.get("graphics/headers/cookScreenPizza.png",
-                        Texture.class));
+                new Image(atlas.findRegion("headers/cookScreenPizza"));
         table.add(headerImage)
                 .colspan(2)
                 .space(padding);
