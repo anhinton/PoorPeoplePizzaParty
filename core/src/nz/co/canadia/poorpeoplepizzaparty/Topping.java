@@ -1,8 +1,8 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -19,12 +19,12 @@ public class Topping {
 
     public Topping(float x, float y, float rotation,
                    Constants.ToppingName toppingName,
-                   Texture texture,
+                   TextureAtlas.AtlasRegion atlasRegion,
                    boolean visible) {
         this.toppingName = toppingName;
         this.visible = visible;
 
-        sprite = new Sprite(texture);
+        sprite = new Sprite(atlasRegion);
         if (toppingName == Constants.ToppingName.BASE |
                 toppingName == Constants.ToppingName.SAUCE |
                 toppingName == Constants.ToppingName.CHEESE) {

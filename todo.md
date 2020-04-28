@@ -1,10 +1,4 @@
 # TODO
-
-  + add sound effect on changing sound volume in settings
-
-  + drop freetype font support
-		
-  + texture packing
       
   + **BUG**: fix transparent swirl (through to postcard background) when swirl 
     is last placed
@@ -23,6 +17,12 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+		
+  + ~~texture packing~~
+
+  + ~~drop freetype font support~~
+
+  + ~~add sound effect on changing sound volume in settings~~
     
   + ~~**WILL NOT IMPLEMENT** add Coco Wiggler 4 music which plays after first "loss"~~
 

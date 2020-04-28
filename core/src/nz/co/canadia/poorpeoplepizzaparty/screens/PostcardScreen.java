@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -73,16 +74,17 @@ public class PostcardScreen implements InputProcessor, Screen {
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
 
-        postcard = new Postcard(pizza, game.assets);
+        // load TextureAtlas
+        TextureAtlas atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+
+        postcard = new Postcard(pizza, atlas);
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             // add share button
             ImageButton.ImageButtonStyle shareButtonStyle =
                     new ImageButton.ImageButtonStyle(
                             game.uiSkin.get("default", Button.ButtonStyle.class));
-            Sprite shareSprite = new Sprite(
-                    game.assets.get("graphics/icons/share.png",
-                            Texture.class));
+            Sprite shareSprite = new Sprite(atlas.findRegion("icons/share"));
             shareSprite.setSize(Constants.UI_ICON_SIZE,
                     Constants.UI_ICON_SIZE);
             shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
@@ -103,9 +105,7 @@ public class PostcardScreen implements InputProcessor, Screen {
             ImageButton.ImageButtonStyle saveButtonStyle =
                     new ImageButton.ImageButtonStyle(
                             game.uiSkin.get("default", Button.ButtonStyle.class));
-            Sprite saveSprite = new Sprite(
-                    game.assets.get("graphics/icons/save.png",
-                            Texture.class));
+            Sprite saveSprite = new Sprite(atlas.findRegion("icons/save"));
             saveSprite.setSize(Constants.UI_ICON_SIZE,
                     Constants.UI_ICON_SIZE);
             saveButtonStyle.imageUp = new SpriteDrawable(saveSprite);
@@ -125,9 +125,7 @@ public class PostcardScreen implements InputProcessor, Screen {
         ImageButton.ImageButtonStyle backButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite backSprite = new Sprite(
-                game.assets.get("graphics/icons/back.png",
-                        Texture.class));
+        Sprite backSprite = new Sprite(atlas.findRegion("icons/back"));
         backSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);

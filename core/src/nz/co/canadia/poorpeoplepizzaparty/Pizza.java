@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -24,12 +24,14 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class Pizza {
 
+    private final TextureAtlas atlas;
     private final Assets assets;
     private final Array<Topping> toppings;
     private final Array<Constants.ToppingName> toppingOrder;
     private final Array<Constants.ToppingName> baseToppingOrder;
 
-    public Pizza(final Assets assets) {
+    public Pizza(final TextureAtlas atlas, Assets assets) {
+        this.atlas = atlas;
         this.assets = assets;
 
         toppings = new Array<Topping>();
@@ -43,8 +45,7 @@ public class Pizza {
         // add the base Topping to the topping array
         toppings.add(new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, Constants.ToppingName.BASE,
-                assets.get(assets.toppingPath(Constants.ToppingName.BASE),
-                        Texture.class),
+                atlas.findRegion(assets.toppingPath(Constants.ToppingName.BASE)),
                 true));
 
         // initialise toppingOrder and baseToppingOrder arrays
@@ -172,7 +173,7 @@ public class Pizza {
                 Constants.ToppingName toppingName = Constants.ToppingName.valueOf(e.get("toppingName"));
                 boolean visible = e.getBoolean("visible");
                 addTopping(new Topping(x, y, rotation, toppingName,
-                        assets.get(assets.toppingPath(toppingName), Texture.class), visible));
+                        atlas.findRegion(assets.toppingPath(toppingName)), visible));
             }
         }
     }
@@ -180,7 +181,7 @@ public class Pizza {
     private void setBaseTopping(Constants.ToppingName toppingName) {
         toppings.set(0, new Topping(Constants.BASE_X, Constants.BASE_Y,
                 0, toppingName,
-                assets.get(assets.toppingPath(toppingName), Texture.class),
+                atlas.findRegion(assets.toppingPath(toppingName)),
                 true));
     }
 
