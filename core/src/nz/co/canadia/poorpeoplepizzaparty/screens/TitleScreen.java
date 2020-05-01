@@ -11,8 +11,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -118,9 +118,11 @@ public class TitleScreen implements InputProcessor, Screen {
 
         /* Title menu assets */
 
+        // load TextureAtlas
+        TextureAtlas atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+
         // create header Image
-        header = new Image(game.assets.get("graphics/headers/titleScreen.png",
-                Texture.class));
+        header = new Image(atlas.findRegion("headers/titleScreen"));
 
         // create Play Button
         playButton = new TextButton(game.bundle.get("playButton"), game.uiSkin, "default");
@@ -135,9 +137,7 @@ public class TitleScreen implements InputProcessor, Screen {
         ImageButton.ImageButtonStyle settingsButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite settingsSprite = new Sprite(
-                game.assets.get("graphics/icons/settings.png",
-                        Texture.class));
+        Sprite settingsSprite = new Sprite(atlas.findRegion("icons/settings"));
         settingsSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         settingsButtonStyle.imageUp = new SpriteDrawable(settingsSprite);
@@ -154,9 +154,7 @@ public class TitleScreen implements InputProcessor, Screen {
         ImageButton.ImageButtonStyle quitButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite quitSprite = new Sprite(
-                game.assets.get("graphics/icons/close.png",
-                        Texture.class));
+        Sprite quitSprite = new Sprite(atlas.findRegion("icons/close"));
         quitSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         quitButtonStyle.imageUp = new SpriteDrawable(quitSprite);
@@ -199,9 +197,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Mute Image
-        soundVolumeDownImage = new Image(
-                game.assets.get("graphics/icons/volume_mute.png",
-                        Texture.class));
+        soundVolumeDownImage = new Image(atlas.findRegion("icons/volume_mute"));
         soundVolumeDownImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 decreaseSoundVolume();
@@ -215,9 +211,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Full volume image
-        soundVolumeUpImage = new Image(
-                game.assets.get("graphics/icons/volume_up.png",
-                        Texture.class));
+        soundVolumeUpImage = new Image(atlas.findRegion("icons/volume_up"));
         soundVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseSoundVolume();
@@ -250,9 +244,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Mute Image
-        musicVolumeDownImage = new Image(
-                game.assets.get("graphics/icons/volume_mute.png",
-                        Texture.class));
+        musicVolumeDownImage = new Image(atlas.findRegion("icons/volume_mute"));
         musicVolumeDownImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 decreaseMusicVolume();
@@ -265,9 +257,7 @@ public class TitleScreen implements InputProcessor, Screen {
             }
         });
         // Full volume image
-        musicVolumeUpImage = new Image(
-                game.assets.get("graphics/icons/volume_up.png",
-                        Texture.class));
+        musicVolumeUpImage = new Image(atlas.findRegion("icons/volume_up"));
         musicVolumeUpImage.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 increaseMusicVolume();
@@ -293,9 +283,7 @@ public class TitleScreen implements InputProcessor, Screen {
         ImageButton.ImageButtonStyle backButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         game.uiSkin.get("default", Button.ButtonStyle.class));
-        Sprite backSprite = new Sprite(
-                game.assets.get("graphics/icons/back.png",
-                        Texture.class));
+        Sprite backSprite = new Sprite(atlas.findRegion("icons/back"));
         backSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);
@@ -644,7 +632,6 @@ public class TitleScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        soundVolumeSound.dispose();
         stage.dispose();
     }
 

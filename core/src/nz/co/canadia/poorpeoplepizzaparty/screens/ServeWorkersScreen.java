@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -89,8 +90,11 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         nextSpawn = MathUtils.randomTriangular(Constants.FLYING_PIZZA_SPAWN_WAIT_MIN,
                 Constants.FLYING_PIZZA_SPAWN_WAIT_MAX);
 
-        partyScene = new PartyScene(game.assets.get("graphics/lunch_1.png", Texture.class),
-                game.assets.get("graphics/lunch_2.png", Texture.class));
+        // load TextureAtlas
+        TextureAtlas atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
+
+        partyScene = new PartyScene(atlas.findRegion("lunch01"),
+                atlas.findRegion("lunch02"));
 
         pizzaPixmap = pizza.getPixmap();
         pizzaTexture = new Texture(pizzaPixmap);
@@ -101,15 +105,15 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         }
 
         pizzaPartyAnimation = new PizzaPartyAnimation(
-                game.assets.get("graphics/pizzaparty_0.png", Texture.class),
-                game.assets.get("graphics/pizzaparty_1.png", Texture.class));
+                atlas.findRegion("pizzaparty00"),
+                atlas.findRegion("pizzaparty01"));
 
-        partyBoss = new PartyBoss (game.assets.get("graphics/boss.png", Texture.class),
+        partyBoss = new PartyBoss (atlas.findRegion("boss"),
                 this);
 
         doomDrips = new DoomDrips(
-                game.assets.get("graphics/doomdrips.png", Texture.class),
-                this);
+                atlas.findRegion("doomdrips")
+        );
     }
 
     public void bossSpeaks() {

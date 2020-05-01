@@ -1,7 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,22 +8,21 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class PizzaPartyAnimation {
     private final Animation<TextureRegion> animation;
-    private final TextureRegion[] animationFrames;
     private float stateTime;
     private int x;
     private int y;
     private boolean isActive;
     private boolean isVisible;
 
-    public PizzaPartyAnimation(Texture texture0, Texture texture1) {
-        animationFrames = new TextureRegion[2];
-        animationFrames[0] = new TextureRegion(texture0);
-        animationFrames[1] = new TextureRegion(texture1);
+    public PizzaPartyAnimation(TextureRegion textureRegion0, TextureRegion textureRegion1) {
+        TextureRegion[] animationFrames = new TextureRegion[2];
+        animationFrames[0] = new TextureRegion(textureRegion0);
+        animationFrames[1] = new TextureRegion(textureRegion1);
         animation = new Animation<TextureRegion>(Constants.PIZZA_PARTY_FRAME_DURATION,
                 animationFrames);
         stateTime = 0;
-        x = Constants.GAME_WIDTH / 2 - texture0.getWidth() / 2;
-        y = Constants.GAME_HEIGHT / 2 - texture1.getHeight() / 2;
+        x = Constants.GAME_WIDTH / 2 - textureRegion0.getRegionWidth() / 2;
+        y = Constants.GAME_HEIGHT / 2 - textureRegion1.getRegionHeight() / 2;
         isActive = true;
         isVisible = true;
     }

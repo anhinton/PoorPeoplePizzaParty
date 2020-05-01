@@ -1,16 +1,19 @@
 package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import nz.co.canadia.poorpeoplepizzaparty.utils.Assets;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 /**
@@ -22,8 +25,8 @@ public class Postcard {
     private final Sprite sprite;
     private final Texture texture;
 
-    public Postcard(Pizza pizza, Assets assets) {
-        pixmap = initPixmap(pizza, assets);
+    public Postcard(Pizza pizza, TextureAtlas atlas) {
+        pixmap = initPixmap(pizza, atlas);
         texture = new Texture(pixmap);
         sprite = new Sprite(texture);
     }
@@ -53,7 +56,7 @@ public class Postcard {
         return pixmap;
     }
 
-    private Pixmap initPixmap(Pizza pizza, Assets assets) {
+    private Pixmap initPixmap(Pizza pizza, TextureAtlas atlas) {
         int pizzaX = Constants.GAME_WIDTH - Constants.BASE_WIDTH
                 - Constants.BASE_X;
         int pizzaY = Constants.BASE_Y;
@@ -61,24 +64,46 @@ public class Postcard {
         // create temporary Pixmap from Pizza
         Pixmap pizzaPixmap = pizza.getPixmap();
 
-        // load random postcard background Pixmap
-        FileHandle postcardsDir = Gdx.files.internal("graphics/postcards");
-
-        String[] postcardFiles = {
-                "graphics/postcards/postcard01.png",
-                "graphics/postcards/postcard02.png",
-                "graphics/postcards/postcard03.png"
+        String[] postcardRegions = {
+                "postcards/postcard01",
+                "postcards/postcard02",
+                "postcards/postcard03"
         };
-        Pixmap backgroundPixmap = assets.get(
-                postcardFiles[MathUtils.random(postcardFiles.length - 1)]
-        );
+        TextureRegion backgroundTexture = atlas.findRegion(
+                postcardRegions[MathUtils.random(postcardRegions.length - 1)]);
 
         // create new Pixmap to return as pixmap
-        Pixmap postcardPixmap = new Pixmap(backgroundPixmap.getWidth(),
-                backgroundPixmap.getHeight(), backgroundPixmap.getFormat());
+        Pixmap postcardPixmap = new Pixmap(backgroundTexture.getRegionWidth(),
+                backgroundTexture.getRegionHeight(), Pixmap.Format.RGBA8888);
+
+        SpriteBatch spriteBatch = new SpriteBatch();
+        FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888,
+                backgroundTexture.getRegionWidth(), backgroundTexture.getRegionHeight(),
+                false);
+
+        OrthographicCamera camera = new OrthographicCamera();
+        camera.setToOrtho(true, Constants.GAME_WIDTH,
+                Constants.GAME_HEIGHT);
+        spriteBatch.setProjectionMatrix(camera.combined);
+
+        buffer.begin();
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        spriteBatch.begin();
+        spriteBatch.draw(backgroundTexture, 0, 0, backgroundTexture.getRegionWidth(), backgroundTexture.getRegionHeight());
+        spriteBatch.end();
 
         // draw background to pixmap
-        postcardPixmap.drawPixmap(backgroundPixmap, 0, 0);
+        postcardPixmap.drawPixmap(
+                ScreenUtils.getFrameBufferPixmap(
+                        0, 0, backgroundTexture.getRegionWidth(),
+                        backgroundTexture.getRegionHeight()),
+                0, 0);
+
+        buffer.end();
+
+        spriteBatch.dispose();
+        buffer.dispose();
 
         // draw temporary pizzaPixmap to pixmap
         postcardPixmap.drawPixmap(pizzaPixmap, pizzaX, pizzaY);

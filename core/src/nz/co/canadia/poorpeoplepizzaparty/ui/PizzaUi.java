@@ -1,8 +1,7 @@
 package nz.co.canadia.poorpeoplepizzaparty.ui;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
@@ -46,7 +45,7 @@ public class PizzaUi extends Table {
 
     public PizzaUi(final PizzaScreen pizzaScreen, final Skin skin,
                    final I18NBundle bundle,
-                   final AssetManager assets) {
+                   final TextureAtlas atlas) {
 
         this.pizzaScreen = pizzaScreen;
         super.setFillParent(true);
@@ -61,9 +60,7 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle closeButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        Sprite closeSprite = new Sprite(
-                assets.get("graphics/icons/close.png",
-                        Texture.class));
+        Sprite closeSprite = new Sprite(atlas.findRegion("icons/close"));
         closeSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         closeButtonStyle.imageUp = new SpriteDrawable(closeSprite);
@@ -75,9 +72,7 @@ public class PizzaUi extends Table {
             }
         });
 
-        headerImage = new Image(
-                assets.get("graphics/headers/pizzaScreen.png",
-                        Texture.class));
+        headerImage = new Image(atlas.findRegion("headers/pizzaScreen"));
 
         toppingSelectButton = new TextButton(bundle.get("pizzamenuSelectButton"), skin,
                 "default");
@@ -92,9 +87,7 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle cameraButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        Sprite cameraSprite = new Sprite(
-                assets.get("graphics/icons/camera.png",
-                        Texture.class));
+        Sprite cameraSprite = new Sprite(atlas.findRegion("icons/camera"));
         cameraSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         cameraButtonStyle.imageUp = new SpriteDrawable(cameraSprite);
@@ -109,9 +102,7 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle undoButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        Sprite undoSprite = new Sprite(
-                assets.get("graphics/icons/undo.png",
-                        Texture.class));
+        Sprite undoSprite = new Sprite(atlas.findRegion("icons/undo"));
         undoSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         undoButtonStyle.imageUp = new SpriteDrawable(undoSprite);
@@ -136,9 +127,7 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle backButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
-        Sprite backSprite = new Sprite(
-                assets.get("graphics/icons/back.png",
-                        Texture.class));
+        Sprite backSprite = new Sprite(atlas.findRegion("icons/back"));
         backSprite.setSize(Constants.UI_ICON_SIZE,
                 Constants.UI_ICON_SIZE);
         backButtonStyle.imageUp = new SpriteDrawable(backSprite);

@@ -8,7 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -34,6 +34,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
+    private final TextureAtlas atlas;
     private Pizza pizza;
     private OrthographicCamera gameCamera;
     private Viewport viewport;
@@ -50,21 +51,23 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     public PizzaScreen(final PoorPeoplePizzaParty game, boolean loadAutosave) {
         this.game = game;
+        atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
         showedToppingTutorial = false;
         undoPressedTime = 0;
         removeAllFired = false;
 
         initialise();
         if (loadAutosave) {
-            pizza = new Pizza(game.assets);
+            pizza = new Pizza(atlas, game.assets);
             load();
         } else {
-            pizza = new Pizza(game.assets);
+            pizza = new Pizza(atlas, game.assets);
         }
     }
 
     PizzaScreen(PoorPeoplePizzaParty game, Pizza pizza) {
         this.game = game;
+        atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
         showedToppingTutorial = true;
         initialise();
         this.pizza = pizza;
@@ -108,7 +111,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
         stage = new Stage(viewport, game.batch);
         pizzaUi = new PizzaUi(this, game.uiSkin,
-                game.bundle, game.assets);
+                game.bundle, atlas);
         stage.addActor(pizzaUi);
         pizzaMessage = new PizzaMessage(game.uiSkin);
         stage.addActor(pizzaMessage);
@@ -217,7 +220,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                 y,
                 MathUtils.random(360f),
                 toppingName,
-                game.assets.get(game.assets.toppingPath(toppingName), Texture.class),
+                atlas.findRegion(game.assets.toppingPath(toppingName)),
                 false);
     }
 
@@ -273,8 +276,7 @@ public class PizzaScreen implements InputProcessor, Screen {
                     selectedTopping.getY(),
                     MathUtils.random(360f),
                     selectedTopping.getToppingName(),
-                    game.assets.get(game.assets.toppingPath(selectedTopping.getToppingName()),
-                            Texture.class),
+                    atlas.findRegion(game.assets.toppingPath(selectedTopping.getToppingName())),
                     false);
         }
         return true;
