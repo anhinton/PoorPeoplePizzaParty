@@ -29,7 +29,7 @@ public class PoorPeoplePizzaParty extends Game {
     public ShapeRenderer shapeRenderer;
     public Skin uiSkin;
     public I18NBundle bundle;
-    public CaptureIO captureIO;
+    public final CaptureIO captureIO;
     private Music music;
     private float musicVolume;
     private float soundVolume;
@@ -90,11 +90,6 @@ public class PoorPeoplePizzaParty extends Game {
         bundle = I18NBundle.createBundle(bundleFileHandle, locale);
 
         this.setScreen(new LoadingScreen(this));
-    }
-
-    @Override
-    public void render () {
-        super.render(); //important!
     }
 
     @Override
