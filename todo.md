@@ -1,29 +1,30 @@
 # TODO
-      
-  + **BUG**: fix transparent swirl (through to postcard background) when swirl 
-    is last placed
-      
-  + do a Vector Android app icon
   
   + stop debugging for release
       - remove debugging statements Gdx.app.log
+        
+  + revise credits
+      
+  + do a Vector Android app icon
+  
+  + consider a thicker font for credits to make more legible on mobile
   
   + investigate desktop full screen and window resizing
       - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
         sizes
-        
-  + revise credits
-  
-  + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+      
+  + ~~**DO NOT FIX**~~
+    ~~**BUG**: fix transparent swirl (through to postcard background) when swirl 
+    is last placed~~
   
-  + clean up commented code in Assets
+  + ~~clean up commented code in Assets~~
 
   + ~~can I do away with Assets.toppingPath() ?~~
           - ~~maybe I can move it into PizzaScreen? it only seems to be required by PizzaScreen
             and Pizza, and is the only reason Pizza requires an Assets argument~~
-    **DO NOT IMPLEMENT**:~~
+    ~~**DO NOT IMPLEMENT**:~~
     ~~I investigated creating Atlas() class which extend TextureAtlas(), but the requirement
     to also created an AtlasLoader() class for use by Assets()/AssetManager() is too much
     to bother with~~
