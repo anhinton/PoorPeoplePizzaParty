@@ -24,7 +24,7 @@ import nz.co.canadia.poorpeoplepizzaparty.Pizza;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class CookScreen implements InputProcessor, Screen {
+class CookScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final Stage stage;

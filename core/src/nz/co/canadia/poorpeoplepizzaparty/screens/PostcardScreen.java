@@ -28,7 +28,7 @@ import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class PostcardScreen implements InputProcessor, Screen {
+class PostcardScreen implements InputProcessor, Screen {
     private final PoorPeoplePizzaParty game;
     private final Pizza pizza;
     private final Postcard postcard;

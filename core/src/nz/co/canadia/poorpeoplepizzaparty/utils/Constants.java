@@ -35,7 +35,7 @@ public class Constants {
     public static final float MUSIC_VOLUME_DEFAULT = 0.5f;
     public static final float SOUND_VOLUME_DEFAULT = 1f;
 
-    public static float VOLUME_STEP = 0.05f;
+    public static final float VOLUME_STEP = 0.05f;
 
     // Available menus in TitleScreen.class
     public enum CurrentTitleMenu { TITLE, SETTINGS, QUIT, CREDITS }

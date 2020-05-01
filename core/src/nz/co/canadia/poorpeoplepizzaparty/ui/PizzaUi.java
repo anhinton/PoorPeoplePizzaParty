@@ -38,10 +38,10 @@ public class PizzaUi extends Table {
     private final TextButton cookButton;
     private final ImageButton backButton;
     private final ImageButton closeButton;
-    private float buttonWidthFull;
-    private float buttonWidthHalf;
-    private float buttonHeight;
-    private float padding;
+    private final float buttonWidthFull;
+    private final float buttonWidthHalf;
+    private final float buttonHeight;
+    private final float padding;
     private Constants.CurrentPizzaMenu currentMenu;
 
     public PizzaUi(final PizzaScreen pizzaScreen, final Skin skin,
@@ -180,6 +180,7 @@ public class PizzaUi extends Table {
      * otherwise.
      * @return boolean true if handled
      */
+    @SuppressWarnings("SameReturnValue")
     public boolean goBack() {
         if (currentMenu == Constants.CurrentPizzaMenu.TOPPING) {
             setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);

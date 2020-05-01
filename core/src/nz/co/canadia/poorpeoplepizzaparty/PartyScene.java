@@ -13,8 +13,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  */
 
 public class PartyScene {
-    private Sprite normalSprite;
-    private Sprite inverseSprite;
+    private final Sprite normalSprite;
+    private final Sprite inverseSprite;
     private Constants.PartySprite currentState;
 
     public PartyScene(TextureRegion normalTexture, TextureRegion inverseTexture) {

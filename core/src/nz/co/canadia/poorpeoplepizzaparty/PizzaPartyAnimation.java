@@ -9,8 +9,8 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class PizzaPartyAnimation {
     private final Animation<TextureRegion> animation;
     private float stateTime;
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private boolean isActive;
     private boolean isVisible;
 

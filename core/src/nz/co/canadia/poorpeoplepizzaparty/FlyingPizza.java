@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -17,10 +16,10 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 public class FlyingPizza {
 
     private boolean isActive;
-    private Sprite sprite;
-    private float speed;
-    private float changeX;
-    private float changeY;
+    private final Sprite sprite;
+    private final float speed;
+    private final float changeX;
+    private final float changeY;
 
     public FlyingPizza (Texture texture) {
         sprite = new Sprite(texture);
@@ -93,11 +92,4 @@ public class FlyingPizza {
         }
     }
 
-    public void dispose() {
-
-    }
-
-    public Rectangle getBoundingRectangle() {
-        return sprite.getBoundingRectangle();
-    }
 }

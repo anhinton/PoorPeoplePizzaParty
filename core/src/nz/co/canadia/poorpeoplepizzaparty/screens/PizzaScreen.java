@@ -33,7 +33,7 @@ public class PizzaScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final TextureAtlas atlas;
-    private Pizza pizza;
+    private final Pizza pizza;
     private OrthographicCamera gameCamera;
     private Viewport viewport;
     private Stage stage;

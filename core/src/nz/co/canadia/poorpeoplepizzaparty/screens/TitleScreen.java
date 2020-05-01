@@ -35,7 +35,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import nz.co.canadia.poorpeoplepizzaparty.PoorPeoplePizzaParty;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
-public class TitleScreen implements InputProcessor, Screen {
+class TitleScreen implements InputProcessor, Screen {
 
     private final PoorPeoplePizzaParty game;
     private final FitViewport viewport;
@@ -48,7 +48,7 @@ public class TitleScreen implements InputProcessor, Screen {
     private final Sound soundVolumeSound;
     private float oldSoundVolume;
     private Constants.CurrentTitleMenu currentMenu;
-    private Preferences settings;
+    private final Preferences settings;
 
     // Title menu assets
     private final Image header;
@@ -81,7 +81,7 @@ public class TitleScreen implements InputProcessor, Screen {
     private final TextButton quitYesButton;
     private final TextButton quitNoButton;
 
-    public TitleScreen(final PoorPeoplePizzaParty game) {
+    TitleScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
 
         settings = Gdx.app.getPreferences("nz.co.canadia.poorpeoplepizzaparty.settings");

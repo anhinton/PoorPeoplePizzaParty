@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 public class Assets extends AssetManager {
 
-    private ObjectMap<Constants.ToppingName, String> toppingPaths;
+    private final ObjectMap<Constants.ToppingName, String> toppingPaths;
     
     public Assets() {
         toppingPaths = new ObjectMap<Constants.ToppingName, String>();

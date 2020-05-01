@@ -48,12 +48,12 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     private final Sound pickScrape;
     private float timeElapsed;
     private float nextSpawn;
-    private PartyScene partyScene;
-    private PartyBoss partyBoss;
-    private DoomDrips doomDrips;
-    private Array<FlyingPizza> flyingPizzaArray;
-    private Pixmap pizzaPixmap;
-    private Texture pizzaTexture;
+    private final PartyScene partyScene;
+    private final PartyBoss partyBoss;
+    private final DoomDrips doomDrips;
+    private final Array<FlyingPizza> flyingPizzaArray;
+    private final Pixmap pizzaPixmap;
+    private final Texture pizzaTexture;
     private Constants.ServeWorkersState state;
 
     public ServeWorkersScreen(PoorPeoplePizzaParty game, Pizza pizza) {
@@ -347,9 +347,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
     public void dispose() {
         pizzaPixmap.dispose();
         pizzaTexture.dispose();
-        for (FlyingPizza fp: flyingPizzaArray) {
-            fp.dispose();
-        }
         game.assets.unloadServeBossSounds();
         game.assets.unloadServeWorkersSounds();
     }
