@@ -1,7 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty.client;
 
-import com.badlogic.gdx.Gdx;
-
 import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 
