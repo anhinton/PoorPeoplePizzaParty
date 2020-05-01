@@ -3,7 +3,6 @@ package nz.co.canadia.poorpeoplepizzaparty;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Rectangle;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
@@ -57,10 +56,6 @@ public class Topping {
 
     public float getY() {
         return selectedSprite.getY();
-    }
-
-    public Rectangle getBoundingRectangle() {
-        return selectedSprite.getBoundingRectangle();
     }
 
     public Constants.ToppingName getToppingName() {

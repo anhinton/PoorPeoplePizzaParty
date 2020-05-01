@@ -76,10 +76,6 @@ public class PoorPeoplePizzaParty extends Game {
 
     @Override
     public void create() {
-
-        // TODO: stop debugging for release
-        Gdx.app.setLogLevel(Application.LOG_DEBUG);
-
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
 
         assets = new Assets();

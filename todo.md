@@ -1,7 +1,4 @@
 # TODO
-  
-  + stop debugging for release
-      - remove debugging statements Gdx.app.log
         
   + revise credits
       
@@ -14,6 +11,9 @@
         sizes
   
 ## Done
+  
+  + ~~stop debugging for release~~
+      - ~~remove debugging statements Gdx.app.log~~
       
   + ~~**DO NOT FIX**~~
     ~~**BUG**: fix transparent swirl (through to postcard background) when swirl 

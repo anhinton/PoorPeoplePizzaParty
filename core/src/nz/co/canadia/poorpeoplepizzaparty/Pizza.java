@@ -90,10 +90,6 @@ public class Pizza {
                     //setBaseTopping(Constants.ToppingName.BASE);
                     break;
                 case SAUCE:
-                    baseToppingOrder.pop();
-                    setBaseTopping(baseToppingOrder.peek());
-                    toppingOrder.pop();
-                    break;
                 case CHEESE:
                     baseToppingOrder.pop();
                     setBaseTopping(baseToppingOrder.peek());
@@ -183,10 +179,6 @@ public class Pizza {
                 0, toppingName,
                 atlas.findRegion(assets.toppingPath(toppingName)),
                 true));
-    }
-
-    public Array<Topping> getToppings() {
-        return toppings;
     }
 
     public void draw (SpriteBatch batch) {

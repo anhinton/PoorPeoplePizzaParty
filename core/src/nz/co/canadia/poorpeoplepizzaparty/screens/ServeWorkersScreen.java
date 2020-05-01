@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -316,19 +315,6 @@ public class ServeWorkersScreen implements InputProcessor, Screen {
         doomDrips.draw(game.batch);
         partyBoss.draw(game.batch);
         game.batch.end();
-
-        // TODO: remove debugging before release
-        if (Constants.DEBUG_GRAPHICS) {
-            game.shapeRenderer.setColor(1,0,0,1);
-            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            for (FlyingPizza fp: flyingPizzaArray) {
-                game.shapeRenderer.rect(fp.getBoundingRectangle().x,
-                        fp.getBoundingRectangle().y,
-                        fp.getBoundingRectangle().width,
-                        fp.getBoundingRectangle().height);
-            }
-            game.shapeRenderer.end();
-        }
 
         stage.getViewport().apply();
         stage.getCamera().update();

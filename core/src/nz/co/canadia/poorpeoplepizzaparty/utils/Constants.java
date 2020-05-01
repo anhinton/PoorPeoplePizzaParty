@@ -11,8 +11,6 @@ import com.badlogic.gdx.math.MathUtils;
 public class Constants {
     public static final String GAME_NAME = "Poor People Pizza Party";
 
-    public static final boolean DEBUG_GRAPHICS = false;
-
     // Preferences and save files
     public static final String autosavePath = "poorpeoplepizzaparty";
     public static final String autosaveFile = "autosave.xml";
@@ -134,7 +132,6 @@ public class Constants {
     public enum ServeWorkersState { PARTY, BOSS, RUBBISH, FIRED, FINISHED }
 
     // length of party in ServerWorkersScreen in seconds
-    // TODO: set length to Pizza Party song clip time
     public static final float PARTY_TIME = 15;
 
     // length of time that boss hangs on screen before fired message

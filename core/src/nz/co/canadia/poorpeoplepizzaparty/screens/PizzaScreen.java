@@ -9,9 +9,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -43,8 +41,6 @@ public class PizzaScreen implements InputProcessor, Screen {
     private PizzaMessage pizzaMessage;
     private Topping selectedTopping;
     private boolean showedToppingTutorial;
-    private float undoPressedTime;
-    private boolean removeAllFired;
     private Array<Points> pointsArray;
     private int pointsCount;
     private ObjectMap<Constants.ToppingName, Sound> toppingSoundMap;
@@ -53,8 +49,6 @@ public class PizzaScreen implements InputProcessor, Screen {
         this.game = game;
         atlas = game.assets.get("graphics/graphics.atlas", TextureAtlas.class);
         showedToppingTutorial = false;
-        undoPressedTime = 0;
-        removeAllFired = false;
 
         initialise();
         if (loadAutosave) {
@@ -354,24 +348,6 @@ public class PizzaScreen implements InputProcessor, Screen {
             selectedTopping.drawSelected(game.batch);
         }
         game.batch.end();
-
-        // draw debugging bounds
-        if (Constants.DEBUG_GRAPHICS) {
-            game.shapeRenderer.setColor(1,1,1,1);
-            game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            for (Topping t: pizza.getToppings()) {
-                Rectangle r = t.getBoundingRectangle();
-                game.shapeRenderer.rect(r.x, r.y, r.width, r.height);
-            }
-            if (hasSelectedTopping()) {
-                game.shapeRenderer.rect(
-                        selectedTopping.getBoundingRectangle().x,
-                        selectedTopping.getBoundingRectangle().y,
-                        selectedTopping.getBoundingRectangle().width,
-                        selectedTopping.getBoundingRectangle().height);
-            }
-            game.shapeRenderer.end();
-        }
 
         // update UI camera
         stage.getViewport().apply();

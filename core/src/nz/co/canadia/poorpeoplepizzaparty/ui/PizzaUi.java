@@ -173,9 +173,6 @@ public class PizzaUi extends Table {
                 bundle.get("toppingmenuBarbecue"));
 
         setCurrentMenu(Constants.CurrentPizzaMenu.MAIN);
-
-        // DEBUG UI
-        super.setDebug(Constants.DEBUG_GRAPHICS);
     }
 
     /**

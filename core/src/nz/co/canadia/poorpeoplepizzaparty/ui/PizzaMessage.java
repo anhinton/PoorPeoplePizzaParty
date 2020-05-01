@@ -29,6 +29,7 @@ public class PizzaMessage extends Container {
         super.clear();
     }
 
+    @SuppressWarnings("unchecked")
     public void showMessage(String s) {
         clearMessage();
         messageLabel = new TextButton(s, skin, "default");
@@ -43,7 +44,6 @@ public class PizzaMessage extends Container {
         super.prefSize(Constants.BUTTON_WIDTH_FULL,
                 Constants.BUTTON_HEIGHT);
 
-        // TODO: work out what the IDE warning here means, and how to fix it
         super.setActor(messageLabel);
     }
 }
