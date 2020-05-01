@@ -159,7 +159,7 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
     }
 
-    private void removeAllToppings() {
+    public void removeAllToppings() {
         pizza.removeAllToppings();
         pointsCount = 0;
     }
@@ -403,22 +403,6 @@ public class PizzaScreen implements InputProcessor, Screen {
                         break;
                 }
                 showMessage(s);
-            }
-        }
-
-        // check for undoButton long presses
-        if (pizzaUi.undoButtonPressed()) {
-            if (!removeAllFired) {
-                if (undoPressedTime > 1.1f) { // TODO: move this float to Constants
-                    removeAllToppings();
-                    removeAllFired = true;
-                }
-            }
-            undoPressedTime += delta;
-        } else {
-            if (removeAllFired) {
-                removeAllFired = false;
-                undoPressedTime = 0;
             }
         }
     }

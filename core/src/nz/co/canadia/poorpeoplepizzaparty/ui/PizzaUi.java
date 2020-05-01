@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
@@ -112,6 +113,12 @@ public class PizzaUi extends Table {
             public void changed(ChangeEvent event, Actor actor) {
                 pizzaScreen.clearMessage();
                 pizzaScreen.undoLastTopping();
+            }
+        });
+        undoButton.addListener(new ActorGestureListener() {
+            public boolean longPress (Actor actor, float x, float y) {
+                pizzaScreen.removeAllToppings();
+                return true;
             }
         });
 
@@ -297,7 +304,4 @@ public class PizzaUi extends Table {
         toppingSelectButton.setText(button.getText().toString());
     }
 
-    public boolean undoButtonPressed() {
-        return undoButton.isPressed();
-    }
 }
