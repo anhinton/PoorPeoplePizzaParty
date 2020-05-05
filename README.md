@@ -8,7 +8,7 @@ at <https://github.com/libgdx/libgdx/wiki/Gradle-and-Intellij-IDEA>.
 
 ### License
 
-Poor People Pizza Party copyright 2019 Ashley Noel Hinton.
+Poor People Pizza Party copyright 2020 Ashley Noel Hinton.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
