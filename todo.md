@@ -1,6 +1,6 @@
 # TODO
-        
-  + revise credits
+  
+  + revise licenses in README
       
   + do a Vector Android app icon
   
@@ -11,6 +11,8 @@
         sizes
   
 ## Done
+        
+  + ~~revise credits~~
   
   + ~~stop debugging for release~~
       - ~~remove debugging statements Gdx.app.log~~
