@@ -8,7 +8,7 @@ Created with libGDX http://libgdx.badlogicgames.com/
 
 ---
 
-Poor People Pizza Party copyright 2019 Ashley Noel Hinton.
+Poor People Pizza Party copyright 2020 Ashley Noel Hinton.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -18,32 +18,52 @@ You should have received a copy of the GNU General Public License along with thi
 
 ---
 
-Unless declared otherwise below the assets in this game are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Unless declared otherwise below the assets in this game are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License
 
-Fonts:
+  + "Inconsolata" Copyright 2006 The Inconsolata Project Authors is licensed under the SIL Open Font License, Version 1.1
 
-  + "Inconsolata" Copyright 2006 The Inconsolata Project Authors is licensed under the SIL Open Font License, Version 1.1.
+  + "Podkova" Copyright 2011 The Podkova Project Authors (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1
 
-  + "Podkova" Copyright 2011 The Podkova Project Authors (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
+  + "arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", "volume_mute", and "volume_up" by Google are licensed under Apache license version 2.0
 
-Icons:
+  + "Made20bacon.png" by Made20rder555 is in the public domain
 
-  + "arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", "volume_mute", and "volume_up" by Google are licensed under Apache license version 2.0.
+  + "Chicken McNuggets, Indonesia.jpg" by Crisco 1492 is licensed under CC BY-SA 3.0
 
-Textures:
+  + "Spanish salami in Poznan.JPG" by MOs810 is licensed under CC BY-SA 4.0
 
-  + "Made20bacon.png" by Made20rder555 is in the public domain.
+  + "Kielbasa szynkowa.jpg" by Mariuszjbie is licensed under CC BY 3.0
 
-  + "Chicken McNuggets, Indonesia.jpg" by Crisco 1492 is licensed under CC BY-SA 3.0.
+  + "Lunch" by Thomas Bonte is licensed under CC BY 2.0
 
-  + "Spanish salami in Poznan.JPG" by MOs810 is licensed under CC BY-SA 4.0.
+  + "Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg" by Phillip Capper is licensed under CC BY 2.0
 
-  + "Kielbasa szynkowa.jpg" by Mariuszjbie is licensed under CC BY 3.0.
+  + "Waipori River" by itravelNZ® - New Zealand in your pocket™ is licensed under CC BY 2.0
 
-  + "Lunch" by Thomas Bonte is licensed under CC BY 2.0.
+  + "018" by Phillip Cossar is licensed under CC BY 2.0
 
-  + "Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg" by Phillip Capper is licensed under CC BY 2.0.
+  + "72 - Funiculì, Funiculà" by Jackson Parodi is licensed under CC-BY
 
-  + "Waipori River" by itravelNZ® - New Zealand in your pocket™ is licensed under CC BY 2.0.
+  + "Spider-Man 2: Pizza Theme - Metal Cover| Christian Richardson" by Christian Richardson is licensed under CC-BY
 
-  + "018" by Phillip Cossar is licensed under CC BY 2.0.
+  + "Club Penguin Pizza Parlor Theme (Charlie's Here): Jazz Cover" by OmicronGaming is licensed under CC-BY
+
+  + "Scrapedown.wav" by NoiseCollector is licensed under CC-BY
+
+  + "Leather Bag Drop" by gneube is licensed under CC-BY
+
+  + "Dropping, Wood, B.wav" by InspectorJ is licensed under CC-BY
+
+  + "Dropping, Metal Pin on Wood, A.wav" by InspectorJ is licensed under CC-BY
+
+  + "water drop 2.aif" by beskhu is licensed under CC-0
+
+  + "nut crunch chomp" by spanrucker is licensed under CC-0
+
+  + "Pop sound" by deraj is licensed under CC-0
+
+  + "Small coughing" by Thegamemakerqueen is licensed under CC-0
+
+  + "Coin dropped on table 3" by HoseNoseSounds is licensed under CC-0
+
+  + "Camera Shutter.m4a" by applesandpears50 is licensed under CC-0
