@@ -37,50 +37,50 @@ is licensed under the SIL Open Font License, Version 1.1.
 `fonts/label` "Podkova" Copyright 2011 The Podkova Project Authors 
 (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
 
-`graphics/icons/back.png` `graphics/icons/camera.png` `graphics/icons/close.png` 
-`graphics/icons/save.png` `graphics/icons/settings.png` `graphics/icons/share.png` 
-`graphics/icons/undo.png` `graphics/icons/volume_mute.png` `graphics/icons/volume_up.png`
+`graphics/icons/back` `graphics/icons/camera` `graphics/icons/close` 
+`graphics/icons/save` `graphics/icons/settings` `graphics/icons/share` 
+`graphics/icons/undo` `graphics/icons/volume_mute` `graphics/icons/volume_up`
 "arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", 
 "volume_mute", and "volume_up" by 
 [Google](https://material.io/tools/icons/) are licensed under 
-[Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html). 
+[Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
 
-`graphics/toppings/bacon-topping.png`
+`graphics/postcards/postcard01`
+"[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
+by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
+under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
+
+`graphics/postcards/postcard02`
+"[Waipori River](https://www.flickr.com/photos/itravelnz/28166819765/)"
+by [itravelNZ® - New Zealand in your pocket™](https://www.flickr.com/photos/itravelnz/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+`graphics/postcards/postcard03`
+"[018](https://www.flickr.com/photos/93842075@N04/8596242513/)" 
+by [Phillip Cossar](https://www.flickr.com/photos/93842075@N04/)
+is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). 
+
+`graphics/toppings/bacon-topping`
 "[Made20bacon.png](https://commons.wikimedia.org/wiki/File:Made20bacon.png)"
 by Made20rder555 is in the public domain.
 
-`graphics/toppings/chicken-topping.png`
+`graphics/toppings/chicken-topping`
 "[Chicken McNuggets, Indonesia.jpg](https://commons.wikimedia.org/wiki/File:Chicken_McNuggets,_Indonesia.jpg)"
 by [Crisco 1492](https://commons.wikimedia.org/wiki/User:Crisco_1492) is
 licensed under
 [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
 
-`graphics/toppings/salami-topping.png`
+`graphics/toppings/salami-topping`
 "[Spanish salami in Poznan.JPG](https://commons.wikimedia.org/wiki/File:Spanish_salami_in_Poznan.JPG)"
 by [MOs810](https://commons.wikimedia.org/wiki/User:MOs810) is licensed under
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
 
-`graphics/toppings/sausage-topping.png`
+`graphics/toppings/sausage-topping`
 "[Kielbasa szynkowa.jpg](https://commons.wikimedia.org/wiki/File:Kielbasa_szynkowa.jpg)"
 by Mariuszjbie is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
 
-`graphics/lunch.png`
+`graphics/lunch`
 "[Lunch](https://www.flickr.com/photos/thomasbonte/4956496553/in/photostream/)"
 by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
 [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
-
-`graphics/postcards/postcard01.png`
-"[Downtown Invercargill, Southland, New Zealand - Flickr - PhillipC.jpg](https://commons.wikimedia.org/wiki/File:Downtown_Invercargill,_Southland,_New_Zealand_-_Flickr_-_PhillipC.jpg)"
-by [Phillip Capper](https://www.flickr.com/people/42033648@N00) is licensed
-under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en).
-
-`graphics/postcards/postcard02.png`
-"[Waipori River](https://www.flickr.com/photos/itravelnz/28166819765/)"
-by [itravelNZ® - New Zealand in your pocket™](https://www.flickr.com/photos/itravelnz/)
-is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
-
-`graphics/postcards/postcard03.png`
-"[018](https://www.flickr.com/photos/93842075@N04/8596242513/)" 
-by [Phillip Cossar](https://www.flickr.com/photos/93842075@N04/)
-is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
