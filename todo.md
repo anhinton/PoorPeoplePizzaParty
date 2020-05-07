@@ -1,16 +1,53 @@
 # TODO
-  
-  + revise licenses in README
+
+  + build for WebGl
+      - test
+      - customise page
+      - upload to itch.io
+
+  + prepare itch.io page
+      - cover image 630x500
+      - 3 screen shots
+      - Youtube trailer
+      - write Details
+      - tags
       
-  + do a Vector Android app icon
+  + make video trailer
+      - upload to Youtube
+  
+  + prepare http://poorpeoplepizzaparty.canadia.co.nz/
+      - itch.io cover images
+      - itch.io widget
+      - Details
+      - links to stores
+      
+  + build for Desktop
+      - test
+      - pack binaries <https://github.com/libgdx/packr>
+          - Windows
+          - Linux
+      - upload to itch.io
+      
+  + build for Android
+      - sign build <https://developer.android.com/studio/publish/app-signing>
+      - test
+      - upload to itch.io
+      - upload to Google Play
+      
+  + build for iOS/Mac
+      - investigate renting a Mac in the cloud
   
   + consider a thicker font for credits to make more legible on mobile
   
-  + investigate desktop full screen and window resizing
-      - going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
-        sizes
-  
 ## Done
+  
+  + ~~**WILL NOT IMPLEMENT** investigate desktop full screen and window resizing~~
+      - ~~going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
+        sizes~~
+      
+  + ~~**DO NOT IMPLEMENT** do a Vector Android app icon~~
+  
+  + ~~revise licenses in README~~
         
   + ~~revise credits~~
   
