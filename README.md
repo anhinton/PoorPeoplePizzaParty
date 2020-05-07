@@ -84,3 +84,95 @@ by Mariuszjbie is licensed under
 "[Lunch](https://www.flickr.com/photos/thomasbonte/4956496553/in/photostream/)"
 by [Thomas Bonte](https://www.flickr.com/photos/thomasbonte/) is licensed under
 [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+`music/BossTheme.mp3`
+"[Spider-Man 2: Pizza Theme - Metal Cover| Christian Richardson](https://www.youtube.com/watch?v=t_Cod-6K3oA)" 
+by 
+[Christian Richardson](https://www.youtube.com/channel/UCx1oNbpQ9SuSYJoOrhEHlQw)
+is licensed under 
+[CC-BY](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+`music/PartyTheme.mp3`
+"[Club Penguin Pizza Parlor Theme (Charlie's Here): Jazz Cover](https://www.youtube.com/watch?v=9rCwPsAdfO4)"
+by
+[OmicronGaming](https://www.youtube.com/channel/UCryKACitFpPVPiqvYH6pQBQ)
+is licensed under 
+[CC-BY](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+`music/ThemeMusic.mp3`
+"[72 - Funiculì, Funiculà](https://www.youtube.com/watch?v=wNSKS0sjr00)"
+by
+[Jackson Parodi](https://www.youtube.com/channel/UC8XvpkRSLwtZc2A_oYQPAUA)
+is licensed under 
+[CC-BY](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+`sound/toppings/apricot.mp3`
+"[Leather Bag Drop](https://freesound.org/people/gneube/sounds/315838/)"
+by
+[gneube](https://freesound.org/people/gneube/)
+is licensed under
+[CC-BY](http://creativecommons.org/licenses/by/3.0/)
+
+`sound/toppings/bacon.mp3`/352112__inspectorj__dropping-wood-b.wav`
+"[Dropping, Wood, B.wav](https://freesound.org/people/InspectorJ/sounds/352112/#)"
+by
+[InspectorJ](https://freesound.org/people/InspectorJ/)
+is licensed under
+[CC-BY](http://creativecommons.org/licenses/by/3.0/)
+
+`sound/toppings/barbecue.mp3`
+"[Dropping, Metal Pin on Wood, A.wav](https://freesound.org/people/InspectorJ/sounds/414437/)"
+by
+[InspectorJ](https://freesound.org/people/InspectorJ/)
+is licensed under
+[CC-BY](http://creativecommons.org/licenses/by/3.0/)
+
+`sound/toppings/cheese.mp3`
+"[water drop 2.aif](https://freesound.org/people/beskhu/sounds/273869/)"
+by
+[beskhu](https://freesound.org/people/beskhu/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/toppings/chicken.mp3`
+"[nut crunch
+chomp](https://freesound.org/people/spanrucker/sounds/272239/)"
+by
+[spanrucker](https://freesound.org/people/spanrucker/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/toppings/salami.mp3`
+"[Pop sound](https://freesound.org/people/deraj/sounds/202230/)"
+by
+[deraj](https://freesound.org/people/deraj/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/toppings/sauce.mp3`
+"[Small coughing](https://freesound.org/people/Thegamemakerqueen/sounds/511662/)" 
+by
+[Thegamemakerqueen](https://freesound.org/people/Thegamemakerqueen/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/toppings/sausage.mp3`
+"[Coin dropped on table 3](https://freesound.org/people/HoseNoseSounds/sounds/510732/)"
+by
+[HoseNoseSounds](https://freesound.org/people/HoseNoseSounds/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/camera.mp3`
+"[Camera Shutter.m4a](https://freesound.org/people/applesandpears50/sounds/485711/)"
+by
+[applesandpears50](https://freesound.org/people/applesandpears50/)
+is licensed under
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+`sound/PickScrape.mp3`
+"[Scrapedown.wav](https://freesound.org/people/NoiseCollector/sounds/4273/)"
+by
+[NoiseCollector](https://freesound.org/people/NoiseCollector/)
+is licensed under
+[CC-BY](http://creativecommons.org/licenses/by/3.0/)
