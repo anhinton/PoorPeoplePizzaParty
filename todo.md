@@ -8,8 +8,8 @@
 
   + prepare itch.io page
       - ~~page banner 960 wide~~
-      - cover image 630x500
-      - 3 screen shots
+      - ~~cover image 630x500~~
+      - ~~3 screen shots~~
       - Youtube trailer
       - write Details
       - tags
