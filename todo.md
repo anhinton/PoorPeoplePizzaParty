@@ -1,16 +1,19 @@
 # TODO
 
   + build for WebGl
-      - test
-      - customise page
-      - upload to itch.io
+      - ~~test~~
+      - ~~remove superDev button from page~~
+      - ~~upload to itch.io~~
+      - ~~revise background colour to match itch.io page~~
 
   + prepare itch.io page
+      - ~~page banner 960 wide~~
       - cover image 630x500
       - 3 screen shots
       - Youtube trailer
       - write Details
       - tags
+      - ~~choose colour scheme~~
       
   + make video trailer
       - upload to Youtube
