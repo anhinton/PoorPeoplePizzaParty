@@ -21,7 +21,7 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
 
-    version = '1.0'
+    version = '2020-05-08'
     ext {
         appName = "Poor People Pizza Party"
         gdxVersion = '1.9.10'

@@ -40,6 +40,8 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+
+  + ~~set release version~~
   
   + ~~**WILL NOT IMPLEMENT** investigate desktop full screen and window resizing~~
       - ~~going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
