@@ -24,18 +24,22 @@
       - Details
       - links to stores
       
-  + build for Desktop
-      - test
-      - pack binaries <https://github.com/libgdx/packr>
-          - Windows
-          - Linux
-      - upload to itch.io
+  + ~~build for Desktop~~
+      - ~~test~~
+      - ~~pack binaries~~ <https://github.com/libgdx/packr>
+          - ~~Windows~~
+		      - ~~test~~
+          - ~~Linux~~
+		      - ~~test~~
+      - ~~upload to itch.io~~
       
   + build for Android
-      - sign build <https://developer.android.com/studio/publish/app-signing>
-      - test
-      - upload to itch.io
+      - ~~sign build~~ <https://developer.android.com/studio/publish/app-signing>
+      - ~~test~~
+      - ~~upload to itch.io~~
       - upload to Google Play
+	  
+  + prepare Google Play page
       
   + build for iOS/Mac
       - investigate renting a Mac in the cloud
