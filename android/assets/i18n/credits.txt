@@ -1,4 +1,4 @@
-Poor People Pizza Party by Ashley Noel Hinton.
+Poor People Pizza Party by Ashley Noel Hinton
 
 http://poorpeoplepizzaparty.canadia.co.nz/
 
@@ -8,7 +8,7 @@ Created with libGDX http://libgdx.badlogicgames.com/
 
 ---
 
-Poor People Pizza Party copyright 2020 Ashley Noel Hinton.
+Poor People Pizza Party copyright 2020 Ashley Noel Hinton
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
