@@ -1,5 +1,6 @@
 package nz.co.canadia.poorpeoplepizzaparty.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -13,6 +14,7 @@ public class DesktopLauncher {
 		config.width = Constants.DESKTOP_WIDTH;
 		config.height = Constants.DESKTOP_HEIGHT;
 		config.resizable = false;
+		config.addIcon("icon.png", Files.FileType.Local);
 		new LwjglApplication(
 		        new PoorPeoplePizzaParty(new DesktopCaptureIO()),
 				config);
