@@ -1,6 +1,6 @@
 # TODO
 
-  + build for WebGl
+  + ~~build for WebGl~~
       - ~~test~~
       - ~~remove superDev button from page~~
       - ~~upload to itch.io~~
