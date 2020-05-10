@@ -14,7 +14,9 @@ public class DesktopLauncher {
 		config.width = Constants.DESKTOP_WIDTH;
 		config.height = Constants.DESKTOP_HEIGHT;
 		config.resizable = false;
-		config.addIcon("icon.png", Files.FileType.Local);
+		config.addIcon("icon_128.png", Files.FileType.Local);
+		config.addIcon("icon_32.png", Files.FileType.Local);
+		config.addIcon("icon_16.png", Files.FileType.Local);
 		new LwjglApplication(
 		        new PoorPeoplePizzaParty(new DesktopCaptureIO()),
 				config);
