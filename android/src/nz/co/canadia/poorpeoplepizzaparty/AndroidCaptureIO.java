@@ -30,8 +30,13 @@ public class AndroidCaptureIO implements CaptureIO {
         postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
 
         writePostcardPNG(postcardPixmap);
+    }
 
-        sharePostcardPNG();
+    @Override
+    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
+        savePostcardImage(postcard);
+
+        sharePostcardPNG(shareText, shareHeader);
     }
 
     @Override
@@ -49,7 +54,7 @@ public class AndroidCaptureIO implements CaptureIO {
         }
     }
 
-    private void sharePostcardPNG() {
+    private void sharePostcardPNG(String shareText, String shareHeader) {
         // get postcard file URI
         File postcardFile = postcardFilePath.file();
         Uri postcardUri = FileProvider.getUriForFile(activity.getContext(),
@@ -63,13 +68,11 @@ public class AndroidCaptureIO implements CaptureIO {
         // share postcard via an Intent
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT,
-                activity.getResources().getText(R.string.share_text));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
         shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
         shareIntent.setType("image/png");
         shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        activity.startActivity(Intent.createChooser(shareIntent,
-                activity.getResources().getText(R.string.share_header)));
+        activity.startActivity(Intent.createChooser(shareIntent, shareHeader));
     }
 
     private void writePostcardPNG(Pixmap postcardPixmap) {
