@@ -2,7 +2,5 @@
 <resources>
 
     <string name="app_name">Poor People Pizza Party</string>
-    <string name="share_header">Send a pizza postcard to</string>
-    <string name="share_text">#iamrich #poorpeoplepizzaparty https://poorpeoplepizzaparty.canadia.co.nz/</string>
 
 </resources>
