@@ -79,7 +79,8 @@ class PostcardScreen implements InputProcessor, Screen {
 
         postcard = new Postcard(pizza, atlas);
 
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+        if (Gdx.app.getType() == Application.ApplicationType.Android
+                | Gdx.app.getType() == Application.ApplicationType.iOS) {
             // add share button
             ImageButton.ImageButtonStyle shareButtonStyle =
                     new ImageButton.ImageButtonStyle(
@@ -92,7 +93,9 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard);
+                    game.captureIO.savePostcardImage(postcard,
+                            game.bundle.get("postcardShareText"),
+                            game.bundle.get("postcardShareHeader"));
                 }
             });
             table.add(shareButton)
