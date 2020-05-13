@@ -24,6 +24,8 @@
     <string>????</string>
     <key>CFBundleVersion</key>
     <string>${app.build}</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UIViewControllerBasedStatusBarAppearance</key>
@@ -50,7 +52,5 @@
     </array>
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
-    <key>CFBundleIconName</key>
-    <string>AppIcon</string>
 </dict>
 </plist>
