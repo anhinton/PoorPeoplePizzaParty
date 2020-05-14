@@ -1,5 +1,9 @@
 # TODO
 
+  + remove close button from Android/iOS title screen
+  
+  + work out why image share is not working
+
   + ~~build for WebGl~~
       - ~~test~~
       - ~~remove superDev button from page~~
