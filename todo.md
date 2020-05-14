@@ -1,11 +1,9 @@
 # TODO
-
-  + remove close button from Android/iOS title screen (only show on Desktop)
-      - back button/ESC should still quit (this doesn't exist on iOS)
   
   + work out why image share is not working
-      - do I still need android.permission.WRITE_EXTERNAL_STORAGE in Android manifest?
-      - make an iOS version of the share button on PostcardScreen
+      - ~~do I still need android.permission.WRITE_EXTERNAL_STORAGE in Android manifest? looks
+        like no~~
+      - ~~make an iOS version of the share button on PostcardScreen~~
       
   + do a Vector Android/iOS app icon (I believe Apple would reject the current one)
 
@@ -56,6 +54,9 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+
+  + ~~remove close button from Android/iOS title screen (only show on Desktop)~~
+      - ~~back button/ESC should still quit (this doesn't exist on iOS)~~
 
   + ~~set release version~~
   
