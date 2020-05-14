@@ -368,7 +368,7 @@ class TitleScreen implements InputProcessor, Screen {
                 .prefSize(buttonSize)
                 .left()
                 .space(padding);
-        if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
+        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
             mainMenuTable.add(quitButton)
                     .prefSize(buttonSize)
                     .space(padding);
@@ -478,7 +478,8 @@ class TitleScreen implements InputProcessor, Screen {
     private void goBack() {
         switch (currentMenu) {
             case TITLE:
-                if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
+                if (Gdx.app.getType() == Application.ApplicationType.Desktop
+                        | Gdx.app.getType() == Application.ApplicationType.Android) {
                     setCurrentMenu(Constants.CurrentTitleMenu.QUIT);
                 }
                 break;
