@@ -1,11 +1,24 @@
 # TODO
-  
-  + work out why image share is not working
-      - ~~do I still need android.permission.WRITE_EXTERNAL_STORAGE in Android manifest? looks
-        like no~~
-      - ~~make an iOS version of the share button on PostcardScreen~~
       
-  + do a Vector Android/iOS app icon (I believe Apple would reject the current one)
+  + work out why postcard share is not working on iOS
+      - ~~make an iOS version of the share button on PostcardScreen~~
+	  - skip sharing on iOS for now - testing is too annoying and I want to
+	    release a game already
+      
+  + do a Vector Android/iOS app icon (I believe Apple would reject 
+    the current one)
+      
+  + build for iOS/Mac
+      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
+	  - ~~skip Mac build for now because testing in cloud is impossible~~
+	  - build for iOS using robovm
+	  - follow instructions to [support iPhone
+        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
+	  - test
+	  - re-test Android, Desktop, WebGL builds
+	  
+  + make video trailer
+      - upload to Youtube
 
   + ~~build for WebGl~~
       - ~~test~~
@@ -21,9 +34,6 @@
       - write Details
       - tags
       - ~~choose colour scheme~~
-      
-  + make video trailer
-      - upload to Youtube
   
   + prepare http://poorpeoplepizzaparty.canadia.co.nz/
       - itch.io cover images
@@ -47,13 +57,19 @@
       - upload to Google Play
 	  
   + prepare Google Play page
-      
-  + build for iOS/Mac
-      - investigate renting a Mac in the cloud
   
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+  
+  + ~~work out why postcard share is not working on Android (specifically
+    on Amy's old phone)~~
+      - ~~do I still need android.permission.WRITE_EXTERNAL_STORAGE in 
+	    Android manifest? looks like no~~
+	  - ~~problem occurs when sharing to Messages  on old Moto G phone 
+	    (Android 6.0 API 23) and emulator running old API versions.
+		seems to run fine in Android 8.0 API 26 and newer, so I will mark 
+		this as **do not fix**~~
 
   + ~~remove close button from Android/iOS title screen (only show on Desktop)~~
       - ~~back button/ESC should still quit (this doesn't exist on iOS)~~
