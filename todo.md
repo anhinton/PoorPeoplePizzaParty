@@ -17,6 +17,8 @@
 	  - test
 	  - re-test Android, Desktop, WebGL builds
 	  
+  + explore making game dimensions 1080p
+	  
   + make video trailer
       - upload to Youtube
 
