@@ -39,13 +39,16 @@ public class IOSCaptureIO implements CaptureIO {
     }
 
     private void sharePostcardPNG(String shareText, String shareHeader) {
-        NSArray<NSObject> items = new NSArray<>(
-                new NSString(shareText),
-                new UIImage(postcardFilePath.file())
-        );
-        UIActivityViewController uiActivityViewController = new UIActivityViewController(items, null);
-        uiActivityViewController.setTitle(shareHeader);
-        ((IOSApplication) Gdx.app).getUIViewController().presentViewController(uiActivityViewController, true, null);
+        if(postcardFilePath.exists()) {
+            NSArray<NSObject> items = new NSArray<NSObject>(new UIImage(postcardFilePath.file()));
+//            NSArray<NSObject> items = new NSArray<>(
+//                    new NSString(shareText),
+//                    new UIImage(postcardFilePath.file())
+//            );
+            UIActivityViewController uiActivityViewController = new UIActivityViewController(items, null);
+//            uiActivityViewController.setTitle(shareHeader);
+            ((IOSApplication) Gdx.app).getUIViewController().presentViewController(uiActivityViewController, true, null);
+        }
     }
 
     @Override
