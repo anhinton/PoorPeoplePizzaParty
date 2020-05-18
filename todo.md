@@ -1,15 +1,5 @@
 # TODO
       
-  + work out why postcard share 'Save Image' is not working on iOS
-      - ~~make an iOS version of the share button on PostcardScreen~~
-      - according to 'Sharing images' section in 
-        <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
-        I need to get permission to save an image to photo library. Solution
-        is to add the following code to ios/Info.plist.xml:
-        > <key>NSPhotoLibraryAddUsageDescription</key>
-        > <string>We need you permission to save this pizza postcard to your photo library</string>
-	    <https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryaddusagedescription>
-      
   + do a Vector Android/iOS app icon (I believe Apple would reject 
     the current one)
       
@@ -68,6 +58,16 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+      
+  + ~~work out why postcard share 'Save Image' is not working on iOS~~
+      - ~~make an iOS version of the share button on PostcardScreen~~
+      - ~~according to 'Sharing images' section in 
+        <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
+        I need to get permission to save an image to photo library. Solution
+        is to add the following code to ios/Info.plist.xml:
+        > <key>NSPhotoLibraryAddUsageDescription</key>
+        > <string>We need you permission to save this pizza postcard to your photo library</string>
+	    <https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryaddusagedescription>~~
   
   + ~~work out why postcard share is not working on Android (specifically
     on Amy's old phone)~~
