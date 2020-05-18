@@ -1,4 +1,21 @@
 # TODO
+      
+  + do a Vector Android/iOS app icon (I believe Apple would reject 
+    the current one)
+      
+  + build for iOS/Mac
+      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
+	  - ~~skip Mac build for now because testing in cloud is impossible~~
+	  - build for iOS using robovm
+	  - follow instructions to [support iPhone
+        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
+	  - test
+	  - re-test Android, Desktop, WebGL builds
+	  
+  + explore making game dimensions 1080p
+	  
+  + make video trailer
+      - upload to Youtube
 
   + ~~build for WebGl~~
       - ~~test~~
@@ -14,9 +31,6 @@
       - write Details
       - tags
       - ~~choose colour scheme~~
-      
-  + make video trailer
-      - upload to Youtube
   
   + prepare http://poorpeoplepizzaparty.canadia.co.nz/
       - itch.io cover images
@@ -40,21 +54,38 @@
       - upload to Google Play
 	  
   + prepare Google Play page
-      
-  + build for iOS/Mac
-      - investigate renting a Mac in the cloud
   
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+      
+  + ~~work out why postcard share 'Save Image' is not working on iOS~~
+      - ~~make an iOS version of the share button on PostcardScreen~~
+      - ~~according to 'Sharing images' section in 
+        <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
+        I need to get permission to save an image to photo library. Solution
+        is to add the following code to ios/Info.plist.xml:
+        > <key>NSPhotoLibraryAddUsageDescription</key>
+        > <string>We need you permission to save this pizza postcard to your photo library</string>
+	    <https://developer.apple.com/documentation/bundleresources/information_property_list/nsphotolibraryaddusagedescription>~~
+  
+  + ~~work out why postcard share is not working on Android (specifically
+    on Amy's old phone)~~
+      - ~~do I still need android.permission.WRITE_EXTERNAL_STORAGE in 
+	    Android manifest? looks like no~~
+	  - ~~problem occurs when sharing to Messages  on old Moto G phone 
+	    (Android 6.0 API 23) and emulator running old API versions.
+		seems to run fine in Android 8.0 API 26 and newer, so I will mark 
+		this as **do not fix**~~
+
+  + ~~remove close button from Android/iOS title screen (only show on Desktop)~~
+      - ~~back button/ESC should still quit (this doesn't exist on iOS)~~
 
   + ~~set release version~~
   
   + ~~**WILL NOT IMPLEMENT** investigate desktop full screen and window resizing~~
       - ~~going to need to make a UiSkin.resize() called from PoorPeoplePizzaParty() for font
         sizes~~
-      
-  + ~~**DO NOT IMPLEMENT** do a Vector Android app icon~~
   
   + ~~revise licenses in README~~
         

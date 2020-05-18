@@ -11,6 +11,11 @@ public class HtmlCaptureIO implements CaptureIO {
     }
 
     @Override
+    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
+        // No postcard export on WebGl
+    }
+
+    @Override
     public void savePizzaXml(String pizzaXml) {
         // No save/load on WebGl
     }

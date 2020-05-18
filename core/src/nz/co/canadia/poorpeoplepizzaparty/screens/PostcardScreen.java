@@ -92,7 +92,9 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard);
+                    game.captureIO.savePostcardImage(postcard,
+                            game.bundle.get("postcardShareText"),
+                            game.bundle.get("postcardShareHeader"));
                 }
             });
             table.add(shareButton)
@@ -117,6 +119,29 @@ class PostcardScreen implements InputProcessor, Screen {
                 }
             });
             table.add(saveButton)
+                    .space(padding)
+                    .prefSize(buttonWidth, buttonHeight);
+        }
+
+        if (Gdx.app.getType() == Application.ApplicationType.iOS) {
+            // add share button
+            ImageButton.ImageButtonStyle shareButtonStyle =
+                    new ImageButton.ImageButtonStyle(
+                            game.uiSkin.get("default", Button.ButtonStyle.class));
+            Sprite shareSprite = new Sprite(atlas.findRegion("icons/ios-share"));
+            shareSprite.setSize(Constants.UI_ICON_SIZE,
+                    Constants.UI_ICON_SIZE);
+            shareButtonStyle.imageUp = new SpriteDrawable(shareSprite);
+            ImageButton shareButton = new ImageButton(shareButtonStyle);
+            shareButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    game.captureIO.savePostcardImage(postcard,
+                            game.bundle.get("postcardShareText"),
+                            game.bundle.get("postcardShareHeader"));
+                }
+            });
+            table.add(shareButton)
                     .space(padding)
                     .prefSize(buttonWidth, buttonHeight);
         }

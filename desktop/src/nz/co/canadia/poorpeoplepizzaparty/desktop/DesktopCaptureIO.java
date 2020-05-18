@@ -38,6 +38,11 @@ public class DesktopCaptureIO implements CaptureIO {
     }
 
     @Override
+    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
+        savePostcardImage(postcard);
+    }
+
+    @Override
     public void savePizzaXml(String pizzaXml) {
         FileHandle autosaveFile = autosaveFile();
         boolean dirExists = autosaveFile.parent().exists();
