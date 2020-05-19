@@ -1,8 +1,5 @@
 # TODO
       
-  + do a Vector Android/iOS app icon (I believe Apple would reject 
-    the current one)
-      
   + build for iOS/Mac
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
 	  - ~~skip Mac build for now because testing in cloud is impossible~~
@@ -13,6 +10,7 @@
 	  - re-test Android, Desktop, WebGL builds
 	  
   + explore making game dimensions 1080p
+      - what size fonts do I need?
 	  
   + make video trailer
       - upload to Youtube
@@ -58,6 +56,12 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+      
+  + ~~do a Vector app icon (I believe Apple would reject the current one)~~
+      - ~~Android~~
+      - ~~Desktop~~
+      - ~~iOS~~
+      - ~~html~~
       
   + ~~work out why postcard share 'Save Image' is not working on iOS~~
       - ~~make an iOS version of the share button on PostcardScreen~~
