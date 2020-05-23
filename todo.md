@@ -9,9 +9,6 @@
 	  - test
 	  - re-test Android, Desktop, WebGL builds
 	  
-  + explore making game dimensions 1080p
-      - what size fonts do I need?
-	  
   + make video trailer
       - upload to Youtube
 
@@ -56,6 +53,10 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	  
+  + ~~explore making game dimensions 1080p~~
+      - ~~exploration teaches me, again, that I cannot be bothered doing this
+        just to make my fonts look a little nicer on mobile~~
       
   + ~~do a Vector app icon (I believe Apple would reject the current one)~~
       - ~~Android~~
@@ -193,14 +194,15 @@
       - ~~"+6" 2x then "+666"~~
       - ~~drifts upwards and fades~~
       - ~~centred on topping x, y~~
-      - ~~**SOLVED** work out why font is so much bigger on Android than on Desktop:
-        I was plotting Points font in pizza/sprite coordinates, but font sizes are in UI
-        coordinates~~
+      - ~~**SOLVED** work out why font is so much bigger on Android
+        than on Desktop: I was plotting Points font in pizza/sprite
+        coordinates, but font sizes are in UI coordinates~~
 
   + ~~switch to fixed font sizes for screen heights >= 1080, >= 720, < 720~~
       - ~~delete DesktopUiFont, AndroidUiFont, HtmlUiFont, UiFont~~
       - ~~UiSkin() takes height argument: screen height~~
-      - ~~UiFont loads 64pt, 43pt, or 36pt button and label fonts for above screen sizes~~
+      - ~~UiFont loads 64pt, 43pt, or 36pt button and label fonts for
+        above screen sizes~~
   
   + ~~change title desktop on save postcard to... dialog (currently says "serialize" =P)~~ 
           
@@ -246,7 +248,7 @@
           - ~~print XML~~
 
   + ~~hold Undo button on PizzaScreen to remove all toppings~~
-      - ~~**UNDID THIS: create UndoButton which implements GestureListener~~
+      - ~~**UNDID THIS**: create UndoButton which implements GestureListener~~
       - ~~handle long press logic in PizzaScreen.render()~~
       - ~~implement Pizza.removeAllToppings()~~
       - ~~call Pizza.removeAllToppings() from PizzaScreen.removerAllToppings()~~
@@ -276,11 +278,13 @@
     
   + ~~**BUG** work out why background from old postcard shows behind pizza when quickly going
   	back and forth from PostcardScreen~~
-	  - ~~this seems to only happen when quickly creating a new Pizza pixmap after 
-	    disposing of one. It's possible to recreate this when going back and forth
-        from ServeBossScreen. Currently only happening on Linux laptop Desktop and
-        Android emulator build. Not happening in WebGl build on laptop, or on desktop PC.
-        I need to test on some other computers, maybe do a proper build.~~
+	  - ~~this seems to only happen when quickly creating a new Pizza
+	    pixmap after disposing of one. It's possible to recreate this
+	    when going back and forth from ServeBossScreen. Currently only
+	    happening on Linux laptop Desktop and Android emulator
+	    build. Not happening in WebGl build on laptop, or on desktop
+	    PC.  I need to test on some other computers, maybe do a proper
+	    build.~~
   
   + ~~pick a better font~~
       - ~~Inconsolata for buttons and Podkova for labels~~
@@ -435,18 +439,6 @@
         arguments. These are stored as fields and used to set widget sizes~~
       - ~~forget about handling font changes on screen resize for now~~
       - ~~resize camera and undo icons according to screen size~~
-  
-  + ~~add a second camera and viewport for ui scaled to screen/window~~
-      - ~~UiSkin.class generates font right size for screen height~~
-      - ~~create UiSize.class to return UI element sizes from static methods~~
-      - ~~decouple Desktop window size from APP_WIDTH/HEIGHT constants~~
-      - ~~two cameras in PizzaScreen.class: uiCamera and gameCamera~~
-      - ~~two viewports in PizzaScreen.class: uiViewport and gameViewport~~
-      - ~~gameViewport same as current viewport~~
-      - ~~uiViewport same aspect ration, but fill screen pixels~~
-      - ~~PizzaUi and MessageUi constructors have screenWidth, screenHeight 
-        arguments. These are stored as fields and used to set widget sizes~~
-      - ~~forget about handling font changes on screen resize for now~~
     
   + ~~implement asset assets~~
       - ~~dispose of assets~~
@@ -484,8 +476,8 @@
       - ~~in Pizza.addTopping():~~
           - ~~only add SAUCE if top topping is BASE~~
           - ~~only add CHEESE if top topping is SAUCE~~
-          - ~~call PizzaScreen.showMessage(pizzamenuWarning) if these are 
-            violated~~
+          - ~~call PizzaScreen.showMessage(pizzamenuWarning) if these
+            are violated~~
       
   + ~~implement remove topping/undo~~
       - ~~ToppingMenu calls pizzaScreen.undoLastTopping()~~
@@ -506,16 +498,17 @@
       - ~~call the Pizza.addTopping method when we click somewhere~~
       - ~~in touchDown method call selectedTopping.copy method to get
         a Topping to pass to pizza.addTopping~~
-      - ~~create toggleSelectedTopping(toppingName) which sets selectedTopping
-        to toppingName IF it is not already selected, NONE otherwise~~
+      - ~~create toggleSelectedTopping(toppingName) which sets
+        selectedTopping to toppingName IF it is not already selected,
+        NONE otherwise~~
   
   + ~~in Pizza~~
       - ~~a toppingArray field to hold Toppings~~
       - ~~initialise topplingArray with a base topping~~
-      - ~~create addTopping method which takes Topping object and adds it to
-        toppingArray~~        
-      - ~~call PizzaScreen.toggleSelectedTopping method when a menu item is 
-        checked~~
+      - ~~create addTopping method which takes Topping object and adds
+        it to toppingArray~~
+      - ~~call PizzaScreen.toggleSelectedTopping method when a menu
+        item is checked~~
       - ~~create Topping noneTopping to handle NONE selectedTopping case~~
         
   + ~~in ToppingMenu~~
@@ -576,17 +569,17 @@
 ## creating Topping and ToppingMenuButton objects
 
 ~~The plan is to have eight toppings available from a UI menu which can
-be placed on the pizza:
-  - sauce
-  - cheese
-  - chicken
-  - salami
-  - bacon
-  - sausage
-  - apricot swirl
-  - barbecue swirl
+be placed on the pizza~~:
+  - ~~sauce~~
+  - ~~cheese~~
+  - ~~chicken~~~~
+  - ~~salami~~
+  - ~~bacon~~
+  - ~~sausage~~
+  - ~~apricot swirl~~
+  - ~~barbecue swirl~~
   
-When the corresponding menu item is selected the player can click/touch
+~~When the corresponding menu item is selected the player can click/touch
 to place the Topping on the pizza. When the  first two toppings, 
 sauce and cheese, are placed they replace the entire pizza base Sprite. 
 The four meat topping, chicken, salami, bacon and sausage, will have a
@@ -594,15 +587,15 @@ location and rotation, and will be added to a topping array which is
 drawn in the order they were placed. The two sauces, apricot swirl and
 barbecue swirl, will also be placed in the topping queue. However these 
 will always have the same x,y location, centred on the base. They could
-have a random rotation.
+have a random rotation.~~
 
-A Topping object for drawing on the PizzaScreen should have: 
-  - int x,y: location to draw
-  - float rotation
-  - Sprite sprite to be plotted
+~~A Topping object for drawing on the PizzaScreen should have:~~
+  - ~~int x,y: location to draw~~
+  - ~~float rotation~~
+  - ~~Sprite sprite to be plotted~~
   
-There should be eight ToppingMenuButton objects, one for each topping in the 
-list above. When a ToppingMenuButton is selected this should set the 
-toppingSelected field in PizzaScreen to topping name. While a 
-ToppingMenuItem is selected, clicking on the Pizza will add a Topping 
-object to the array of Topping objects held in Pizza.~~
+~~There should be eight ToppingMenuButton objects, one for each
+topping in the list above. When a ToppingMenuButton is selected this
+should set the toppingSelected field in PizzaScreen to topping
+name. While a ToppingMenuItem is selected, clicking on the Pizza will
+add a Topping object to the array of Topping objects held in Pizza.~~
