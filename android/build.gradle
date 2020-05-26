@@ -20,8 +20,8 @@ android {
         applicationId "nz.co.canadia.poorpeoplepizzaparty"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 1
-        versionName "2020-05-08"
+        versionCode 2
+        versionName "2020-05-26"
     }
     buildTypes {
         release {
