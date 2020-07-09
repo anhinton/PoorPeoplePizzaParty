@@ -50,6 +50,8 @@
 	  
   + prepare Google Play page
   
+  + random pizza button
+  
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
