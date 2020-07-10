@@ -38,6 +38,7 @@ public class PizzaUi extends Table {
     private final TextButton cookButton;
     private final ImageButton backButton;
     private final ImageButton closeButton;
+    private final ImageButton randomButton;
     private final float buttonWidthFull;
     private final float buttonWidthHalf;
     private final float buttonHeight;
@@ -72,6 +73,12 @@ public class PizzaUi extends Table {
                 goBack();
             }
         });
+
+        // Initialise randomButton
+        ImageButton.ImageButtonStyle randomButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        randomButton = new ImageButton(randomButtonStyle);
 
         headerImage = new Image(atlas.findRegion("headers/pizzaScreen"));
 
@@ -212,6 +219,14 @@ public class PizzaUi extends Table {
         closeColumn.left()
                 .top();
         closeColumn.add(closeButton)
+                .left()
+                .padBottom(Constants.BASE_HEIGHT - 2* buttonHeight - padding)
+                .prefSize(buttonHeight)
+                .space(padding);
+        closeColumn.row();
+        // random button appears below pizza
+        closeColumn.add(randomButton)
+                .left()
                 .prefSize(buttonHeight)
                 .space(padding);
 
