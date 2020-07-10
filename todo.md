@@ -1,4 +1,12 @@
 # TODO
+  
+  + random pizza button
+      - bottom left corner of PizzaScreen
+      - dice icon
+      - pressing immediately generates an entire randomly generated pizza
+      - 1/3 chance of BASE/SAUCE/CHEESE
+      - selects between 0 and 6 toppings
+          - for each topping randomly places between 1 and 16 units
       
   + build for iOS/Mac
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
@@ -49,8 +57,6 @@
       - upload to Google Play
 	  
   + prepare Google Play page
-  
-  + random pizza button
   
   + consider a thicker font for credits to make more legible on mobile
   
