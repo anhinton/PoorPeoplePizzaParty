@@ -8,15 +8,30 @@
         X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
 	  - test
 	  - re-test Android, Desktop, WebGL builds
+      
+  + build for Desktop
+      - test
+      - pack binaries <https://github.com/libgdx/packr>
+          - Windows
+		      - test
+          - Linux
+		      - test
+      - upload to itch.io
+      
+  + build for Android
+      - sign build <https://developer.android.com/studio/publish/app-signing>
+      - test
+      - upload to itch.io
+      - upload to Google Play
+
+  + build for WebGl
+      - test
+      - remove superDev button from page
+      - upload to itch.io
+      - revise background colour to match itch.io page
 	  
   + make video trailer
       - upload to Youtube
-
-  + ~~build for WebGl~~
-      - ~~test~~
-      - ~~remove superDev button from page~~
-      - ~~upload to itch.io~~
-      - ~~revise background colour to match itch.io page~~
 
   + prepare itch.io page
       - ~~page banner 960 wide~~
@@ -32,21 +47,6 @@
       - itch.io widget
       - Details
       - links to stores
-      
-  + ~~build for Desktop~~
-      - ~~test~~
-      - ~~pack binaries~~ <https://github.com/libgdx/packr>
-          - ~~Windows~~
-		      - ~~test~~
-          - ~~Linux~~
-		      - ~~test~~
-      - ~~upload to itch.io~~
-      
-  + build for Android
-      - ~~sign build~~ <https://developer.android.com/studio/publish/app-signing>
-      - ~~test~~
-      - ~~upload to itch.io~~
-      - upload to Google Play
 	  
   + prepare Google Play page
   
