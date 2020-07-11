@@ -50,11 +50,17 @@
 	  
   + prepare Google Play page
   
-  + random pizza button
-  
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+  
+  + ~~random pizza button~~
+      - ~~between Postcard and Undo on PizzaScreen~~
+      - ~~dice icon~~
+      - ~~pressing immediately generates an entire randomly generated pizza~~
+      - ~~1/3 chance of BASE/SAUCE/CHEESE~~
+      - ~~selects between 0 and 6 toppings~~
+          - ~~for each topping randomly places between 1 and 16 units~~
 	  
   + ~~explore making game dimensions 1080p~~
       - ~~exploration teaches me, again, that I cannot be bothered doing this

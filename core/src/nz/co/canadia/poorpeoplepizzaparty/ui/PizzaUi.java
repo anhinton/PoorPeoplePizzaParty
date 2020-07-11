@@ -38,8 +38,10 @@ public class PizzaUi extends Table {
     private final TextButton cookButton;
     private final ImageButton backButton;
     private final ImageButton closeButton;
+    private final ImageButton randomButton;
     private final float buttonWidthFull;
     private final float buttonWidthHalf;
+    private final int buttonWidthThird;
     private final float buttonHeight;
     private final float padding;
     private Constants.CurrentPizzaMenu currentMenu;
@@ -54,6 +56,7 @@ public class PizzaUi extends Table {
         this.bundle = bundle;
 
         buttonWidthHalf = Constants.BUTTON_WIDTH_HALF;
+        buttonWidthThird = Constants.BUTTON_WIDTH_THIRD;
         buttonWidthFull = Constants.BUTTON_WIDTH_FULL;
         buttonHeight = Constants.BUTTON_HEIGHT;
         padding = Constants.UNIT;
@@ -70,6 +73,21 @@ public class PizzaUi extends Table {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 goBack();
+            }
+        });
+
+        // Initialise randomButton
+        ImageButton.ImageButtonStyle randomButtonStyle =
+                new ImageButton.ImageButtonStyle(
+                        skin.get("default", Button.ButtonStyle.class));
+        Sprite randomSprite = new Sprite(atlas.findRegion("icons/die"));
+        randomSprite.setScale(Constants.UI_ICON_SIZE, Constants.UI_ICON_SIZE);
+        randomButtonStyle.imageUp = new SpriteDrawable(randomSprite);
+        randomButton = new ImageButton(randomButtonStyle);
+        randomButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                randomPizza();
             }
         });
 
@@ -206,33 +224,49 @@ public class PizzaUi extends Table {
         }
     }
 
+    private void randomPizza() {
+        pizzaScreen.randomPizza();
+    }
+
     private void showMainMenu() {
         // close button column (appears above pizza)
         Table closeColumn = new Table();
         closeColumn.left()
                 .top();
         closeColumn.add(closeButton)
+                .left()
+                .padBottom(Constants.BASE_HEIGHT - 2* buttonHeight - padding)
                 .prefSize(buttonHeight)
                 .space(padding);
+//        closeColumn.row();
+//        // random button appears below pizza
+//        closeColumn.add(randomButton)
+//                .left()
+//                .prefSize(buttonHeight)
+//                .space(padding);
 
         // UI column: the main UI for pizza creation
         Table uiColumn = new Table();
         uiColumn.add(headerImage)
                 .space(padding)
-                .colspan(2).center();
+                .colspan(3).center();
         uiColumn.row();
         uiColumn.add(toppingSelectButton).space(padding)
                 .prefSize(buttonWidthFull,
                         buttonHeight)
-                .colspan(2)
+                .colspan(3)
                 .right();
         uiColumn.row();
         uiColumn.add(cameraButton)
-                .prefSize(buttonWidthHalf,
+                .prefSize(buttonWidthThird,
+                        buttonHeight)
+                .space(padding);
+        uiColumn.add(randomButton)
+                .prefSize(buttonWidthThird,
                         buttonHeight)
                 .space(padding);
         uiColumn.add(undoButton)
-                .prefSize(buttonWidthHalf,
+                .prefSize(buttonWidthThird,
                         buttonHeight)
                 .space(padding);
         uiColumn.row();
@@ -240,7 +274,7 @@ public class PizzaUi extends Table {
                 .prefSize(buttonWidthFull,
                         buttonHeight)
                 .space(padding)
-                .colspan(2);
+                .colspan(3);
 
         super.clear();
         super.pad(padding);

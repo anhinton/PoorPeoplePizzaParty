@@ -47,7 +47,7 @@ public class Topping {
     }
 
     float getRotation() {
-        return selectedSprite.getRotation();
+        return sprite.getRotation();
     }
 
     public float getX() {
@@ -57,6 +57,8 @@ public class Topping {
     public float getY() {
         return selectedSprite.getY();
     }
+
+    public void setCenter(float x, float y) { selectedSprite.setCenter(x, y); }
 
     public Constants.ToppingName getToppingName() {
         return toppingName;
