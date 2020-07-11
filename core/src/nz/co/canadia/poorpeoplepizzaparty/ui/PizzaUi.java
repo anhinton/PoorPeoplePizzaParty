@@ -78,6 +78,9 @@ public class PizzaUi extends Table {
         ImageButton.ImageButtonStyle randomButtonStyle =
                 new ImageButton.ImageButtonStyle(
                         skin.get("default", Button.ButtonStyle.class));
+        Sprite randomSprite = new Sprite(atlas.findRegion("icons/die"));
+        randomSprite.setScale(Constants.UI_ICON_SIZE, Constants.UI_ICON_SIZE);
+        randomButtonStyle.imageUp = new SpriteDrawable(randomSprite);
         randomButton = new ImageButton(randomButtonStyle);
 
         headerImage = new Image(atlas.findRegion("headers/pizzaScreen"));
