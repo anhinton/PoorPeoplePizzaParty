@@ -132,6 +132,11 @@ public class PizzaScreen implements InputProcessor, Screen {
         dispose();
     }
 
+    public void randomPizza() {
+        pizza.random();
+        playToppingSound(Constants.ToppingName.SALAMI);
+    }
+
     private void addTopping(Topping topping, float x, float y) {
         pizza.addTopping(topping);
         playToppingSound(topping.getToppingName());
