@@ -1,14 +1,5 @@
 # TODO
       
-  + build for iOS/Mac
-      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
-	  - ~~skip Mac build for now because testing in cloud is impossible~~
-	  - build for iOS using robovm
-	  - follow instructions to [support iPhone
-        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
-	  - test
-	  - re-test Android, Desktop, WebGL builds
-      
   + build for Desktop
       - test
       - pack binaries <https://github.com/libgdx/packr>
@@ -29,6 +20,15 @@
       - remove superDev button from page
       - upload to itch.io
       - revise background colour to match itch.io page
+      
+  + build for iOS
+      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
+	  - ~~skip Mac build for now because testing in cloud is impossible~~
+	  - build for iOS using robovm
+	  - follow instructions to [support iPhone
+        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
+	  - test
+	  - re-test Android, Desktop, WebGL builds
 	  
   + make video trailer
       - upload to Youtube
