@@ -1,17 +1,17 @@
 # TODO
       
   + build for Desktop
-      - test
+      - ~~test~~
       - pack binaries <https://github.com/libgdx/packr>
-          - Windows
-		      - test
-          - Linux
-		      - test
+          - ~~Windows~~
+		      - ~~test~~
+          - ~~Linux~~
+		      - ~~test~~
       - upload to itch.io
       
   + build for Android
-      - sign build <https://developer.android.com/studio/publish/app-signing>
-      - test
+      - ~~sign build <https://developer.android.com/studio/publish/app-signing>~~
+      - ~~test~~
       - upload to itch.io
       - upload to Google Play
 
