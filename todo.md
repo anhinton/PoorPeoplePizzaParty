@@ -1,26 +1,5 @@
 # TODO
       
-  + build for Desktop
-      - ~~test~~
-      - pack binaries <https://github.com/libgdx/packr>
-          - ~~Windows~~
-		      - ~~test~~
-          - ~~Linux~~
-		      - ~~test~~
-      - upload to itch.io
-      
-  + build for Android
-      - ~~sign build <https://developer.android.com/studio/publish/app-signing>~~
-      - ~~test~~
-      - upload to itch.io
-      - upload to Google Play
-
-  + build for WebGl
-      - test
-      - remove superDev button from page
-      - upload to itch.io
-      - revise background colour to match itch.io page
-      
   + build for iOS
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
 	  - ~~skip Mac build for now because testing in cloud is impossible~~
@@ -53,6 +32,27 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+      
+  + ~~build for Desktop~~
+      - ~~test~~
+      - pack binaries <https://github.com/libgdx/packr>
+          - ~~Windows~~
+		      - ~~test~~
+          - ~~Linux~~
+		      - ~~test~~
+      - ~~upload to itch.io~~
+      
+  + ~~build for Android~~
+      - ~~sign build <https://developer.android.com/studio/publish/app-signing>~~
+      - ~~test~~
+      - ~~upload to itch.io~~
+      - ~~upload to Google Play~~
+
+  + ~~build for WebGl~~
+      - ~~test~~
+      - ~~remove superDev button from page~~
+      - ~~upload to itch.io~~
+      - ~~revise background colour to match itch.io page~~
   
   + ~~random pizza button~~
       - ~~between Postcard and Undo on PizzaScreen~~
