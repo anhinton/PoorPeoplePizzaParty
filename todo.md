@@ -17,8 +17,8 @@
       - ~~cover image 630x500~~
       - ~~3 screen shots~~
       - Youtube trailer
-      - write Details
-      - tags
+      - ~~write Details~~
+      - ~~tags~~
       - ~~choose colour scheme~~
   
   + prepare http://poorpeoplepizzaparty.canadia.co.nz/
