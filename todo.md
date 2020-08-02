@@ -1,4 +1,24 @@
 # TODO
+	  
+  + prepare Google Play page
+
+  + prepare itch.io page
+      - ~~page banner 960 wide~~
+      - ~~cover image 630x500~~
+      - ~~3 screen shots~~
+      - ~~Youtube trailer~~
+      - ~~write Details~~
+      - ~~tags~~
+      - ~~choose colour scheme~~
+      - link to Google Play
+      - link to Apple App Store
+  
+  + prepare http://poorpeoplepizzaparty.canadia.co.nz/
+      - ~~itch.io cover images~~
+      - ~~itch.io widget~~
+      - ~~Details~~
+      - links to Google Play
+      - link to Apple App Store
       
   + build for iOS
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
@@ -8,30 +28,13 @@
         X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
 	  - test
 	  - re-test Android, Desktop, WebGL builds
-	  
-  + make video trailer
-      - upload to Youtube
-
-  + prepare itch.io page
-      - ~~page banner 960 wide~~
-      - ~~cover image 630x500~~
-      - ~~3 screen shots~~
-      - Youtube trailer
-      - ~~write Details~~
-      - ~~tags~~
-      - ~~choose colour scheme~~
-  
-  + prepare http://poorpeoplepizzaparty.canadia.co.nz/
-      - itch.io cover images
-      - itch.io widget
-      - Details
-      - links to stores
-	  
-  + prepare Google Play page
   
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	  
+  + ~~make video trailer~~
+      - ~~upload to Youtube~~
       
   + ~~build for Desktop~~
       - ~~test~~
