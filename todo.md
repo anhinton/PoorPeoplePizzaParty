@@ -1,6 +1,25 @@
 # TODO
 
-  + prepare itch.io page
+  + nothing to do!
+  
+## Done
+  
+  + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more legible on mobile~~
+      
+  + ~~build for iOS~~
+      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
+	  - ~~skip Mac build for now because testing in cloud is impossible~~
+	  - ~~build for iOS using robovm~~
+	  - ~~**WILL NOT PUBLISH**: Apple Play Store requires screenshots from devices I don't have,
+	    so the iOS build is not going any further~~
+  
+  + ~~prepare http://poorpeoplepizzaparty.canadia.co.nz/~~
+      - ~~itch.io cover images~~
+      - ~~itch.io widget~~
+      - ~~Details~~
+      - ~~links to Google Play~~
+
+  + ~~prepare itch.io page~~
       - ~~page banner 960 wide~~
       - ~~cover image 630x500~~
       - ~~3 screen shots~~
@@ -8,28 +27,7 @@
       - ~~write Details~~
       - ~~tags~~
       - ~~choose colour scheme~~
-      - link to Google Play
-      - link to Apple App Store
-  
-  + prepare http://poorpeoplepizzaparty.canadia.co.nz/
-      - ~~itch.io cover images~~
-      - ~~itch.io widget~~
-      - ~~Details~~
-      - links to Google Play
-      - link to Apple App Store
-      
-  + build for iOS
-      - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
-	  - ~~skip Mac build for now because testing in cloud is impossible~~
-	  - build for iOS using robovm
-	  - follow instructions to [support iPhone
-        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
-	  - test
-	  - re-test Android, Desktop, WebGL builds
-  
-  + consider a thicker font for credits to make more legible on mobile
-  
-## Done
+      - ~~link to Google Play~~
 	  
   + ~~prepare Google Play page~~
 	  
