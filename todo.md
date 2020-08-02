@@ -1,6 +1,4 @@
 # TODO
-	  
-  + prepare Google Play page
 
   + prepare itch.io page
       - ~~page banner 960 wide~~
@@ -32,6 +30,8 @@
   + consider a thicker font for credits to make more legible on mobile
   
 ## Done
+	  
+  + ~~prepare Google Play page~~
 	  
   + ~~make video trailer~~
       - ~~upload to Youtube~~
