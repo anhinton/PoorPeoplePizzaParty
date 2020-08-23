@@ -1,58 +1,67 @@
 # TODO
+
+  + nothing to do!
+  
+## Done
+  
+  + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more legible on mobile~~
       
-  + build for iOS/Mac
+  + ~~build for iOS~~
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
 	  - ~~skip Mac build for now because testing in cloud is impossible~~
-	  - build for iOS using robovm
-	  - follow instructions to [support iPhone
-        X](https://www.badlogicgames.com/forum/viewtopic.php?f=11&t=27154)
-	  - test
-	  - re-test Android, Desktop, WebGL builds
-	  
-  + make video trailer
-      - upload to Youtube
+	  - ~~build for iOS using robovm~~
+	  - ~~**WILL NOT PUBLISH**: Apple Play Store requires screenshots from devices I don't have,
+	    so the iOS build is not going any further~~
+  
+  + ~~prepare http://poorpeoplepizzaparty.canadia.co.nz/~~
+      - ~~itch.io cover images~~
+      - ~~itch.io widget~~
+      - ~~Details~~
+      - ~~links to Google Play~~
 
-  + ~~build for WebGl~~
-      - ~~test~~
-      - ~~remove superDev button from page~~
-      - ~~upload to itch.io~~
-      - ~~revise background colour to match itch.io page~~
-
-  + prepare itch.io page
+  + ~~prepare itch.io page~~
       - ~~page banner 960 wide~~
       - ~~cover image 630x500~~
       - ~~3 screen shots~~
-      - Youtube trailer
-      - write Details
-      - tags
+      - ~~Youtube trailer~~
+      - ~~write Details~~
+      - ~~tags~~
       - ~~choose colour scheme~~
-  
-  + prepare http://poorpeoplepizzaparty.canadia.co.nz/
-      - itch.io cover images
-      - itch.io widget
-      - Details
-      - links to stores
+      - ~~link to Google Play~~
+	  
+  + ~~prepare Google Play page~~
+	  
+  + ~~make video trailer~~
+      - ~~upload to Youtube~~
       
   + ~~build for Desktop~~
       - ~~test~~
-      - ~~pack binaries~~ <https://github.com/libgdx/packr>
+      - pack binaries <https://github.com/libgdx/packr>
           - ~~Windows~~
 		      - ~~test~~
           - ~~Linux~~
 		      - ~~test~~
       - ~~upload to itch.io~~
       
-  + build for Android
-      - ~~sign build~~ <https://developer.android.com/studio/publish/app-signing>
+  + ~~build for Android~~
+      - ~~sign build <https://developer.android.com/studio/publish/app-signing>~~
       - ~~test~~
       - ~~upload to itch.io~~
-      - upload to Google Play
-	  
-  + prepare Google Play page
+      - ~~upload to Google Play~~
+
+  + ~~build for WebGl~~
+      - ~~test~~
+      - ~~remove superDev button from page~~
+      - ~~upload to itch.io~~
+      - ~~revise background colour to match itch.io page~~
   
-  + consider a thicker font for credits to make more legible on mobile
-  
-## Done
+  + ~~random pizza button~~
+      - ~~between Postcard and Undo on PizzaScreen~~
+      - ~~dice icon~~
+      - ~~pressing immediately generates an entire randomly generated pizza~~
+      - ~~1/3 chance of BASE/SAUCE/CHEESE~~
+      - ~~selects between 0 and 6 toppings~~
+          - ~~for each topping randomly places between 1 and 16 units~~
 	  
   + ~~explore making game dimensions 1080p~~
       - ~~exploration teaches me, again, that I cannot be bothered doing this

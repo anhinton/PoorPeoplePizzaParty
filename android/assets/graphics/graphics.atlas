@@ -32,51 +32,58 @@ icons/close
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/ios-share
+icons/die
   rotate: false
   xy: 964, 580
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/save
+icons/ios-share
   rotate: false
   xy: 964, 528
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/settings
+icons/save
   rotate: false
   xy: 964, 476
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/share
+icons/settings
   rotate: false
   xy: 964, 424
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/undo
+icons/share
   rotate: false
   xy: 964, 372
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/volume_mute
+icons/undo
   rotate: false
   xy: 964, 320
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-icons/volume_up
+icons/volume_mute
   rotate: false
   xy: 964, 268
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icons/volume_up
+  rotate: false
+  xy: 964, 216
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

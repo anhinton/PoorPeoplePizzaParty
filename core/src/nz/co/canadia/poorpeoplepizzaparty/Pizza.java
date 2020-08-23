@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.XmlReader;
@@ -22,6 +23,7 @@ import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
  * The pizza which we make
  */
 
+@SuppressWarnings("ALL")
 public class Pizza {
 
     private final TextureAtlas atlas;
@@ -101,6 +103,66 @@ public class Pizza {
                     break;
             }
         }
+    }
+
+    /**
+     * Create a randomly-generated set of toppings
+     */
+    public void random() {
+        removeAllToppings();
+
+        // select a randomly from BASE, SAUCE, CHEESE
+        Array<Constants.ToppingName> baseToppingNameArray = new Array(true, 3, Enum.class);
+        baseToppingNameArray.add(Constants.ToppingName.BASE);
+        baseToppingNameArray.add(Constants.ToppingName.SAUCE);
+        baseToppingNameArray.add(Constants.ToppingName.CHEESE);
+        baseToppingNameArray.shuffle();
+        Constants.ToppingName baseToppingName = baseToppingNameArray.first();
+        Topping baseTopping = new Topping(
+                0, 0, 0,
+                baseToppingName,
+                atlas.findRegion(assets.toppingPath(baseToppingName)),
+                true);
+        addTopping(baseTopping);
+
+        Array<Constants.ToppingName> toppingNameArray = new Array(true,6, Enum.class);
+        toppingNameArray.add(Constants.ToppingName.CHICKEN);
+        toppingNameArray.add(Constants.ToppingName.SALAMI);
+        toppingNameArray.add(Constants.ToppingName.BACON);
+        toppingNameArray.add(Constants.ToppingName.SAUSAGE);
+        toppingNameArray.add(Constants.ToppingName.APRICOT);
+        toppingNameArray.add(Constants.ToppingName.BARBECUE);
+
+        // select number of toppings
+        int nToppings = MathUtils.random(1, 6);
+
+        // randomise order of toppings
+        toppingNameArray.shuffle();
+
+        // for up to nToppings
+        for (int toppingIndex = 0; toppingIndex < nToppings; toppingIndex++) {
+            Constants.ToppingName toppingName = toppingNameArray.get(toppingIndex);
+            // get a random number of instances to place
+            int nToppingInstance = MathUtils.round(MathUtils.randomTriangular(1, 16));
+            // but only place one instance for sauce swirls
+            if (toppingName == Constants.ToppingName.APRICOT |
+                    toppingName == Constants.ToppingName.BARBECUE) {
+                nToppingInstance = 1;
+            }
+            // randomly place nToppingInstance of this topping
+            for (int i = 0; i < nToppingInstance; i++) {
+                Topping t = new Topping(
+                        MathUtils.randomTriangular(Constants.PIZZA_LEFT, Constants.PIZZA_RIGHT),
+                        MathUtils.randomTriangular(Constants.PIZZA_BOTTOM, Constants.PIZZA_TOP),
+                        MathUtils.random(360f),
+                        toppingName,
+                        atlas.findRegion(assets.toppingPath(toppingName)),
+                        true);
+                t.setCenter(t.getX(), t.getY());
+                addTopping(t);
+            }
+        }
+
     }
 
     /**
