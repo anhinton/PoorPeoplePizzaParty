@@ -1,15 +1,14 @@
 # TODO
 
   + **BUG** fix incorrect topping placement on iOS
-      - something to do with camera.unproject()? 
       - PizzaScreen.touchDown(), .touchUp(), .touchDragged, and .mouseMoved()
         were using the version of Camera.unproject() which assumed the viewport spans the whole 
-        screen. Switched to using verion which allows to specify viewport position and dimension
+        screen. Switched to using version which allows to specify viewport position and dimension
         in screen coordinates
       
   + **BUG** fix crash on share photo on iPad
       - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
-        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead
+        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**
   
   + bump version and publish new:
       - Android
