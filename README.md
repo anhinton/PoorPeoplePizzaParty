@@ -38,9 +38,10 @@ is licensed under the SIL Open Font License, Version 1.1.
 (contact@cyreal.org) is licensed under the SIL Open Font License, Version 1.1.
 
 `graphics/icons/back` `graphics/icons/camera` `graphics/icons/close` 
-`graphics/icons/save` `graphics/icons/settings` `graphics/icons/share` 
-`graphics/icons/undo` `graphics/icons/volume_mute` `graphics/icons/volume_up`
-"arrow_back", "camera_alt", "close", "camera_alt", "save_alt", "setting", "share", "undo", 
+`graphics/icons/die` `graphics/icons/save` `graphics/icons/settings`
+`graphics/icons/share` `graphics/icons/undo` `graphics/icons/volume_mute`
+`graphics/icons/volume_up`
+"arrow_back", "camera_alt", "close", "camera_alt", "die", "save_alt", "setting", "share", "undo", 
 "volume_mute", and "volume_up" by 
 [Google](https://material.io/tools/icons/) are licensed under 
 [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).

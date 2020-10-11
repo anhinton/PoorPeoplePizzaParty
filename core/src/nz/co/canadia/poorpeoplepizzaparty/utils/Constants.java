@@ -1,6 +1,5 @@
 package nz.co.canadia.poorpeoplepizzaparty.utils;
 
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -83,6 +82,7 @@ public class Constants {
     public static final int BUTTON_WIDTH_FULL = MathUtils.round(
             Constants.GAME_WIDTH - BASE_WIDTH - UNIT * 3f);
     public static final int BUTTON_WIDTH_HALF = MathUtils.round((BUTTON_WIDTH_FULL - UNIT) / 2f);
+    public static final int BUTTON_WIDTH_THIRD = MathUtils.round((BUTTON_WIDTH_FULL - UNIT * 2) / 3f);
     public static final int BUTTON_HEIGHT = UNIT * 4;
 
     // Sauce topping sprite alpha
