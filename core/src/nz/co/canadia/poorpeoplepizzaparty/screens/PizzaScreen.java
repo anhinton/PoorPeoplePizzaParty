@@ -10,11 +10,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import nz.co.canadia.poorpeoplepizzaparty.Pizza;
@@ -100,8 +102,8 @@ public class PizzaScreen implements InputProcessor, Screen {
         gameCamera = new OrthographicCamera();
         viewport = new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
                 gameCamera);
-        gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
-                Constants.GAME_HEIGHT);
+//        gameCamera.setToOrtho(false, Constants.GAME_WIDTH,
+//                Constants.GAME_HEIGHT);
 
         stage = new Stage(viewport, game.batch);
         pizzaUi = new PizzaUi(this, game.uiSkin,
@@ -250,7 +252,9 @@ public class PizzaScreen implements InputProcessor, Screen {
         }
         // update selectedTopping location to follow mouse
         Vector3 touchCoords = gameCamera.unproject(
-                new Vector3(screenX, screenY, 0));
+                new Vector3(screenX, screenY, 0),
+                viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(),
+                viewport.getScreenHeight());
         if (hasSelectedTopping()) {
             selectedTopping.update(touchCoords.x, touchCoords.y);
         }
@@ -260,7 +264,9 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         Vector3 touchCoords = gameCamera.unproject(
-                new Vector3(screenX, screenY, 0));
+                new Vector3(screenX, screenY, 0),
+                viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(),
+                viewport.getScreenHeight());
         if (hasSelectedTopping()
                 & pizzaUi.getCurrentMenu() == Constants.CurrentPizzaMenu.MAIN) {
             if (touchCoords.x > Constants.PIZZA_LEFT &
@@ -283,7 +289,9 @@ public class PizzaScreen implements InputProcessor, Screen {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         // update selectedTopping location to follow mouse
         Vector3 touchCoords = gameCamera.unproject(
-                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+                new Vector3(screenX, screenY, 0),
+                viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(),
+                viewport.getScreenHeight());
         if (hasSelectedTopping()) {
             selectedTopping.update(touchCoords.x, touchCoords.y);
         }
@@ -293,7 +301,9 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         Vector3 mouseCoords = gameCamera.unproject(
-                new Vector3(screenX, screenY, 0));
+                new Vector3(screenX, screenY, 0),
+                viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(),
+                viewport.getScreenHeight());
         if (hasSelectedTopping()) {
             switch (Gdx.app.getType()) {
                 case Desktop: case WebGL:
