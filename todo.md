@@ -8,6 +8,14 @@
         in screen coordinates
       
   + **BUG** fix crash on share photo on iPad
+      - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
+        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead
+  
+  + bump version and publish new:
+      - Android
+          - itch.io
+          - Google Play
+      - iOS
   
 ## Done
   
