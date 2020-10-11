@@ -1,6 +1,9 @@
 # TODO
 
-  + nothing to do!
+  + **BUG** fix incorrect topping placement on iOS
+      - something to do with camera.unproject()?  
+      
+  + **BUG** fix crash on share photo on iPad
   
 ## Done
   
