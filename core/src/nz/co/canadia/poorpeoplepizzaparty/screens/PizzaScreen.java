@@ -249,27 +249,25 @@ public class PizzaScreen implements InputProcessor, Screen {
             selectedTopping.setVisible(true);
         }
         // update selectedTopping location to follow mouse
-        Vector3 mouseCoords = gameCamera.unproject(
-                new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        Vector3 touchCoords = gameCamera.unproject(
+                new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()) {
-            selectedTopping.update(mouseCoords.x, mouseCoords.y);
+            selectedTopping.update(touchCoords.x, touchCoords.y);
         }
         return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Vector3 pizzaCoords = gameCamera.unproject(
-                new Vector3(screenX, screenY, 0));
-        Vector3 uiCoords = stage.getCamera().unproject(
+        Vector3 touchCoords = gameCamera.unproject(
                 new Vector3(screenX, screenY, 0));
         if (hasSelectedTopping()
                 & pizzaUi.getCurrentMenu() == Constants.CurrentPizzaMenu.MAIN) {
-            if (pizzaCoords.x > Constants.PIZZA_LEFT &
-                    pizzaCoords.x < Constants.PIZZA_RIGHT &
-                    pizzaCoords.y > Constants.PIZZA_BOTTOM &
-                    pizzaCoords.y < Constants.PIZZA_TOP) {
-                addTopping(selectedTopping, uiCoords.x, uiCoords.y);
+            if (touchCoords.x > Constants.PIZZA_LEFT &
+                    touchCoords.x < Constants.PIZZA_RIGHT &
+                    touchCoords.y > Constants.PIZZA_BOTTOM &
+                    touchCoords.y < Constants.PIZZA_TOP) {
+                addTopping(selectedTopping, touchCoords.x, touchCoords.y);
             }
             selectedTopping = new Topping(selectedTopping.getX(),
                     selectedTopping.getY(),
@@ -284,10 +282,10 @@ public class PizzaScreen implements InputProcessor, Screen {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         // update selectedTopping location to follow mouse
-        Vector3 mouseCoords = gameCamera.unproject(
+        Vector3 touchCoords = gameCamera.unproject(
                 new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         if (hasSelectedTopping()) {
-            selectedTopping.update(mouseCoords.x, mouseCoords.y);
+            selectedTopping.update(touchCoords.x, touchCoords.y);
         }
         return true;
     }
