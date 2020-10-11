@@ -1,10 +1,4 @@
 # TODO
-
-  + **BUG** fix incorrect topping placement on iOS
-      - PizzaScreen.touchDown(), .touchUp(), .touchDragged, and .mouseMoved()
-        were using the version of Camera.unproject() which assumed the viewport spans the whole 
-        screen. Switched to using version which allows to specify viewport position and dimension
-        in screen coordinates
       
   + **BUG** fix crash on share photo on iPad
       - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
@@ -17,6 +11,15 @@
       - iOS
   
 ## Done
+
+  + ~~stop iPad from displaying in portrait mode~~
+      - ~~also forces libgdx splash screen to display in landscape on iPad and iPhone~~
+
+  + ~~**FIXED** fix incorrect topping placement on iOS~~
+      - ~~PizzaScreen.touchDown(), .touchUp(), .touchDragged, and .mouseMoved()
+        were using the version of Camera.unproject() which assumed the viewport spans the whole 
+        screen. Switched to using version which allows to specify viewport position and dimension
+        in screen coordinates~~
   
   + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more legible on mobile~~
       
