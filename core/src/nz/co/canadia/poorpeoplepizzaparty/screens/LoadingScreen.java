@@ -75,7 +75,8 @@ public class LoadingScreen implements Screen {
         stage.act(delta);
 
         if (game.assets.update()) {
-            game.setScreen(new TitleScreen(game));
+//            game.setScreen(new TitleScreen(game));
+            game.setScreen(new PizzaScreen(game, false));
         }
 
 

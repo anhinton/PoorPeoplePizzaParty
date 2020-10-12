@@ -6,11 +6,14 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
+import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSObject;
 import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIActivityViewController;
 import org.robovm.apple.uikit.UIImage;
+import org.robovm.apple.uikit.UIModalPresentationStyle;
+import org.robovm.apple.uikit.UIView;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -44,9 +47,18 @@ public class IOSCaptureIO implements CaptureIO {
                     new NSString(shareText),
                     new UIImage(postcardFilePath.file())
             );
-            UIActivityViewController uiActivityViewController = new UIActivityViewController(items, null);
+            UIActivityViewController uiActivityViewController =
+                    new UIActivityViewController(items, null);
             uiActivityViewController.setTitle(shareHeader);
-            ((IOSApplication) Gdx.app).getUIViewController().presentViewController(uiActivityViewController, true, null);
+            uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
+
+            UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();
+            uiActivityViewController.getPopoverPresentationController().setSourceView(view);
+
+            uiActivityViewController.getPopoverPresentationController().setSourceRect(
+                    new CGRect(10, 10, 32, 32));
+            ((IOSApplication) Gdx.app).getUIViewController().presentViewController(
+                    uiActivityViewController, true, null);
         }
     }
 
