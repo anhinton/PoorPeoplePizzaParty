@@ -3,6 +3,9 @@
   + **BUG** fix crash on share photo on iPad
       - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
         on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**
+      - use PopoverPresentationController to stop iPad crash
+      - need to determine position of popover box somehow
+      - should still work fine on iPhone?
   
   + bump version and publish new:
       - Android
