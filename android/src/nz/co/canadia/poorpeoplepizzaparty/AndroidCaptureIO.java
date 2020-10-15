@@ -66,11 +66,9 @@ public class AndroidCaptureIO implements CaptureIO {
                 postcardUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         // share postcard via an Intent
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/png");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
         activity.startActivity(Intent.createChooser(shareIntent, shareHeader));
     }
 

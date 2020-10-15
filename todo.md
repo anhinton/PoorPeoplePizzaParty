@@ -1,4 +1,8 @@
 # TODO
+
+  + try to make postcard share prettier
+      - right now it shows the text first on iOS and this looks ugly. show the picture!
+      - maybe just drop the text, no one needs a hashtag
       
   + **BUG** fix crash on share photo on iPad
       - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
