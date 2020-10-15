@@ -43,12 +43,10 @@ public class IOSCaptureIO implements CaptureIO {
 
     private void sharePostcardPNG(String shareText, String shareHeader) {
         if(postcardFilePath.exists()) {
-            NSArray<NSObject> items = new NSArray<>(
-                    new NSString(shareText),
-                    new UIImage(postcardFilePath.file())
-            );
+            UIImage image = new UIImage(postcardFilePath.file());
+            NSArray share = new NSArray(image);
             UIActivityViewController uiActivityViewController =
-                    new UIActivityViewController(items, null);
+                    new UIActivityViewController(share, null);
             uiActivityViewController.setTitle(shareHeader);
             uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
 
