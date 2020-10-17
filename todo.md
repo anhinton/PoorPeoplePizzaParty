@@ -1,7 +1,7 @@
 # TODO
   
-  + bump version and publish new:
-      - Android
+  + ~~bump version~~ and publish new:
+      - ~~Android APK~~
           - itch.io
           - Google Play
       - iOS
