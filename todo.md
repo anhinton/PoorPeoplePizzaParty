@@ -15,9 +15,9 @@
       - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
         and IOSCaptureIO.sharePostcardPNG()~~
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
-      - ~~test Android, iPad, iPhone, Desktop, Web~~
-      - delete postcardShareHeader and postcardShareText from StringBundle.properties
+      - ~~delete postcardShareHeader and postcardShareText from StringBundle.properties~~
       - revert LoadingScreen to game.setScreen(PizzaScreen)
+      - test Android, iPad, iPhone, Desktop, Web
   
   + bump version and publish new:
       - Android
