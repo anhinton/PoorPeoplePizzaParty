@@ -12,7 +12,7 @@
       - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
         and IOSCaptureIO.sharePostcardPNG()~~
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
-      - test ~~Android, iPad~~, iPhone, ~~Desktop, Web~~
+      - ~~test Android, iPad, iPhone, Desktop, Web~~
       - delete postcardShareHeader and postcardShareText from StringBundle.properties
       - revert LoadingScreen to game.setScreen(PizzaScreen)
       
@@ -22,7 +22,9 @@
       - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
       - ~~set position of popover box~~
           - ~~use UIView getFrame() for X, Y, Width, Height~~
-      - **BUG** now it's crashing on iPhone
+      - **FIXED** now it's crashing on iPhone
+          - only do popoverPresentationController when 
+            UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad
       
       - should still work fine on iPhone?
           - crashes on iPhone

@@ -8,10 +8,15 @@ import com.badlogic.gdx.graphics.PixmapIO;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSArray;
+import org.robovm.apple.foundation.NSURL;
+import org.robovm.apple.linkpresentation.LPLinkMetadata;
+import org.robovm.apple.uikit.UIAccessibilityConstants;
 import org.robovm.apple.uikit.UIActivityViewController;
+import org.robovm.apple.uikit.UIDevice;
 import org.robovm.apple.uikit.UIImage;
 import org.robovm.apple.uikit.UIModalPresentationStyle;
 import org.robovm.apple.uikit.UIPopoverArrowDirection;
+import org.robovm.apple.uikit.UIUserInterfaceIdiom;
 import org.robovm.apple.uikit.UIView;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -39,13 +44,15 @@ public class IOSCaptureIO implements CaptureIO {
             UIActivityViewController uiActivityViewController =
                     new UIActivityViewController(share, null);
 
-            uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
-            UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();
-            uiActivityViewController.getPopoverPresentationController().setSourceView(view);
-            uiActivityViewController.getPopoverPresentationController().setSourceRect(
-                    new CGRect(view.getFrame().getX(), view.getFrame().getY(),
-                            view.getFrame().getWidth(), view.getFrame().getHeight()));
-            uiActivityViewController.getPopoverPresentationController().setPermittedArrowDirections(UIPopoverArrowDirection.None);
+            if (new UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad) {
+                uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
+                UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();
+                uiActivityViewController.getPopoverPresentationController().setSourceView(view);
+                uiActivityViewController.getPopoverPresentationController().setSourceRect(
+                        new CGRect(view.getFrame().getX(), view.getFrame().getY(),
+                                view.getFrame().getWidth(), view.getFrame().getHeight()));
+                uiActivityViewController.getPopoverPresentationController().setPermittedArrowDirections(UIPopoverArrowDirection.None);
+            }
 
             ((IOSApplication) Gdx.app).getUIViewController().presentViewController(
                     uiActivityViewController, true, null);
