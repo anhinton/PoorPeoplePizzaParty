@@ -2,7 +2,7 @@
 
   + try to make postcard share prettier
       - right now it shows the text first on iOS and this looks ugly. show the picture!
-      - maybe just drop the text, no one needs a hashtag
+        maybe just drop the text, no one needs a hashtag
       - ~~stop sharing text in AndroidCaptureIO~~
           - ~~test~~
       - ~~stop sharing text in IOSCaptureIO~~
@@ -10,7 +10,8 @@
       - ~~delete CaptureIO.savePostcard(Postcard postcard, String shareText, String shareHeader)~~
       - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
         and IOSCaptureIO.sharePostcardPNG()~~
-          - test Android, iOS, Desktop, Web
+      - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
+      - test ~~Android~~, iOS, ~~Desktop, Web~~
       - delete postcardShareHeader and postcardShareText from StringBundle.properties
       
   + **BUG** fix crash on share photo on iPad
