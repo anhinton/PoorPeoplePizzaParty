@@ -1,4 +1,8 @@
 # TODO
+
+  + update web and desktop builds to latest version
+  
+## Done
   
   + ~~bump version~~ and publish new:
       - ~~build Android APK~~
@@ -6,19 +10,19 @@
           - ~~Google Play~~
       - ~~build iOS IPA~~
           - ~~submit to App Store~~
-              - ~~got "iPad Multitasking support requires these orientations" error on upload.
-                set UIRequiresFullScreen to TRUE in Info.plist.xml as per
-                <https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForSlideOverAndSplitView.html>~~
-  
-## Done
+              - ~~got "iPad Multitasking support requires these orientations" 
+                error on upload. set UIRequiresFullScreen to TRUE in 
+                Info.plist.xml as per~~
+                <https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForSlideOverAndSplitView.html>
 
   + ~~try to make postcard share prettier~~
-      - ~~right now it shows the text first on iOS and this looks ugly. show the picture!~~
+      - ~~right now it shows the text first on iOS and this looks ugly. show 
+        the picture!~~
           - ~~maybe just drop the text, no one needs a hashtag~~
           - ~~example of how to customise icon at
             <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
-            is too complicated for me to translate into Java so I will not bother with a custom
-            icon~~
+            is too complicated for me to translate into Java so I will not 
+            bother with a custom icon~~
       - ~~stop sharing text in AndroidCaptureIO~~
           - ~~test~~
       - ~~stop sharing text in IOSCaptureIO~~
@@ -27,13 +31,15 @@
       - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
         and IOSCaptureIO.sharePostcardPNG()~~
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
-      - ~~delete postcardShareHeader and postcardShareText from StringBundle.properties~~
+      - ~~delete postcardShareHeader and postcardShareText from 
+        StringBundle.properties~~
       - ~~revert LoadingScreen to game.setScreen(PizzaScreen)~~
       - ~~test Android, iPad, iPhone, Desktop, Web~~
       
   + ~~**BUG** fix crash on share photo on iPad~~
-      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
-        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
+      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be 
+        only available on iOS, not iPadOS. I will try 
+        "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
       - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
       - ~~set position of popover box~~
           - ~~use UIView getFrame() for X, Y, Width, Height~~
@@ -42,22 +48,24 @@
             UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad~~
 
   + ~~stop iPad from displaying in portrait mode~~
-      - ~~also forces libgdx splash screen to display in landscape on iPad and iPhone~~
+      - ~~also forces libgdx splash screen to display in landscape on iPad 
+        and iPhone~~
 
   + ~~**FIXED** fix incorrect topping placement on iOS~~
       - ~~PizzaScreen.touchDown(), .touchUp(), .touchDragged, and .mouseMoved()
-        were using the version of Camera.unproject() which assumed the viewport spans the whole 
-        screen. Switched to using version which allows to specify viewport position and dimension
-        in screen coordinates~~
+        were using the version of Camera.unproject() which assumed the viewport 
+        spans the whole screen. Switched to using version which allows to 
+        specify viewport position and dimension in screen coordinates~~
   
-  + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more legible on mobile~~
+  + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more 
+    legible on mobile~~
       
   + ~~build for iOS~~
       - ~~investigate renting a Mac in the cloud: rented from macincloud.com~~
 	  - ~~skip Mac build for now because testing in cloud is impossible~~
 	  - ~~build for iOS using robovm~~
-	  - ~~**WILL NOT PUBLISH**: Apple Play Store requires screenshots from devices I don't have,
-	    so the iOS build is not going any further~~
+	  - ~~**WILL NOT PUBLISH**: Apple Play Store requires screenshots from 
+	    devices I don't have, so the iOS build is not going any further~~
   
   + ~~prepare http://poorpeoplepizzaparty.canadia.co.nz/~~
       - ~~itch.io cover images~~
