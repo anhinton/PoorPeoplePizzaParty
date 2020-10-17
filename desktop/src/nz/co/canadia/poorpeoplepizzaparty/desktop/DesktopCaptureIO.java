@@ -23,7 +23,6 @@ public class DesktopCaptureIO implements CaptureIO {
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fc.setDialogTitle("Choose location to save postcard");
         if (captureDir != null) {
             fc.setCurrentDirectory(captureDir);
         }
@@ -35,11 +34,6 @@ public class DesktopCaptureIO implements CaptureIO {
                     Gdx.files.absolute(captureDir + "/" + postcard.fileName());
             PixmapIO.writePNG(filePath, postcardPixmap);
         }
-    }
-
-    @Override
-    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
-        savePostcardImage(postcard);
     }
 
     @Override

@@ -1,11 +1,50 @@
 # TODO
-
-  + **BUG** fix incorrect topping placement on iOS
-      - something to do with camera.unproject()?  
-      
-  + **BUG** fix crash on share photo on iPad
+  
+  + bump version and publish new:
+      - Android
+          - itch.io
+          - Google Play
+      - iOS
   
 ## Done
+
+  + ~~try to make postcard share prettier~~
+      - ~~right now it shows the text first on iOS and this looks ugly. show the picture!~~
+          - ~~maybe just drop the text, no one needs a hashtag~~
+          - ~~example of how to customise icon at
+            <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
+            is too complicated for me to translate into Java so I will not bother with a custom
+            icon~~
+      - ~~stop sharing text in AndroidCaptureIO~~
+          - ~~test~~
+      - ~~stop sharing text in IOSCaptureIO~~
+          - test
+      - ~~delete CaptureIO.savePostcard(Postcard postcard, String shareText, String shareHeader)~~
+      - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
+        and IOSCaptureIO.sharePostcardPNG()~~
+      - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
+      - ~~delete postcardShareHeader and postcardShareText from StringBundle.properties~~
+      - ~~revert LoadingScreen to game.setScreen(PizzaScreen)~~
+      - ~~test Android, iPad, iPhone, Desktop, Web~~
+      
+  + ~~**BUG** fix crash on share photo on iPad~~
+      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
+        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
+      - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
+      - ~~set position of popover box~~
+          - ~~use UIView getFrame() for X, Y, Width, Height~~
+      - ~~**FIXED** now it's crashing on iPhone~~
+          - ~~only do popoverPresentationController when 
+            UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad~~
+
+  + ~~stop iPad from displaying in portrait mode~~
+      - ~~also forces libgdx splash screen to display in landscape on iPad and iPhone~~
+
+  + ~~**FIXED** fix incorrect topping placement on iOS~~
+      - ~~PizzaScreen.touchDown(), .touchUp(), .touchDragged, and .mouseMoved()
+        were using the version of Camera.unproject() which assumed the viewport spans the whole 
+        screen. Switched to using version which allows to specify viewport position and dimension
+        in screen coordinates~~
   
   + ~~**WILL NOT IMPLEMENT**: consider a thicker font for credits to make more legible on mobile~~
       

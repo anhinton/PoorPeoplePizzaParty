@@ -92,9 +92,7 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard,
-                            game.bundle.get("postcardShareText"),
-                            game.bundle.get("postcardShareHeader"));
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             table.add(shareButton)
@@ -136,9 +134,7 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard,
-                            game.bundle.get("postcardShareText"),
-                            game.bundle.get("postcardShareHeader"));
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             table.add(shareButton)
