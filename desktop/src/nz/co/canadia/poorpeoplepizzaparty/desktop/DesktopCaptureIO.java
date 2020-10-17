@@ -36,10 +36,6 @@ public class DesktopCaptureIO implements CaptureIO {
         }
     }
 
-    public void savePostcardImage(Postcard postcard, String s, String s1) {
-
-    }
-
     @Override
     public void savePizzaXml(String pizzaXml) {
         FileHandle autosaveFile = autosaveFile();
