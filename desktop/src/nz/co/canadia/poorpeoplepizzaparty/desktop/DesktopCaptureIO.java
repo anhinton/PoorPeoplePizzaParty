@@ -23,7 +23,6 @@ public class DesktopCaptureIO implements CaptureIO {
 
         final JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fc.setDialogTitle("Choose location to save postcard");
         if (captureDir != null) {
             fc.setCurrentDirectory(captureDir);
         }
