@@ -11,6 +11,7 @@ import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.uikit.UIActivityViewController;
 import org.robovm.apple.uikit.UIImage;
 import org.robovm.apple.uikit.UIModalPresentationStyle;
+import org.robovm.apple.uikit.UIPopoverArrowDirection;
 import org.robovm.apple.uikit.UIView;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
@@ -37,13 +38,15 @@ public class IOSCaptureIO implements CaptureIO {
             NSArray share = new NSArray(image);
             UIActivityViewController uiActivityViewController =
                     new UIActivityViewController(share, null);
-            uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
 
+            uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
             UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();
             uiActivityViewController.getPopoverPresentationController().setSourceView(view);
-
             uiActivityViewController.getPopoverPresentationController().setSourceRect(
-                    new CGRect(10, 10, 32, 32));
+                    new CGRect(view.getFrame().getX(), view.getFrame().getY(),
+                            view.getFrame().getWidth(), view.getFrame().getHeight()));
+            uiActivityViewController.getPopoverPresentationController().setPermittedArrowDirections(UIPopoverArrowDirection.None);
+
             ((IOSApplication) Gdx.app).getUIViewController().presentViewController(
                     uiActivityViewController, true, null);
         }

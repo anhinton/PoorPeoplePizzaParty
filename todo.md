@@ -3,6 +3,7 @@
   + try to make postcard share prettier
       - right now it shows the text first on iOS and this looks ugly. show the picture!
         maybe just drop the text, no one needs a hashtag
+      - how to determine share preview on iOS?
       - ~~stop sharing text in AndroidCaptureIO~~
           - ~~test~~
       - ~~stop sharing text in IOSCaptureIO~~
@@ -11,15 +12,20 @@
       - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
         and IOSCaptureIO.sharePostcardPNG()~~
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
-      - test ~~Android~~, iOS, ~~Desktop, Web~~
+      - test ~~Android, iPad~~, iPhone, ~~Desktop, Web~~
       - delete postcardShareHeader and postcardShareText from StringBundle.properties
+      - revert LoadingScreen to game.setScreen(PizzaScreen)
       
   + **BUG** fix crash on share photo on iPad
-      - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
-        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**
-      - use PopoverPresentationController to stop iPad crash
-      - need to determine position of popover box somehow
+      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
+        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
+      - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
+      - ~~set position of popover box~~
+          - ~~use UIView getFrame() for X, Y, Width, Height~~
+      - **BUG** now it's crashing on iPhone
+      
       - should still work fine on iPhone?
+          - crashes on iPhone
   
   + bump version and publish new:
       - Android
