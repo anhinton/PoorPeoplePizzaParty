@@ -2,8 +2,8 @@
   
   + ~~bump version~~ and publish new:
       - ~~Android APK~~
-          - itch.io
-          - Google Play
+          - ~~itch.io~~
+          - ~~Google Play~~
       - iOS
   
 ## Done
