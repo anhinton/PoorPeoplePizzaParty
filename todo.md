@@ -6,9 +6,9 @@
           - ~~Google Play~~
       - ~~build iOS IPA~~
           - submit to App Store
-              - got "iPad Multitasking support requires these orientations" error on upload.
+              - ~~got "iPad Multitasking support requires these orientations" error on upload.
                 set UIRequiresFullScreen to TRUE in Info.plist.xml as per
-                <https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForSlideOverAndSplitView.html>
+                <https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForSlideOverAndSplitView.html>~~
   
 ## Done
 
