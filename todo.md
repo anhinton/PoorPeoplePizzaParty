@@ -1,6 +1,14 @@
 # TODO
+  
+  + bump version and publish new:
+      - Android
+          - itch.io
+          - Google Play
+      - iOS
+  
+## Done
 
-  + try to make postcard share prettier
+  + ~~try to make postcard share prettier~~
       - ~~right now it shows the text first on iOS and this looks ugly. show the picture!~~
           - ~~maybe just drop the text, no one needs a hashtag~~
           - ~~example of how to customise icon at
@@ -17,15 +25,7 @@
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
       - ~~delete postcardShareHeader and postcardShareText from StringBundle.properties~~
       - ~~revert LoadingScreen to game.setScreen(PizzaScreen)~~
-      - test Android, ~~iPad, iPhone~~, Desktop, Web
-  
-  + bump version and publish new:
-      - Android
-          - itch.io
-          - Google Play
-      - iOS
-  
-## Done
+      - ~~test Android, iPad, iPhone, Desktop, Web~~
       
   + ~~**BUG** fix crash on share photo on iPad~~
       - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
