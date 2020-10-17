@@ -17,7 +17,7 @@
       - ~~drop dialog title text from DesktopCaptureIO.savePostcardImage()~~
       - ~~delete postcardShareHeader and postcardShareText from StringBundle.properties~~
       - ~~revert LoadingScreen to game.setScreen(PizzaScreen)~~
-      - test Android, iPad, iPhone, Desktop, Web
+      - test Android, ~~iPad, iPhone~~, Desktop, Web
   
   + bump version and publish new:
       - Android
@@ -27,7 +27,7 @@
   
 ## Done
       
-  + ~~**FIX** fix crash on share photo on iPad~~
+  + ~~**BUG** fix crash on share photo on iPad~~
       - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
         on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
       - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
