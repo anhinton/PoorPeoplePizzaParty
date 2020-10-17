@@ -15,19 +15,6 @@
       - ~~test Android, iPad, iPhone, Desktop, Web~~
       - delete postcardShareHeader and postcardShareText from StringBundle.properties
       - revert LoadingScreen to game.setScreen(PizzaScreen)
-      
-  + **BUG** fix crash on share photo on iPad
-      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
-        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
-      - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
-      - ~~set position of popover box~~
-          - ~~use UIView getFrame() for X, Y, Width, Height~~
-      - **FIXED** now it's crashing on iPhone
-          - only do popoverPresentationController when 
-            UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad
-      
-      - should still work fine on iPhone?
-          - crashes on iPhone
   
   + bump version and publish new:
       - Android
@@ -36,6 +23,16 @@
       - iOS
   
 ## Done
+      
+  + ~~**FIX** fix crash on share photo on iPad~~
+      - ~~Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available
+        on iOS, not iPadOS. I will try "NSPhotoLibraryUsageDescription" instead. **FAILED**~~
+      - ~~use PopoverPresentationController to stop iPad crash **SUCCESS**~~
+      - ~~set position of popover box~~
+          - ~~use UIView getFrame() for X, Y, Width, Height~~
+      - ~~**FIXED** now it's crashing on iPhone~~
+          - ~~only do popoverPresentationController when 
+            UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad~~
 
   + ~~stop iPad from displaying in portrait mode~~
       - ~~also forces libgdx splash screen to display in landscape on iPad and iPhone~~
