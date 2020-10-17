@@ -8,9 +8,6 @@ import com.badlogic.gdx.graphics.PixmapIO;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSArray;
-import org.robovm.apple.foundation.NSURL;
-import org.robovm.apple.linkpresentation.LPLinkMetadata;
-import org.robovm.apple.uikit.UIAccessibilityConstants;
 import org.robovm.apple.uikit.UIActivityViewController;
 import org.robovm.apple.uikit.UIDevice;
 import org.robovm.apple.uikit.UIImage;
@@ -40,9 +37,10 @@ public class IOSCaptureIO implements CaptureIO {
     private void sharePostcardPNG() {
         if(postcardFilePath.exists()) {
             UIImage image = new UIImage(postcardFilePath.file());
-            NSArray share = new NSArray(image);
+            NSArray items = new NSArray(image);
+
             UIActivityViewController uiActivityViewController =
-                    new UIActivityViewController(share, null);
+                    new UIActivityViewController(items, null);
 
             if (new UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad) {
                 uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);

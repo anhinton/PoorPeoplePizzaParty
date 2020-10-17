@@ -1,9 +1,12 @@
 # TODO
 
   + try to make postcard share prettier
-      - right now it shows the text first on iOS and this looks ugly. show the picture!
-        maybe just drop the text, no one needs a hashtag
-      - how to determine share preview on iOS?
+      - ~~right now it shows the text first on iOS and this looks ugly. show the picture!~~
+          - ~~maybe just drop the text, no one needs a hashtag~~
+          - ~~example of how to customise icon at
+            <https://www.hackingwithswift.com/articles/118/uiactivityviewcontroller-by-example>
+            is too complicated for me to translate into Java so I will not bother with a custom
+            icon~~
       - ~~stop sharing text in AndroidCaptureIO~~
           - ~~test~~
       - ~~stop sharing text in IOSCaptureIO~~
