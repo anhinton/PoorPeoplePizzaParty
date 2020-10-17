@@ -7,9 +7,11 @@
           - ~~test~~
       - ~~stop sharing text in IOSCaptureIO~~
           - test
-      - drop String shareText from CaptureIO.savePostcard() and CaptureIO.sharePostcardPNG()
+      - ~~delete CaptureIO.savePostcard(Postcard postcard, String shareText, String shareHeader)~~
+      - ~~delete String shareText and String shareHeader from AndroidCaptureIO.sharePostcardPNG()
+        and IOSCaptureIO.sharePostcardPNG()~~
           - test Android, iOS, Desktop, Web
-      - delete postcardShareText from StringBundle.properties
+      - delete postcardShareHeader and postcardShareText from StringBundle.properties
       
   + **BUG** fix crash on share photo on iPad
       - Property List Key "NSPhotoLibraryAddUsageDescription" appears to be only available

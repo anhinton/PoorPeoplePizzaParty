@@ -37,9 +37,8 @@ public class DesktopCaptureIO implements CaptureIO {
         }
     }
 
-    @Override
-    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
-        savePostcardImage(postcard);
+    public void savePostcardImage(Postcard postcard, String s, String s1) {
+
     }
 
     @Override

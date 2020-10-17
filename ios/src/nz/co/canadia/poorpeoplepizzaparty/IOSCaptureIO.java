@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.PixmapIO;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSArray;
-import org.robovm.apple.foundation.NSObject;
-import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIActivityViewController;
 import org.robovm.apple.uikit.UIImage;
 import org.robovm.apple.uikit.UIModalPresentationStyle;
@@ -24,30 +22,21 @@ public class IOSCaptureIO implements CaptureIO {
     @Override
     public void savePostcardImage(Postcard postcard) {
         Pixmap postcardPixmap = postcard.getPixmap();
-
         postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
-
         writePostcardPNG(postcardPixmap);
-    }
-
-    @Override
-    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
-        savePostcardImage(postcard);
-
-        sharePostcardPNG(shareText, shareHeader);
+        sharePostcardPNG();
     }
 
     private void writePostcardPNG(Pixmap postcardPixmap) {
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
     }
 
-    private void sharePostcardPNG(String shareText, String shareHeader) {
+    private void sharePostcardPNG() {
         if(postcardFilePath.exists()) {
             UIImage image = new UIImage(postcardFilePath.file());
             NSArray share = new NSArray(image);
             UIActivityViewController uiActivityViewController =
                     new UIActivityViewController(share, null);
-            uiActivityViewController.setTitle(shareHeader);
             uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
 
             UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();

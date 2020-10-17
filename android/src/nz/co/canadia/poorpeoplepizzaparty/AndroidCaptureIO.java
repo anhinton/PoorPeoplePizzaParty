@@ -26,17 +26,9 @@ public class AndroidCaptureIO implements CaptureIO {
     @Override
     public void savePostcardImage(Postcard postcard) {
         Pixmap postcardPixmap = postcard.getPixmap();
-
         postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
-
         writePostcardPNG(postcardPixmap);
-    }
-
-    @Override
-    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
-        savePostcardImage(postcard);
-
-        sharePostcardPNG(shareText, shareHeader);
+        sharePostcardPNG();
     }
 
     @Override
@@ -54,7 +46,7 @@ public class AndroidCaptureIO implements CaptureIO {
         }
     }
 
-    private void sharePostcardPNG(String shareText, String shareHeader) {
+    private void sharePostcardPNG() {
         // get postcard file URI
         File postcardFile = postcardFilePath.file();
         Uri postcardUri = FileProvider.getUriForFile(activity.getContext(),
@@ -69,7 +61,7 @@ public class AndroidCaptureIO implements CaptureIO {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/png");
         shareIntent.putExtra(Intent.EXTRA_STREAM, postcardUri);
-        activity.startActivity(Intent.createChooser(shareIntent, shareHeader));
+        activity.startActivity(Intent.createChooser(shareIntent, null));
     }
 
     private void writePostcardPNG(Pixmap postcardPixmap) {
