@@ -1,8 +1,10 @@
 # TODO
 
-  + update web and desktop builds to latest version
+  + ALL DONE!
   
 ## Done
+
+  + ~~update web and desktop builds to version 2020-10-17~~
   
   + ~~bump version~~ and publish new:
       - ~~build Android APK~~
