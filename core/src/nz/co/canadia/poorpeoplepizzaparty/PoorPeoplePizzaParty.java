@@ -104,6 +104,7 @@ public class PoorPeoplePizzaParty extends Game {
         if (Gdx.app.getType() == Application.ApplicationType.Android |
                 Gdx.app.getType() == Application.ApplicationType.iOS) {
             if (Gdx.files.local("postcards/").exists()) {
+                Gdx.app.log("PoorPeoplePizzaParty", "deleting postcards");
                 FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
                 for (FileHandle file : postcardFiles) {
                     file.delete();
