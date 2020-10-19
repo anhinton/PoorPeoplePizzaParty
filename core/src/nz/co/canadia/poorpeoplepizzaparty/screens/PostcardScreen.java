@@ -271,7 +271,6 @@ class PostcardScreen implements InputProcessor, Screen {
 
     @Override
     public void dispose() {
-        Gdx.app.log("PostcardScreen.dispose()", "calling dispose()");
         postcard.dispose();
         flashTexture.dispose();
         flashPixmap.dispose();
@@ -279,12 +278,9 @@ class PostcardScreen implements InputProcessor, Screen {
         // dispose of postcard PNG files
         if (Gdx.app.getType() == Application.ApplicationType.Android |
                 Gdx.app.getType() == Application.ApplicationType.iOS) {
-            Gdx.app.log("PostcardScreen.dispose()", "postcards/ exists: " + Gdx.files.local(Constants.CAPTURE_PATH).exists());
             if (Gdx.files.local(Constants.CAPTURE_PATH).exists()) {
-                Gdx.app.log("PostcardScreen.dispose()", "deleting postcards");
                 FileHandle[] postcardFiles = Gdx.files.local(Constants.CAPTURE_PATH).list();
                 for (FileHandle file : postcardFiles) {
-                    Gdx.app.log("PostcardScreen.dispose()", file.name());
                     file.delete();
                 }
             }

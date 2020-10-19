@@ -12,7 +12,7 @@
               - ~~iOS~~
               - ~~Desktop~~
               - ~~Html~~
-          - stop debugging in PostcardScreen, LoadingScreen
+          - ~~stop debugging in PostcardScreen, LoadingScreen~~
   
 ## Done
 

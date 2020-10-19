@@ -28,12 +28,9 @@ public class LoadingScreen implements Screen {
         // dispose of postcard PNG files
         if (Gdx.app.getType() == Application.ApplicationType.Android |
                 Gdx.app.getType() == Application.ApplicationType.iOS) {
-            Gdx.app.debug("LoadingScreen()", "postcards/ exists: " + Gdx.files.local(Constants.CAPTURE_PATH).exists());
             if (Gdx.files.local(Constants.CAPTURE_PATH).exists()) {
-                Gdx.app.log("LoadingScreen()", "deleting postcards");
                 FileHandle[] postcardFiles = Gdx.files.local(Constants.CAPTURE_PATH).list();
                 for (FileHandle file : postcardFiles) {
-                    Gdx.app.log("LoadingScreen()", file.name());
                     file.delete();
                 }
             }
