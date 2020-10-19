@@ -8,10 +8,10 @@
           - ~~in PostcardScreen.dispose()~~
           - ~~in LoadingScreen() constructor~~
           - test
-              - Android
+              - ~~Android~~
               - iOS
-              - Desktop
-              - Html
+              - ~~Desktop~~
+              - ~~Html~~
           - stop debugging in PostcardScreen, LoadingScreen
   
 ## Done
