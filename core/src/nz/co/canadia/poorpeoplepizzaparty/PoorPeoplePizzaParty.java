@@ -101,7 +101,8 @@ public class PoorPeoplePizzaParty extends Game {
         uiSkin.dispose();
 
         // clean up shared postcard files, if they exist
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+        if (Gdx.app.getType() == Application.ApplicationType.Android |
+                Gdx.app.getType() == Application.ApplicationType.iOS) {
             if (Gdx.files.local("postcards/").exists()) {
                 FileHandle[] postcardFiles = Gdx.files.local("postcards/").list();
                 for (FileHandle file : postcardFiles) {

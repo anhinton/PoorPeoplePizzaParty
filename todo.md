@@ -1,6 +1,8 @@
 # TODO
 
-  + ALL DONE!
+  + clean up postcard files on iOS
+      - the current PoorPeoplePizzaParty.dispose() method only disposes
+        of old postcard PNG files on iOS
   
 ## Done
 
