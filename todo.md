@@ -7,9 +7,9 @@
       - ~~delete any files in Gdx.files.local(Constants.CAPTURE_PATH)~~ 
           - ~~in PostcardScreen.dispose()~~
           - ~~in LoadingScreen() constructor~~
-          - test
+          - ~~test~~
               - ~~Android~~
-              - iOS
+              - ~~iOS~~
               - ~~Desktop~~
               - ~~Html~~
           - stop debugging in PostcardScreen, LoadingScreen
