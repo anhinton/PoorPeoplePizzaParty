@@ -14,7 +14,7 @@
               - ~~Html~~
           - ~~stop debugging in PostcardScreen, LoadingScreen~~
       - ~~bump version to 2020-10-23~~
-      - build Android APK
+      - ~~build Android APK~~
           - itch.io
           - Google Play
       - ~~build iOS IPA~~
