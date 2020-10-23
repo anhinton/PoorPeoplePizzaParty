@@ -13,6 +13,12 @@
               - ~~Desktop~~
               - ~~Html~~
           - ~~stop debugging in PostcardScreen, LoadingScreen~~
+      - ~~bump version to 2020-10-23~~
+      - build Android APK
+          - itch.io
+          - Google Play
+      - build iOS IPA
+          - App Store
   
 ## Done
 
