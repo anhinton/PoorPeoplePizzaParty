@@ -1,5 +1,9 @@
 # TODO
 
+  - nothing to do!          
+  
+## Done
+
   + ~~clean up postcard files on iOS/Android~~
       - ~~the current PoorPeoplePizzaParty.dispose() method only disposes
         of old postcard PNG files on Android (and only on launch)~~
@@ -19,9 +23,6 @@
           - ~~Google Play~~
       - ~~build iOS IPA~~
           - ~~App Store~~
-          
-  
-## Done
 
   + ~~update web and desktop builds to version 2020-10-17~~
   
