@@ -17,8 +17,8 @@
       - build Android APK
           - itch.io
           - Google Play
-      - build iOS IPA
-          - App Store
+      - ~~build iOS IPA~~
+          - ~~App Store~~
   
 ## Done
 
