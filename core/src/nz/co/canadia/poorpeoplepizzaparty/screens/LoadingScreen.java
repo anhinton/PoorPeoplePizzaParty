@@ -1,7 +1,9 @@
 package nz.co.canadia.poorpeoplepizzaparty.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,6 +24,17 @@ public class LoadingScreen implements Screen {
 
     public LoadingScreen(final PoorPeoplePizzaParty game) {
         this.game = game;
+
+        // dispose of postcard PNG files
+        if (Gdx.app.getType() == Application.ApplicationType.Android |
+                Gdx.app.getType() == Application.ApplicationType.iOS) {
+            if (Gdx.files.local(Constants.CAPTURE_PATH).exists()) {
+                FileHandle[] postcardFiles = Gdx.files.local(Constants.CAPTURE_PATH).list();
+                for (FileHandle file : postcardFiles) {
+                    file.delete();
+                }
+            }
+        }
 
         game.assets.loadTextures();
 
@@ -77,7 +90,6 @@ public class LoadingScreen implements Screen {
         if (game.assets.update()) {
             game.setScreen(new TitleScreen(game));
         }
-
 
         progress = game.assets.getProgress();
         progressBar.setValue(progress);

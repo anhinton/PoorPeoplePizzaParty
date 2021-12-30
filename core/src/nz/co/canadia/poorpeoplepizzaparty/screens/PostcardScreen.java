@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -92,9 +93,7 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard,
-                            game.bundle.get("postcardShareText"),
-                            game.bundle.get("postcardShareHeader"));
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             table.add(shareButton)
@@ -136,9 +135,7 @@ class PostcardScreen implements InputProcessor, Screen {
             shareButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.captureIO.savePostcardImage(postcard,
-                            game.bundle.get("postcardShareText"),
-                            game.bundle.get("postcardShareHeader"));
+                    game.captureIO.savePostcardImage(postcard);
                 }
             });
             table.add(shareButton)
@@ -278,5 +275,15 @@ class PostcardScreen implements InputProcessor, Screen {
         flashTexture.dispose();
         flashPixmap.dispose();
         game.assets.unloadPostcardSounds();
+        // dispose of postcard PNG files
+        if (Gdx.app.getType() == Application.ApplicationType.Android |
+                Gdx.app.getType() == Application.ApplicationType.iOS) {
+            if (Gdx.files.local(Constants.CAPTURE_PATH).exists()) {
+                FileHandle[] postcardFiles = Gdx.files.local(Constants.CAPTURE_PATH).list();
+                for (FileHandle file : postcardFiles) {
+                    file.delete();
+                }
+            }
+        }
     }
 }

@@ -6,11 +6,15 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
+import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSArray;
-import org.robovm.apple.foundation.NSObject;
-import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIActivityViewController;
+import org.robovm.apple.uikit.UIDevice;
 import org.robovm.apple.uikit.UIImage;
+import org.robovm.apple.uikit.UIModalPresentationStyle;
+import org.robovm.apple.uikit.UIPopoverArrowDirection;
+import org.robovm.apple.uikit.UIUserInterfaceIdiom;
+import org.robovm.apple.uikit.UIView;
 
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
@@ -21,32 +25,35 @@ public class IOSCaptureIO implements CaptureIO {
     @Override
     public void savePostcardImage(Postcard postcard) {
         Pixmap postcardPixmap = postcard.getPixmap();
-
-        postcardFilePath = Gdx.files.local("postcards/" + postcard.fileName());
-
+        postcardFilePath = Gdx.files.local(Constants.CAPTURE_PATH + postcard.fileName());
         writePostcardPNG(postcardPixmap);
-    }
-
-    @Override
-    public void savePostcardImage(Postcard postcard, String shareText, String shareHeader) {
-        savePostcardImage(postcard);
-
-        sharePostcardPNG(shareText, shareHeader);
+        sharePostcardPNG();
     }
 
     private void writePostcardPNG(Pixmap postcardPixmap) {
         PixmapIO.writePNG(postcardFilePath, postcardPixmap);
     }
 
-    private void sharePostcardPNG(String shareText, String shareHeader) {
+    private void sharePostcardPNG() {
         if(postcardFilePath.exists()) {
-            NSArray<NSObject> items = new NSArray<>(
-                    new NSString(shareText),
-                    new UIImage(postcardFilePath.file())
-            );
-            UIActivityViewController uiActivityViewController = new UIActivityViewController(items, null);
-            uiActivityViewController.setTitle(shareHeader);
-            ((IOSApplication) Gdx.app).getUIViewController().presentViewController(uiActivityViewController, true, null);
+            UIImage image = new UIImage(postcardFilePath.file());
+            NSArray items = new NSArray(image);
+
+            UIActivityViewController uiActivityViewController =
+                    new UIActivityViewController(items, null);
+
+            if (new UIDevice().getUserInterfaceIdiom() == UIUserInterfaceIdiom.Pad) {
+                uiActivityViewController.setModalPresentationStyle(UIModalPresentationStyle.Popover);
+                UIView view = ((IOSApplication) Gdx.app).getUIViewController().getView();
+                uiActivityViewController.getPopoverPresentationController().setSourceView(view);
+                uiActivityViewController.getPopoverPresentationController().setSourceRect(
+                        new CGRect(view.getFrame().getX(), view.getFrame().getY(),
+                                view.getFrame().getWidth(), view.getFrame().getHeight()));
+                uiActivityViewController.getPopoverPresentationController().setPermittedArrowDirections(UIPopoverArrowDirection.None);
+            }
+
+            ((IOSApplication) Gdx.app).getUIViewController().presentViewController(
+                    uiActivityViewController, true, null);
         }
     }
 
