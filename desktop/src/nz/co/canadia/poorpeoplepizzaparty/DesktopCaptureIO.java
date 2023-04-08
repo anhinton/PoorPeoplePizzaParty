@@ -1,4 +1,4 @@
-package nz.co.canadia.poorpeoplepizzaparty.desktop;
+package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
