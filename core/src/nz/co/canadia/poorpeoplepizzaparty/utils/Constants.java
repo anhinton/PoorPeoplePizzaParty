@@ -102,6 +102,7 @@ public class Constants {
 
     // Screenshot filename
     public static final String ANDROID_CAPTURE_PATH = "postcards/";
+    public static final String DESKTOP_CAPTURE_PATH = "Pictures";
     public static final String CAPTURE_PREFIX = "pizza";
     public static final String CAPTURE_SUFFX = ".png";
 
