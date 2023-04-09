@@ -2,7 +2,8 @@ package nz.co.canadia.poorpeoplepizzaparty;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
+
+import androidx.core.content.FileProvider;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
