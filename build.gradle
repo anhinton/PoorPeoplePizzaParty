@@ -21,7 +21,7 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
 
-    version = '2020-10-23'
+    version = '2023.04.15'
     ext {
         appName = "Poor People Pizza Party"
         gdxVersion = '1.11.0'
