@@ -25,7 +25,7 @@ public class IOSCaptureIO implements CaptureIO {
     @Override
     public void savePostcardImage(Postcard postcard) {
         Pixmap postcardPixmap = postcard.getPixmap();
-        postcardFilePath = Gdx.files.local(Constants.CAPTURE_PATH + postcard.fileName());
+        postcardFilePath = Gdx.files.local(Constants.ANDROID_CAPTURE_PATH + postcard.fileName());
         writePostcardPNG(postcardPixmap);
         sharePostcardPNG();
     }

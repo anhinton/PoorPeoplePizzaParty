@@ -101,7 +101,8 @@ public class Constants {
     public static final float COOK_TIME_INCREMENT = 1 / 30f;
 
     // Screenshot filename
-    public static final String CAPTURE_PATH = "postcards/";
+    public static final String ANDROID_CAPTURE_PATH = "postcards/";
+    public static final String DESKTOP_CAPTURE_PATH = "Pictures";
     public static final String CAPTURE_PREFIX = "pizza";
     public static final String CAPTURE_SUFFX = ".png";
 

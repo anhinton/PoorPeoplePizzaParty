@@ -212,7 +212,7 @@ class PostcardScreen implements InputProcessor, Screen {
     }
 
     @Override
-    public boolean scrolled(int amount) {
+    public boolean scrolled(float amountX, float amountY) {
         return false;
     }
 
@@ -278,8 +278,8 @@ class PostcardScreen implements InputProcessor, Screen {
         // dispose of postcard PNG files
         if (Gdx.app.getType() == Application.ApplicationType.Android |
                 Gdx.app.getType() == Application.ApplicationType.iOS) {
-            if (Gdx.files.local(Constants.CAPTURE_PATH).exists()) {
-                FileHandle[] postcardFiles = Gdx.files.local(Constants.CAPTURE_PATH).list();
+            if (Gdx.files.local(Constants.ANDROID_CAPTURE_PATH).exists()) {
+                FileHandle[] postcardFiles = Gdx.files.local(Constants.ANDROID_CAPTURE_PATH).list();
                 for (FileHandle file : postcardFiles) {
                     file.delete();
                 }

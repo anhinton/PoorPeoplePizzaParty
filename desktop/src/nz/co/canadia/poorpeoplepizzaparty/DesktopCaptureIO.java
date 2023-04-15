@@ -1,39 +1,32 @@
-package nz.co.canadia.poorpeoplepizzaparty.desktop;
+package nz.co.canadia.poorpeoplepizzaparty;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
 
-import java.awt.Component;
-import java.io.File;
+import java.util.zip.Deflater;
 
-import javax.swing.JFileChooser;
-
-import nz.co.canadia.poorpeoplepizzaparty.Postcard;
 import nz.co.canadia.poorpeoplepizzaparty.utils.CaptureIO;
 import nz.co.canadia.poorpeoplepizzaparty.utils.Constants;
 
 public class DesktopCaptureIO implements CaptureIO {
-    private File captureDir;
 
     @Override
     public void savePostcardImage(Postcard postcard) {
         Pixmap postcardPixmap = postcard.getPixmap();
 
-        final JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        if (captureDir != null) {
-            fc.setCurrentDirectory(captureDir);
+        FileHandle filePath;
+        if (Gdx.files.external(Constants.DESKTOP_CAPTURE_PATH).exists()) {
+            FileHandle captureDir = Gdx.files.external(
+                    Constants.DESKTOP_CAPTURE_PATH + "/" + Constants.GAME_NAME);
+            captureDir.mkdirs();
+            filePath = Gdx.files.external(
+                    captureDir + "/" + postcard.fileName());
+        } else {
+            filePath = Gdx.files.external(postcard.fileName());
         }
-        int returnVal = fc.showSaveDialog(new Component() {});
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            captureDir = fc.getSelectedFile();
-            FileHandle filePath =
-                    Gdx.files.absolute(captureDir + "/" + postcard.fileName());
-            PixmapIO.writePNG(filePath, postcardPixmap);
-        }
+        PixmapIO.writePNG(filePath, postcardPixmap, Deflater.BEST_COMPRESSION, false);
     }
 
     @Override
